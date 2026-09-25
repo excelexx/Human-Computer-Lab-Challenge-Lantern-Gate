@@ -21,7 +21,9 @@ MAX_SAMPLES = 8
 MIN_VALID = 6
 WINDOW_SECONDS = 4.0
 FRESH_SECONDS = 4.0
-MIN_INTERVAL_SECONDS = 0.4
+MIN_INTERVAL_SECONDS = 0.12
+DISPLAY_ALPHA = 0.7
+DISPLAY_EMA_GAP_SECONDS = 0.6
 FEATURE_DIM = 1408
 
 
@@ -84,9 +86,32 @@ class LiveSample:
     score: float = 0.0
 
 
+@dataclass(frozen=True)
+class LiveDisplay:
+    """Fast tentative tag, deliberately independent of fusion eligibility."""
+    probabilities: tuple[float, ...]
+    received_monotonic: float
+    received_at: str
+    smoothed: bool = False
+
+
+def update_display(probabilities, previous, received_monotonic, received_at):
+    values=np.asarray(probabilities,dtype=np.float32)
+    if (values.shape!=(len(LABELS),) or not np.isfinite(values).all()
+            or np.any(values<0) or np.any(values>1) or abs(float(values.sum())-1)>1e-4):
+        raise ValueError("The live display requires seven finite emotion scores")
+    smoothed=(previous is not None
+              and 0<=received_monotonic-previous.received_monotonic<=DISPLAY_EMA_GAP_SECONDS)
+    if smoothed:
+        values=DISPLAY_ALPHA*values+(1-DISPLAY_ALPHA)*np.asarray(previous.probabilities,dtype=np.float32)
+    return LiveDisplay(tuple(float(p) for p in values),received_monotonic,received_at,smoothed)
+
+
 @dataclass
 class _Window:
     observation: LiveVisionObservation | None = None
+    display: LiveDisplay | None = None
+    last_box: tuple[float, ...] | None = None
     samples: list[LiveSample] = field(default_factory=list, repr=False)
     sequence: int = 0
     last_attempt: float = float("-inf")
@@ -161,14 +186,31 @@ class LiveVisionBuffer:
             return status_report("discarded", self)
         now = time.monotonic()
         window = self._window
-        if window.observation is not None:
-            if window.observation.valid_for(session_id, now):
-                value = dict(window.status)
-                value["observation_age_seconds"] = now - window.observation.received_monotonic
+        observation = window.observation
+        display = window.display
+        last_attempt = window.last_attempt
+        sequence = window.sequence
+        if observation is not None:
+            if not observation.valid_for(session_id, now) and window.observation is observation:
+                window.observation = None
+        if display is not None:
+            age=now-display.received_monotonic
+            if 0<=age<FRESH_SECONDS:
+                value=dict(window.status)
+                value.update(display_age_seconds=age,observation_age_seconds=age,
+                             fusion_ready=window.observation is not None)
                 return value
-            window.observation = None
-        if window.last_attempt != float("-inf") and now - window.last_attempt >= FRESH_SECONDS:
+            if window.display is display:
+                window.display=None
+                window.last_box=None
+                window.status=status_report("stale",self)
+        if (last_attempt != float("-inf") and now-last_attempt>=FRESH_SECONDS
+                and window.last_attempt==last_attempt and window.sequence==sequence
+                and (window.display is None or window.display is display)):
             window.samples.clear()
+            if window.display is display:
+                window.display=None
+            window.last_box=None
             window.status = status_report("stale", self)
         return dict(window.status) if window.status else status_report("warming", self)
 
@@ -176,6 +218,10 @@ class LiveVisionBuffer:
 def status_report(status, buffer, **values):
     return {"status": status, "available": False, "label": None, "probabilities": None,
             "score_semantics": "uncalibrated_softmax", "source": "vision",
+            "display_scope": "tentative_single_frame_with_short_probability_ema",
+            "tentative": False, "fusion_ready": False,
+            "display_age_seconds": None, "process_latency_ms": None,
+            "display_smoothing_alpha": DISPLAY_ALPHA,
             "session_id": buffer.session_id, "epoch": buffer.epoch, "sequence": buffer.sequence,
             "sampled_frames": len(buffer.samples), "selected_frames": 0,
             "observation_age_seconds": None, **values}

@@ -2,7 +2,7 @@
 
 Start with the [morning handoff](HANDOFF.md) for the ready-to-try app, measured improvements and remaining weaknesses.
 
-The [live-camera update](reports/live-camera/REPORT.md) replaces webcam recording with continuous visual tags and repairs missing-duration uploads. It includes real-model integration and browser duration checks; physical webcam capture still needs a permission/device check in your browser.
+The [live-camera update](reports/live-camera/REPORT.md) replaces webcam recording with continuous visual tags and repairs missing-duration uploads. The [live-camera latency update](reports/live-camera-latency/REPORT.md) separates a fast visual display from the stricter evidence used for a reply. Physical webcam verification showed a first-frame tag within 289 ms of a conversation reset and ongoing capture at roughly five frames per second.
 
 A local text-and-vision prototype that asks how your day went, estimates a MELD emotion category, and streams a short supportive response. Turn the webcam on once for a continuously updated visual signal, then type a message. Sending combines your text with the latest usable camera evidence. The browser is the interface; Python and a local llama.cpp server perform inference on your computer.
 
@@ -104,7 +104,8 @@ The baseline training command compares unweighted cross-entropy with inverse-squ
 ### Visual handling and fusion
 
 - For MELD, uploaded clips and replay, eight frames are sampled from the first ten seconds. The upload tab accepts clips of up to twenty seconds and the state records truncation.
-- Live camera tracking keeps at most eight recent samples within a four-second window and needs at least six usable face samples. It uses the same face geometry and feature pooling, with rolling sampling instead of clip positions. Evidence expires after four seconds without a fresh observation. The live visual tag and the submitted text-plus-vision tag are separate outputs; live sampling has no new MELD accuracy claim.
+- The live visual display starts with the first usable face frame. It smooths probabilities with 70% weight on the new frame and 30% on the previous display, only when the gap is at most 0.6 seconds. Estimates can still change or flicker; smoothing does not establish greater accuracy.
+- Evidence used for a reply remains stricter: at least six usable face samples among at most eight recent samples within four seconds. It uses the same face geometry and feature pooling as clips, with rolling sampling instead of clip positions. Fusion evidence expires after four seconds without a fresh observation. A visible live tag does not by itself mean that this evidence is ready for a submitted text-plus-vision turn.
 - YuNet selects a usable single face per frame. Multiple faces, too few usable frames, and abrupt changes in face position make the visual branch unavailable. The method is a documented heuristic, not active-speaker recognition.
 - Crops use RGB, a 260×260 resize, and the visual model's prescribed normalization. Mean frame features are L2-normalized. Text uses masked-mean DeBERTa features with a 128-wordpiece limit, also normalized.
 - The fusion head receives 1,408 visual features, 1,024 text features, and three visual-quality values. During training, some visual features are dropped to expose the head to missing evidence.
@@ -164,10 +165,12 @@ Stop the background processes created by the launcher with `scripts/stop.ps1`, u
 
 The generator binds to `http://127.0.0.1:8081`; the browser app defaults to `http://127.0.0.1:7860`. The generator script starts a hidden background process, records its process identity and log paths, and checks readiness. Keep both components running during an interaction. The UI can open before setup is complete: diagnostics identify missing files or an unavailable generator, and no fake predictions are substituted.
 
+Startup preloads the vision components so the camera need not wait for them on its first frame. The text encoder is loaded when a conversational turn first needs it; the first reply can therefore take longer than later replies.
+
 In the browser:
 
-1. In **Camera**, select **Turn camera on** and grant the browser's camera permission. Keep one face in view. Tracking starts automatically; there is no recording step and no audio input.
-2. Wait for the live visual signal, then type what happened during your day and select **Send check-in**. Sending combines your words with the latest fresh, usable camera evidence. If it is unavailable, the response uses the explicit text fallback.
+1. In **Camera**, select **Turn camera on** and grant the browser's camera permission. Keep one face in view. Tracking starts automatically, and the first usable frame can produce a live tag; there is no recording step or six-frame wait for that display. No audio is used.
+2. Type what happened during your day and select **Send check-in**. Sending combines your words with the latest fresh camera evidence only when its stricter six-sample checks pass. Otherwise it uses the explicit text fallback, even if a fast live tag is already visible.
 3. Read the submitted check-in's emotion signal and streamed response. Live tracking and replies share the GPU; tracking resumes after the reply releases it. Open diagnostics to inspect the evidence and timings.
 4. Keep the camera on for another message. **Turn camera off** stops the camera and clears its signal. **New conversation** clears the conversation and accumulated camera evidence while keeping the preview on, so it gathers fresh evidence for the new conversation.
 
@@ -190,7 +193,8 @@ With all three trained heads and the generator available:
 The replay resolves an official MELD utterance, sends its text and video through the same pipeline as the UI, prints the tag and streamed reply, and saves the event trace. The reference label is retained for evaluation only and is not passed to the inference pipeline. Choose a different valid identity from `manifests/meld.jsonl` if the default clip is visually unavailable. The optional browser replay tab lists existing test media.
 
 ```text
-Camera frames → rolling face selection → live visual tag + fresh evidence
+Camera frames → first-frame visual tag, lightly smoothed across recent frames
+              → separate conservative window of evidence for a reply
 Typed text + fresh camera evidence (or an uploaded/replay clip)
     → visual feature pooling + text encoding
     → trained vision/text diagnostic heads
@@ -202,7 +206,7 @@ Typed text + fresh camera evidence (or an uploaded/replay clip)
 
 The state includes session/turn IDs, received time, input availability, seven uncalibrated class probabilities, evidence source, visual quality/rejection reason, modality-specific labels/disagreement, response status/text, and backend timings. Browser capture timestamps are unavailable. Live window timestamps describe backend receipt, not camera exposure times; recorded-clip capture-start/end timestamps remain explicitly null.
 
-“Real-time” now has two parts: the camera updates a tentative visual signal from a rolling four-second window, and **Send check-in** starts a text-plus-vision conversational turn. Camera callbacks are requested about every half-second; browser scheduling, image quality and GPU availability affect updates. Gathering six usable samples takes several callbacks, and live inference pauses while the serialized reply owns the GPU. No measured live-camera latency or accuracy improvement is claimed.
+“Real-time” has two parts: a fast visual display that can use the first valid face frame, and a conversational turn started by **Send check-in**. Camera capture requests run at 5 Hz (every 0.2 seconds), and the display timer polls every 0.1 seconds. These are configured intervals, not guaranteed end-to-end latency; browser scheduling, image quality and GPU availability affect updates. The separate six-sample fusion window still takes several callbacks to become usable. Live inference pauses while the serialized reply owns the GPU. The [latency update report](reports/live-camera-latency/REPORT.md) records this revision's validation; no emotion-accuracy gain is claimed.
 
 The earlier clip-mode engineering targets were a warmed-up emotion state within one second and first response token within two seconds after text and clip were ready. The measured backend replay sample met those targets; it does not establish an end-to-end webcam guarantee. `benchmark` still measures the recorded-clip path: it excludes three warm-up turns, measures 30 usable fusion inputs and ten no-video fallback inputs, and reports p50/p95/max latency. It also samples GPU memory and the Python/generator resident memory. Video capture, upload/transcoding, and browser rendering are outside these backend timings; cold model-load time is reported separately by the pipeline.
 
@@ -210,7 +214,7 @@ The earlier clip-mode engineering targets were a warmed-up emotion state within 
 
 Inference endpoints are loopback-only by default, with no public Gradio tunnel or analytics. Setup downloads require internet access; local inference does not call a remote model. Camera permission is controlled by the browser. Gradio temporarily stores uploads on local disk and schedules cleanup after one hour. Clearing conversation history does not immediately erase temporary files. Dataset audit images, replay reports, and benchmark responses remain in the artifacts directory until removed.
 
-The core scope is intentionally text + vision, with sampled live-camera frames and an optional recorded-clip path. Audio, ASR, TTS, physical robots, reinforcement learning, language-model fine-tuning, identity recognition, and clinical assessment are out of scope. Fusion did not outperform text-only classification in the measured test results. Scores are uncalibrated, and transfer from television dialogue to personal webcam check-ins has not been established. The historical reports validate browser replay, not physical camera hardware or clinical effectiveness.
+The core scope is intentionally text + vision, with sampled live-camera frames and an optional recorded-clip path. Audio, ASR, TTS, physical robots, reinforcement learning, language-model fine-tuning, identity recognition, and clinical assessment are out of scope. Fusion did not outperform text-only classification in the measured test results. Scores are uncalibrated, and transfer from television dialogue to personal webcam check-ins has not been established. A working physical webcam preview in the earlier live-camera build does not validate emotion accuracy or clinical effectiveness; validation of the faster revision is reported separately.
 
 For a portable handoff, provide this source tree, dependency/environment records, the selected trained heads and their metadata, observed reports, and the artifact manifest. Acquire third-party models/data under their own terms rather than publishing the television clips as part of the repository. Important external and AI-generated components are identified in [THIRD_PARTY.md](THIRD_PARTY.md).
 

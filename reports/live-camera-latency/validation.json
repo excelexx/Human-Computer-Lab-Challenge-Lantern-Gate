@@ -1,0 +1,31 @@
+{
+  "created_at": "2026-09-25T15:34:47.294478+00:00",
+  "full_suite": {
+    "passed": 335,
+    "warnings": 1,
+    "seconds": 32.99,
+    "command": "python -m pytest tests -q"
+  },
+  "followup": {
+    "scope": "Focused CPU follow-up after the full suite: nullable concurrent status reads and newer-frame preservation",
+    "passed": 60,
+    "new_regression_cases": 3,
+    "distinct_total_with_preceding_full_suite": 338,
+    "changes": [
+      "Snapshot nullable observation/display references before checking them",
+      "Never clear a newer observation or display during expiry evaluation"
+    ],
+    "gpu_or_model_processing_changed": false
+  },
+  "warning": "Existing Starlette/AnyIO BlockingPortal deprecation.",
+  "real_model_comparison": "backend.json",
+  "physical_browser_verification": "browser.json",
+  "source_sha256": {
+    "src/checkin/app.py": "9a2dbd9a31bc96740c7c5e5af50b10d94d0bfbe58a8eb0f27ae044e5127ba901",
+    "src/checkin/live_vision.py": "12250c606d30279e94f185cd534144a8a00589668c1922c398d5c7404c7092e6",
+    "src/checkin/pipeline.py": "da7da2436b6964ce5af46598c24f171a48ceea22021f1010113357fb6783b5ea",
+    "src/checkin/live_camera.js": "75974d876f0c6437888a038c2824aa7e4f06ba2e7740f0ee99ee6824ccb8b3bd"
+  },
+  "total_required_learned_parameter_upper_bound": 4464745375,
+  "learned_weights_changed": false
+}

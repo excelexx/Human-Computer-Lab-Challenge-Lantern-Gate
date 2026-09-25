@@ -7,7 +7,7 @@ from datetime import datetime,timezone
 from pathlib import Path
 import numpy as np
 import torch
-from .data import VideoProcessor,l2_normalize
+from .data import VideoProcessor,l2_normalize,box_iou
 from .encoders import VisionEncoder,TextEncoder
 from .generator import LocalGenerator
 from .models import DIMENSIONS,load_head
@@ -15,7 +15,7 @@ from .schema import CheckInState,Emotion
 from .settings import LABELS,runtime_home
 from .live_vision import (LiveVisionBuffer, LiveVisionObservation, LiveSample,
     MAX_SAMPLES, WINDOW_SECONDS, FRESH_SECONDS, MIN_INTERVAL_SECONDS,
-    aggregate_samples, extract_live_face, expected_text_metadata, status_report, utc_now)
+    aggregate_samples, extract_live_face, expected_text_metadata, status_report, update_display, utc_now)
 
 
 @dataclass(frozen=True)
@@ -120,6 +120,7 @@ class CheckInPipeline:
         if not generator.get("available"):
             errors.append("Local response generator is not running. Start the local generator script.")
         return {"ready":not errors,"classification_ready":not missing and not invalid_heads,"loaded":self._loaded,
+                "vision_loaded":self._vision_loaded,
                 "device":self.device,"running":self._active_turn is not None or self._pending_turn is not None,"errors":errors,"components":{"generator":generator},
                 "artifact_validation":"loaded" if self._loaded else "pending_first_load",
                 "parameter_budget":inventory["total_parameter_upper_bound"],
@@ -148,6 +149,26 @@ class CheckInPipeline:
             self.vision_encoder.encode_faces([np.zeros((260,260,3),dtype=np.uint8)])
             self._synchronize()
         self._vision_loaded=True
+
+    def prepare_live(self):
+        """Warm the visual path before accepting camera frames; no text or LLM.
+
+        Uses the same exclusive GPU ownership as idle callbacks and Send. The
+        caller gets a clear error if another operation already owns the device.
+        """
+        with self._lifecycle_lock:
+            if self._pending_turn is not None or not self._lock.acquire(blocking=False):
+                raise RuntimeError("Cannot prepare the live camera while another operation is running")
+            self._live_busy=True
+        started=time.perf_counter()
+        try:
+            self._load_vision()
+            self._synchronize()
+            return {"ready":True,"load_ms":(time.perf_counter()-started)*1000}
+        finally:
+            with self._lifecycle_lock:
+                self._live_busy=False
+                self._lock.release()
 
     def _load(self):
         if self._loaded:
@@ -204,6 +225,7 @@ class CheckInPipeline:
         sequence=window.sequence
         window.last_attempt=now
         received=utc_now()
+        process_started=time.perf_counter()
         try:
             self._load_vision()
             if not buffer.is_current(session_id,epoch,sequence):
@@ -221,11 +243,23 @@ class CheckInPipeline:
             if finished-now>=FRESH_SECONDS:
                 window.samples.clear()
                 window.observation=None
+                window.display=None
+                window.last_box=None
                 window.status=status_report("stale",buffer)
                 return buffer,buffer.current_status(session_id)
             recent=[sample for sample in window.samples if 0<=now-sample.received_monotonic<WINDOW_SECONDS]
             recent=(recent+[LiveSample(now,received,reason,values,box,score)])[-MAX_SAMPLES:]
             feature,quality=aggregate_samples(recent)
+            # Fast feedback uses a fresh normalized frame, never a partially
+            # filled fusion vector. An abrupt face change clears the display
+            # for this frame; the next stable frame can produce a new tag.
+            track_jump=(box is not None and window.last_box is not None
+                        and box_iou(window.last_box,box)<.05)
+            display=None
+            display_reason="track_change" if track_jump else reason
+            if values is not None and not track_jump:
+                raw_probabilities=self._predict(self.heads["vision"],l2_normalize(np.asarray(values,dtype=np.float32)))
+                display=update_display(raw_probabilities,window.display,now,received)
             observation=None
             if feature is not None:
                 probabilities=self._predict(self.heads["vision"],feature)
@@ -240,12 +274,20 @@ class CheckInPipeline:
                 raise ValueError("Live emotion output is invalid")
             window.samples=recent
             window.observation=observation
-            window.status=status_report(quality["reason"],buffer,quality=quality,
-                sampled_frames=len(recent),selected_frames=quality["selected_frames"])
-            if observation is not None:
-                window.status.update(available=True,label=LABELS[int(np.argmax(observation.probabilities))],
-                    probabilities={label:float(p) for label,p in zip(LABELS,observation.probabilities)},
-                    quality=observation.quality,observation_age_seconds=finished-now,
+            window.display=display
+            window.last_box=box
+            window.status=status_report("ready" if display is not None else display_reason,buffer,
+                quality=observation.quality if observation is not None else quality,
+                fusion_quality=quality,fusion_ready=observation is not None,
+                sampled_frames=len(recent),selected_frames=quality["selected_frames"],
+                process_latency_ms=(time.perf_counter()-process_started)*1000)
+            if display is not None:
+                window.status.update(available=True,tentative=True,
+                    label=LABELS[int(np.argmax(display.probabilities))],
+                    probabilities={label:float(p) for label,p in zip(LABELS,display.probabilities)},
+                    display_smoothed=display.smoothed,
+                    display_age_seconds=finished-now,observation_age_seconds=finished-now,
+                    display_quality={"available":True,"reason":"single_face","detection_score":score},
                     observed_at=received)
             return buffer,buffer.current_status(session_id)
         except Exception as error:
@@ -253,6 +295,8 @@ class CheckInPipeline:
                 return buffer,status_report("discarded",buffer)
             window.samples.clear()
             window.observation=None
+            window.display=None
+            window.last_box=None
             buffer._lease.sequence=sequence
             window.status=status_report("error",buffer,error=str(error))
             return buffer,dict(window.status)

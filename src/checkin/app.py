@@ -240,6 +240,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
     from checkin.live_vision import LiveVisionBuffer
 
     data_home = resolve_home(home)
+    owns_pipeline = pipeline is None
     if pipeline is None:
         from checkin.pipeline import CheckInPipeline
 
@@ -252,6 +253,16 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             return {"ready": False, "errors": [f"{type(exc).__name__}: {exc}"], "components": {}}
 
     initial_status = get_status()
+    if owns_pipeline and initial_status.get("classification_ready"):
+        # Pay the small visual model's cold start before showing a ready app.
+        # Idle webcam feedback never needs the large text encoder or generator.
+        try:
+            camera_startup = pipeline.prepare_live()
+            initial_status = get_status()
+            initial_status["live_camera_startup"] = camera_startup
+        except Exception as exc:
+            initial_status["ready"] = False
+            initial_status.setdefault("errors", []).append(f"Camera startup: {exc}")
     replay_rows = load_replay_rows(data_home)
     theme = gr.themes.Base(
         primary_hue="green",
@@ -307,7 +318,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         input_mode = gr.State("camera")
         # This input stays mounted for the browser's camera lifecycle signals.
         live_control = gr.Textbox(value="off:initial", elem_id="live-camera-control", show_label=False)
-        live_refresh = gr.Timer(.5)
+        live_refresh = gr.Timer(.1)
         # Gradio deep-copies the initial dictionary for each browser session.
         # Callbacks in that session share this object, including while queued.
         initial_replay_epoch = str(uuid.uuid4())
@@ -330,7 +341,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                             webcam_options=gr.WebcamOptions(mirror=False, constraints={"video": {
                                 "width": {"ideal": 640}, "height": {"ideal": 480}, "frameRate": {"ideal": 15}}}))
                         live_emotion = gr.HTML(live_emotion_html(), elem_id="live-camera-tag")
-                        gr.Markdown("Turn your camera on once. Your emotion tag updates automatically, and your next message uses the recent camera signal. Turn the camera off whenever you like. No audio or video recording.", elem_id="capture-note")
+                        gr.Markdown("Turn your camera on once. Your live emotion estimate updates several times a second. Your next message uses recent camera evidence when it is ready. No audio or video recording.", elem_id="capture-note")
                     with gr.Tab("Upload clip") as upload_tab:
                         camera = SilentVideo(
                             label="A recorded clip",
@@ -388,7 +399,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         with gr.Accordion("Diagnostics and setup", open=not bool(initial_status.get("ready")), elem_id="diagnostics"):
             gr.Markdown("The emotion state is produced by the classifier; the response generator uses that state with your message. Scores are not proof of a person's feelings.")
             output_state = gr.JSON(label="Latest structured state", value={})
-            live_diagnostics = gr.JSON(label="Live camera state", value={"status": "off"})
+            live_diagnostics = gr.JSON(label="Live camera state", value={"status": "off"}, elem_id="live-camera-diagnostics")
             setup = gr.JSON(label="Local component status", value=initial_status)
             refresh = gr.Button("Refresh local status", size="sm")
             gr.Markdown("Live camera frames are processed in memory on this computer. Only a short window of visual features is kept while the camera is on; turning it off clears that window. Uploaded clips use temporary files eligible for cleanup after one hour. New conversation clears the displayed history.")
@@ -605,10 +616,16 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                 guard["epoch"] = next_epoch
             pending = request_cancel(session_id, turn_id)
             new_session = str(uuid.uuid4())
+            next_camera_control = gr.skip()
             if buffer is not None:
                 buffer.reset(enabled=buffer.enabled, session_id=new_session)
+                # Rotate the non-State token as well as the server session:
+                # an old queued JPEG must not become this conversation's
+                # first displayed estimate when State resolves at execution.
+                next_camera_control = ("on:" if buffer.enabled else "off:") + str(uuid.uuid4())
+                buffer.client_control = next_camera_control
             status = "A fresh conversation. The previous check-in is stopping after its current processing step." if pending else "A fresh conversation. Share something from your day."
-            return ([], [], emotion_html(), {}, status, new_session, 0, gr.update(value="", interactive=True), gr.update(value=None, interactive=True), gr.update(interactive=True), gr.update(interactive=False)) + ((gr.update(interactive=True), gr.update(interactive=True)) if load_replay is not None else ()) + (next_epoch,)
+            return ([], [], emotion_html(), {}, status, new_session, 0, gr.update(value="", interactive=True), gr.update(value=None, interactive=True), gr.update(interactive=True), gr.update(interactive=False)) + ((gr.update(interactive=True), gr.update(interactive=True)) if load_replay is not None else ()) + (next_camera_control, next_epoch)
 
         stop.click(
             stop_current,
@@ -621,7 +638,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         new.click(
             new_conversation,
             inputs=[session, turn, replay_guard, live_buffer],
-            outputs=[chat, conversation_state, emotion, output_state, activity, session, turn, message, camera, send, stop] + ([load_replay, replay_select] if load_replay is not None else []) + [replay_epoch],
+            outputs=[chat, conversation_state, emotion, output_state, activity, session, turn, message, camera, send, stop] + ([load_replay, replay_select] if load_replay is not None else []) + [live_control, replay_epoch],
             cancels=[send_event] + replay_events,
             queue=False,
             api_name=False,
@@ -656,7 +673,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         # Send's queue; the pipeline's nonblocking GPU lock handles contention.
         live_camera.stream(observe_camera, [live_camera, live_buffer, session, live_control], [],
                            concurrency_id="live-camera", concurrency_limit=1,
-                           stream_every=.5, time_limit=10, show_progress="hidden", api_name=False)
+                           stream_every=.2, time_limit=30, show_progress="hidden", api_name=False)
         live_refresh.tick(live_status, [live_buffer, session], [live_emotion, live_diagnostics],
                           queue=False, show_progress="hidden", api_name=False)
         live_tab.select(lambda: "camera", outputs=input_mode, queue=False, api_name=False)

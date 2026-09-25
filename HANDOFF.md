@@ -4,16 +4,16 @@
 
 ## Try it
 
-1. Open **Camera**, select **Turn camera on**, and grant the browser's camera permission. Tracking starts automatically; you do not record a clip. Keep one face in view and allow several callbacks for a usable live visual signal.
-2. Type a concise message and select **Send check-in**. The app combines your words with the latest fresh camera evidence, or uses text fallback when that evidence is unavailable. Live tracking resumes after the serialized reply releases the GPU.
+1. Open **Camera**, select **Turn camera on**, and grant the browser's camera permission. Tracking starts automatically; you do not record a clip. Keep one face in view: the first usable frame can produce a live visual tag, without waiting for six samples.
+2. Type a concise message and select **Send check-in**. The app combines your words with fresh camera evidence only after its stricter six-sample checks pass; otherwise it uses text fallback, even when a fast tag is visible. Live tracking resumes after the serialized reply releases the GPU.
 3. Read the submitted check-in's emotion signal and streamed response. **Diagnostics and setup** shows the structured result, live camera state, modality availability, disagreement and timings.
 4. **Turn camera off** stops the camera and clears its signal. **New conversation** clears the conversation and camera evidence while keeping the preview on to collect fresh evidence. **Stop** cancels the current reply or replay load after its current processing step; it does not turn the camera off.
 
-The live signal uses at most eight recent samples from a four-second window and requires at least six usable face samples. It is a tentative visual estimate, separate from the combined emotion tag produced when you send a message.
+The display requests camera frames every 0.2 seconds and refreshes every 0.1 seconds. Its first-frame estimate is lightly smoothed: 70% new probabilities and 30% previous probabilities, only across gaps of at most 0.6 seconds. Tags may still change or flicker. Reply evidence remains separate and conservative, requiring at least six usable samples among at most eight recent samples within four seconds. These configured intervals do not guarantee end-to-end latency or better accuracy.
 
-The [live-camera update report](reports/live-camera/REPORT.md) records the latest tests, the actual local fusion-and-response check, and the browser-verified fix for missing video duration. During verification the in-app browser did not provide a physical camera stream after its access button was clicked; allow camera access and check device availability when trying it yourself.
+Startup preloads the vision components; the text encoder loads when the first conversational turn needs it. The [original live-camera report](reports/live-camera/REPORT.md) retains its integration and missing-duration checks. The [faster live-display report](reports/live-camera-latency/REPORT.md) includes physical webcam verification: a first-frame tag was visible within 289 ms of reset, with ongoing capture at roughly five frames per second. This is a bounded interaction check, not an accuracy or long-duration stability claim.
 
-For a repeatable recorded-video demonstration, choose **MELD replay**, select an utterance, click **Use this utterance**, then **Send check-in**. The reference label is not sent to the model. **Upload clip** also accepts an optional recorded video instead of live camera evidence. Audio is removed; compatible video streams are preserved, with an explicit conversion fallback for other formats. Uploaded/replay clips clear after a completed or stopped turn. Physical webcam behavior still needs a human check; the earlier evidence verifies recorded text-plus-video replay.
+For a repeatable recorded-video demonstration, choose **MELD replay**, select an utterance, click **Use this utterance**, then **Send check-in**. The reference label is not sent to the model. **Upload clip** also accepts an optional recorded video instead of live camera evidence. Audio is removed; compatible video streams are preserved, with an explicit conversion fallback for other formats. Uploaded/replay clips clear after a completed or stopped turn.
 
 If the app is closed, the original workspace includes `Start Check-in.cmd` in the directory above this repository. For a copied repository or another computer, follow [Windows setup and launch instructions](README.md#windows-setup). The source ZIP includes trained heads, source, tests and reports; pretrained weights, MELD videos, feature caches and the Python environment are separate downloads/artifacts.
 
@@ -35,7 +35,7 @@ On the supplied Windows RTX 3080 10 GB / 32 GB RAM machine, the recorded warm **
 
 **Vision has no demonstrated accuracy advantage.** Only 658 of 2,610 official test rows pass the visual checks, and text alone scores .41583 macro F1, above the hybrid's .40324. Face selection does not verify the speaker. MELD television dialogue is not a validated webcam or therapy domain.
 
-The local generator still sometimes assumes emotions or circumstances the speaker did not state. The latest real replay retained both a wrong anger tag and an unwarranted excitement assumption. Calibration was investigated and not deployed. No clinical validation, physical webcam test, multi-browser queue test or long-duration inference stability claim is made.
+The local generator still sometimes assumes emotions or circumstances the speaker did not state. The latest real replay retained both a wrong anger tag and an unwarranted excitement assumption. Calibration was investigated and not deployed. A working camera preview does not validate emotion estimates. No clinical validation, multi-browser queue test or long-duration inference stability claim is made.
 
 Audio, reinforcement learning, robot integration, remote inference and clinical diagnosis/treatment were intentionally left out. This is a supportive reflection prototype.
 

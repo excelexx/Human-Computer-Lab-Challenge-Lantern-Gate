@@ -44,6 +44,14 @@ def test_live_stream_has_its_own_queue_and_never_owns_composer_outputs(live_app)
     assert funcs["camera_lifecycle"].queue is False
 
 
+def test_live_capture_and_display_polling_do_not_add_half_second_delays(live_app):
+    import gradio as gr
+    app, funcs, _ = live_app
+    assert funcs["observe_camera"].stream_every == .2
+    timer = next(component for component in app.blocks.values() if isinstance(component, gr.Timer))
+    assert timer.value == .1
+
+
 def test_control_token_invalidates_frames_and_late_stream_cannot_restart_camera(live_app):
     _, funcs, pipe = live_app
     buffer = LiveVisionBuffer()
@@ -93,7 +101,20 @@ def test_new_conversation_clears_evidence_but_leaves_camera_enabled(live_app):
     assert buffer.enabled and buffer.epoch > old_epoch
     assert buffer.session_id == result[5] != "old"
     assert buffer.snapshot(result[5]) is None
-    assert buffer.client_control == "on:track-one"
+    assert buffer.client_control == result[-2]
+    assert buffer.client_control.startswith("on:") and buffer.client_control != "on:track-one"
+
+
+def test_new_conversation_rejects_old_queued_camera_frame(live_app):
+    _, funcs, pipe = live_app
+    buffer = LiveVisionBuffer("old", enabled=True)
+    buffer.client_control = "on:old-track"
+    result = funcs["new_conversation"].fn("old", 1, None, buffer)
+    frame = np.zeros((10, 10, 3), dtype=np.uint8)
+    funcs["observe_camera"].fn(frame, buffer, result[5], "on:old-track")
+    pipe.observe_live.assert_not_called()
+    funcs["observe_camera"].fn(frame, buffer, result[5], result[-2])
+    pipe.observe_live.assert_called_once()
 
 
 def test_timer_clears_old_display_and_never_runs_inference(live_app):

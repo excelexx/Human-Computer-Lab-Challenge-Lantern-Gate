@@ -1,0 +1,16 @@
+{
+  "scope": "Sparse DOM-visible diagnostics from a real webcam in the local in-app browser; no saved camera pixels, features, labels or probability vectors",
+  "capture_width": 640,
+  "capture_height": 480,
+  "first_frame_tag_visible_within_ms_of_new_conversation_click": 289,
+  "readings": [
+    {"sequence": 177, "display_age_ms": 62, "process_ms": 30.8165, "samples": 8, "window_seconds": 1.406, "fusion_ready": true},
+    {"sequence": 1, "display_age_ms": 172, "process_ms": 14.6374, "samples": 1, "fusion_ready": false, "observed_within_ms_of_reset": 289},
+    {"sequence": 333, "display_age_ms": 172, "process_ms": 38.5362, "samples": 8, "window_seconds": 1.391, "fusion_ready": true}
+  ],
+  "limits": [
+    "The reset observation is an upper bound based on a UI action and following DOM read, not a precisely instrumented first-paint timestamp.",
+    "Display age starts at backend receipt and is evaluated on the polling callback; capture/transport/rendering are not separately instrumented.",
+    "No emotion correctness or long-duration stability conclusion follows."
+  ]
+}

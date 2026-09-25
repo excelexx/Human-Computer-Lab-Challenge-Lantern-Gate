@@ -10,7 +10,7 @@ import pytest
 
 from checkin.data import VideoProcessor, l2_normalize
 from checkin.live_vision import (FRESH_SECONDS, LiveSample, LiveVisionBuffer,
-    aggregate_samples, expected_text_metadata, extract_live_face)
+    aggregate_samples, expected_text_metadata, extract_live_face, update_display)
 from checkin.pipeline import CheckInPipeline
 from checkin.settings import LABELS
 
@@ -121,12 +121,192 @@ def test_bounded_live_vision_warms_without_text_or_generator(live_pipe,monkeypat
     monkeypatch.setattr(pipe.generator,"stream",lambda *a:pytest.fail("Idle updates must not generate"))
     buffer=LiveVisionBuffer("s",enabled=True)
     reports=populate(pipe,clock,buffer,30)
-    assert all(r["label"] is None for r in reports[:5])
+    assert all(r["label"]=="joy" and r["tentative"] and not r["fusion_ready"] for r in reports[:5])
     assert reports[5]["label"]=="joy" and reports[-1]["available"]
+    assert reports[5]["fusion_ready"] and reports[-1]["process_latency_ms"]>=0
     assert len(buffer.samples)==8 and all(isinstance(s.feature,tuple) for s in buffer.samples)
     assert buffer.observation.feature[0]==1.0
     assert buffer.current_status("s")["score_semantics"]=="uncalibrated_softmax"
     assert buffer.snapshot("other") is None
+
+
+def test_first_frame_immediate_display_cannot_supply_fusion_snapshot(live_pipe):
+    pipe,clock=live_pipe;buffer=LiveVisionBuffer("s",enabled=True)
+    image=np.zeros((160,200,3),dtype=np.uint8)
+    for index in range(6):
+        report=pipe.observe_live(image,buffer,"s")
+        assert report["label"]=="joy" and report["available"] and report["tentative"]
+        assert report["fusion_ready"]==(index>=5)
+        assert (buffer.snapshot("s") is not None)==(index>=5)
+        assert report["sampled_frames"]==index+1
+        assert report["display_age_seconds"]==0.0
+        clock[0]+=.2
+
+
+def test_high_frequency_callbacks_accept_point_two_seconds_but_skip_flood(live_pipe):
+    pipe,clock=live_pipe;buffer=LiveVisionBuffer("s",enabled=True)
+    image=np.zeros((160,200,3),dtype=np.uint8)
+    pipe.observe_live(image,buffer,"s")
+    clock[0]+=.119
+    report=pipe.observe_live(image,buffer,"s")
+    assert report["skipped"]=="cooldown" and pipe.processor.detector.calls==1
+    clock[0]+=.081
+    report=pipe.observe_live(image,buffer,"s")
+    assert "skipped" not in report and pipe.processor.detector.calls==2 and report["sampled_frames"]==2
+
+
+@pytest.mark.parametrize("gap,smoothed",[(.59,True),(.6,True),(.61,False),(-.1,False)])
+def test_short_display_ema_gap_boundary(gap,smoothed):
+    first=np.zeros(7,dtype=np.float32);first[0]=1
+    second=np.zeros(7,dtype=np.float32);second[4]=1
+    initial=update_display(first,None,0.,"first")
+    current=update_display(second,initial,gap,"second")
+    assert current.smoothed==smoothed
+    np.testing.assert_allclose(current.probabilities, .7*second+.3*first if smoothed else second)
+
+
+def test_no_face_ambiguity_and_track_jump_clear_display_without_waiting_for_window(live_pipe,monkeypatch):
+    pipe,clock=live_pipe;buffer=LiveVisionBuffer("s",enabled=True)
+    image=np.zeros((160,200,3),dtype=np.uint8)
+    assert pipe.observe_live(image,buffer,"s")["label"]=="joy"
+    clock[0]+=.2;pipe.processor.detector.faces=None
+    report=pipe.observe_live(image,buffer,"s")
+    assert report["label"] is None and report["status"]=="no_face" and buffer._window.display is None
+    clock[0]+=.2;pipe.processor.detector.faces=np.array([face(),face()])
+    assert pipe.observe_live(image,buffer,"s")["status"]=="multiple_faces"
+    clock[0]+=.2;pipe.processor.detector.faces=np.array([face()])
+    report=pipe.observe_live(image,buffer,"s")
+    assert report["label"]=="joy" and not report["fusion_ready"] and not report["display_smoothed"]
+    assert report["fusion_quality"]["reason"]=="multiple_faces"
+    clock[0]+=.2;pipe.processor.detector.faces=np.array([face(130,90,60,60)])
+    report=pipe.observe_live(image,buffer,"s")
+    assert report["status"]=="track_change" and report["label"] is None and buffer._window.display is None
+    clock[0]+=.2
+    report=pipe.observe_live(image,buffer,"s")
+    assert report["label"]=="joy" and not report["display_smoothed"] and not report["fusion_ready"]
+
+
+def test_display_age_tracks_successful_receipt_and_busy_cannot_extend_it(live_pipe):
+    pipe,clock=live_pipe;buffer=LiveVisionBuffer("s",enabled=True)
+    image=np.zeros((160,200,3),dtype=np.uint8)
+    pipe.observe_live(image,buffer,"s")
+    clock[0]+=.5
+    assert buffer.current_status("s")["display_age_seconds"]==.5
+    owner=pipe._claim_turn("turn","1")
+    clock[0]+=FRESH_SECONDS
+    assert pipe.observe_live(image,buffer,"s")["status"]=="busy"
+    report=buffer.current_status("s")
+    assert report["status"]=="stale" and report["label"] is None and not report["fusion_ready"]
+    assert buffer._window.display is None and not buffer.samples
+    pipe._release_turn(owner)
+
+
+def test_display_uses_normalized_single_frame_without_altering_fusion_pool(live_pipe,monkeypatch):
+    pipe,clock=live_pipe;buffer=LiveVisionBuffer("s",enabled=True)
+    raw=np.zeros((1,1408),dtype=np.float32);raw[0,:2]=[3,4]
+    monkeypatch.setattr(pipe.vision_encoder,"encode_faces",lambda _:raw.copy())
+    seen=[]
+    original=pipe._predict
+    def predict(model,values):
+        seen.append(np.asarray(values).copy())
+        return original(model,values)
+    monkeypatch.setattr(pipe,"_predict",predict)
+    pipe.observe_live(np.zeros((160,200,3),dtype=np.uint8),buffer,"s")
+    assert len(seen)==1
+    np.testing.assert_allclose(seen[0][:2],[.6,.8])
+    np.testing.assert_allclose(buffer.samples[0].feature[:2],[3,4])
+
+
+def test_reset_during_fast_head_prediction_discards_display(live_pipe,monkeypatch):
+    pipe,clock=live_pipe;buffer=LiveVisionBuffer("s",enabled=True)
+    entered,finish=threading.Event(),threading.Event()
+    original=pipe._predict
+    def blocked(*args):
+        entered.set();assert finish.wait(2);return original(*args)
+    monkeypatch.setattr(pipe,"_predict",blocked)
+    reports=[]
+    worker=threading.Thread(target=lambda:reports.append(pipe.observe_live(np.zeros((160,200,3),dtype=np.uint8),buffer,"s")))
+    worker.start();assert entered.wait(2)
+    buffer.clear(enabled=True,session_id="new")
+    finish.set();worker.join(2)
+    assert not worker.is_alive() and reports[0]["status"]=="discarded"
+    assert buffer._window.display is None and buffer.observation is None and not buffer.samples
+
+
+def test_prepare_live_loads_only_vision_under_exclusive_lock(live_pipe,monkeypatch):
+    pipe,_=live_pipe
+    def warm():
+        assert pipe._lock.locked() and pipe._live_busy
+        pipe._vision_loaded=True
+    monkeypatch.setattr(pipe,"_load_vision",warm)
+    monkeypatch.setattr(pipe,"_load",lambda:pytest.fail("Preparing live camera must not load text"))
+    monkeypatch.setattr(pipe.generator,"stream",lambda *a:pytest.fail("No generator request"))
+    result=pipe.prepare_live()
+    assert result["ready"] and result["load_ms"]>=0
+    assert pipe._vision_loaded and not pipe._loaded and not pipe._lock.locked() and not pipe._live_busy
+    owner=pipe._claim_turn("s","1")
+    with pytest.raises(RuntimeError,match="another operation"):
+        pipe.prepare_live()
+    assert pipe._active_turn is owner and pipe._lock.locked()
+    pipe._release_turn(owner)
+
+
+def test_prepare_live_failure_propagates_and_releases_lock(live_pipe,monkeypatch):
+    pipe,_=live_pipe
+    monkeypatch.setattr(pipe,"_load_vision",lambda:(_ for _ in ()).throw(ValueError("fixture load failure")))
+    with pytest.raises(ValueError,match="fixture load failure"):
+        pipe.prepare_live()
+    assert not pipe._lock.locked() and not pipe._live_busy
+
+
+@pytest.mark.parametrize("changed_field",["observation","display"])
+def test_status_nullable_read_survives_interleaved_frame_clear(live_pipe,changed_field):
+    _,clock=live_pipe
+    buffer=LiveVisionBuffer("s",enabled=True)
+    class InterleavedWindow(SimpleNamespace):
+        def __getattribute__(self,name):
+            value=super().__getattribute__(name)
+            if name==changed_field and super().__getattribute__("armed"):
+                super().__setattr__("armed",False)
+                super().__setattr__(name,None)
+                super().__setattr__("status",{"status":"no_face","label":None})
+            return value
+    probabilities=np.zeros(7,dtype=np.float32);probabilities[4]=1
+    buffer._window=InterleavedWindow(
+        armed=True,observation=SimpleNamespace(valid_for=lambda *a:True),
+        display=update_display(probabilities,None,clock[0],"fixture"),last_attempt=clock[0],
+        sequence=1,status={"status":"ready","label":"joy"},samples=[],last_box=None)
+    # The first field read returns its old value while the shared field becomes
+    # None, exactly between the old code's None check and second dereference.
+    result=buffer.current_status("s")
+    assert result["label"] is None and getattr(buffer._window,changed_field) is None
+
+
+def test_status_expiry_cannot_clear_a_newer_observation_or_display(live_pipe):
+    _,clock=live_pipe
+    buffer=LiveVisionBuffer("s",enabled=True)
+    window=buffer._window
+    new_observation=SimpleNamespace(valid_for=lambda *a:True)
+    probabilities=np.zeros(7,dtype=np.float32);probabilities[4]=1
+    new_display=update_display(probabilities,None,clock[0],"new")
+    class OldObservation:
+        def valid_for(self,*args):
+            window.observation=new_observation
+            return False
+    class OldDisplay:
+        @property
+        def received_monotonic(self):
+            window.display=new_display
+            window.status={"status":"ready","label":"joy"}
+            window.last_attempt=clock[0]
+            return clock[0]-FRESH_SECONDS-1
+    window.observation=OldObservation()
+    window.display=OldDisplay()
+    window.last_attempt=clock[0]-FRESH_SECONDS-1
+    window.status={"status":"ready","label":"old"}
+    result=buffer.current_status("s")
+    assert window.observation is new_observation and window.display is new_display
+    assert result["status"]=="ready" and result["label"]=="joy"
 
 
 def test_off_expiry_and_missing_face_revoke_snapshots(live_pipe):

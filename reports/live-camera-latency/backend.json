@@ -1,0 +1,580 @@
+{
+  "created_at": "2026-09-25T15:27:13.192871+00:00",
+  "scope": "Real detector/encoder/head processing of the same MELD training image at scheduled callback cadence; excludes browser capture/network/rendering. No accuracy or expression-transition claim.",
+  "baseline_revision": "d2ae25acfa8595d922830cc05f4f0488e8e3a666",
+  "baseline_source_sha256": {
+    "live_vision": "0783c200290af21fa6961e23f67b8211eceaa9702c8fb07f99bc4832654edf02",
+    "pipeline": "29236172667e00210165f3b121bf8553ce75491911eb52af6a78abb1aa2d4bfb"
+  },
+  "fixture": "train:0:1",
+  "fixture_media_sha256": "c7686143bac35f57ec9ce866cff6f080cdffafb7c78a79ff813fa8c92e888531",
+  "same_encoder_instance_shared_sequentially": true,
+  "startup": {
+    "ready": true,
+    "load_ms": 3115.2178999909665
+  },
+  "text_model_loaded": false,
+  "results": {
+    "before": {
+      "capture_interval_seconds": 0.5,
+      "first_tag_ms": 2523.8284000079148,
+      "first_tag_frame": 6,
+      "first_fusion_frame": 6,
+      "callback_median_ms": 23.065649991622195,
+      "callback_p95_ms": 29.12600499257678,
+      "timeline": [
+        {
+          "frame": 1,
+          "seconds": 0.023815599997760728,
+          "process_ms": 23.807399993529543,
+          "status": "warming",
+          "available": false,
+          "label": null,
+          "fusion_ready": false
+        },
+        {
+          "frame": 2,
+          "seconds": 0.5233136999886483,
+          "process_ms": 23.02579997922294,
+          "status": "warming",
+          "available": false,
+          "label": null,
+          "fusion_ready": false
+        },
+        {
+          "frame": 3,
+          "seconds": 1.0132007999927737,
+          "process_ms": 12.845899997046217,
+          "status": "warming",
+          "available": false,
+          "label": null,
+          "fusion_ready": false
+        },
+        {
+          "frame": 4,
+          "seconds": 1.5161365999956615,
+          "process_ms": 15.947000007145107,
+          "status": "warming",
+          "available": false,
+          "label": null,
+          "fusion_ready": false
+        },
+        {
+          "frame": 5,
+          "seconds": 2.0235370000009425,
+          "process_ms": 23.01649999571964,
+          "status": "warming",
+          "available": false,
+          "label": null,
+          "fusion_ready": false
+        },
+        {
+          "frame": 6,
+          "seconds": 2.5238284000079148,
+          "process_ms": 23.680800019064918,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 7,
+          "seconds": 3.024389500002144,
+          "process_ms": 24.114100000588223,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 8,
+          "seconds": 3.5168149000091944,
+          "process_ms": 16.65620002313517,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 9,
+          "seconds": 4.016322899988154,
+          "process_ms": 15.955799986841157,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 10,
+          "seconds": 4.518371199985268,
+          "process_ms": 17.996599985053763,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 11,
+          "seconds": 5.027577400003793,
+          "process_ms": 27.23950002109632,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 12,
+          "seconds": 5.528697100002319,
+          "process_ms": 28.357000002870336,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 13,
+          "seconds": 6.023253799998201,
+          "process_ms": 23.10550000402145,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 14,
+          "seconds": 6.529004799987888,
+          "process_ms": 28.785499976947904,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 15,
+          "seconds": 7.087013499985915,
+          "process_ms": 86.55069998349063,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 16,
+          "seconds": 7.525290499994298,
+          "process_ms": 24.887200008379295,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 17,
+          "seconds": 8.023017700004857,
+          "process_ms": 22.492599993711337,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 18,
+          "seconds": 8.523631299991393,
+          "process_ms": 23.28049999778159,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 19,
+          "seconds": 9.017662700003712,
+          "process_ms": 17.485000018496066,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 20,
+          "seconds": 9.514473599992925,
+          "process_ms": 14.332099992316216,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 21,
+          "seconds": 10.015830599993933,
+          "process_ms": 15.56729999720119,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 22,
+          "seconds": 10.524359200004255,
+          "process_ms": 24.100300011923537,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 23,
+          "seconds": 11.023661599989282,
+          "process_ms": 23.359299986623228,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 24,
+          "seconds": 11.516974300000584,
+          "process_ms": 16.787700005806983,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 25,
+          "seconds": 12.020961200003512,
+          "process_ms": 20.560700009809807,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 26,
+          "seconds": 12.52502909998293,
+          "process_ms": 24.70279997214675,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 27,
+          "seconds": 13.023174700007075,
+          "process_ms": 22.80800000880845,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 28,
+          "seconds": 13.523253799998201,
+          "process_ms": 22.82569999806583,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 29,
+          "seconds": 14.029650999989826,
+          "process_ms": 29.404600005364046,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 30,
+          "seconds": 14.524496300000465,
+          "process_ms": 24.132699996698648,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        }
+      ]
+    },
+    "after": {
+      "capture_interval_seconds": 0.2,
+      "first_tag_ms": 46.634199999971315,
+      "first_tag_frame": 1,
+      "first_fusion_frame": 6,
+      "callback_median_ms": 25.93920000072103,
+      "callback_p95_ms": 36.39122001186477,
+      "timeline": [
+        {
+          "frame": 1,
+          "seconds": 0.046634199999971315,
+          "process_ms": 46.62810001173057,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": false
+        },
+        {
+          "frame": 2,
+          "seconds": 0.22698769997805357,
+          "process_ms": 26.655900001060218,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": false
+        },
+        {
+          "frame": 3,
+          "seconds": 0.42918229999486357,
+          "process_ms": 28.853299998445436,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": false
+        },
+        {
+          "frame": 4,
+          "seconds": 0.6207721999962814,
+          "process_ms": 20.698400010587648,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": false
+        },
+        {
+          "frame": 5,
+          "seconds": 0.8402893999882508,
+          "process_ms": 40.19930001231842,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": false
+        },
+        {
+          "frame": 6,
+          "seconds": 1.0265057999931742,
+          "process_ms": 26.131899998290464,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 7,
+          "seconds": 1.225607200001832,
+          "process_ms": 25.13090000138618,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 8,
+          "seconds": 1.4237889999931213,
+          "process_ms": 23.695000010775402,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 9,
+          "seconds": 1.6227273999829777,
+          "process_ms": 22.125299990875646,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 10,
+          "seconds": 1.8320146999903955,
+          "process_ms": 31.736900011310354,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 11,
+          "seconds": 2.025981699989643,
+          "process_ms": 25.817999994615093,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 12,
+          "seconds": 2.2286214999912772,
+          "process_ms": 28.140700014773756,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 13,
+          "seconds": 2.423247500002617,
+          "process_ms": 22.7768000040669,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 14,
+          "seconds": 2.6236552000045776,
+          "process_ms": 23.175900016212836,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 15,
+          "seconds": 2.825679699977627,
+          "process_ms": 25.484699988737702,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 16,
+          "seconds": 3.0261951999855228,
+          "process_ms": 26.060400006826967,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 17,
+          "seconds": 3.2224876999971457,
+          "process_ms": 22.422200010623783,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 18,
+          "seconds": 3.4273969999921974,
+          "process_ms": 26.95359999779612,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 19,
+          "seconds": 3.6220443999918643,
+          "process_ms": 21.80769998813048,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 20,
+          "seconds": 3.8251858000003267,
+          "process_ms": 24.899200012441725,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 21,
+          "seconds": 4.026579800003674,
+          "process_ms": 26.44660000805743,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 22,
+          "seconds": 4.22248219998437,
+          "process_ms": 22.078299982240424,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 23,
+          "seconds": 4.429139899992151,
+          "process_ms": 28.668399987509474,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 24,
+          "seconds": 4.621586900000693,
+          "process_ms": 21.370000002207235,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 25,
+          "seconds": 4.826982899976429,
+          "process_ms": 26.48089997819625,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 26,
+          "seconds": 5.027271200000541,
+          "process_ms": 26.990700018359348,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 27,
+          "seconds": 5.222962999978336,
+          "process_ms": 22.608300001593307,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 28,
+          "seconds": 5.4291458999796305,
+          "process_ms": 28.742800001055002,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 29,
+          "seconds": 5.622661200002767,
+          "process_ms": 22.554100025445223,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        },
+        {
+          "frame": 30,
+          "seconds": 5.827321999997366,
+          "process_ms": 26.859100005822256,
+          "status": "ready",
+          "available": true,
+          "label": "neutral",
+          "fusion_ready": true
+        }
+      ]
+    }
+  },
+  "total_required_parameter_upper_bound": 4464745375
+}
