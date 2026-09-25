@@ -15,7 +15,7 @@ If the app is closed, the original workspace includes `Start Check-in.cmd` in th
 
 - A regularized linear text fallback was selected with training-dialogue cross-validation. Full development macro F1 rose **.38059 to .41855**. On the already exposed official test benchmark, macro F1 rose **.37845 to .40324**, while weighted F1 fell **.58479 to .58374** and accuracy fell **.60115 to .59042**. This is a reused benchmark, not a fresh holdout.
 - Compatible video now keeps its encoded stream while removing audio; other formats use an explicit conversion fallback. Used clips clear after each completed or stopped turn.
-- Cancellation, turn ownership, exact local context budgeting and failed-turn retry handling were corrected. All eight fixed real-model lifecycle cases, eight recovery turns and a 48-turn mixed-modality burst passed. The burst lasted 43.07 seconds and does not establish hours of stability.
+- Cancellation, turn ownership, exact local context budgeting and failed-turn retry handling were corrected. All eight fixed real-model lifecycle cases, eight recovery turns and a 48-turn mixed-modality burst passed. The complete bounded reliability run lasted 43.07 seconds and does not establish hours of stability.
 - Delayed replay loading can no longer reproduce the observed fresh-draft overwrite after New or Stop. Normal replay loading remains usable. Frontend updates already dispatched remain a documented transport boundary.
 
 ## Evidence and hardware
