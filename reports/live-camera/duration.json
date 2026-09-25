@@ -1,0 +1,30 @@
+{
+  "scope": "CPU-only synthetic FFmpeg live WebM fixture; not a physical webcam/browser check",
+  "fixture_command": "ffmpeg -v error -nostdin -f lavfi -i testsrc2=size=128x96:rate=12:duration=1.5 -c:v libvpx -an -f webm -live 1 browser-live.webm",
+  "source_sha256": "523d1cc46f1e7980789598832befab2925a9a6e7118bcb70893bd232c03d439e",
+  "source_has_duration": false,
+  "baseline_result": "ValueError: Choose a video with a readable, finite duration.",
+  "current_result": {
+    "mode": "stream_copy",
+    "duration_seconds": 1.5,
+    "output_sha256": "be17e22fe6e6bc6da5e2b0e4c037df81259575b9b4b7476239a411a398247a9d",
+    "audio_absent": true,
+    "source_frames": 18,
+    "output_frames": 18,
+    "every_decoded_bgr_frame_identical": true
+  },
+  "targeted_tests": {
+    "passed": 26,
+    "seconds": 6.31,
+    "files": [
+      "test_video_input.py",
+      "test_video_duration.py"
+    ],
+    "new_cases": 9
+  },
+  "limits": [
+    "Upload preview must be replaced by postprocessed normalized FileData to display finite duration before Send.",
+    "No server remux can restore final MediaRecorder bytes omitted by the browser.",
+    "Unknown WebM duration requires full lossless remux then strict maximum duration validation; no silent truncation."
+  ]
+}

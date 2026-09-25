@@ -95,7 +95,10 @@ def test_app_capture_and_queue_are_local_and_serial(ui):
 
     app, _, _ = ui
     camera = next(component for component in app.blocks.values() if isinstance(component, gr.Video))
-    assert camera.sources == ["webcam", "upload"]
+    assert camera.sources == ["upload"]
+    live_camera = next(component for component in app.blocks.values() if isinstance(component, gr.Image))
+    assert live_camera.sources == ["webcam"]
+    assert live_camera.streaming is True
     assert camera.include_audio is False
     assert camera.max_length == 20
     assert app.analytics_enabled is False

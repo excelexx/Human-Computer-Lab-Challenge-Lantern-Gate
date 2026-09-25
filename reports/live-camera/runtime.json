@@ -1,0 +1,145 @@
+{
+  "protocol": "Engineering check, not an emotion-accuracy benchmark. Existing MELD train frames replayed into live callbacks at 0.5-second intervals.",
+  "cases": [
+    "fresh camera evidence survives cold text-model load and produces fused state plus local Qwen text",
+    "no face clears prior emotion immediately",
+    "camera off revokes previous snapshot and rejects late frames"
+  ],
+  "vision_load_seconds": 4.166850300010992,
+  "idle_camera_loads_no_text_encoder": true,
+  "train_fixture_id": "train:0:1",
+  "warm_frame_ms": [
+    14.173200004734099,
+    15.374500013422221,
+    15.995699999621138,
+    15.05170000018552,
+    18.935699976282194,
+    14.837700000498444,
+    24.98119999654591,
+    16.2576999864541
+  ],
+  "live_ready": {
+    "status": "ready",
+    "available": true,
+    "label": "neutral",
+    "probabilities": {
+      "neutral": 0.3529319763183594,
+      "surprise": 0.1094084084033966,
+      "fear": 0.04005466401576996,
+      "sadness": 0.0588296502828598,
+      "joy": 0.22691255807876587,
+      "disgust": 0.11483580619096756,
+      "anger": 0.09702698141336441
+    },
+    "score_semantics": "uncalibrated_softmax",
+    "source": "vision",
+    "session_id": "runtime-live",
+    "epoch": 1,
+    "sequence": 8,
+    "sampled_frames": 8,
+    "selected_frames": 8,
+    "observation_age_seconds": 0.0159999999741558,
+    "quality": {
+      "available": true,
+      "reason": "ok",
+      "input_kind": "live_camera",
+      "valid_frame_fraction": 1.0,
+      "mean_detection_score": 0.9379405975341797,
+      "sampled_frames": 8,
+      "selected_frames": 8,
+      "duration_seconds": 3.5,
+      "truncated": false,
+      "speaker_attribution": "unverified_heuristic",
+      "sampling": "up_to_eight_recent_camera_frames_over_four_seconds",
+      "clock_source": "backend_utc_receipt; browser_capture_timestamps_unavailable",
+      "window_started_at": "2026-09-25T15:10:13.958097+00:00",
+      "window_ended_at": "2026-09-25T15:10:17.460823+00:00"
+    },
+    "observed_at": "2026-09-25T15:10:17.460823+00:00"
+  },
+  "cold_text_plus_live_turn": {
+    "schema_version": "1.0",
+    "session_id": "runtime-live",
+    "turn_id": "live-cold",
+    "input": {
+      "text": "I had a good day and finished a difficult project.",
+      "video_present": true,
+      "received_at": "2026-09-25T15:10:17.476865+00:00",
+      "text_truncated_for_classification": false,
+      "clip_started_at": "2026-09-25T15:10:13.958097+00:00",
+      "clip_ended_at": "2026-09-25T15:10:17.460823+00:00",
+      "clock_source": "backend_utc_receipt; browser_capture_timestamps_unavailable",
+      "camera_age_at_send_seconds": 0.0159999999741558
+    },
+    "emotion": {
+      "label": "neutral",
+      "probabilities": {
+        "neutral": 0.46401211619377136,
+        "surprise": 0.037908636033535004,
+        "fear": 0.015818631276488304,
+        "sadness": 0.04851946979761124,
+        "joy": 0.29279398918151855,
+        "disgust": 0.08253207802772522,
+        "anger": 0.058414991945028305
+      },
+      "source": "fusion",
+      "score_semantics": "uncalibrated_softmax"
+    },
+    "vision": {
+      "available": true,
+      "reason": "ok",
+      "input_kind": "live_camera",
+      "valid_frame_fraction": 1.0,
+      "mean_detection_score": 0.9379405975341797,
+      "sampled_frames": 8,
+      "selected_frames": 8,
+      "duration_seconds": 3.5,
+      "truncated": false,
+      "speaker_attribution": "unverified_heuristic",
+      "sampling": "up_to_eight_recent_camera_frames_over_four_seconds",
+      "clock_source": "backend_utc_receipt; browser_capture_timestamps_unavailable",
+      "window_started_at": "2026-09-25T15:10:13.958097+00:00",
+      "window_ended_at": "2026-09-25T15:10:17.460823+00:00"
+    },
+    "modalities": {
+      "text_label": "joy",
+      "vision_label": "neutral"
+    },
+    "modality_disagreement": true,
+    "timing": {
+      "classification_ms": 174.34529997990467,
+      "first_token_ms": 448.98049999028444,
+      "completion_ms": 604.7577999997884,
+      "model_load_ms": 10406.854200002272
+    },
+    "response": {
+      "text": "That sounds like a solid accomplishment. How did finishing that project feel specifically?",
+      "status": "complete",
+      "error": null
+    }
+  },
+  "no_face": {
+    "status": "no_face",
+    "available": false,
+    "label": null,
+    "probabilities": null,
+    "score_semantics": "uncalibrated_softmax",
+    "source": "vision",
+    "session_id": "runtime-live",
+    "epoch": 1,
+    "sequence": 9,
+    "sampled_frames": 1,
+    "selected_frames": 0,
+    "observation_age_seconds": null,
+    "quality": {
+      "available": false,
+      "reason": "no_face",
+      "sampled_frames": 1,
+      "selected_frames": 0,
+      "valid_frame_fraction": 0.0,
+      "mean_detection_score": 0.0
+    }
+  },
+  "parameter_upper_bound": 4464745375,
+  "all_passed": true
+}

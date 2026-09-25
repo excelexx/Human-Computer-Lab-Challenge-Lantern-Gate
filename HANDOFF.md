@@ -4,10 +4,16 @@
 
 ## Try it
 
-1. Open the local app. For a repeatable demonstration, choose **MELD replay**, select a recorded utterance, click **Use this utterance**, then **Send check-in**. The reference label is not sent to the model.
-2. Read the emotion signal and response. **Diagnostics and setup** shows the structured result, modality availability, disagreement and timings.
-3. For your own check-in, use **Camera**, add a short clip and a concise message. Physical webcam capture still needs a human check; recorded text-plus-video replay has been verified.
-4. Add a fresh clip for each turn, or continue with words alone. **Stop** cancels after the current processing step. **New conversation** clears the displayed conversation.
+1. Open **Camera**, select **Turn camera on**, and grant the browser's camera permission. Tracking starts automatically; you do not record a clip. Keep one face in view and allow several callbacks for a usable live visual signal.
+2. Type a concise message and select **Send check-in**. The app combines your words with the latest fresh camera evidence, or uses text fallback when that evidence is unavailable. Live tracking resumes after the serialized reply releases the GPU.
+3. Read the submitted check-in's emotion signal and streamed response. **Diagnostics and setup** shows the structured result, live camera state, modality availability, disagreement and timings.
+4. **Turn camera off** stops the camera and clears its signal. **New conversation** clears the conversation and camera evidence while keeping the preview on to collect fresh evidence. **Stop** cancels the current reply or replay load after its current processing step; it does not turn the camera off.
+
+The live signal uses at most eight recent samples from a four-second window and requires at least six usable face samples. It is a tentative visual estimate, separate from the combined emotion tag produced when you send a message.
+
+The [live-camera update report](reports/live-camera/REPORT.md) records the latest tests, the actual local fusion-and-response check, and the browser-verified fix for missing video duration. During verification the in-app browser did not provide a physical camera stream after its access button was clicked; allow camera access and check device availability when trying it yourself.
+
+For a repeatable recorded-video demonstration, choose **MELD replay**, select an utterance, click **Use this utterance**, then **Send check-in**. The reference label is not sent to the model. **Upload clip** also accepts an optional recorded video instead of live camera evidence. Audio is removed; compatible video streams are preserved, with an explicit conversion fallback for other formats. Uploaded/replay clips clear after a completed or stopped turn. Physical webcam behavior still needs a human check; the earlier evidence verifies recorded text-plus-video replay.
 
 If the app is closed, the original workspace includes `Start Check-in.cmd` in the directory above this repository. For a copied repository or another computer, follow [Windows setup and launch instructions](README.md#windows-setup). The source ZIP includes trained heads, source, tests and reports; pretrained weights, MELD videos, feature caches and the Python environment are separate downloads/artifacts.
 
@@ -17,12 +23,13 @@ If the app is closed, the original workspace includes `Start Check-in.cmd` in th
 - Compatible video now keeps its encoded stream while removing audio; other formats use an explicit conversion fallback. Used clips clear after each completed or stopped turn.
 - Cancellation, turn ownership, exact local context budgeting and failed-turn retry handling were corrected. All eight fixed real-model lifecycle cases, eight recovery turns and a 48-turn mixed-modality burst passed. The complete bounded reliability run lasted 43.07 seconds and does not establish hours of stability.
 - Delayed replay loading can no longer reproduce the observed fresh-draft overwrite after New or Stop. Normal replay loading remains usable. Frontend updates already dispatched remain a documented transport boundary.
+- The camera flow now supports continuous visual feedback without a recording step. This is an interaction change; it adds no claim of better emotion accuracy, clinical benefit or measured live-camera speed.
 
 ## Evidence and hardware
 
-The overnight work completed **72 grouped cross-validation fits**, **760 real video stress conditions** (95 development clips, eight conditions), **20 mismatched-vision permutations**, and **204 local response-study generations**. The final software suite passed **268 tests**, with one existing dependency warning. These are distinct studies; software test counts are not model-evaluation counts.
+The overnight work completed **72 grouped cross-validation fits**, **760 real video stress conditions** (95 development clips, eight conditions), **20 mismatched-vision permutations**, and **204 local response-study generations**. The recorded revision before the live-camera addition passed **268 software tests**, with one existing dependency warning. These are distinct studies; software test counts are not model-evaluation counts.
 
-On the supplied Windows RTX 3080 10 GB / 32 GB RAM machine, the latest warm fusion benchmark measured **241 / 440 / 604 ms p95** for emotion state / first token / completed reply, across 30 fusion turns. Capture, upload and browser rendering are excluded; model loading is separate. Observed total GPU peak was **7,581 MiB**, including desktop use. Full system-memory and process measurements are retained in [the reliability report](reports/reliability/REPORT.md).
+On the supplied Windows RTX 3080 10 GB / 32 GB RAM machine, the recorded warm **clip-mode** fusion benchmark measured **241 / 440 / 604 ms p95** for emotion state / first token / completed reply, across 30 fusion turns. Capture, upload and browser rendering are excluded; model loading is separate. Observed total GPU peak was **7,581 MiB**, including desktop use. These measurements predate the live-camera flow and do not measure its latency or accuracy. Full system-memory and process measurements are retained in [the reliability report](reports/reliability/REPORT.md).
 
 ## Remaining weaknesses
 

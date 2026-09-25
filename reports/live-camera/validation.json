@@ -1,0 +1,50 @@
+{
+  "created_at": "2026-09-25T15:18:44.921957+00:00",
+  "python": {
+    "full_suite": {
+      "passed": 312,
+      "warnings": 1,
+      "seconds": 35.11,
+      "command": "python -m pytest tests -q",
+      "note": "Final app source; new upload test file added after collection."
+    },
+    "additional_upload_tests": {
+      "passed": 9,
+      "seconds": 2.98,
+      "command": "python -m pytest tests/test_upload_lifecycle.py -q"
+    },
+    "distinct_tests_passed": 321,
+    "final_collection_count": 321,
+    "warning": "Existing Starlette/AnyIO BlockingPortal deprecation."
+  },
+  "javascript": {
+    "passed": 6,
+    "command": "node --test tests/live_camera.test.cjs",
+    "scope": "DOM controller fixture; not physical camera or browser capture"
+  },
+  "wheel": {
+    "controller_bytes_match": true,
+    "sha256": "7b1688915363946619045889da23a0fe51eea429f75665357119bb67f5586b83"
+  },
+  "browser": {
+    "text_only_response_completed": true,
+    "explicit_text_fallback_shown": true,
+    "missing_duration_webm_normalized": true,
+    "video_duration_seconds": 1.5,
+    "video_ready_state": 4,
+    "displayed_time": "0:00 / 0:02",
+    "new_conversation_cleared_upload_and_history": true,
+    "left_on_camera_tab": true,
+    "physical_camera_stream_verified": false,
+    "camera_limitation": "In-app browser access button click did not yield a MediaStream during verification; permission/device path remains for user check."
+  },
+  "source_sha256": {
+    "src/checkin/app.py": "3ebcba2dbc4bbda0d70b46b3a0efca1a5a7f7dcc8bf98ba38067f7fe70d9ee93",
+    "src/checkin/live_camera.js": "75974d876f0c6437888a038c2824aa7e4f06ba2e7740f0ee99ee6824ccb8b3bd",
+    "src/checkin/live_vision.py": "0783c200290af21fa6961e23f67b8211eceaa9702c8fb07f99bc4832654edf02",
+    "src/checkin/pipeline.py": "29236172667e00210165f3b121bf8553ce75491911eb52af6a78abb1aa2d4bfb",
+    "src/checkin/video_input.py": "26cd28c1ba70f93bd561677c8a9e39782ce92bf346d715cc22eab85ce818e1ca"
+  },
+  "model_weights_changed": false,
+  "total_required_learned_parameter_upper_bound": 4464745375
+}

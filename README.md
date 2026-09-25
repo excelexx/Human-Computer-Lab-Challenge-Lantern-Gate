@@ -2,7 +2,9 @@
 
 Start with the [morning handoff](HANDOFF.md) for the ready-to-try app, measured improvements and remaining weaknesses.
 
-A local text-and-vision prototype that asks how your day went, estimates a MELD emotion category, and streams a short supportive response. Type a message and record a 3–5 second webcam clip. The browser is the interface; Python and a local llama.cpp server perform inference on your computer.
+The [live-camera update](reports/live-camera/REPORT.md) replaces webcam recording with continuous visual tags and repairs missing-duration uploads. It includes real-model integration and browser duration checks; physical webcam capture still needs a permission/device check in your browser.
+
+A local text-and-vision prototype that asks how your day went, estimates a MELD emotion category, and streams a short supportive response. Turn the webcam on once for a continuously updated visual signal, then type a message. Sending combines your text with the latest usable camera evidence. The browser is the interface; Python and a local llama.cpp server perform inference on your computer.
 
 This is a supportive reflection companion, not a clinical system. Facial expressions are uncertain evidence. The person's own account takes precedence over appearance-based speculation.
 
@@ -33,11 +35,11 @@ The overnight work added **72 grouped CV fits, 760 real video stress conditions,
 
 **Vision still has no demonstrated accuracy advantage over text alone.** Only 658/2,610 test rows pass the visual checks. The new text control alone scores .41583 macro F1, above the multimodal system. Rare-class improvements and regressions are detailed in [REPORT.md](REPORT.md); [BASELINE_REPORT.md](BASELINE_REPORT.md) preserves the original evidence.
 
-On the supplied RTX 3080, the updated warm benchmark produced emotion state / first token / completed reply at **241 / 440 / 604 ms p95**, across 30 fusion turns. Peak GPU use was **7,581 MiB**, including desktop processes. Capture, upload and browser rendering are excluded. The verified complete parameter count is **4,464,745,375**, below the six-billion cap. [REPORT.md](REPORT.md) links the audit, benchmark, stress results, response review and validation.
+On the supplied RTX 3080, the recorded warm **clip-mode** benchmark produced emotion state / first token / completed reply at **241 / 440 / 604 ms p95**, across 30 fusion turns. Peak GPU use was **7,581 MiB**, including desktop processes. Capture, upload and browser rendering are excluded. These measurements predate the live-camera flow and do not measure its latency or accuracy. The verified complete parameter count is **4,464,745,375**, below the six-billion cap. [REPORT.md](REPORT.md) links the audit, benchmark, stress results, response review and validation.
 
 The second follow-through pass fixed four reproduced cancellation/ownership failures: all eight real-model lifecycle cases and 48 alternating video/text turns now pass. Exact local context budgeting preserves inputs and returns an actionable overflow error. A development confidence diagnostic did not justify calibration, so it was not deployed. See the [reliability report](reports/reliability/REPORT.md) for protocols, failures, resource limits and browser evidence.
 
-A later browser check reproduced and fixed delayed replay loading overwriting a fresh draft after reset. The fixed UI passed New/Stop/normal-load checks and the full **268-test** software suite. A real text+video replay completed; its known wrong emotion and response assumptions remain recorded in the [replay lifecycle report](reports/replay-lifecycle/REPORT.md).
+A later browser check reproduced and fixed delayed replay loading overwriting a fresh draft after reset. That revision, before the live-camera addition, passed New/Stop/normal-load checks and the full **268-test** software suite. A real text+video replay completed; its known wrong emotion and response assumptions remain recorded in the [replay lifecycle report](reports/replay-lifecycle/REPORT.md).
 
 ## Windows setup
 
@@ -101,7 +103,8 @@ The baseline training command compares unweighted cross-entropy with inverse-squ
 
 ### Visual handling and fusion
 
-- Eight frames are sampled from the first ten seconds. Live clips should normally be 3–5 seconds; the UI accepts up to twenty seconds and the state records truncation.
+- For MELD, uploaded clips and replay, eight frames are sampled from the first ten seconds. The upload tab accepts clips of up to twenty seconds and the state records truncation.
+- Live camera tracking keeps at most eight recent samples within a four-second window and needs at least six usable face samples. It uses the same face geometry and feature pooling, with rolling sampling instead of clip positions. Evidence expires after four seconds without a fresh observation. The live visual tag and the submitted text-plus-vision tag are separate outputs; live sampling has no new MELD accuracy claim.
 - YuNet selects a usable single face per frame. Multiple faces, too few usable frames, and abrupt changes in face position make the visual branch unavailable. The method is a documented heuristic, not active-speaker recognition.
 - Crops use RGB, a 260×260 resize, and the visual model's prescribed normalization. Mean frame features are L2-normalized. Text uses masked-mean DeBERTa features with a 128-wordpiece limit, also normalized.
 - The fusion head receives 1,408 visual features, 1,024 text features, and three visual-quality values. During training, some visual features are dropped to expose the head to missing evidence.
@@ -163,14 +166,16 @@ The generator binds to `http://127.0.0.1:8081`; the browser app defaults to `htt
 
 In the browser:
 
-1. Record a short clip with one face clearly in view, or upload one. Audio is not used.
-2. Type what happened during your day and select **Send check-in**.
-3. Read the tentative emotion signal and streamed response. Open diagnostics to inspect the state and timings.
-4. Continue with another message/clip. **Stop** requests cancellation after the current processing step; **New conversation** clears the displayed conversation and requests cancellation for that session. An in-progress GPU operation must finish before its resources are released.
+1. In **Camera**, select **Turn camera on** and grant the browser's camera permission. Keep one face in view. Tracking starts automatically; there is no recording step and no audio input.
+2. Wait for the live visual signal, then type what happened during your day and select **Send check-in**. Sending combines your words with the latest fresh, usable camera evidence. If it is unavailable, the response uses the explicit text fallback.
+3. Read the submitted check-in's emotion signal and streamed response. Live tracking and replies share the GPU; tracking resumes after the reply releases it. Open diagnostics to inspect the evidence and timings.
+4. Keep the camera on for another message. **Turn camera off** stops the camera and clears its signal. **New conversation** clears the conversation and accumulated camera evidence while keeping the preview on, so it gathers fresh evidence for the new conversation.
+
+The optional **Upload clip** tab accepts a recorded video instead of live camera evidence. **MELD replay** loads an existing test utterance and clip into that same recorded-video path. The browser's **Stop** button requests cancellation of the current reply or replay load; it is distinct from **Turn camera off**. An in-progress GPU operation must finish before its resources are released.
 
 The generator receives the message, structured emotion evidence, and bounded prior text history. It does not receive the video pixels. The classifier determines the reported tag; the language model produces only the response. Generation uses a 4,096-token context, at most 96 new tokens, and one concurrent request. The prompt requests one to three sentences and at most one relevant follow-up question.
 
-A completed or stopped turn clears its message and clip. Add a fresh clip for a new message, or continue with words alone. Failed turns keep the inputs for retry. Compatible uploads/replay clips preserve the video stream while audio is removed; other formats display a conversion warning. User messages are capped at 4,000 characters; the text classifier sees at most 128 wordpieces, so concise check-ins work best.
+A completed or stopped turn clears its message and any uploaded/replay clip. The live camera remains on until you turn it off, and its evidence is refreshed continuously. Add a fresh clip for another recorded-video turn, or continue with words alone. Failed turns keep their message and selected clip for retry. Compatible uploads/replay clips preserve the video stream while audio is removed; other formats display a conversion warning. User messages are capped at 4,000 characters; the text classifier sees at most 128 wordpieces, so concise check-ins work best.
 
 ## Trace one input and measure interaction speed
 
@@ -185,8 +190,9 @@ With all three trained heads and the generator available:
 The replay resolves an official MELD utterance, sends its text and video through the same pipeline as the UI, prints the tag and streamed reply, and saves the event trace. The reference label is retained for evaluation only and is not passed to the inference pipeline. Choose a different valid identity from `manifests/meld.jsonl` if the default clip is visually unavailable. The optional browser replay tab lists existing test media.
 
 ```text
-Typed text + clip
-    → face sampling/selection + text encoding
+Camera frames → rolling face selection → live visual tag + fresh evidence
+Typed text + fresh camera evidence (or an uploaded/replay clip)
+    → visual feature pooling + text encoding
     → trained vision/text diagnostic heads
     → fusion head, or explicit text fallback
     → structured MELD emotion state
@@ -194,15 +200,17 @@ Typed text + clip
     → streamed supportive response + completed state
 ```
 
-The state includes session/turn IDs, received time, input availability, seven uncalibrated class probabilities, evidence source, visual quality/rejection reason, modality-specific labels/disagreement, response status/text, and backend timings. Capture-start/end timestamps are currently unavailable and are explicitly null; received time is recorded on the backend.
+The state includes session/turn IDs, received time, input availability, seven uncalibrated class probabilities, evidence source, visual quality/rejection reason, modality-specific labels/disagreement, response status/text, and backend timings. Browser capture timestamps are unavailable. Live window timestamps describe backend receipt, not camera exposure times; recorded-clip capture-start/end timestamps remain explicitly null.
 
-“Real-time” here means a turn-based check-in after text and clip are ready. Engineering targets are a warmed-up emotion state within one second and first response token within two seconds. The measured backend replay sample met those targets; it does not establish a guarantee for other clips or an end-to-end webcam latency. `benchmark` excludes three warm-up turns, measures 30 usable fusion inputs and ten no-video fallback inputs, and reports p50/p95/max latency. It also samples GPU memory and the Python/generator resident memory. Video capture, upload/transcoding, and browser rendering are outside these backend timings; cold model-load time is reported separately by the pipeline.
+“Real-time” now has two parts: the camera updates a tentative visual signal from a rolling four-second window, and **Send check-in** starts a text-plus-vision conversational turn. Camera callbacks are requested about every half-second; browser scheduling, image quality and GPU availability affect updates. Gathering six usable samples takes several callbacks, and live inference pauses while the serialized reply owns the GPU. No measured live-camera latency or accuracy improvement is claimed.
+
+The earlier clip-mode engineering targets were a warmed-up emotion state within one second and first response token within two seconds after text and clip were ready. The measured backend replay sample met those targets; it does not establish an end-to-end webcam guarantee. `benchmark` still measures the recorded-clip path: it excludes three warm-up turns, measures 30 usable fusion inputs and ten no-video fallback inputs, and reports p50/p95/max latency. It also samples GPU memory and the Python/generator resident memory. Video capture, upload/transcoding, and browser rendering are outside these backend timings; cold model-load time is reported separately by the pipeline.
 
 ## Data handling, limitations, and handoff
 
 Inference endpoints are loopback-only by default, with no public Gradio tunnel or analytics. Setup downloads require internet access; local inference does not call a remote model. Camera permission is controlled by the browser. Gradio temporarily stores uploads on local disk and schedules cleanup after one hour. Clearing conversation history does not immediately erase temporary files. Dataset audit images, replay reports, and benchmark responses remain in the artifacts directory until removed.
 
-The core scope is intentionally text + vision. Audio, ASR, TTS, continuous-video processing, physical robots, reinforcement learning, language-model fine-tuning, identity recognition, and clinical assessment are out of scope. Fusion did not outperform text-only classification in the measured test results. Scores are uncalibrated, and transfer from television dialogue to personal webcam check-ins has not been established. Browser replay was exercised; physical camera hardware and clinical effectiveness were not validated.
+The core scope is intentionally text + vision, with sampled live-camera frames and an optional recorded-clip path. Audio, ASR, TTS, physical robots, reinforcement learning, language-model fine-tuning, identity recognition, and clinical assessment are out of scope. Fusion did not outperform text-only classification in the measured test results. Scores are uncalibrated, and transfer from television dialogue to personal webcam check-ins has not been established. The historical reports validate browser replay, not physical camera hardware or clinical effectiveness.
 
 For a portable handoff, provide this source tree, dependency/environment records, the selected trained heads and their metadata, observed reports, and the artifact manifest. Acquire third-party models/data under their own terms rather than publishing the television clips as part of the repository. Important external and AI-generated components are identified in [THIRD_PARTY.md](THIRD_PARTY.md).
 
@@ -211,6 +219,7 @@ For a portable handoff, provide this source tree, dependency/environment records
 | Path | Purpose |
 |---|---|
 | `src/checkin/app.py` | Local browser interface |
+| `src/checkin/live_camera.js`, `live_vision.py` | Native webcam lifecycle bridge and bounded, session-owned live evidence |
 | `src/checkin/pipeline.py`, `schema.py` | Shared inference/event path and validated state |
 | `src/checkin/data.py`, `features.py` | MELD preparation, visual quality checks, feature caching |
 | `src/checkin/encoders.py`, `models.py` | Frozen pretrained encoders and trainable heads |

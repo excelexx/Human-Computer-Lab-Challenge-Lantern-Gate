@@ -43,8 +43,13 @@ def _run(command: list[str], timeout: int = 30) -> str:
     return result.stdout
 
 
-def probe_video(path: Path, max_length: float = 20) -> dict:
-    """Reject missing, oversized, non-video, or unbounded media before conversion."""
+def probe_video(path: Path, max_length: float = 20, *, allow_missing_webm_duration: bool = False) -> dict:
+    """Validate media, optionally admitting an unfinished WebM duration for remux.
+
+    Browser MediaRecorder can omit WebM's Duration element. Such a file still
+    has timestamped packets, but must never be served or accepted as bounded
+    until a full stream-copy remux has written and verified its duration.
+    """
     if not math.isfinite(max_length) or max_length <= 0:
         raise ValueError("The video length limit must be finite and positive.")
     if not path.is_file():
@@ -54,12 +59,19 @@ def probe_video(path: Path, max_length: float = 20) -> dict:
     try:
         info = json.loads(_run(["ffprobe", "-v", "error", "-show_streams", "-show_format", "-of", "json", str(path)]))
         video = next(stream for stream in info["streams"] if stream.get("codec_type") == "video")
-        duration = float(info.get("format", {}).get("duration") or video.get("duration") or "nan")
+        raw_duration = info.get("format", {}).get("duration") or video.get("duration")
+        missing_webm_duration = (
+            allow_missing_webm_duration
+            and raw_duration in {None, "N/A"}
+            and "webm" in info.get("format", {}).get("format_name", "").split(",")
+            and video.get("codec_name") in {"vp8", "vp9"}
+        )
+        duration = None if missing_webm_duration else float(raw_duration or "nan")
     except (ValueError, KeyError, StopIteration, TypeError) as exc:
         raise ValueError("Choose a video with a readable, finite duration.") from exc
-    if not math.isfinite(duration) or duration <= 0:
+    if duration is not None and (not math.isfinite(duration) or duration <= 0):
         raise ValueError("Choose a video with a readable, finite duration.")
-    if duration > max_length:
+    if duration is not None and duration > max_length:
         raise ValueError(f"Video is too long; choose a clip of at most {max_length:g} seconds.")
     return {"streams": info["streams"], "video": video, "duration": duration}
 
@@ -72,13 +84,13 @@ def prepare_silent_video(source: str | Path, cache_dir: str | Path, max_length: 
     this call; a completed cache entry is published atomically.
     """
     source = Path(source).resolve()
-    info = probe_video(source, max_length)
+    info = probe_video(source, max_length, allow_missing_webm_duration=True)
     codec = info["video"].get("codec_name")
     pixels = info["video"].get("pix_fmt")
     copy = codec in {"vp8", "vp9"} or (codec == "h264" and pixels in {"yuv420p", "yuvj420p"})
     suffix = ".webm" if codec in {"vp8", "vp9"} else ".mp4"
     audio = any(stream.get("codec_type") == "audio" for stream in info["streams"])
-    if copy and not audio and source.suffix.lower() == suffix:
+    if copy and not audio and source.suffix.lower() == suffix and info["duration"] is not None:
         return SilentClip(str(source), "unchanged", info["duration"])
     with source.open("rb") as handle:
         digest = hashlib.file_digest(handle, "sha256").hexdigest()
@@ -93,6 +105,9 @@ def prepare_silent_video(source: str | Path, cache_dir: str | Path, max_length: 
     temporary = cache / (uuid.uuid4().hex + suffix)
     command = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-nostdin", "-i", str(source),
                "-map", "0:v:0", "-an", "-sn", "-dn"]
+    # Do not use -t to hide an unknown overlong duration by truncation. The
+    # original 100 MiB limit and 30-second process deadline bound the remux;
+    # strict probing below rejects the full result if it exceeds max_length.
     command += ["-c:v", "copy"] if copy else ["-c:v", "libx264", "-preset", "fast", "-crf", "18", "-pix_fmt", "yuv420p"]
     if suffix == ".mp4":
         command += ["-movflags", "+faststart"]

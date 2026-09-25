@@ -64,7 +64,7 @@ def test_reset_preserves_fresh_composer_and_invalidates_fixed_ticket(replay_ui, 
             first = await app.process_api(loader, [ticket, None], state=state, session_hash="browser-A", simple_format=True)
             pending = asyncio.create_task(app.process_api(loader, [ticket, None], state=state, iterator=first["iterator"], session_hash="browser-A", simple_format=True))
             assert await asyncio.to_thread(entered.wait, 2)
-        reset_result = await app.process_api(reset, [None, None, None], state=state, session_hash="browser-A", simple_format=True)
+        reset_result = await app.process_api(reset, [None] * len(reset.inputs), state=state, session_hash="browser-A", simple_format=True)
         assert reset_result["data"][7]["value"] == ""
         assert state[reset.inputs[2]._id] is guard and guard["owner"] is None
         if boundary == "during_load":

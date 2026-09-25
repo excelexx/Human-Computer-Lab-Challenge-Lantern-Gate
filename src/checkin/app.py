@@ -55,6 +55,13 @@ html body .gradio-container.gradio-container {width:100% !important; min-width:0
 #input-column .tab-nav button.selected {color:#315A47 !important; border-bottom-color:#315A47 !important;}
 #camera-clip {background:#F2F5EF !important; border:1px solid #DCE3DB !important; border-radius:12px;}
 #camera-clip .wrap, #camera-clip .upload-container {background:#F2F5EF !important; color:#65736B !important;}
+#live-camera {background:#F2F5EF !important; border:1px solid #DCE3DB !important; border-radius:12px; overflow:hidden;}
+#live-camera video {object-fit:contain; background:#EAF0E5;}
+#live-camera-control {display:none !important;}
+#live-camera-tag {padding:0 2px 3px; min-height:54px;}
+#live-camera-tag .emotion-line {justify-content:space-between;}
+#live-camera-tag .emotion-pill {background:#EAF0E5;}
+#live-camera .button-wrap {border-radius:100px; padding:9px 14px;}
 #capture-note p {font-size:12px !important; color:#65736B !important; line-height:1.6 !important;}
 #checkin-message {border:0 !important; background:transparent !important; padding:0 !important;}
 #checkin-message .wrap, #checkin-message .container {background:transparent !important; box-shadow:none !important;}
@@ -160,13 +167,33 @@ def emotion_html(state: dict[str, Any] | None = None) -> str:
     if isinstance(emotion, dict):
         emotion = emotion.get("label") or emotion.get("category")
     label = html.escape(str(emotion).replace("_", " ").capitalize()) if emotion else "Awaiting a check-in"
-    note = "A tentative interpretation, not a statement of how you feel." if emotion else "Your words and clip will be considered together."
+    note = "A tentative interpretation, not a statement of how you feel." if emotion else "Your words and available camera signal will be considered together."
     if emotion and state.get("vision", {}).get("available") is False:
         note = "Based on your words; a usable face was not available. This interpretation can be wrong."
     return (
         '<div class="emotion-line"><span class="emotion-caption">Emotion signal</span>'
         f'<span class="emotion-pill">{label}</span></div><div class="emotion-note">{note}</div>'
     )
+
+
+def live_emotion_html(status: dict[str, Any] | None = None) -> str:
+    """Keep live visual evidence distinct from a submitted text+vision check-in."""
+    status = status or {"status": "off"}
+    kind = status.get("status", "off")
+    labels = {"off": "Camera off", "warming": "Getting a clear view", "no_face": "Face not in view",
+              "multiple_faces": "Keep one face in view", "track_change": "Hold a steady view",
+              "busy": "Responding to your check-in", "stale": "Waiting for camera",
+              "error": "Camera signal unavailable", "invalid_frame": "Waiting for camera",
+              "insufficient_face_frames": "Getting a clear view"}
+    ready = kind == "ready" and bool(status.get("available")) and bool(status.get("label"))
+    label = str(status["label"]).capitalize() if ready else labels.get(kind, "Getting a clear view")
+    note = "A tentative visual signal. Your own account matters most." if ready else (
+        "Turn your camera on once. The tag updates while you talk or type." if kind == "off" else
+        "Live updates resume as soon as the local model is free." if kind == "busy" else
+        "Recent frames are checked locally. No audio is used.")
+    return ('<div class="emotion-line"><span class="emotion-caption">Live camera signal</span>'
+            f'<span class="emotion-pill">{html.escape(label)}</span></div>'
+            f'<div class="emotion-note">{note}</div>')
 
 
 def status_message(status: dict[str, Any]) -> str:
@@ -210,6 +237,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
     os.environ.setdefault("GRADIO_ANALYTICS_ENABLED", "False")
     import gradio as gr
     from checkin.video_input import SilentVideo
+    from checkin.live_vision import LiveVisionBuffer
 
     data_home = resolve_home(home)
     if pipeline is None:
@@ -268,39 +296,54 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         title="Check-in | A moment for your day",
         theme=theme,
         css=CSS,
+        js=Path(__file__).with_name("live_camera.js").read_text(encoding="utf-8"),
         analytics_enabled=False,
         delete_cache=(3600, 3600),
     ) as app:
         session = gr.State(lambda: str(uuid.uuid4()))
         turn = gr.State(0)
         conversation_state = gr.State([])
+        live_buffer = gr.State(LiveVisionBuffer())
+        input_mode = gr.State("camera")
+        # This input stays mounted for the browser's camera lifecycle signals.
+        live_control = gr.Textbox(value="off:initial", elem_id="live-camera-control", show_label=False)
+        live_refresh = gr.Timer(.5)
         # Gradio deep-copies the initial dictionary for each browser session.
         # Callbacks in that session share this object, including while queued.
         initial_replay_epoch = str(uuid.uuid4())
         replay_guard = gr.State({"owner": None, "epoch": initial_replay_epoch})
         replay_epoch = gr.Textbox(value=initial_replay_epoch, visible=False)
         replay_ticket = gr.JSON(visible=False)
+        upload_ticket = gr.JSON(visible=False)
         load_replay = None
         gr.HTML('<div id="masthead"><div class="brand-lockup"><span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 18C6 10 10 5 18 5C18 13 14 18 6 18Z" stroke="#537263" stroke-width="1.35"/><path d="M6 18L14 10" stroke="#537263" stroke-width="1.35" stroke-linecap="round"/></svg></span><strong>Check-in</strong></div><span class="privacy-note">Private, on your computer</span></div>')
-        gr.HTML('<section id="invitation"><h1>A little space<br>for your day.</h1><p>Start wherever you are. Share a few words and a short clip, and take a moment to reflect.</p></section>')
+        gr.HTML('<section id="invitation"><h1>A little space<br>for your day.</h1><p>Start wherever you are. Keep your camera on, share a few words, and take a moment to reflect.</p></section>')
 
         with gr.Row(equal_height=False, elem_id="content-grid"):
             with gr.Column(scale=4, min_width=300, elem_id="input-column"):
                 gr.HTML('<div class="panel-heading"><h2>Your check-in</h2><p>How did today feel?</p></div>')
                 with gr.Tabs():
-                    with gr.Tab("Camera"):
+                    with gr.Tab("Camera") as live_tab:
+                        live_camera = gr.Image(label="Your live camera", sources=["webcam"],
+                            type="numpy", streaming=True, height=240, show_share_button=False,
+                            show_download_button=False, show_fullscreen_button=False, elem_id="live-camera",
+                            webcam_options=gr.WebcamOptions(mirror=False, constraints={"video": {
+                                "width": {"ideal": 640}, "height": {"ideal": 480}, "frameRate": {"ideal": 15}}}))
+                        live_emotion = gr.HTML(live_emotion_html(), elem_id="live-camera-tag")
+                        gr.Markdown("Turn your camera on once. Your emotion tag updates automatically, and your next message uses the recent camera signal. Turn the camera off whenever you like. No audio or video recording.", elem_id="capture-note")
+                    with gr.Tab("Upload clip") as upload_tab:
                         camera = SilentVideo(
-                            label="Your camera clip",
-                            sources=["webcam", "upload"],
+                            label="A recorded clip",
+                            sources=["upload"],
                             include_audio=False,
                             max_length=20,
                             height=180,
                             show_share_button=False,
                             elem_id="camera-clip",
                         )
-                        gr.Markdown("A 3–5 second clip, with your face in view. No audio. Each clip is used for one check-in, then cleared. You can also continue with words alone.", elem_id="capture-note")
+                        gr.Markdown("An optional short video instead of the live camera. Each uploaded clip is used once. You can also continue with words alone.")
                     if replay_rows:
-                        with gr.Tab("MELD replay"):
+                        with gr.Tab("MELD replay") as replay_tab:
                             replay_select = gr.Dropdown(
                                 choices=[
                                     (f"{row.get('dialogue_id', '?')}/{row.get('utterance_id', '?')}: {row['text'][:70]}", str(index))
@@ -345,9 +388,10 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         with gr.Accordion("Diagnostics and setup", open=not bool(initial_status.get("ready")), elem_id="diagnostics"):
             gr.Markdown("The emotion state is produced by the classifier; the response generator uses that state with your message. Scores are not proof of a person's feelings.")
             output_state = gr.JSON(label="Latest structured state", value={})
+            live_diagnostics = gr.JSON(label="Live camera state", value={"status": "off"})
             setup = gr.JSON(label="Local component status", value=initial_status)
             refresh = gr.Button("Refresh local status", size="sm")
-            gr.Markdown("Camera clips are processed on this computer. Temporary browser uploads are eligible for cleanup after one hour. New conversation clears the displayed history; it does not immediately erase temporary files.")
+            gr.Markdown("Live camera frames are processed in memory on this computer. Only a short window of visual features is kept while the camera is on; turning it off clears that window. Uploaded clips use temporary files eligible for cleanup after one hour. New conversation clears the displayed history.")
             gr.Markdown("Audio is removed by copying the original video stream for H.264 MP4 and VP8/VP9 WebM. Other formats may require H.264 conversion, which changes pixels and displays a warning. Replay and uploaded clips use this same preparation.")
 
         compose_controls = [camera, message] + ([load_replay, replay_select] if load_replay is not None else [])
@@ -364,13 +408,15 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                 return False
             pending = guard.get("owner") is not None
             guard["owner"] = None
+            guard.pop("upload_payload", None)
             guard["epoch"] = str(uuid.uuid4())
             return pending
 
         def epoch_value(guard: dict[str, Any] | None) -> tuple[Any]:
             return (guard["epoch"] if guard is not None else gr.skip(),)
 
-        def run_turn(text: str, clip: Any, history: Any, session_id: str, turn_id: int, guard: dict[str, Any] | None = None) -> Iterator[tuple[Any, ...]]:
+        def run_turn(text: str, clip: Any, history: Any, session_id: str, turn_id: int, guard: dict[str, Any] | None = None,
+                     buffer: Any = None, mode: str | None = None) -> Iterator[tuple[Any, ...]]:
             invalidate_replay(guard)
             prior = clean_history(history)
             next_turn = int(turn_id or 0)
@@ -387,9 +433,12 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             response = ""
             cancelled_before_state = False
             stream = None
-            yield (messages, messages, emotion_html(), state, "Considering your words and clip…", next_turn, gr.update(interactive=False), gr.update(interactive=True)) + compose_update(active=True) + epoch_value(guard)
+            selected_clip = None if mode == "camera" else video_path(clip)
+            yield (messages, messages, emotion_html(), state, "Considering your check-in…", next_turn, gr.update(interactive=False), gr.update(interactive=True)) + compose_update(active=True) + epoch_value(guard)
             try:
-                stream = pipeline.stream(text.strip(), video_path(clip), prior, session_id, str(next_turn))
+                observation = buffer.snapshot(session_id) if buffer is not None and mode == "camera" else None
+                live_kwargs = {"live_observation": observation} if observation is not None else {}
+                stream = pipeline.stream(text.strip(), selected_clip, prior, session_id, str(next_turn), **live_kwargs)
                 for event in stream:
                     event_type = event.get("type")
                     if (("session_id" in event and str(event["session_id"]) != str(session_id))
@@ -416,7 +465,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
 
                 visible = messages + ([{"role": "assistant", "content": response}] if response else [])
                 cancelled = cancelled_before_state or (isinstance(state.get("response"), dict) and state["response"].get("status") == "cancelled")
-                complete = "Stopped before the emotion signal was ready." if cancelled_before_state else "Stopped. Any partial response is shown above." if cancelled else "Ready for your next check-in. Add a fresh clip, or continue with words alone." if response else "The turn finished without response text. See diagnostics for details."
+                complete = "Stopped before the emotion signal was ready." if cancelled_before_state else "Stopped. Any partial response is shown above." if cancelled else "Ready for your next check-in. Your live camera can stay on." if response else "The turn finished without response text. See diagnostics for details."
                 yield (visible, prior if cancelled_before_state else visible, emotion_html(state), state, complete, next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update(clear=True) + (gr.skip(),)
             except Exception as exc:
                 visible = messages + ([{"role": "assistant", "content": response}] if response else [])
@@ -429,8 +478,8 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                     stream.close()
 
         replay_events = []
+        replay_outputs = [activity, send, stop] + compose_controls
         if load_replay is not None:
-            replay_outputs = [activity, send, stop] + compose_controls
 
             def begin_replay(index: str | None, epoch: str, guard: dict[str, Any]) -> Iterator[tuple[Any, ...]]:
                 if epoch != guard.get("epoch"):
@@ -477,17 +526,62 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                                            concurrency_limit=1, concurrency_id="gpu", api_name=False)
             replay_events = [admission, loading]
 
-            def abandon_replay(guard: dict[str, Any]) -> tuple[Any, ...]:
-                if not invalidate_replay(guard):
-                    return tuple(gr.skip() for _ in replay_outputs) + epoch_value(guard)
-                return ("Replay loading stopped. Your draft is ready to edit.", gr.update(interactive=True), gr.update(interactive=False)) + compose_update() + epoch_value(guard)
+        def admit_upload(payload: dict[str, Any] | None, epoch: str, guard: dict[str, Any]) -> Iterator[tuple[Any, ...]]:
+            # preprocess=False skips SilentVideo's FFmpeg work only. Gradio
+            # still validates FileData and upload-folder access before admission.
+            if epoch != guard.get("epoch") or payload is None:
+                yield tuple(gr.skip() for _ in range(len(replay_outputs) + 1))
+                return
+            ticket = {"id": str(uuid.uuid4()), "epoch": epoch}
+            guard["owner"] = ticket["id"]
+            # Keep the validated path server-side. Client tickets never choose
+            # a local path, and a newer upload immediately supersedes this one.
+            guard["upload_payload"] = payload
+            yield (ticket, "Preparing your clip…", gr.update(interactive=False), gr.update(interactive=True)) + compose_update(active=True)
 
-            # These are user-only edits. Programmatic replay values must not
-            # cancel themselves, so do not bind the broad change event.
-            for edit_event in (message.input, replay_select.input, camera.upload, camera.clear, camera.start_recording):
-                edit_event(abandon_replay, [replay_guard], replay_outputs + [replay_epoch], cancels=replay_events, queue=False, api_name=False)
+        def normalize_upload(ticket: dict[str, Any] | None, guard: dict[str, Any]) -> Iterator[tuple[Any, ...]]:
+            if (not ticket or guard.get("owner") != ticket.get("id")
+                    or guard.get("epoch") != ticket.get("epoch") or not guard.get("upload_payload")):
+                yield tuple(gr.skip() for _ in replay_outputs)
+                return
+            payload = guard["upload_payload"]
+            try:
+                yield ("Preparing your clip…",) + tuple(gr.skip() for _ in replay_outputs[1:])
+                clip = camera.preprocess(camera.data_model.model_validate(payload))
+                if guard.get("owner") != ticket["id"] or guard.get("epoch") != ticket["epoch"]:
+                    yield tuple(gr.skip() for _ in replay_outputs)
+                    return
+                guard["owner"] = None
+                guard.pop("upload_payload", None)
+                yield ("Clip ready. Share a few words before sending.", gr.update(interactive=True), gr.update(interactive=False),
+                       gr.update(value=clip, interactive=True), gr.update(interactive=True)) + ((gr.update(interactive=True), gr.update(interactive=True)) if load_replay is not None else ())
+            except Exception:
+                if guard.get("owner") == ticket["id"]:
+                    guard["owner"] = None
+                    guard.pop("upload_payload", None)
+                    yield ("The clip could not be prepared. Choose another short video; your message is kept.", gr.update(interactive=True), gr.update(interactive=False)) + compose_update()
 
-        inputs = [message, camera, conversation_state, session, turn, replay_guard]
+        upload_admission = camera.upload(admit_upload, [camera, replay_epoch, replay_guard], [upload_ticket] + replay_outputs,
+                                         preprocess=False, concurrency_id="upload-admission", concurrency_limit=1,
+                                         trigger_mode="multiple", cancels=replay_events or None, show_progress="hidden", api_name=False)
+        upload_loading = upload_ticket.change(normalize_upload, [upload_ticket, replay_guard], replay_outputs,
+                                               concurrency_id="gpu", concurrency_limit=1, show_progress="hidden", api_name=False)
+        replay_events += [upload_admission, upload_loading]
+
+        def abandon_replay(guard: dict[str, Any]) -> tuple[Any, ...]:
+            if not invalidate_replay(guard):
+                return tuple(gr.skip() for _ in replay_outputs) + epoch_value(guard)
+            return ("Clip loading stopped. Your draft is ready to edit.", gr.update(interactive=True), gr.update(interactive=False)) + compose_update() + epoch_value(guard)
+
+        # User-only edits invalidate queued preparation. Programmatic output
+        # values must not cancel themselves, so do not bind the change event.
+        edit_events = [message.input, camera.clear]
+        if load_replay is not None:
+            edit_events.append(replay_select.input)
+        for edit_event in edit_events:
+            edit_event(abandon_replay, [replay_guard], replay_outputs + [replay_epoch], cancels=replay_events, queue=False, api_name=False)
+
+        inputs = [message, camera, conversation_state, session, turn, replay_guard, live_buffer, input_mode]
         send_event = send.click(run_turn, inputs, outputs, concurrency_limit=1, concurrency_id="gpu", trigger_mode="once", api_name=False,
                                 cancels=replay_events or None)
 
@@ -503,14 +597,18 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             status = "Stopping after the current processing step. A new check-in may need to wait." if pending else "Replay loading stopped. Add a fresh clip or continue with words alone." if replay_pending else "No active response to stop."
             return (status, gr.update(interactive=True), gr.update(interactive=False)) + compose_update(clear=True) + epoch_value(guard)
 
-        def new_conversation(session_id: str, turn_id: Any = None, guard: dict[str, Any] | None = None) -> tuple[Any, ...]:
+        def new_conversation(session_id: str, turn_id: Any = None, guard: dict[str, Any] | None = None,
+                             buffer: Any = None) -> tuple[Any, ...]:
             invalidate_replay(guard)
             next_epoch = str(uuid.uuid4())
             if guard is not None:
                 guard["epoch"] = next_epoch
             pending = request_cancel(session_id, turn_id)
+            new_session = str(uuid.uuid4())
+            if buffer is not None:
+                buffer.reset(enabled=buffer.enabled, session_id=new_session)
             status = "A fresh conversation. The previous check-in is stopping after its current processing step." if pending else "A fresh conversation. Share something from your day."
-            return ([], [], emotion_html(), {}, status, str(uuid.uuid4()), 0, gr.update(value="", interactive=True), gr.update(value=None, interactive=True), gr.update(interactive=True), gr.update(interactive=False)) + ((gr.update(interactive=True), gr.update(interactive=True)) if load_replay is not None else ()) + (next_epoch,)
+            return ([], [], emotion_html(), {}, status, new_session, 0, gr.update(value="", interactive=True), gr.update(value=None, interactive=True), gr.update(interactive=True), gr.update(interactive=False)) + ((gr.update(interactive=True), gr.update(interactive=True)) if load_replay is not None else ()) + (next_epoch,)
 
         stop.click(
             stop_current,
@@ -522,7 +620,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         )
         new.click(
             new_conversation,
-            inputs=[session, turn, replay_guard],
+            inputs=[session, turn, replay_guard, live_buffer],
             outputs=[chat, conversation_state, emotion, output_state, activity, session, turn, message, camera, send, stop] + ([load_replay, replay_select] if load_replay is not None else []) + [replay_epoch],
             cancels=[send_event] + replay_events,
             queue=False,
@@ -533,6 +631,38 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             return status, status_message(status)
 
         refresh.click(refresh_status, outputs=[setup, activity], queue=False, api_name=False)
+
+        def camera_lifecycle(control: str, buffer: Any, session_id: str) -> None:
+            # Repeated signals are harmless; a new track starts a fresh window.
+            if getattr(buffer, "client_control", None) == control:
+                return
+            buffer.client_control = control
+            buffer.reset(enabled=str(control).startswith("on:"), session_id=session_id)
+
+        def observe_camera(frame: Any, buffer: Any, session_id: str, control: str) -> None:
+            if not buffer.enabled or getattr(buffer, "client_control", None) != control:
+                return
+            observer = getattr(pipeline, "observe_live", None)
+            if callable(observer):
+                observer(frame, buffer, session_id)
+
+        def live_status(buffer: Any, session_id: str) -> tuple[str, dict[str, Any]]:
+            state = buffer.current_status(session_id)
+            return live_emotion_html(state), state
+
+        live_control.input(camera_lifecycle, [live_control, live_buffer, session], [], queue=False, api_name=False,
+                           show_progress="hidden")
+        # A webcam stream owns its queue slot for its lifetime. Keep it off
+        # Send's queue; the pipeline's nonblocking GPU lock handles contention.
+        live_camera.stream(observe_camera, [live_camera, live_buffer, session, live_control], [],
+                           concurrency_id="live-camera", concurrency_limit=1,
+                           stream_every=.5, time_limit=10, show_progress="hidden", api_name=False)
+        live_refresh.tick(live_status, [live_buffer, session], [live_emotion, live_diagnostics],
+                          queue=False, show_progress="hidden", api_name=False)
+        live_tab.select(lambda: "camera", outputs=input_mode, queue=False, api_name=False)
+        upload_tab.select(lambda: "clip", outputs=input_mode, queue=False, api_name=False)
+        if replay_rows:
+            replay_tab.select(lambda: "clip", outputs=input_mode, queue=False, api_name=False)
     app.queue(default_concurrency_limit=1, max_size=8)
     return app
 
