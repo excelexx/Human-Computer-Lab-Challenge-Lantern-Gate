@@ -1,0 +1,75 @@
+{
+  "recorded_at": "2026-09-25T05:46:52.737693+00:00",
+  "method": "Actual browser actions and rendered diagnostics observed through Codex browser control; observations transcribed, not mocked inference.",
+  "url": "http://127.0.0.1:7860/",
+  "session_id": "1a0d6cb9-4abc-4961-89f8-0340d6527469",
+  "turns": [
+    {
+      "turn_id": "1",
+      "input_id": "test:4:2",
+      "input_text": "It kicked! I think the baby kicked!",
+      "video_present": true,
+      "source": "fusion",
+      "vision_available": true,
+      "selected_frames": 8,
+      "emotion": "anger",
+      "label_reference_for_review_only": "surprise",
+      "probabilities": {
+        "neutral": 0.00932325143367052,
+        "surprise": 0.3215307891368866,
+        "fear": 0.04505356028676033,
+        "sadness": 0.028202427551150322,
+        "joy": 0.19185812771320343,
+        "disgust": 0.06388109922409058,
+        "anger": 0.34015071392059326
+      },
+      "text_label": "joy",
+      "vision_label": "neutral",
+      "modality_disagreement": true,
+      "response": "It kicked! I think the baby kicked \u2014 that\u2019s really exciting. How does that feel?",
+      "response_status": "complete",
+      "classification_ms": 239.64040001737885,
+      "first_token_ms": 465.9305000095628,
+      "completion_ms": 602.424599986989,
+      "model_load_ms": 9535.627699980978,
+      "review": "The anger prediction is wrong for the MELD reference. The response wrongly presumes excitement despite the grounding prompt. Retained failure, no test-driven prompt adjustment."
+    },
+    {
+      "turn_id": "2",
+      "input_kind": "authored follow-up",
+      "input_text": "I feel both happy and nervous about it.",
+      "video_present": false,
+      "source": "text_fallback",
+      "vision_available": false,
+      "vision_reason": "missing_video",
+      "emotion": "neutral",
+      "text_label": "neutral",
+      "vision_label": null,
+      "modality_disagreement": false,
+      "response": "You feel both happy and nervous \u2014 that makes sense. How are those feelings showing up right now?",
+      "response_status": "complete",
+      "classification_ms": 194.18299998505972,
+      "first_token_ms": 402.61950000422075,
+      "completion_ms": 545.4557000193745,
+      "review": "Reply acknowledges both explicit feelings. Authored text has no MELD ground-truth label."
+    }
+  ],
+  "verified_controls": [
+    "Replay fills real clip and text",
+    "Camera/message/send disabled during first turn",
+    "Completed turn clears clip and text",
+    "Follow-up does not reuse old video",
+    "Both messages/replies remain in conversation",
+    "New conversation resets visible history/state",
+    "Updated warm ivory/sage desktop layout visually inspected"
+  ],
+  "not_verified": [
+    "Physical camera hardware",
+    "Clinical effectiveness",
+    "Actual browser Stop timing during generation",
+    "Clipboard copying"
+  ],
+  "left_ready": true,
+  "parameter_upper_bound_displayed": 4464745375,
+  "latency_note": "Single browser replay is functional verification, not a browser-latency distribution. State timings exclude capture/upload/rendering and separate first model load."
+}

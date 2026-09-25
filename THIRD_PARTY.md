@@ -58,7 +58,7 @@ The quantized file is hash-verified. Its lower storage precision does not reduce
 
 ### Project-trained heads
 
-The visual, text, and fusion heads are defined in `src/checkin/models.py` and trained by `src/checkin/train.py`. They are new project components, with MELD as their supervised data source. Training reports and checkpoint metadata establish which heads actually exist in a runtime directory. No trained head is claimed merely because its architecture is defined.
+The heads are defined in `src/checkin/models.py`. The original visual, text, and fusion MLPs were trained by `src/checkin/train.py`; the current linear text replacement was selected and prepared through `src/checkin/model_study.py`, using scikit-learn and folding its training-only scaler into the deployed affine weights. These are new project components, with MELD as their supervised data source. Training reports and checkpoint metadata establish which heads actually exist in a runtime directory. The preserved baseline heads are optional comparison artifacts and are not loaded by the current inference path.
 
 ## Runtimes and libraries
 

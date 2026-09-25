@@ -6,3 +6,4 @@ __pycache__/
 .pytest_cache/
 dist/
 *.log
+src/checkin/video_input.pyi

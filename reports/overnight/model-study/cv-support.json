@@ -1,0 +1,166 @@
+{
+  "source": "Train cache only; no official dev/test used.",
+  "fold_assignment_sha256": "7cb8daeec2cc2db34d0514ea08d7da028454f6c7ca077d55fdda3388e8a3da79",
+  "aggregation": "Mean of the three per-fold seven-class macro F1 values (equal fold weight); sample standard deviation; absent classes have F1 zero.",
+  "folds": [
+    {
+      "fold": 0,
+      "held_out_dialogues": 348,
+      "fitting_dialogues": 690,
+      "validation_all": {
+        "count": 3372,
+        "class_support": {
+          "neutral": 1620,
+          "surprise": 370,
+          "fear": 98,
+          "sadness": 206,
+          "joy": 605,
+          "disgust": 72,
+          "anger": 401
+        }
+      },
+      "validation_eligible": {
+        "count": 866,
+        "class_support": {
+          "neutral": 404,
+          "surprise": 103,
+          "fear": 36,
+          "sadness": 66,
+          "joy": 143,
+          "disgust": 16,
+          "anger": 98
+        }
+      },
+      "training_all": {
+        "count": 6617,
+        "class_support": {
+          "neutral": 3090,
+          "surprise": 835,
+          "fear": 170,
+          "sadness": 477,
+          "joy": 1138,
+          "disgust": 199,
+          "anger": 708
+        }
+      },
+      "training_eligible": {
+        "count": 1675,
+        "class_support": {
+          "neutral": 756,
+          "surprise": 231,
+          "fear": 52,
+          "sadness": 143,
+          "joy": 248,
+          "disgust": 53,
+          "anger": 192
+        }
+      }
+    },
+    {
+      "fold": 1,
+      "held_out_dialogues": 346,
+      "fitting_dialogues": 692,
+      "validation_all": {
+        "count": 3405,
+        "class_support": {
+          "neutral": 1568,
+          "surprise": 447,
+          "fear": 83,
+          "sadness": 261,
+          "joy": 566,
+          "disgust": 97,
+          "anger": 383
+        }
+      },
+      "validation_eligible": {
+        "count": 869,
+        "class_support": {
+          "neutral": 394,
+          "surprise": 122,
+          "fear": 22,
+          "sadness": 81,
+          "joy": 121,
+          "disgust": 22,
+          "anger": 107
+        }
+      },
+      "training_all": {
+        "count": 6584,
+        "class_support": {
+          "neutral": 3142,
+          "surprise": 758,
+          "fear": 185,
+          "sadness": 422,
+          "joy": 1177,
+          "disgust": 174,
+          "anger": 726
+        }
+      },
+      "training_eligible": {
+        "count": 1672,
+        "class_support": {
+          "neutral": 766,
+          "surprise": 212,
+          "fear": 66,
+          "sadness": 128,
+          "joy": 270,
+          "disgust": 47,
+          "anger": 183
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "held_out_dialogues": 344,
+      "fitting_dialogues": 694,
+      "validation_all": {
+        "count": 3212,
+        "class_support": {
+          "neutral": 1522,
+          "surprise": 388,
+          "fear": 87,
+          "sadness": 216,
+          "joy": 572,
+          "disgust": 102,
+          "anger": 325
+        }
+      },
+      "validation_eligible": {
+        "count": 806,
+        "class_support": {
+          "neutral": 362,
+          "surprise": 109,
+          "fear": 30,
+          "sadness": 62,
+          "joy": 127,
+          "disgust": 31,
+          "anger": 85
+        }
+      },
+      "training_all": {
+        "count": 6777,
+        "class_support": {
+          "neutral": 3188,
+          "surprise": 817,
+          "fear": 181,
+          "sadness": 467,
+          "joy": 1171,
+          "disgust": 169,
+          "anger": 784
+        }
+      },
+      "training_eligible": {
+        "count": 1735,
+        "class_support": {
+          "neutral": 798,
+          "surprise": 225,
+          "fear": 58,
+          "sadness": 147,
+          "joy": 264,
+          "disgust": 38,
+          "anger": 205
+        }
+      }
+    }
+  ]
+}

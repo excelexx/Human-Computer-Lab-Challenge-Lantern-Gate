@@ -1,0 +1,172 @@
+{
+  "created_at": "2026-09-25T05:18:46.282576+00:00",
+  "study_type": "Bounded local response-grounding and visual-state sensitivity diagnostic; no clinical claims",
+  "protocol_sha256": "b7d695d11ce78d87e9c8a32c7c5bb915ada9f9bb6b09dbadcb8b710d5eab0e45",
+  "selected_prompt": "facts_first",
+  "selected_prompt_sha256": "f58357075ccb24a80feff71cc7891bb0518fbdec2a169d0b8a8e381c10a8f844",
+  "production_system_prompt_sha256": "f58357075ccb24a80feff71cc7891bb0518fbdec2a169d0b8a8e381c10a8f844",
+  "production_generator_source_sha256_after_change": "c5144439a631d295116fefe49ddbe60a810533069eb021a57c76a08f29e605e5",
+  "changes": [
+    "Replaced SYSTEM_PROMPT with the exact dev-selected facts-first candidate.",
+    "No weights, parameter counts, server settings, production sampling settings or stream API changed."
+  ],
+  "counts": {
+    "dev_primary": 126,
+    "identical_request_repeat_controls": 6,
+    "reserved_authored_once": 18,
+    "total": 150,
+    "request_errors": 0,
+    "length_limit_finishes": 0
+  },
+  "evidence_of_bounded_improvement": [
+    "New ambiguous balancing fragment: baseline adds difficulty/backstory; facts-first keeps the fragment and asks how it feels.",
+    "Real dev guitar utterance: baseline invents borrowing/returning intentions; facts-first accurately reflects leaving the guitar in all three conditions.",
+    "Unwanted promotion: baseline positively celebrates in all three conditions; facts-first reflects unwanted responsibility in sadness/missing conditions, but still congratulates under joy.",
+    "Phone question: baseline offers unsupported messaging/email; facts-first dev replies decline a phone number and continue conversation. Reserved sadness reply still implies alternative contact."
+  ],
+  "visual_state_findings": {
+    "controlled_sampler": {
+      "model": "checkin-qwen",
+      "max_tokens": 96,
+      "temperature": 0.0,
+      "seed": 42,
+      "top_p": 1.0,
+      "top_k": 0,
+      "min_p": 0.0
+    },
+    "dev_selected_cases_with_any_exact_text_change": 11,
+    "dev_selected_paired_cases": 14,
+    "check_cases_with_any_exact_text_change": 6,
+    "check_paired_cases": 6,
+    "repeat_controls_exact_matches": 4,
+    "repeat_control_total": 6,
+    "interpretation": "Generated wording is sensitive to state inputs in these probes, but exact-text change is not reliable evidence of useful emotional adaptation. Two identical requests changed despite a fixed seed/temp0; some condition differences are punctuation. Qualitatively meaningful state effects include harmful joy-driven congratulations for an unwanted promotion and sadness-driven questioning of an otherwise clear sleep report. Real dev guitar response remained appropriately invariant. No causal benefit or improvement in wellbeing is established."
+  },
+  "timing": {
+    "all_requests_completion_ms_sum": 36043.492900178535,
+    "all_requests_ttft_ms_median": 48.523200006457046,
+    "all_requests_completion_ms_median": 217.90944998792838,
+    "all_requests_completion_ms_p95": 468.1684350071008,
+    "scope": "Warm loopback generator, sequential requests with reusable prompt prefixes and persistent resident UI/model processes. Excludes camera capture, feature extraction, classification, browser rendering and cold start. This is not a new end-to-end benchmark."
+  },
+  "limitations": [
+    "Study sampler temperature0 differs from unchanged production temperature0.5; do not assume identical live responses.",
+    "Only four deterministic eligible MELD dev utterances and 16 authored cases; not a representative population study.",
+    "Authored visual states are synthetic classifier-shaped interventions, not emotion ground truth or video-derived predictions. Real dev states use trained heads; swapped vision is deliberately mismatched and artificial.",
+    "New case wording was fixed before this study, but development categories were informed by earlier failure observations. Reserved authored checks are separate from development, not an external clinical benchmark.",
+    "Selection and qualitative review were performed by the implementation AI and are not blinded; no numeric quality score is claimed.",
+    "Facts-first still invents shared grief in two development replies, assumes the baby event is welcome, can let visual joy override an unwelcome event, and often omits mixed feelings.",
+    "Reserved checks reveal overconfident grief wording, presumed discomfort and implied alternate contact despite all narrow pattern checks passing.",
+    "No comparison baseline was run on reserved checks because candidate selection was frozen on development and check generation was one-shot."
+  ],
+  "parameter_cap": {
+    "audit_status": "verified",
+    "total_parameter_upper_bound": 4464870303,
+    "limit": 6000000000,
+    "remaining": 1535129697,
+    "unchanged_by_prompt_study": true,
+    "audit_sha256": "71bc6471556b0ba8369ecdf316b778cc83451e3f463670c08589113a9524948c"
+  },
+  "files": {
+    "protocol.json": "a3ef4f7181cfa09fa13fe834d8707e081a6d856207719fb63e0189f3b9367d50",
+    "responses-dev.jsonl": "96cbdb36643e6f28af9cbaf49e7e0819366e03813eeb08eeb989c2dc0ea44ff6",
+    "responses-check.jsonl": "5148012bd7a5b149031bfa0147c01efcad2adb0fb8bcae8c7b40812e36aeee0f",
+    "selection.json": "a5dd51ccbab64cfa4d24bc193faa73372e6f8e6f7a71f7accd03670da836c1ac",
+    "review-dev.json": "f55b8069ed9c7b5885038318e25857d8bc1dcd141862c2fcc9f7b14677246041",
+    "review-check.json": "9964496f54a861f741b3a82f7b67987f2b9adcf5701d30576f2f6b0be20e416d",
+    "summary-dev.json": "a1402ad2f6370d9355dce5d95eb125b71811ae4deeeb93ddf50fc06d8645b5e6",
+    "summary-check.json": "efc4ff5719941d72e7c0505b08d29f9e1510d89b155866b9c2a3d71943e3c44a"
+  },
+  "production_sampler_stress_replication": {
+    "additional_generations": 54,
+    "overall_generations_across_both_protocols": 204,
+    "request_errors": 0,
+    "length_limit_finishes": 0,
+    "responses_with_narrow_pattern_flags": 1,
+    "review": {
+      "reviewed_at": "2026-09-25T05:22:20.350236+00:00",
+      "reviewer": "AI qualitative review by implementation agent; no numeric quality score or clinical-validation claim",
+      "scope": "All 54 replies: six previously revealed authored check cases, three visual-state conditions, seeds 42/43/44, exact production temperature0.5/top_p0.8/top_k20/min_p0/max_tokens96.",
+      "not_fresh_holdout": true,
+      "no_further_prompt_tuning": true,
+      "cases": [
+        {
+          "id": "authored:check:ambiguous_win",
+          "strengths": "All nine avoid congratulations and ask about the meaning/feeling of winning.",
+          "flaws": "Generic something-to-notice/interesting language; body/mind questions can be formulaic. Victory wording leans positive but no explicit claim the event is welcome."
+        },
+        {
+          "id": "authored:check:good_day",
+          "strengths": "All nine preserve the explicitly good day despite sadness evidence.",
+          "flaws": "Several introduce discomfort or being bothered as implied consequences of squinting, or offer a forced discomfort/vision question. Some repeat what was already stated rather than ask about the day."
+        },
+        {
+          "id": "authored:check:birthday_grief",
+          "strengths": "All nine recognize loss/birthday without fabricated personal memories or claiming to know the grandmother.",
+          "flaws": "Many assume the birthday must feel heavy/hard; seed42 joy invents a quiet way of remembering. Seed42 missing vision is more grounded: it reflects the birthday and asks how the person feels."
+        },
+        {
+          "id": "authored:check:text_me",
+          "strengths": "All nine avoid fake numbers or firm promises to initiate text messages. Seed44 sadness explicitly says it cannot send outside the conversation.",
+          "flaws": "Seed42 sadness asks about another way to connect later, implying an unavailable alternative channel. Most replies do not explicitly distinguish the user returning to chat from the bot initiating contact."
+        },
+        {
+          "id": "authored:check:sister_mixed",
+          "strengths": "Positive reaction to proximity is grounded in the user saying happy; every reply asks specifically about sharing the apartment.",
+          "flaws": "Eight replies omit explicit anxiety; seed42 missing vision only indirectly reflects it as tricky. Reasking feelings the user already stated is less attentive than reflecting both."
+        },
+        {
+          "id": "authored:check:racing_heart",
+          "strengths": "Most reflect the racing heart/stairs without diagnosis or treatment; seed42/43 sadness asks about the rest of the day as requested.",
+          "flaws": "Seed44 joy asks whether it was just a normal reaction. This is a medical-normality suggestion phrased as a question, not a definite diagnosis, and violates the intended no-medical-interpretation contract. Seed44 sadness asks whether it was really just physical, introducing an unnecessary alternative interpretation. Other replies presume intensity or repeat the bodily detail."
+        }
+      ],
+      "preserved_failure_examples": [
+        {
+          "seed": 42,
+          "case_id": "authored:check:text_me",
+          "condition": "vision_sadness",
+          "concern": "Unsupported alternative contact channel",
+          "response": "I don't have a phone number to text you. Is there another way you'd prefer to connect later?"
+        },
+        {
+          "seed": 43,
+          "case_id": "authored:check:birthday_grief",
+          "condition": "vision_joy",
+          "concern": "Must-feel-heavy assertion",
+          "response": "I'm so sorry for your loss. Today must feel especially heavy, since it would have been her birthday. How are you holding up?"
+        },
+        {
+          "seed": 44,
+          "case_id": "authored:check:racing_heart",
+          "condition": "vision_joy",
+          "concern": "Normal-reaction option introduced without support",
+          "response": "Your heart racing after running up the stairs—was that a little overwhelming, or just a normal reaction?"
+        },
+        {
+          "seed": 44,
+          "case_id": "authored:check:racing_heart",
+          "condition": "vision_sadness",
+          "concern": "Really-just-physical question adds unrequested interpretation",
+          "response": "Your heart racing after running up the stairs—was that really just physical, or did it feel like something else too?"
+        }
+      ],
+      "interpretation": "Production sampling preserves some grounded behavior and also exposes unresolved failures that temp0 checks missed. With only the selected prompt run at production settings, this is a stress replication, not evidence that production quality improved over its baseline. No additional prompt was selected or tuned from these responses.",
+      "timings": {
+        "completion_ms_median": 204.361299998709,
+        "completion_ms_p95": 280.9377100100391,
+        "ttft_ms_median": 52.68340000475291,
+        "completion_ms_sum": 11503.562799887732,
+        "scope": "Warm sequential loopback generation only, with repeated prompt prefixes; excludes capture, encoders, classifier and UI rendering."
+      },
+      "response_sha256": "433353cf66347124a9cfdb62a505ec53a5a351570b827bf1066c8e4a717d4ff5",
+      "protocol_sha256": "674d8438de0dc97e2bc6e3767a1cb663b8318661d15d58970f8438644c5f0a6f"
+    },
+    "files": {
+      "production-replication-protocol.json": "674d8438de0dc97e2bc6e3767a1cb663b8318661d15d58970f8438644c5f0a6f",
+      "responses-production-replication.jsonl": "433353cf66347124a9cfdb62a505ec53a5a351570b827bf1066c8e4a717d4ff5",
+      "summary-production-replication.json": "47bf8589f49e01ea8a3a1acc08d6d6c80f02b84afe0fbeada184b15da7a41189",
+      "review-production-replication.json": "8959c7c1b9b42d8b471bfe1a32b5272839fff43b841f3fb62ae8bc38f90cd521"
+    }
+  }
+}

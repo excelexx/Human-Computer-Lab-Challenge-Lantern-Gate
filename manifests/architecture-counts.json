@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "recorded_at": "2026-09-25T04:27:37.029782+00:00",
+  "recorded_at": "2026-09-25T05:35:41.483954+00:00",
   "verification_status": "passed",
   "method": "Instantiate source-defined neural architectures inside torch.device(\"meta\") and sum numel() over model.parameters(); unique learned parameters include frozen weights, exclude nonlearned buffers, and count tied embeddings once.",
   "execution": {
@@ -94,10 +94,10 @@
     },
     {
       "name": "MELD text head",
-      "parameters": 132103,
-      "verification": "independent meta-tensor construction",
-      "construction": "EmotionHead(1024)",
-      "architecture": "1024 -> 128 -> 7",
+      "parameters": 7175,
+      "verification": "independent meta-tensor construction, rechecked at text-head promotion",
+      "construction": "LinearEmotionHead(1024)",
+      "architecture": "1024 -> 7",
       "source": "src/checkin/models.py"
     },
     {
@@ -119,7 +119,8 @@
     }
   ],
   "parameter_limit": 6000000000,
-  "total_parameter_upper_bound": 4464870303,
-  "remaining_parameter_budget": 1535129697,
-  "scope_note": "Architecture verification, not a model-quality, trained-checkpoint, latency, or resource benchmark. Learned-count verification does not prove local artifact availability. Run audit-parameters to check downloaded artifacts and trained heads."
+  "total_parameter_upper_bound": 4464745375,
+  "remaining_parameter_budget": 1535254625,
+  "scope_note": "Architecture verification, not a model-quality, trained-checkpoint, latency, or resource benchmark. Learned-count verification does not prove local artifact availability. Run audit-parameters to check downloaded artifacts and trained heads. Pretrained counts retain the original recorded verification; only the replacement text-head architecture was rechecked for this update.",
+  "original_pretrained_verification_at": "2026-09-25T04:27:37.029782+00:00"
 }

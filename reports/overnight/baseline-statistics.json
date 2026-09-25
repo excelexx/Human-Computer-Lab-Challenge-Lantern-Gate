@@ -1,0 +1,665 @@
+{
+  "created_at": "2026-09-25T05:16:21.112740+00:00",
+  "prediction_file_sha256": "f8ebd3e66d02349ff9ceb78d0048e1f1c4a202ec35694da5b8f3bdccbebf08b8",
+  "script_sha256": "66fc889c04dba794308eda3d92763e9d01a6c6f0bd07078234efc75782951a39",
+  "rows": 2610,
+  "labels": [
+    "neutral",
+    "surprise",
+    "fear",
+    "sadness",
+    "joy",
+    "disgust",
+    "anger"
+  ],
+  "results": {
+    "full_split": {
+      "paired_cluster_bootstrap": {
+        "utterances": 2610,
+        "dialogues": 280,
+        "draws": 2000,
+        "seed": 20260925,
+        "difference_definition": "model A minus model B; whole dialogues sampled with replacement",
+        "model_a": {
+          "macro_f1": 0.3784491456393256,
+          "weighted_f1": 0.5847859186685014,
+          "accuracy": 0.6011494252873564
+        },
+        "model_b": {
+          "macro_f1": 0.37869622215310683,
+          "weighted_f1": 0.5872787159582236,
+          "accuracy": 0.6015325670498084
+        },
+        "differences": {
+          "macro_f1": {
+            "observed": -0.0002470765137812525,
+            "percentile_95_interval": [
+              -0.014911916315921422,
+              0.01531523065521733
+            ]
+          },
+          "weighted_f1": {
+            "observed": -0.0024927972897221817,
+            "percentile_95_interval": [
+              -0.010918260691846912,
+              0.006131031551827497
+            ]
+          },
+          "accuracy": {
+            "observed": -0.0003831417624520217,
+            "percentile_95_interval": [
+              -0.008464759859429965,
+              0.008603642030347546
+            ]
+          }
+        }
+      },
+      "operational_calibration": {
+        "n": 2610,
+        "top_label_ece_equal_width": 0.142178511356942,
+        "multiclass_brier_sum": 0.580458406755,
+        "negative_log_likelihood": 1.2424636874517059,
+        "bins": [
+          {
+            "interval": [
+              0.0,
+              0.1
+            ],
+            "n": 0,
+            "accuracy": null,
+            "mean_top_class_score": null
+          },
+          {
+            "interval": [
+              0.1,
+              0.2
+            ],
+            "n": 13,
+            "accuracy": 0.15384615384615385,
+            "mean_top_class_score": 0.19337892073851365
+          },
+          {
+            "interval": [
+              0.2,
+              0.3
+            ],
+            "n": 522,
+            "accuracy": 0.36590038314176243,
+            "mean_top_class_score": 0.2600228887522358
+          },
+          {
+            "interval": [
+              0.3,
+              0.4
+            ],
+            "n": 671,
+            "accuracy": 0.5216095380029806,
+            "mean_top_class_score": 0.34811368367000417
+          },
+          {
+            "interval": [
+              0.4,
+              0.5
+            ],
+            "n": 462,
+            "accuracy": 0.6125541125541125,
+            "mean_top_class_score": 0.4466689151602906
+          },
+          {
+            "interval": [
+              0.5,
+              0.6
+            ],
+            "n": 368,
+            "accuracy": 0.7282608695652174,
+            "mean_top_class_score": 0.5480635229336179
+          },
+          {
+            "interval": [
+              0.6,
+              0.7
+            ],
+            "n": 239,
+            "accuracy": 0.7782426778242678,
+            "mean_top_class_score": 0.6466670103651709
+          },
+          {
+            "interval": [
+              0.7,
+              0.8
+            ],
+            "n": 195,
+            "accuracy": 0.8102564102564103,
+            "mean_top_class_score": 0.7493295883521055
+          },
+          {
+            "interval": [
+              0.8,
+              0.9
+            ],
+            "n": 121,
+            "accuracy": 0.9421487603305785,
+            "mean_top_class_score": 0.8430837579995147
+          },
+          {
+            "interval": [
+              0.9,
+              1.0
+            ],
+            "n": 19,
+            "accuracy": 0.8947368421052632,
+            "mean_top_class_score": 0.9274975531979611
+          }
+        ],
+        "note": "Descriptive reliability check only; no fitted temperature or decision threshold."
+      },
+      "text_calibration": {
+        "n": 2610,
+        "top_label_ece_equal_width": 0.1601153306120657,
+        "multiclass_brier_sum": 0.5845805449543925,
+        "negative_log_likelihood": 1.25311490352269,
+        "bins": [
+          {
+            "interval": [
+              0.0,
+              0.1
+            ],
+            "n": 0,
+            "accuracy": null,
+            "mean_top_class_score": null
+          },
+          {
+            "interval": [
+              0.1,
+              0.2
+            ],
+            "n": 14,
+            "accuracy": 0.2857142857142857,
+            "mean_top_class_score": 0.19363561272621155
+          },
+          {
+            "interval": [
+              0.2,
+              0.3
+            ],
+            "n": 605,
+            "accuracy": 0.3586776859504132,
+            "mean_top_class_score": 0.25891130379408844
+          },
+          {
+            "interval": [
+              0.3,
+              0.4
+            ],
+            "n": 684,
+            "accuracy": 0.5233918128654971,
+            "mean_top_class_score": 0.3471784341579292
+          },
+          {
+            "interval": [
+              0.4,
+              0.5
+            ],
+            "n": 478,
+            "accuracy": 0.6652719665271967,
+            "mean_top_class_score": 0.4453347016702636
+          },
+          {
+            "interval": [
+              0.5,
+              0.6
+            ],
+            "n": 324,
+            "accuracy": 0.7870370370370371,
+            "mean_top_class_score": 0.5485708560840583
+          },
+          {
+            "interval": [
+              0.6,
+              0.7
+            ],
+            "n": 221,
+            "accuracy": 0.7873303167420814,
+            "mean_top_class_score": 0.6461846666638128
+          },
+          {
+            "interval": [
+              0.7,
+              0.8
+            ],
+            "n": 183,
+            "accuracy": 0.7978142076502732,
+            "mean_top_class_score": 0.7468162348361614
+          },
+          {
+            "interval": [
+              0.8,
+              0.9
+            ],
+            "n": 99,
+            "accuracy": 0.9696969696969697,
+            "mean_top_class_score": 0.8423002169589804
+          },
+          {
+            "interval": [
+              0.9,
+              1.0
+            ],
+            "n": 2,
+            "accuracy": 1.0,
+            "mean_top_class_score": 0.9039261043071747
+          }
+        ],
+        "note": "Descriptive reliability check only; no fitted temperature or decision threshold."
+      },
+      "agreement": {
+        "utterances": 278,
+        "dialogues": 138,
+        "draws": 2000,
+        "seed": 20260925,
+        "difference_definition": "model A minus model B; whole dialogues sampled with replacement",
+        "model_a": {
+          "macro_f1": 0.3122050871954558,
+          "weighted_f1": 0.6540138543775753,
+          "accuracy": 0.7014388489208633
+        },
+        "model_b": {
+          "macro_f1": 0.3137648772930862,
+          "weighted_f1": 0.6511502326038725,
+          "accuracy": 0.7122302158273381
+        },
+        "differences": {
+          "macro_f1": {
+            "observed": -0.001559790097630409,
+            "percentile_95_interval": [
+              -0.027723913242921873,
+              0.024674932162827595
+            ]
+          },
+          "weighted_f1": {
+            "observed": 0.002863621773702807,
+            "percentile_95_interval": [
+              -0.020636945909641248,
+              0.028848454130429635
+            ]
+          },
+          "accuracy": {
+            "observed": -0.010791366906474864,
+            "percentile_95_interval": [
+              -0.03831417624521072,
+              0.017308652955796956
+            ]
+          }
+        }
+      },
+      "disagreement": {
+        "utterances": 380,
+        "dialogues": 161,
+        "draws": 2000,
+        "seed": 20260925,
+        "difference_definition": "model A minus model B; whole dialogues sampled with replacement",
+        "model_a": {
+          "macro_f1": 0.3690958264533413,
+          "weighted_f1": 0.48718900817388244,
+          "accuracy": 0.5
+        },
+        "model_b": {
+          "macro_f1": 0.3651796396201003,
+          "weighted_f1": 0.500278940349233,
+          "accuracy": 0.49473684210526314
+        },
+        "differences": {
+          "macro_f1": {
+            "observed": 0.00391618683324102,
+            "percentile_95_interval": [
+              -0.09184004362679535,
+              0.09810604203051575
+            ]
+          },
+          "weighted_f1": {
+            "observed": -0.013089932175350594,
+            "percentile_95_interval": [
+              -0.0694888957533855,
+              0.04019062726322345
+            ]
+          },
+          "accuracy": {
+            "observed": 0.0052631578947368585,
+            "percentile_95_interval": [
+              -0.05187773873909441,
+              0.060280281182408066
+            ]
+          }
+        }
+      }
+    },
+    "common_visual": {
+      "paired_cluster_bootstrap": {
+        "utterances": 658,
+        "dialogues": 195,
+        "draws": 2000,
+        "seed": 20260925,
+        "difference_definition": "model A minus model B; whole dialogues sampled with replacement",
+        "model_a": {
+          "macro_f1": 0.3670993071433401,
+          "weighted_f1": 0.5637607306599278,
+          "accuracy": 0.5851063829787234
+        },
+        "model_b": {
+          "macro_f1": 0.37503981503247225,
+          "weighted_f1": 0.576239439370777,
+          "accuracy": 0.5866261398176292
+        },
+        "differences": {
+          "macro_f1": {
+            "observed": -0.007940507889132142,
+            "percentile_95_interval": [
+              -0.07458626487956625,
+              0.05312453291821869
+            ]
+          },
+          "weighted_f1": {
+            "observed": -0.012478708710849218,
+            "percentile_95_interval": [
+              -0.04774911692459281,
+              0.022186136888755384
+            ]
+          },
+          "accuracy": {
+            "observed": -0.001519756838905817,
+            "percentile_95_interval": [
+              -0.03634801464333455,
+              0.03405969983966415
+            ]
+          }
+        }
+      },
+      "operational_calibration": {
+        "n": 658,
+        "top_label_ece_equal_width": 0.08177603020312935,
+        "multiclass_brier_sum": 0.5745457637831171,
+        "negative_log_likelihood": 1.2218688377440852,
+        "bins": [
+          {
+            "interval": [
+              0.0,
+              0.1
+            ],
+            "n": 0,
+            "accuracy": null,
+            "mean_top_class_score": null
+          },
+          {
+            "interval": [
+              0.1,
+              0.2
+            ],
+            "n": 2,
+            "accuracy": 0.0,
+            "mean_top_class_score": 0.19424499571323395
+          },
+          {
+            "interval": [
+              0.2,
+              0.3
+            ],
+            "n": 85,
+            "accuracy": 0.3411764705882353,
+            "mean_top_class_score": 0.265441247996162
+          },
+          {
+            "interval": [
+              0.3,
+              0.4
+            ],
+            "n": 147,
+            "accuracy": 0.47619047619047616,
+            "mean_top_class_score": 0.35023201870269516
+          },
+          {
+            "interval": [
+              0.4,
+              0.5
+            ],
+            "n": 124,
+            "accuracy": 0.532258064516129,
+            "mean_top_class_score": 0.45165192239707513
+          },
+          {
+            "interval": [
+              0.5,
+              0.6
+            ],
+            "n": 112,
+            "accuracy": 0.5892857142857143,
+            "mean_top_class_score": 0.5472830209348883
+          },
+          {
+            "interval": [
+              0.6,
+              0.7
+            ],
+            "n": 68,
+            "accuracy": 0.7647058823529411,
+            "mean_top_class_score": 0.6478998783756705
+          },
+          {
+            "interval": [
+              0.7,
+              0.8
+            ],
+            "n": 55,
+            "accuracy": 0.7818181818181819,
+            "mean_top_class_score": 0.7506129058924589
+          },
+          {
+            "interval": [
+              0.8,
+              0.9
+            ],
+            "n": 47,
+            "accuracy": 0.9148936170212766,
+            "mean_top_class_score": 0.8427628063141032
+          },
+          {
+            "interval": [
+              0.9,
+              1.0
+            ],
+            "n": 18,
+            "accuracy": 0.8888888888888888,
+            "mean_top_class_score": 0.9287800490856171
+          }
+        ],
+        "note": "Descriptive reliability check only; no fitted temperature or decision threshold."
+      },
+      "text_calibration": {
+        "n": 658,
+        "top_label_ece_equal_width": 0.1555426223118617,
+        "multiclass_brier_sum": 0.5908964943308593,
+        "negative_log_likelihood": 1.2641175823417576,
+        "bins": [
+          {
+            "interval": [
+              0.0,
+              0.1
+            ],
+            "n": 0,
+            "accuracy": null,
+            "mean_top_class_score": null
+          },
+          {
+            "interval": [
+              0.1,
+              0.2
+            ],
+            "n": 3,
+            "accuracy": 0.6666666666666666,
+            "mean_top_class_score": 0.19515419999758402
+          },
+          {
+            "interval": [
+              0.2,
+              0.3
+            ],
+            "n": 168,
+            "accuracy": 0.3273809523809524,
+            "mean_top_class_score": 0.25876129134779885
+          },
+          {
+            "interval": [
+              0.3,
+              0.4
+            ],
+            "n": 160,
+            "accuracy": 0.4875,
+            "mean_top_class_score": 0.3460617123171687
+          },
+          {
+            "interval": [
+              0.4,
+              0.5
+            ],
+            "n": 140,
+            "accuracy": 0.7214285714285714,
+            "mean_top_class_score": 0.44652704979692187
+          },
+          {
+            "interval": [
+              0.5,
+              0.6
+            ],
+            "n": 68,
+            "accuracy": 0.7794117647058824,
+            "mean_top_class_score": 0.5491952834760442
+          },
+          {
+            "interval": [
+              0.6,
+              0.7
+            ],
+            "n": 50,
+            "accuracy": 0.8,
+            "mean_top_class_score": 0.6462117516994477
+          },
+          {
+            "interval": [
+              0.7,
+              0.8
+            ],
+            "n": 43,
+            "accuracy": 0.7209302325581395,
+            "mean_top_class_score": 0.7402746760567953
+          },
+          {
+            "interval": [
+              0.8,
+              0.9
+            ],
+            "n": 25,
+            "accuracy": 1.0,
+            "mean_top_class_score": 0.8393775463104248
+          },
+          {
+            "interval": [
+              0.9,
+              1.0
+            ],
+            "n": 1,
+            "accuracy": 1.0,
+            "mean_top_class_score": 0.9034395813941956
+          }
+        ],
+        "note": "Descriptive reliability check only; no fitted temperature or decision threshold."
+      },
+      "agreement": {
+        "utterances": 278,
+        "dialogues": 138,
+        "draws": 2000,
+        "seed": 20260925,
+        "difference_definition": "model A minus model B; whole dialogues sampled with replacement",
+        "model_a": {
+          "macro_f1": 0.3122050871954558,
+          "weighted_f1": 0.6540138543775753,
+          "accuracy": 0.7014388489208633
+        },
+        "model_b": {
+          "macro_f1": 0.3137648772930862,
+          "weighted_f1": 0.6511502326038725,
+          "accuracy": 0.7122302158273381
+        },
+        "differences": {
+          "macro_f1": {
+            "observed": -0.001559790097630409,
+            "percentile_95_interval": [
+              -0.027723913242921873,
+              0.024674932162827595
+            ]
+          },
+          "weighted_f1": {
+            "observed": 0.002863621773702807,
+            "percentile_95_interval": [
+              -0.020636945909641248,
+              0.028848454130429635
+            ]
+          },
+          "accuracy": {
+            "observed": -0.010791366906474864,
+            "percentile_95_interval": [
+              -0.03831417624521072,
+              0.017308652955796956
+            ]
+          }
+        }
+      },
+      "disagreement": {
+        "utterances": 380,
+        "dialogues": 161,
+        "draws": 2000,
+        "seed": 20260925,
+        "difference_definition": "model A minus model B; whole dialogues sampled with replacement",
+        "model_a": {
+          "macro_f1": 0.3690958264533413,
+          "weighted_f1": 0.48718900817388244,
+          "accuracy": 0.5
+        },
+        "model_b": {
+          "macro_f1": 0.3651796396201003,
+          "weighted_f1": 0.500278940349233,
+          "accuracy": 0.49473684210526314
+        },
+        "differences": {
+          "macro_f1": {
+            "observed": 0.00391618683324102,
+            "percentile_95_interval": [
+              -0.09184004362679535,
+              0.09810604203051575
+            ]
+          },
+          "weighted_f1": {
+            "observed": -0.013089932175350594,
+            "percentile_95_interval": [
+              -0.0694888957533855,
+              0.04019062726322345
+            ]
+          },
+          "accuracy": {
+            "observed": 0.0052631578947368585,
+            "percentile_95_interval": [
+              -0.05187773873909441,
+              0.060280281182408066
+            ]
+          }
+        }
+      }
+    }
+  },
+  "split": "test",
+  "test_status": "Previously inspected official test results; this is descriptive backtesting of a reused benchmark.",
+  "limitations": [
+    "No model, prompt or threshold selection uses these statistics.",
+    "Dialogue grouping addresses within-dialogue dependence but not shared speakers, scenes or episodes across dialogues.",
+    "Percentile bootstrap intervals are descriptive uncertainty estimates and not a fresh replication or causal claim.",
+    "ECE depends on binning and class distribution. A softmax probability is not certainty about someone's feelings."
+  ]
+}

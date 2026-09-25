@@ -1,0 +1,61 @@
+{
+  "completed_at": "2026-09-25T05:20:46.469895+00:00",
+  "protocol_sha256": "3c3d83e109dda7abf719ad0558e30fd0b58bf90b032acc6b690f5e592009b1ab",
+  "responses_sha256": "433353cf66347124a9cfdb62a505ec53a5a351570b827bf1066c8e4a717d4ff5",
+  "purpose": "Production-sampler stress replication of already revealed reserved authored cases; no new holdout, selection or prompt tuning.",
+  "generations": 54,
+  "errors": 0,
+  "length_limit_finishes": 0,
+  "responses_with_narrow_pattern_flags": 1,
+  "per_seed": {
+    "42": {
+      "mechanical_measurement_caveat": "Exact text changes do not prove helpful emotion adaptation. Lexical flags are not quality scores. Temp=0/fixed seed does not guarantee bitwise determinism across hardware/builds; repeat controls probe this run.",
+      "prompts": {
+        "facts_first": {
+          "generations": 18,
+          "errors": 0,
+          "length_limit_finishes": 0,
+          "responses_with_narrow_pattern_flags": 0,
+          "cases_with_any_exact_response_change": 6,
+          "paired_case_count": 6,
+          "repeat_controls": [],
+          "ttft_ms_median": 56.66575000213925,
+          "completion_ms_median": 214.91249999962747
+        }
+      }
+    },
+    "43": {
+      "mechanical_measurement_caveat": "Exact text changes do not prove helpful emotion adaptation. Lexical flags are not quality scores. Temp=0/fixed seed does not guarantee bitwise determinism across hardware/builds; repeat controls probe this run.",
+      "prompts": {
+        "facts_first": {
+          "generations": 18,
+          "errors": 0,
+          "length_limit_finishes": 0,
+          "responses_with_narrow_pattern_flags": 0,
+          "cases_with_any_exact_response_change": 6,
+          "paired_case_count": 6,
+          "repeat_controls": [],
+          "ttft_ms_median": 52.57535001146607,
+          "completion_ms_median": 194.96604999585543
+        }
+      }
+    },
+    "44": {
+      "mechanical_measurement_caveat": "Exact text changes do not prove helpful emotion adaptation. Lexical flags are not quality scores. Temp=0/fixed seed does not guarantee bitwise determinism across hardware/builds; repeat controls probe this run.",
+      "prompts": {
+        "facts_first": {
+          "generations": 18,
+          "errors": 0,
+          "length_limit_finishes": 0,
+          "responses_with_narrow_pattern_flags": 1,
+          "cases_with_any_exact_response_change": 6,
+          "paired_case_count": 6,
+          "repeat_controls": [],
+          "ttft_ms_median": 51.30479999934323,
+          "completion_ms_median": 204.98110001790337
+        }
+      }
+    }
+  },
+  "caveat": "Repeated samples of the same revealed authored inputs are not 54 independent situations. Regex flags and exact response changes are not quality or clinical scores. No matched baseline was requested, so this stage cannot estimate comparative production improvement."
+}

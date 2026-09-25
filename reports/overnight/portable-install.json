@@ -1,0 +1,24 @@
+{
+  "artifacts_root": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\overnight\\portable-install",
+  "heads": [
+    {
+      "stage": "vision",
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\overnight\\portable-install\\checkpoints\\vision.pt",
+      "sha256": "9882939db93780c96481f978cc93ace61a80d52a3c63465ae551cb8ace23a465",
+      "status": "installed"
+    },
+    {
+      "stage": "text",
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\overnight\\portable-install\\checkpoints\\text.pt",
+      "sha256": "8c9eb533e4c9419935a1085a9c8799025fa760542ba010f563236f1e0578ca63",
+      "status": "installed"
+    },
+    {
+      "stage": "fusion",
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\overnight\\portable-install\\checkpoints\\fusion.pt",
+      "sha256": "3f126c4e1033fcec4cb57641fcbcd2a83798bb5f39d118861fc671207df9c0ea",
+      "status": "installed"
+    }
+  ],
+  "note": "Bytes copied and verified. Model compatibility is checked when the local pipeline loads."
+}

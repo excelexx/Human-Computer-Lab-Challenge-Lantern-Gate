@@ -55,8 +55,13 @@ def artifacts(include_meld: bool = True) -> list[dict[str, str]]:
     return items
 
 
-def model_manifest() -> dict:
-    return {
+def model_manifest(head_components: dict[str, dict] | None = None) -> dict:
+    """Describe the shipped stack, or replace head entries with actual counts.
+
+    The default is an architecture plan. Runtime auditing supplies loaded head
+    entries so older all-MLP checkpoints remain accurately accounted for.
+    """
+    manifest = {
         "schema_version": 1,
         "parameter_limit": 6_000_000_000,
         "parameter_policy": "All required unique learned weights, frozen or trainable; quantization does not reduce counts. YuNet count conservatively includes 17 constants.",
@@ -75,11 +80,11 @@ def model_manifest() -> dict:
              "source": f"https://huggingface.co/{settings.TEXT_MODEL}/tree/{settings.TEXT_REVISION}",
              "count_evidence": "Instantiated AutoModel encoder; excludes pretraining-only heads unused by local inference."},
             {"name": "MELD vision head", "parameters": 181_255, "count_kind": "exact architecture",
-             "source": "src/checkin/models.py", "architecture": "1408 -> 128 -> 7"},
-            {"name": "MELD text head", "parameters": 132_103, "count_kind": "exact architecture",
-             "source": "src/checkin/models.py", "architecture": "1024 -> 128 -> 7"},
+             "source": "src/checkin/models.py", "architecture_kind": "mlp", "architecture": "1408 -> 128 -> 7"},
+            {"name": "MELD text head", "parameters": 7_175, "count_kind": "exact architecture",
+             "source": "src/checkin/models.py", "architecture_kind": "linear", "architecture": "1024 -> 7"},
             {"name": "MELD fusion head", "parameters": 312_711, "count_kind": "exact architecture",
-             "source": "src/checkin/models.py", "architecture": "2435 -> 128 -> 7"},
+             "source": "src/checkin/models.py", "architecture_kind": "mlp", "architecture": "2435 -> 128 -> 7"},
             {"name": "Qwen3-4B-Instruct-2507", "parameters": 4_022_468_096, "count_kind": "exact",
              "license": "Apache-2.0", "model_id": "Qwen/Qwen3-4B-Instruct-2507",
              "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
@@ -88,7 +93,7 @@ def model_manifest() -> dict:
              "quantized_by": "bartowski", "quantization_revision": "ae44f08e1392f39c0e474af10c3ff8355c8b6688",
              "quantization_source": "https://huggingface.co/bartowski/Qwen_Qwen3-4B-Instruct-2507-GGUF/blob/ae44f08e1392f39c0e474af10c3ff8355c8b6688/README.md"},
         ],
-        "total_parameter_upper_bound": 4_464_870_303,
+        "head_inventory_source": "shipped architecture plan; local checkpoints require auditing",
         "zero_parameter_operations": ["tokenizers", "geometric face selection", "mean pooling", "normalization", "browser UI", "llama.cpp runtime"],
         "training_only_learned_models": [],
         "evaluation_only_learned_models": [],
@@ -96,6 +101,16 @@ def model_manifest() -> dict:
         "runtime": {"name": "llama.cpp", "revision": LLAMA_REVISION, "platform": "Windows x64 CUDA 12.4", "license": "MIT; accompanying CUDA libraries have NVIDIA license terms"},
         "dataset": {"name": "MELD", "source": "https://github.com/declare-lab/MELD", "note": "Acquisition instructions only. Do not redistribute television clips; record dataset/media terms separately."},
     }
+    if head_components is not None:
+        for stage, resolved in head_components.items():
+            expected_name = f"MELD {stage} head"
+            component = next((item for item in manifest["components"] if item["name"] == expected_name), None)
+            if component is None or resolved.get("name", expected_name) != expected_name:
+                raise ValueError(f"Unknown head inventory entry: {stage}")
+            component.update(resolved)
+        manifest["head_inventory_source"] = "runtime head inspection; see each component's local_count_status"
+    manifest["total_parameter_upper_bound"] = sum(item["parameters"] for item in manifest["components"])
+    return manifest
 
 
 def _download(artifact: dict[str, str], home: Path) -> dict:
@@ -174,7 +189,10 @@ def download_all(home: str | Path, include_meld: bool = True) -> dict:
         _extract_runtime(home / "downloads" / local_name, home / "vendor/llama")
     if not (home / "vendor/llama/llama-server.exe").is_file():
         raise RuntimeError("Native runtime extraction did not produce llama-server.exe.")
-    (home / "manifests/models.json").write_text(json.dumps(model_manifest(), indent=2), encoding="utf-8")
+    # Setup can be rerun against either the shipped stack or older checkpoints.
+    from .audit import runtime_inventory
+    manifest, _ = runtime_inventory(home)
+    (home / "manifests/models.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     report = {"status": "verified", "artifacts": records, "runtime": str(home / "vendor/llama")}
     (home / "reports/downloads.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     return report

@@ -1,0 +1,11 @@
+{
+  "same_float32_weight_tensors": true,
+  "same_hybrid_development_metrics": true,
+  "same_complete_parameter_count": true,
+  "original_plan_selection_and_source_snapshot_preserved": true,
+  "new_artifact_sha256": "3aba6eee2b4713415728ac97eb9c0394bc7361a6dca8a9bf118d796dabb34f6c",
+  "new_artifact_parameters": 4464745375,
+  "test_accessed_by_preparation": false,
+  "production_activated": false,
+  "note": "Serialized file hashes differ because creation time and preparation provenance are newly recorded; learned tensor values match exactly."
+}

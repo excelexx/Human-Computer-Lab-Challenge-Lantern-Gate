@@ -1,0 +1,69 @@
+{
+  "mechanical_measurement_caveat": "Exact text changes do not prove helpful emotion adaptation. Lexical flags are not quality scores. Temp=0/fixed seed does not guarantee bitwise determinism across hardware/builds; repeat controls probe this run.",
+  "prompts": {
+    "baseline": {
+      "generations": 42,
+      "errors": 0,
+      "length_limit_finishes": 0,
+      "responses_with_narrow_pattern_flags": 4,
+      "cases_with_any_exact_response_change": 13,
+      "paired_case_count": 14,
+      "repeat_controls": [
+        {
+          "case_id": "authored:dev:ambiguous",
+          "exactly_equal": true
+        },
+        {
+          "case_id": "authored:dev:baby_movement",
+          "exactly_equal": true
+        }
+      ],
+      "ttft_ms_median": 51.80169999948703,
+      "completion_ms_median": 244.0908500138903
+    },
+    "facts_first": {
+      "generations": 42,
+      "errors": 0,
+      "length_limit_finishes": 0,
+      "responses_with_narrow_pattern_flags": 3,
+      "cases_with_any_exact_response_change": 11,
+      "paired_case_count": 14,
+      "repeat_controls": [
+        {
+          "case_id": "authored:dev:ambiguous",
+          "exactly_equal": true
+        },
+        {
+          "case_id": "authored:dev:baby_movement",
+          "exactly_equal": false
+        }
+      ],
+      "ttft_ms_median": 51.43195000709966,
+      "completion_ms_median": 199.0059000090696
+    },
+    "grounding_addendum": {
+      "generations": 42,
+      "errors": 0,
+      "length_limit_finishes": 0,
+      "responses_with_narrow_pattern_flags": 5,
+      "cases_with_any_exact_response_change": 13,
+      "paired_case_count": 14,
+      "repeat_controls": [
+        {
+          "case_id": "authored:dev:ambiguous",
+          "exactly_equal": true
+        },
+        {
+          "case_id": "authored:dev:baby_movement",
+          "exactly_equal": false
+        }
+      ],
+      "ttft_ms_median": 43.888599990168586,
+      "completion_ms_median": 216.19044999533799
+    }
+  },
+  "protocol_sha256": "b7d695d11ce78d87e9c8a32c7c5bb915ada9f9bb6b09dbadcb8b710d5eab0e45",
+  "response_file_sha256": "96cbdb36643e6f28af9cbaf49e7e0819366e03813eeb08eeb989c2dc0ea44ff6",
+  "completed_at": "2026-09-25T05:14:20.177787+00:00",
+  "total_generations": 132
+}

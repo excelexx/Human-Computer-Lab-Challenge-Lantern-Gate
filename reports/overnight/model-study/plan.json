@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-25T05:11:19.137597+00:00",
+  "purpose": "Bounded CPU-only follow-up; production models remain unchanged.",
+  "study_source_sha256": "268b40a734640e18d66e8a5a36fee49581d6dacc4b4ebd4f63ca138db3168d9a",
+  "home": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime",
+  "output": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\overnight\\model-study",
+  "feature_identity": "1f030a3ec7ff3c4b80486d7afac799d13507560374e7b7d84f6a40e20f7a3777",
+  "cache_sha256": {
+    "train": "8111cc8f9de929cd460d4b0bfb3a9567bf69e048e51cbc2140c13f1a7d1b7678",
+    "dev": "0d40d91bc48794b0c21afdec5dd99c17fd77ea4a9a5b5005bde5719e8d459879"
+  },
+  "baseline_head_sha256": {
+    "vision": "9882939db93780c96481f978cc93ace61a80d52a3c63465ae551cb8ace23a465",
+    "text": "a59e53cc2d8676d5c5f5e157add8e60694fea32ccf9ef52dc6d2cda4c5159b03",
+    "fusion": "3f126c4e1033fcec4cb57641fcbcd2a83798bb5f39d118861fc671207df9c0ea"
+  },
+  "training_rows": 9989,
+  "development_rows": 1109,
+  "cv": {
+    "type": "StratifiedGroupKFold",
+    "group": "MELD dialogue ID",
+    "folds": 3,
+    "seed": 42,
+    "variance": "Report each disjoint-dialogue fold and sample standard deviation; three folds are not three independent experiments."
+  },
+  "linear": {
+    "stages": [
+      "vision",
+      "text",
+      "fusion"
+    ],
+    "C": [
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ],
+    "weighting": [
+      "unweighted",
+      "sqrt_balanced"
+    ],
+    "solver": "lbfgs",
+    "max_iter": 500,
+    "tolerance": 0.0001,
+    "standardization": "Fit mean/scale to each training fold only; fold statistics into final affine weights.",
+    "text_training": "all training rows",
+    "vision_training": "visually eligible training rows",
+    "fusion_training": "all training rows; original normalized vision/text plus three quality values",
+    "weighting_definition": "Inverse square root training class frequency, per-row weights normalized to mean one."
+  },
+  "late_fusion": {
+    "vision_probability_weights": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.5
+    ],
+    "missing_vision": "exact text fallback"
+  },
+  "selection_rules": [
+    "Select one configuration per linear stage by highest mean dialogue-CV seven-class macro F1: all rows for text, eligible rows for vision/fusion.",
+    "Break exact configuration ties by lower C, then unweighted loss; do not use official test data.",
+    "Select a late-fusion weight by highest mean eligible dialogue-CV macro F1; exact ties choose less visual weight. Also retain the best strictly positive weight as a multimodal candidate.",
+    "Fit each selected stage to all corresponding train rows, then inspect dev once. Do not train on dev.",
+    "Early fusion and best positive-weight late fusion qualify for selection only if mean eligible CV improvement over the selected linear text model is positive and at least two of three folds improve.",
+    "Among qualifying multimodal families choose highest eligible dev macro F1, then full operational dev macro F1. If neither qualifies, select the higher-CV family for diagnosis and mark it unsupported for promotion.",
+    "Write selection.json with fitted weight hashes, all decisions, and timestamp BEFORE opening the test cache.",
+    "Evaluate frozen text/vision/fusion controls and the single selected multimodal candidate together once on the reused official test benchmark. This is not a fresh holdout because the initial project already observed this test set.",
+    "Do not promote a candidate automatically. Robust-improvement reporting requires agreement across CV, dev, and a dialogue-bootstrap interval for paired reused-test differences; reused-test results cannot remove prior selection bias."
+  ],
+  "uncertainty": {
+    "paired_dialogue_bootstrap_replicates": 1000,
+    "seed": 314159,
+    "interval": "2.5 and 97.5 percentiles; conditional on these frozen models and this previously observed benchmark"
+  },
+  "test_access": "No test cache, labels, predictions, or previous test metrics are used by search. Evaluation is a separate single-use phase.",
+  "resource_limit": "CPU only; torch and BLAS capped at two threads; no encoders or language generator loaded.",
+  "production_promotion": "forbidden; baseline checkpoints are read-only"
+}

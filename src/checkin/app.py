@@ -194,6 +194,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
     """Build the UI without downloading models or starting a web server."""
     os.environ.setdefault("GRADIO_ANALYTICS_ENABLED", "False")
     import gradio as gr
+    from checkin.video_input import SilentVideo
 
     data_home = resolve_home(home)
     if pipeline is None:
@@ -258,6 +259,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         session = gr.State(lambda: str(uuid.uuid4()))
         turn = gr.State(0)
         conversation_state = gr.State([])
+        load_replay = None
         gr.HTML('<div id="masthead"><div class="brand-lockup"><span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 18C6 10 10 5 18 5C18 13 14 18 6 18Z" stroke="#537263" stroke-width="1.35"/><path d="M6 18L14 10" stroke="#537263" stroke-width="1.35" stroke-linecap="round"/></svg></span><strong>Check-in</strong></div><span class="privacy-note">Private, on your computer</span></div>')
         gr.HTML('<section id="invitation"><h1>A little space<br>for your day.</h1><p>Start wherever you are. Share a few words and a short clip, and take a moment to reflect.</p></section>')
 
@@ -266,7 +268,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                 gr.HTML('<div class="panel-heading"><h2>Your check-in</h2><p>How did today feel?</p></div>')
                 with gr.Tabs():
                     with gr.Tab("Camera"):
-                        camera = gr.Video(
+                        camera = SilentVideo(
                             label="Your camera clip",
                             sources=["webcam", "upload"],
                             include_audio=False,
@@ -275,7 +277,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                             show_share_button=False,
                             elem_id="camera-clip",
                         )
-                        gr.Markdown("A 3–5 second clip, with your face in view. No audio. You can also continue with words alone.", elem_id="capture-note")
+                        gr.Markdown("A 3–5 second clip, with your face in view. No audio. Each clip is used for one check-in, then cleared. You can also continue with words alone.", elem_id="capture-note")
                     if replay_rows:
                         with gr.Tab("MELD replay"):
                             replay_select = gr.Dropdown(
@@ -325,17 +327,25 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             setup = gr.JSON(label="Local component status", value=initial_status)
             refresh = gr.Button("Refresh local status", size="sm")
             gr.Markdown("Camera clips are processed on this computer. Temporary browser uploads are eligible for cleanup after one hour. New conversation clears the displayed history; it does not immediately erase temporary files.")
+            gr.Markdown("Audio is removed by copying the original video stream for H.264 MP4 and VP8/VP9 WebM. Other formats may require H.264 conversion, which changes pixels and displays a warning. Replay and uploaded clips use this same preparation.")
 
-        outputs = [chat, conversation_state, emotion, output_state, activity, turn, send, stop]
+        compose_controls = [camera, message] + ([load_replay] if load_replay is not None else [])
+        outputs = [chat, conversation_state, emotion, output_state, activity, turn, send, stop] + compose_controls
+
+        def compose_update(*, active: bool = False, clear: bool = False) -> tuple[Any, ...]:
+            video_update = gr.update(interactive=not active, **({"value": None} if clear else {}))
+            text_update = gr.update(interactive=not active, **({"value": ""} if clear else {}))
+            replay_update = (gr.update(interactive=not active),) if load_replay is not None else ()
+            return (video_update, text_update) + replay_update
 
         def run_turn(text: str, clip: Any, history: Any, session_id: str, turn_id: int) -> Iterator[tuple[Any, ...]]:
             prior = clean_history(history)
             next_turn = int(turn_id or 0)
             if not text or not text.strip():
-                yield prior, prior, gr.skip(), gr.skip(), "Write a message about your day before sending.", next_turn, gr.update(interactive=True), gr.update(interactive=False)
+                yield (prior, prior, gr.skip(), gr.skip(), "Write a message about your day before sending.", next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update()
                 return
             if len(text) > 4000:
-                yield prior, prior, gr.skip(), gr.skip(), "Please shorten your message to 4,000 characters or fewer.", next_turn, gr.update(interactive=True), gr.update(interactive=False)
+                yield (prior, prior, gr.skip(), gr.skip(), "Please shorten your message to 4,000 characters or fewer.", next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update()
                 return
 
             next_turn += 1
@@ -343,7 +353,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             state: dict[str, Any] = {}
             response = ""
             stream = None
-            yield messages, messages, emotion_html(), state, "Considering your words and clip…", next_turn, gr.update(interactive=False), gr.update(interactive=True)
+            yield (messages, messages, emotion_html(), state, "Considering your words and clip…", next_turn, gr.update(interactive=False), gr.update(interactive=True)) + compose_update(active=True)
             try:
                 stream = pipeline.stream(text.strip(), video_path(clip), prior, session_id, str(next_turn))
                 for event in stream:
@@ -359,16 +369,16 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                         raise RuntimeError(str(event.get("error") or "The local pipeline could not finish this turn."))
                     visible = messages + ([{"role": "assistant", "content": response}] if response else [])
                     progress = "Responding…" if response else "Emotion signal ready. Preparing a response…" if state else "Considering your check-in…"
-                    yield visible, visible, emotion_html(state), state, progress, next_turn, gr.update(interactive=False), gr.update(interactive=True)
+                    yield (visible, visible, emotion_html(state), state, progress, next_turn, gr.update(interactive=False), gr.update(interactive=True)) + tuple(gr.skip() for _ in compose_controls)
 
                 visible = messages + ([{"role": "assistant", "content": response}] if response else [])
                 cancelled = isinstance(state.get("response"), dict) and state["response"].get("status") == "cancelled"
-                complete = "Stopped. Any partial response is shown above." if cancelled else "Ready for your next check-in." if response else "The turn finished without response text. See diagnostics for details."
-                yield visible, visible, emotion_html(state), state, complete, next_turn, gr.update(interactive=True), gr.update(interactive=False)
+                complete = "Stopped. Any partial response is shown above." if cancelled else "Ready for your next check-in. Add a fresh clip, or continue with words alone." if response else "The turn finished without response text. See diagnostics for details."
+                yield (visible, visible, emotion_html(state), state, complete, next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update(clear=True)
             except Exception as exc:
                 visible = messages + ([{"role": "assistant", "content": response}] if response else [])
                 error_state = {**state, "error": f"{type(exc).__name__}: {exc}"}
-                yield visible, visible, emotion_html(state), error_state, "This check-in could not finish. Open diagnostics for the error, then retry.", next_turn, gr.update(interactive=True), gr.update(interactive=False)
+                yield (visible, visible, emotion_html(state), error_state, "This check-in could not finish. Your message and clip are kept so you can retry. See diagnostics for the error.", next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update()
             finally:
                 if stream is not None and hasattr(stream, "close"):
                     stream.close()
@@ -383,17 +393,17 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         def stop_current(session_id: str) -> tuple[Any, ...]:
             pending = request_cancel(session_id)
             status = "Stopping after the current processing step. A new check-in may need to wait." if pending else "No active response to stop."
-            return status, gr.update(interactive=True), gr.update(interactive=False)
+            return (status, gr.update(interactive=True), gr.update(interactive=False)) + compose_update(clear=True)
 
         def new_conversation(session_id: str) -> tuple[Any, ...]:
             pending = request_cancel(session_id)
             status = "A fresh conversation. The previous check-in is stopping after its current processing step." if pending else "A fresh conversation. Share something from your day."
-            return [], [], emotion_html(), {}, status, str(uuid.uuid4()), 0, "", None, gr.update(interactive=True), gr.update(interactive=False)
+            return ([], [], emotion_html(), {}, status, str(uuid.uuid4()), 0, gr.update(value="", interactive=True), gr.update(value=None, interactive=True), gr.update(interactive=True), gr.update(interactive=False)) + ((gr.update(interactive=True),) if load_replay is not None else ())
 
         stop.click(
             stop_current,
             inputs=[session],
-            outputs=[activity, send, stop],
+            outputs=[activity, send, stop] + compose_controls,
             cancels=[send_event],
             queue=False,
             api_name=False,
@@ -401,7 +411,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         new.click(
             new_conversation,
             inputs=[session],
-            outputs=[chat, conversation_state, emotion, output_state, activity, session, turn, message, camera, send, stop],
+            outputs=[chat, conversation_state, emotion, output_state, activity, session, turn, message, camera, send, stop] + ([load_replay] if load_replay is not None else []),
             cancels=[send_event],
             queue=False,
             api_name=False,

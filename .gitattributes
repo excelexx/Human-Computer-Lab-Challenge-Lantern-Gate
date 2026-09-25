@@ -1,0 +1,4 @@
+# Frozen protocols and source inventories are hashed by exact bytes.
+# Preserve their existing line endings across Windows/Linux checkout.
+# Unsetting text conversion does not disable readable text diffs.
+* -text whitespace=trailing-space,space-before-tab,cr-at-eol

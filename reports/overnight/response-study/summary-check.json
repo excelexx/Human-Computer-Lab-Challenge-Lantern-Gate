@@ -1,0 +1,20 @@
+{
+  "mechanical_measurement_caveat": "Exact text changes do not prove helpful emotion adaptation. Lexical flags are not quality scores. Temp=0/fixed seed does not guarantee bitwise determinism across hardware/builds; repeat controls probe this run.",
+  "prompts": {
+    "facts_first": {
+      "generations": 18,
+      "errors": 0,
+      "length_limit_finishes": 0,
+      "responses_with_narrow_pattern_flags": 0,
+      "cases_with_any_exact_response_change": 6,
+      "paired_case_count": 6,
+      "repeat_controls": [],
+      "ttft_ms_median": 53.19219999364577,
+      "completion_ms_median": 205.87764999072533
+    }
+  },
+  "protocol_sha256": "b7d695d11ce78d87e9c8a32c7c5bb915ada9f9bb6b09dbadcb8b710d5eab0e45",
+  "response_file_sha256": "5148012bd7a5b149031bfa0147c01efcad2adb0fb8bcae8c7b40812e36aeee0f",
+  "completed_at": "2026-09-25T05:16:22.457943+00:00",
+  "total_generations": 18
+}

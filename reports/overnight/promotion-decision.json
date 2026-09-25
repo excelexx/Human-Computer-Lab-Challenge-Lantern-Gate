@@ -1,0 +1,24 @@
+{
+  "frozen_at": "2026-09-25T05:22:19.998684+00:00",
+  "candidate": "old vision MLP + old fusion MLP + frozen selected linear text head only for fallback/diagnostics",
+  "checkpoint_sha256": "8c9eb533e4c9419935a1085a9c8799025fa760542ba010f563236f1e0578ca63",
+  "basis": [
+    "Text configuration fixed by dialogue-group training CV before reused-test pass",
+    "Full development operational macro F1 .38059 to .41855",
+    "Eligible fusion outputs unchanged",
+    "No required additional encoder or learned scaler; affine scaler folded into weights"
+  ],
+  "activation_gates": [
+    "Metadata, weight hash and roundtrip compatibility verified",
+    "Full development macro F1 improvement at least .02",
+    "Visually eligible fusion outputs unchanged",
+    "Complete learned parameter count under 6 billion",
+    "Relevant regression suite passes"
+  ],
+  "test_policy": "Hybrid reused-test pass is descriptive only and is not an activation gate. Official test was previously observed; no fresh-holdout claim. No further head tuning in this batch.",
+  "status": "activated",
+  "activated_at": "2026-09-25T05:35:41.484955+00:00",
+  "active_parameter_upper_bound": 4464745375,
+  "baseline_backup": "work/overnight/model-study/baseline-checkpoints",
+  "note": "Source tests and final runtime validation are recorded separately in the overnight handoff."
+}

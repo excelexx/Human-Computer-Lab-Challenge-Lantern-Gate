@@ -1,0 +1,3771 @@
+{
+  "schema_version": 1,
+  "protocol_identity": "91017c8ed303c626120dcfb3a75bb5135212cb032bbc9de1b66ec6c9b28f7409",
+  "protocol_created_at": "2026-09-25T05:38:12.498567+00:00",
+  "started_at": "2026-09-25T05:38:22.505690+00:00",
+  "status": "complete",
+  "sessions": [
+    {
+      "session_id": "interaction-dev-01",
+      "mode": "missing_vision",
+      "turns": [
+        {
+          "input": {
+            "turn_id": "1",
+            "role": "user",
+            "input_kind": "real_dev_pair",
+            "text": "Or! Or, we could go to the bank, close our accounts and cut them off at the source.",
+            "text_source_id": "dev:1:0",
+            "video_source_id": "dev:1:0",
+            "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia1_utt0.mp4",
+            "media_sha256": "18319bfdd5cf78016df0fe64b23aacf8291d17735b40616cc601238fdd816c2d",
+            "expected_source": "fusion",
+            "true_emotion_label": null,
+            "history_roles": []
+          },
+          "history_sent": [],
+          "events": [
+            {
+              "type": "state",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-01",
+                "turn_id": "1",
+                "input": {
+                  "text": "Or! Or, we could go to the bank, close our accounts and cut them off at the source.",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:22.507691+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "anger",
+                  "probabilities": {
+                    "neutral": 0.2478117197751999,
+                    "surprise": 0.06629182398319244,
+                    "fear": 0.06462404876947403,
+                    "sadness": 0.027121061459183693,
+                    "joy": 0.1899748295545578,
+                    "disgust": 0.029305584728717804,
+                    "anger": 0.37487098574638367
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9210278242826462,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 6.256245142666815,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "anger",
+                  "vision_label": "anger"
+                },
+                "modality_disagreement": false,
+                "timing": {
+                  "classification_ms": 323.0651000048965,
+                  "first_token_ms": null,
+                  "completion_ms": null,
+                  "model_load_ms": 9574.86270001391
+                },
+                "response": {
+                  "text": "",
+                  "status": "streaming",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "You",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "’re",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " thinking",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " about",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " cutting",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " off",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " the",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " bank",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " accounts",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "—",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "what",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " does",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " that",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " feel",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " like",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " for",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " you",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " right",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " now",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "?",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            },
+            {
+              "type": "done",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-01",
+                "turn_id": "1",
+                "input": {
+                  "text": "Or! Or, we could go to the bank, close our accounts and cut them off at the source.",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:22.507691+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "anger",
+                  "probabilities": {
+                    "neutral": 0.2478117197751999,
+                    "surprise": 0.06629182398319244,
+                    "fear": 0.06462404876947403,
+                    "sadness": 0.027121061459183693,
+                    "joy": 0.1899748295545578,
+                    "disgust": 0.029305584728717804,
+                    "anger": 0.37487098574638367
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9210278242826462,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 6.256245142666815,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "anger",
+                  "vision_label": "anger"
+                },
+                "modality_disagreement": false,
+                "timing": {
+                  "classification_ms": 323.0651000048965,
+                  "first_token_ms": 550.8170000102837,
+                  "completion_ms": 696.3520999997854,
+                  "model_load_ms": 9574.86270001391
+                },
+                "response": {
+                  "text": "You’re thinking about cutting off the bank accounts—what does that feel like for you right now?",
+                  "status": "complete",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-01",
+              "turn_id": "1"
+            }
+          ],
+          "wall_ms": 10271.411199995782,
+          "checks": {
+            "passed": true,
+            "errors": [],
+            "final_state": {
+              "schema_version": "1.0",
+              "session_id": "interaction-dev-01",
+              "turn_id": "1",
+              "input": {
+                "text": "Or! Or, we could go to the bank, close our accounts and cut them off at the source.",
+                "video_present": true,
+                "received_at": "2026-09-25T05:38:22.507691+00:00",
+                "text_truncated_for_classification": false,
+                "clip_started_at": null,
+                "clip_ended_at": null,
+                "clock_source": "backend_utc; capture timestamps unavailable"
+              },
+              "emotion": {
+                "label": "anger",
+                "probabilities": {
+                  "neutral": 0.2478117197751999,
+                  "surprise": 0.06629182398319244,
+                  "fear": 0.06462404876947403,
+                  "sadness": 0.027121061459183693,
+                  "joy": 0.1899748295545578,
+                  "disgust": 0.029305584728717804,
+                  "anger": 0.37487098574638367
+                },
+                "source": "fusion",
+                "score_semantics": "uncalibrated_softmax"
+              },
+              "vision": {
+                "available": true,
+                "reason": "ok",
+                "valid_frame_fraction": 1.0,
+                "mean_detection_score": 0.9210278242826462,
+                "sampled_frames": 8,
+                "selected_frames": 8,
+                "duration_seconds": 6.256245142666815,
+                "truncated": false,
+                "speaker_attribution": "unverified_heuristic"
+              },
+              "modalities": {
+                "text_label": "anger",
+                "vision_label": "anger"
+              },
+              "modality_disagreement": false,
+              "timing": {
+                "classification_ms": 323.0651000048965,
+                "first_token_ms": 550.8170000102837,
+                "completion_ms": 696.3520999997854,
+                "model_load_ms": 9574.86270001391
+              },
+              "response": {
+                "text": "You’re thinking about cutting off the bank accounts—what does that feel like for you right now?",
+                "status": "complete",
+                "error": null
+              }
+            },
+            "streamed_text": "You’re thinking about cutting off the bank accounts—what does that feel like for you right now?"
+          }
+        },
+        {
+          "input": {
+            "turn_id": "2",
+            "role": "user",
+            "input_kind": "authored_followup_no_video",
+            "text": "I want to talk a little more about how that felt.",
+            "text_source_id": null,
+            "video_source_id": null,
+            "video_path": null,
+            "media_sha256": null,
+            "expected_source": "text_fallback",
+            "true_emotion_label": null,
+            "history_roles": [
+              "user",
+              "assistant"
+            ]
+          },
+          "history_sent": [
+            {
+              "role": "user",
+              "content": "Or! Or, we could go to the bank, close our accounts and cut them off at the source."
+            },
+            {
+              "role": "assistant",
+              "content": "You’re thinking about cutting off the bank accounts—what does that feel like for you right now?"
+            }
+          ],
+          "events": [
+            {
+              "type": "state",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-01",
+                "turn_id": "2",
+                "input": {
+                  "text": "I want to talk a little more about how that felt.",
+                  "video_present": false,
+                  "received_at": "2026-09-25T05:38:32.782736+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "neutral",
+                  "probabilities": {
+                    "neutral": 0.8135073781013489,
+                    "surprise": 0.0012120559113100171,
+                    "fear": 0.0055119250901043415,
+                    "sadness": 0.03168782591819763,
+                    "joy": 0.1298704743385315,
+                    "disgust": 0.002123226411640644,
+                    "anger": 0.01608715020120144
+                  },
+                  "source": "text_fallback",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": false,
+                  "reason": "missing_video",
+                  "valid_frame_fraction": 0.0,
+                  "mean_detection_score": 0.0,
+                  "sampled_frames": 0,
+                  "selected_frames": 0,
+                  "duration_seconds": null,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "neutral",
+                  "vision_label": null
+                },
+                "modality_disagreement": false,
+                "timing": {
+                  "classification_ms": 82.41689999704249,
+                  "first_token_ms": null,
+                  "completion_ms": null,
+                  "model_load_ms": 0.001100008375942707
+                },
+                "response": {
+                  "text": "",
+                  "status": "streaming",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "You",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "'re",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " wanting",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " to",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " talk",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " more",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " about",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " how",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " that",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " felt",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "—",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "what",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " part",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " of",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " it",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " stands",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " out",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " to",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " you",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "?",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            },
+            {
+              "type": "done",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-01",
+                "turn_id": "2",
+                "input": {
+                  "text": "I want to talk a little more about how that felt.",
+                  "video_present": false,
+                  "received_at": "2026-09-25T05:38:32.782736+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "neutral",
+                  "probabilities": {
+                    "neutral": 0.8135073781013489,
+                    "surprise": 0.0012120559113100171,
+                    "fear": 0.0055119250901043415,
+                    "sadness": 0.03168782591819763,
+                    "joy": 0.1298704743385315,
+                    "disgust": 0.002123226411640644,
+                    "anger": 0.01608715020120144
+                  },
+                  "source": "text_fallback",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": false,
+                  "reason": "missing_video",
+                  "valid_frame_fraction": 0.0,
+                  "mean_detection_score": 0.0,
+                  "sampled_frames": 0,
+                  "selected_frames": 0,
+                  "duration_seconds": null,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "neutral",
+                  "vision_label": null
+                },
+                "modality_disagreement": false,
+                "timing": {
+                  "classification_ms": 82.41689999704249,
+                  "first_token_ms": 283.9308000111487,
+                  "completion_ms": 416.1595999903511,
+                  "model_load_ms": 0.001100008375942707
+                },
+                "response": {
+                  "text": "You're wanting to talk more about how that felt—what part of it stands out to you?",
+                  "status": "complete",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-01",
+              "turn_id": "2"
+            }
+          ],
+          "wall_ms": 416.322900011437,
+          "checks": {
+            "passed": true,
+            "errors": [],
+            "final_state": {
+              "schema_version": "1.0",
+              "session_id": "interaction-dev-01",
+              "turn_id": "2",
+              "input": {
+                "text": "I want to talk a little more about how that felt.",
+                "video_present": false,
+                "received_at": "2026-09-25T05:38:32.782736+00:00",
+                "text_truncated_for_classification": false,
+                "clip_started_at": null,
+                "clip_ended_at": null,
+                "clock_source": "backend_utc; capture timestamps unavailable"
+              },
+              "emotion": {
+                "label": "neutral",
+                "probabilities": {
+                  "neutral": 0.8135073781013489,
+                  "surprise": 0.0012120559113100171,
+                  "fear": 0.0055119250901043415,
+                  "sadness": 0.03168782591819763,
+                  "joy": 0.1298704743385315,
+                  "disgust": 0.002123226411640644,
+                  "anger": 0.01608715020120144
+                },
+                "source": "text_fallback",
+                "score_semantics": "uncalibrated_softmax"
+              },
+              "vision": {
+                "available": false,
+                "reason": "missing_video",
+                "valid_frame_fraction": 0.0,
+                "mean_detection_score": 0.0,
+                "sampled_frames": 0,
+                "selected_frames": 0,
+                "duration_seconds": null,
+                "truncated": false,
+                "speaker_attribution": "unverified_heuristic"
+              },
+              "modalities": {
+                "text_label": "neutral",
+                "vision_label": null
+              },
+              "modality_disagreement": false,
+              "timing": {
+                "classification_ms": 82.41689999704249,
+                "first_token_ms": 283.9308000111487,
+                "completion_ms": 416.1595999903511,
+                "model_load_ms": 0.001100008375942707
+              },
+              "response": {
+                "text": "You're wanting to talk more about how that felt—what part of it stands out to you?",
+                "status": "complete",
+                "error": null
+              }
+            },
+            "streamed_text": "You're wanting to talk more about how that felt—what part of it stands out to you?"
+          }
+        }
+      ]
+    },
+    {
+      "session_id": "interaction-dev-02",
+      "mode": "missing_vision",
+      "turns": [
+        {
+          "input": {
+            "turn_id": "1",
+            "role": "user",
+            "input_kind": "real_dev_pair",
+            "text": "On the touchy.",
+            "text_source_id": "dev:1:8",
+            "video_source_id": "dev:1:8",
+            "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia1_utt8.mp4",
+            "media_sha256": "49aabb722e0b8f66a83105aecfdca6cc30478eaf07dc58c801ca822176be2473",
+            "expected_source": "fusion",
+            "true_emotion_label": null,
+            "history_roles": []
+          },
+          "history_sent": [],
+          "events": [
+            {
+              "type": "state",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-02",
+                "turn_id": "1",
+                "input": {
+                  "text": "On the touchy.",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:33.203295+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "neutral",
+                  "probabilities": {
+                    "neutral": 0.7155318856239319,
+                    "surprise": 0.016742458567023277,
+                    "fear": 0.008620761334896088,
+                    "sadness": 0.04825723171234131,
+                    "joy": 0.14512205123901367,
+                    "disgust": 0.026769595220685005,
+                    "anger": 0.03895615041255951
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9197657331824303,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 0.7924577180711299,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "neutral",
+                  "vision_label": "neutral"
+                },
+                "modality_disagreement": false,
+                "timing": {
+                  "classification_ms": 370.8700000133831,
+                  "first_token_ms": null,
+                  "completion_ms": null,
+                  "model_load_ms": 0.0006999762263149023
+                },
+                "response": {
+                  "text": "",
+                  "status": "streaming",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-02",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "On",
+              "session_id": "interaction-dev-02",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " the",
+              "session_id": "interaction-dev-02",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " touch",
+              "session_id": "interaction-dev-02",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "y",
+              "session_id": "interaction-dev-02",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": ".",
+              "session_id": "interaction-dev-02",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " How",
+              "session_id": "interaction-dev-02",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " are",
+              "session_id": "interaction-dev-02",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " you",
+              "session_id": "interaction-dev-02",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " feeling",
+              "session_id": "interaction-dev-02",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " about",
+              "session_id": "interaction-dev-02",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " that",
+              "session_id": "interaction-dev-02",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " right",
+              "session_id": "interaction-dev-02",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " now",
+              "session_id": "interaction-dev-02",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "?",
+              "session_id": "interaction-dev-02",
+              "turn_id": "1"
+            },
+            {
+              "type": "done",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-02",
+                "turn_id": "1",
+                "input": {
+                  "text": "On the touchy.",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:33.203295+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "neutral",
+                  "probabilities": {
+                    "neutral": 0.7155318856239319,
+                    "surprise": 0.016742458567023277,
+                    "fear": 0.008620761334896088,
+                    "sadness": 0.04825723171234131,
+                    "joy": 0.14512205123901367,
+                    "disgust": 0.026769595220685005,
+                    "anger": 0.03895615041255951
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9197657331824303,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 0.7924577180711299,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "neutral",
+                  "vision_label": "neutral"
+                },
+                "modality_disagreement": false,
+                "timing": {
+                  "classification_ms": 370.8700000133831,
+                  "first_token_ms": 547.135700006038,
+                  "completion_ms": 641.0942999937106,
+                  "model_load_ms": 0.0006999762263149023
+                },
+                "response": {
+                  "text": "On the touchy. How are you feeling about that right now?",
+                  "status": "complete",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-02",
+              "turn_id": "1"
+            }
+          ],
+          "wall_ms": 641.2833999784198,
+          "checks": {
+            "passed": true,
+            "errors": [],
+            "final_state": {
+              "schema_version": "1.0",
+              "session_id": "interaction-dev-02",
+              "turn_id": "1",
+              "input": {
+                "text": "On the touchy.",
+                "video_present": true,
+                "received_at": "2026-09-25T05:38:33.203295+00:00",
+                "text_truncated_for_classification": false,
+                "clip_started_at": null,
+                "clip_ended_at": null,
+                "clock_source": "backend_utc; capture timestamps unavailable"
+              },
+              "emotion": {
+                "label": "neutral",
+                "probabilities": {
+                  "neutral": 0.7155318856239319,
+                  "surprise": 0.016742458567023277,
+                  "fear": 0.008620761334896088,
+                  "sadness": 0.04825723171234131,
+                  "joy": 0.14512205123901367,
+                  "disgust": 0.026769595220685005,
+                  "anger": 0.03895615041255951
+                },
+                "source": "fusion",
+                "score_semantics": "uncalibrated_softmax"
+              },
+              "vision": {
+                "available": true,
+                "reason": "ok",
+                "valid_frame_fraction": 1.0,
+                "mean_detection_score": 0.9197657331824303,
+                "sampled_frames": 8,
+                "selected_frames": 8,
+                "duration_seconds": 0.7924577180711299,
+                "truncated": false,
+                "speaker_attribution": "unverified_heuristic"
+              },
+              "modalities": {
+                "text_label": "neutral",
+                "vision_label": "neutral"
+              },
+              "modality_disagreement": false,
+              "timing": {
+                "classification_ms": 370.8700000133831,
+                "first_token_ms": 547.135700006038,
+                "completion_ms": 641.0942999937106,
+                "model_load_ms": 0.0006999762263149023
+              },
+              "response": {
+                "text": "On the touchy. How are you feeling about that right now?",
+                "status": "complete",
+                "error": null
+              }
+            },
+            "streamed_text": "On the touchy. How are you feeling about that right now?"
+          }
+        },
+        {
+          "input": {
+            "turn_id": "2",
+            "role": "user",
+            "input_kind": "authored_followup_no_video",
+            "text": "I am still sorting out my feelings. Could we slow down and talk about them?",
+            "text_source_id": null,
+            "video_source_id": null,
+            "video_path": null,
+            "media_sha256": null,
+            "expected_source": "text_fallback",
+            "true_emotion_label": null,
+            "history_roles": [
+              "user",
+              "assistant"
+            ]
+          },
+          "history_sent": [
+            {
+              "role": "user",
+              "content": "On the touchy."
+            },
+            {
+              "role": "assistant",
+              "content": "On the touchy. How are you feeling about that right now?"
+            }
+          ],
+          "events": [
+            {
+              "type": "state",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-02",
+                "turn_id": "2",
+                "input": {
+                  "text": "I am still sorting out my feelings. Could we slow down and talk about them?",
+                  "video_present": false,
+                  "received_at": "2026-09-25T05:38:33.847367+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "neutral",
+                  "probabilities": {
+                    "neutral": 0.5007718205451965,
+                    "surprise": 0.013624879531562328,
+                    "fear": 0.03366326540708542,
+                    "sadness": 0.0977427139878273,
+                    "joy": 0.17968563735485077,
+                    "disgust": 0.011504796333611012,
+                    "anger": 0.16300693154335022
+                  },
+                  "source": "text_fallback",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": false,
+                  "reason": "missing_video",
+                  "valid_frame_fraction": 0.0,
+                  "mean_detection_score": 0.0,
+                  "sampled_frames": 0,
+                  "selected_frames": 0,
+                  "duration_seconds": null,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "neutral",
+                  "vision_label": null
+                },
+                "modality_disagreement": false,
+                "timing": {
+                  "classification_ms": 22.929600003408268,
+                  "first_token_ms": null,
+                  "completion_ms": null,
+                  "model_load_ms": 0.001200009137392044
+                },
+                "response": {
+                  "text": "",
+                  "status": "streaming",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "I",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "'m",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " here",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " if",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " you",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "'d",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " like",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " to",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " slow",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " down",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " and",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " talk",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " about",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " it",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": ".",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " What",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "'s",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " on",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " your",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " mind",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " right",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " now",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "?",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            },
+            {
+              "type": "done",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-02",
+                "turn_id": "2",
+                "input": {
+                  "text": "I am still sorting out my feelings. Could we slow down and talk about them?",
+                  "video_present": false,
+                  "received_at": "2026-09-25T05:38:33.847367+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "neutral",
+                  "probabilities": {
+                    "neutral": 0.5007718205451965,
+                    "surprise": 0.013624879531562328,
+                    "fear": 0.03366326540708542,
+                    "sadness": 0.0977427139878273,
+                    "joy": 0.17968563735485077,
+                    "disgust": 0.011504796333611012,
+                    "anger": 0.16300693154335022
+                  },
+                  "source": "text_fallback",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": false,
+                  "reason": "missing_video",
+                  "valid_frame_fraction": 0.0,
+                  "mean_detection_score": 0.0,
+                  "sampled_frames": 0,
+                  "selected_frames": 0,
+                  "duration_seconds": null,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "neutral",
+                  "vision_label": null
+                },
+                "modality_disagreement": false,
+                "timing": {
+                  "classification_ms": 22.929600003408268,
+                  "first_token_ms": 222.88150002714247,
+                  "completion_ms": 374.0864999999758,
+                  "model_load_ms": 0.001200009137392044
+                },
+                "response": {
+                  "text": "I'm here if you'd like to slow down and talk about it. What's on your mind right now?",
+                  "status": "complete",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-02",
+              "turn_id": "2"
+            }
+          ],
+          "wall_ms": 374.23250000574626,
+          "checks": {
+            "passed": true,
+            "errors": [],
+            "final_state": {
+              "schema_version": "1.0",
+              "session_id": "interaction-dev-02",
+              "turn_id": "2",
+              "input": {
+                "text": "I am still sorting out my feelings. Could we slow down and talk about them?",
+                "video_present": false,
+                "received_at": "2026-09-25T05:38:33.847367+00:00",
+                "text_truncated_for_classification": false,
+                "clip_started_at": null,
+                "clip_ended_at": null,
+                "clock_source": "backend_utc; capture timestamps unavailable"
+              },
+              "emotion": {
+                "label": "neutral",
+                "probabilities": {
+                  "neutral": 0.5007718205451965,
+                  "surprise": 0.013624879531562328,
+                  "fear": 0.03366326540708542,
+                  "sadness": 0.0977427139878273,
+                  "joy": 0.17968563735485077,
+                  "disgust": 0.011504796333611012,
+                  "anger": 0.16300693154335022
+                },
+                "source": "text_fallback",
+                "score_semantics": "uncalibrated_softmax"
+              },
+              "vision": {
+                "available": false,
+                "reason": "missing_video",
+                "valid_frame_fraction": 0.0,
+                "mean_detection_score": 0.0,
+                "sampled_frames": 0,
+                "selected_frames": 0,
+                "duration_seconds": null,
+                "truncated": false,
+                "speaker_attribution": "unverified_heuristic"
+              },
+              "modalities": {
+                "text_label": "neutral",
+                "vision_label": null
+              },
+              "modality_disagreement": false,
+              "timing": {
+                "classification_ms": 22.929600003408268,
+                "first_token_ms": 222.88150002714247,
+                "completion_ms": 374.0864999999758,
+                "model_load_ms": 0.001200009137392044
+              },
+              "response": {
+                "text": "I'm here if you'd like to slow down and talk about it. What's on your mind right now?",
+                "status": "complete",
+                "error": null
+              }
+            },
+            "streamed_text": "I'm here if you'd like to slow down and talk about it. What's on your mind right now?"
+          }
+        }
+      ]
+    },
+    {
+      "session_id": "interaction-dev-03",
+      "mode": "fresh_real_pair",
+      "turns": [
+        {
+          "input": {
+            "turn_id": "1",
+            "role": "user",
+            "input_kind": "real_dev_pair",
+            "text": "And",
+            "text_source_id": "dev:1:9",
+            "video_source_id": "dev:1:9",
+            "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia1_utt9.mp4",
+            "media_sha256": "d96faa8215e734e6b266b6448458d0d5ddcaf513ecb1b19c10f1d7cd0353329b",
+            "expected_source": "fusion",
+            "true_emotion_label": null,
+            "history_roles": []
+          },
+          "history_sent": [],
+          "events": [
+            {
+              "type": "state",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-03",
+                "turn_id": "1",
+                "input": {
+                  "text": "And",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:34.226410+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "neutral",
+                  "probabilities": {
+                    "neutral": 0.8752909302711487,
+                    "surprise": 0.014932968653738499,
+                    "fear": 0.004056551028043032,
+                    "sadness": 0.018750499933958054,
+                    "joy": 0.007331167347729206,
+                    "disgust": 0.005890168249607086,
+                    "anger": 0.07374779880046844
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9289545491337776,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 2.1688316494578292,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "neutral",
+                  "vision_label": "anger"
+                },
+                "modality_disagreement": true,
+                "timing": {
+                  "classification_ms": 166.61960000055842,
+                  "first_token_ms": null,
+                  "completion_ms": null,
+                  "model_load_ms": 0.000700005330145359
+                },
+                "response": {
+                  "text": "",
+                  "status": "streaming",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-03",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "And",
+              "session_id": "interaction-dev-03",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " what",
+              "session_id": "interaction-dev-03",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "?",
+              "session_id": "interaction-dev-03",
+              "turn_id": "1"
+            },
+            {
+              "type": "done",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-03",
+                "turn_id": "1",
+                "input": {
+                  "text": "And",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:34.226410+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "neutral",
+                  "probabilities": {
+                    "neutral": 0.8752909302711487,
+                    "surprise": 0.014932968653738499,
+                    "fear": 0.004056551028043032,
+                    "sadness": 0.018750499933958054,
+                    "joy": 0.007331167347729206,
+                    "disgust": 0.005890168249607086,
+                    "anger": 0.07374779880046844
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9289545491337776,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 2.1688316494578292,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "neutral",
+                  "vision_label": "anger"
+                },
+                "modality_disagreement": true,
+                "timing": {
+                  "classification_ms": 166.61960000055842,
+                  "first_token_ms": 372.4911999888718,
+                  "completion_ms": 394.52889998210594,
+                  "model_load_ms": 0.000700005330145359
+                },
+                "response": {
+                  "text": "And what?",
+                  "status": "complete",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-03",
+              "turn_id": "1"
+            }
+          ],
+          "wall_ms": 394.7461000061594,
+          "checks": {
+            "passed": true,
+            "errors": [],
+            "final_state": {
+              "schema_version": "1.0",
+              "session_id": "interaction-dev-03",
+              "turn_id": "1",
+              "input": {
+                "text": "And",
+                "video_present": true,
+                "received_at": "2026-09-25T05:38:34.226410+00:00",
+                "text_truncated_for_classification": false,
+                "clip_started_at": null,
+                "clip_ended_at": null,
+                "clock_source": "backend_utc; capture timestamps unavailable"
+              },
+              "emotion": {
+                "label": "neutral",
+                "probabilities": {
+                  "neutral": 0.8752909302711487,
+                  "surprise": 0.014932968653738499,
+                  "fear": 0.004056551028043032,
+                  "sadness": 0.018750499933958054,
+                  "joy": 0.007331167347729206,
+                  "disgust": 0.005890168249607086,
+                  "anger": 0.07374779880046844
+                },
+                "source": "fusion",
+                "score_semantics": "uncalibrated_softmax"
+              },
+              "vision": {
+                "available": true,
+                "reason": "ok",
+                "valid_frame_fraction": 1.0,
+                "mean_detection_score": 0.9289545491337776,
+                "sampled_frames": 8,
+                "selected_frames": 8,
+                "duration_seconds": 2.1688316494578292,
+                "truncated": false,
+                "speaker_attribution": "unverified_heuristic"
+              },
+              "modalities": {
+                "text_label": "neutral",
+                "vision_label": "anger"
+              },
+              "modality_disagreement": true,
+              "timing": {
+                "classification_ms": 166.61960000055842,
+                "first_token_ms": 372.4911999888718,
+                "completion_ms": 394.52889998210594,
+                "model_load_ms": 0.000700005330145359
+              },
+              "response": {
+                "text": "And what?",
+                "status": "complete",
+                "error": null
+              }
+            },
+            "streamed_text": "And what?"
+          }
+        },
+        {
+          "input": {
+            "turn_id": "2",
+            "role": "user",
+            "input_kind": "fresh_real_dev_pair",
+            "text": "Oh well, no harm, no foul.",
+            "text_source_id": "dev:2:5",
+            "video_source_id": "dev:2:5",
+            "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia2_utt5.mp4",
+            "media_sha256": "500fd8ae0701804f35708407ba089a77ddd714097a6a2f650c695055675d4f81",
+            "expected_source": "fusion",
+            "true_emotion_label": null,
+            "history_roles": [
+              "user",
+              "assistant"
+            ]
+          },
+          "history_sent": [
+            {
+              "role": "user",
+              "content": "And"
+            },
+            {
+              "role": "assistant",
+              "content": "And what?"
+            }
+          ],
+          "events": [
+            {
+              "type": "state",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-03",
+                "turn_id": "2",
+                "input": {
+                  "text": "Oh well, no harm, no foul.",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:34.627048+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "neutral",
+                  "probabilities": {
+                    "neutral": 0.7146780490875244,
+                    "surprise": 0.006689523812383413,
+                    "fear": 0.04067539423704147,
+                    "sadness": 0.13120058178901672,
+                    "joy": 0.04539795592427254,
+                    "disgust": 0.04935305565595627,
+                    "anger": 0.012005345895886421
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9234466850757599,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 3.086414270382295,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "neutral",
+                  "vision_label": "sadness"
+                },
+                "modality_disagreement": true,
+                "timing": {
+                  "classification_ms": 198.56009999057278,
+                  "first_token_ms": null,
+                  "completion_ms": null,
+                  "model_load_ms": 0.000800006091594696
+                },
+                "response": {
+                  "text": "",
+                  "status": "streaming",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "Oh",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " well",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": ",",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " no",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " harm",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": ",",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " no",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " foul",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": ".",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "  \n",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "How",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " are",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " you",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " actually",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " feeling",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " about",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " that",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "?",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            },
+            {
+              "type": "done",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-03",
+                "turn_id": "2",
+                "input": {
+                  "text": "Oh well, no harm, no foul.",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:34.627048+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "neutral",
+                  "probabilities": {
+                    "neutral": 0.7146780490875244,
+                    "surprise": 0.006689523812383413,
+                    "fear": 0.04067539423704147,
+                    "sadness": 0.13120058178901672,
+                    "joy": 0.04539795592427254,
+                    "disgust": 0.04935305565595627,
+                    "anger": 0.012005345895886421
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9234466850757599,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 3.086414270382295,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "neutral",
+                  "vision_label": "sadness"
+                },
+                "modality_disagreement": true,
+                "timing": {
+                  "classification_ms": 198.56009999057278,
+                  "first_token_ms": 422.093400004087,
+                  "completion_ms": 541.3667999964673,
+                  "model_load_ms": 0.000800006091594696
+                },
+                "response": {
+                  "text": "Oh well, no harm, no foul.  \nHow are you actually feeling about that?",
+                  "status": "complete",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-03",
+              "turn_id": "2"
+            }
+          ],
+          "wall_ms": 541.5655999968294,
+          "checks": {
+            "passed": true,
+            "errors": [],
+            "final_state": {
+              "schema_version": "1.0",
+              "session_id": "interaction-dev-03",
+              "turn_id": "2",
+              "input": {
+                "text": "Oh well, no harm, no foul.",
+                "video_present": true,
+                "received_at": "2026-09-25T05:38:34.627048+00:00",
+                "text_truncated_for_classification": false,
+                "clip_started_at": null,
+                "clip_ended_at": null,
+                "clock_source": "backend_utc; capture timestamps unavailable"
+              },
+              "emotion": {
+                "label": "neutral",
+                "probabilities": {
+                  "neutral": 0.7146780490875244,
+                  "surprise": 0.006689523812383413,
+                  "fear": 0.04067539423704147,
+                  "sadness": 0.13120058178901672,
+                  "joy": 0.04539795592427254,
+                  "disgust": 0.04935305565595627,
+                  "anger": 0.012005345895886421
+                },
+                "source": "fusion",
+                "score_semantics": "uncalibrated_softmax"
+              },
+              "vision": {
+                "available": true,
+                "reason": "ok",
+                "valid_frame_fraction": 1.0,
+                "mean_detection_score": 0.9234466850757599,
+                "sampled_frames": 8,
+                "selected_frames": 8,
+                "duration_seconds": 3.086414270382295,
+                "truncated": false,
+                "speaker_attribution": "unverified_heuristic"
+              },
+              "modalities": {
+                "text_label": "neutral",
+                "vision_label": "sadness"
+              },
+              "modality_disagreement": true,
+              "timing": {
+                "classification_ms": 198.56009999057278,
+                "first_token_ms": 422.093400004087,
+                "completion_ms": 541.3667999964673,
+                "model_load_ms": 0.000800006091594696
+              },
+              "response": {
+                "text": "Oh well, no harm, no foul.  \nHow are you actually feeling about that?",
+                "status": "complete",
+                "error": null
+              }
+            },
+            "streamed_text": "Oh well, no harm, no foul.  \nHow are you actually feeling about that?"
+          }
+        }
+      ]
+    },
+    {
+      "session_id": "interaction-dev-04",
+      "mode": "fresh_real_pair",
+      "turns": [
+        {
+          "input": {
+            "turn_id": "1",
+            "role": "user",
+            "input_kind": "real_dev_pair",
+            "text": "What are you talkin’ about? I never left you! You’ve always been my agent!",
+            "text_source_id": "dev:2:2",
+            "video_source_id": "dev:2:2",
+            "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia2_utt2.mp4",
+            "media_sha256": "2615f40cd2d07854377f5db61c43a22c2e61a60480da5a9165300b2e2badc482",
+            "expected_source": "fusion",
+            "true_emotion_label": null,
+            "history_roles": []
+          },
+          "history_sent": [],
+          "events": [
+            {
+              "type": "state",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-04",
+                "turn_id": "1",
+                "input": {
+                  "text": "What are you talkin’ about? I never left you! You’ve always been my agent!",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:35.174616+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "anger",
+                  "probabilities": {
+                    "neutral": 0.03654172271490097,
+                    "surprise": 0.1872011125087738,
+                    "fear": 0.049266330897808075,
+                    "sadness": 0.1643722951412201,
+                    "joy": 0.05310872942209244,
+                    "disgust": 0.18719401955604553,
+                    "anger": 0.32231587171554565
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9315026327967644,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 4.9632878131823395,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "anger",
+                  "vision_label": "sadness"
+                },
+                "modality_disagreement": true,
+                "timing": {
+                  "classification_ms": 227.75170000386424,
+                  "first_token_ms": null,
+                  "completion_ms": null,
+                  "model_load_ms": 0.000700005330145359
+                },
+                "response": {
+                  "text": "",
+                  "status": "streaming",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "I",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "'m",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " not",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " sure",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " what",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " you",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " mean",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " by",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " \"",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "agent",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": ".\"",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " You",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " said",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " you",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " never",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " left",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " me",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "—",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "can",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " you",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " clarify",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " what",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " that",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " feels",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " like",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " for",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " you",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " right",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " now",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "?",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            },
+            {
+              "type": "done",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-04",
+                "turn_id": "1",
+                "input": {
+                  "text": "What are you talkin’ about? I never left you! You’ve always been my agent!",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:35.174616+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "anger",
+                  "probabilities": {
+                    "neutral": 0.03654172271490097,
+                    "surprise": 0.1872011125087738,
+                    "fear": 0.049266330897808075,
+                    "sadness": 0.1643722951412201,
+                    "joy": 0.05310872942209244,
+                    "disgust": 0.18719401955604553,
+                    "anger": 0.32231587171554565
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9315026327967644,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 4.9632878131823395,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "anger",
+                  "vision_label": "sadness"
+                },
+                "modality_disagreement": true,
+                "timing": {
+                  "classification_ms": 227.75170000386424,
+                  "first_token_ms": 436.0324000008404,
+                  "completion_ms": 641.9958999904338,
+                  "model_load_ms": 0.000700005330145359
+                },
+                "response": {
+                  "text": "I'm not sure what you mean by \"agent.\" You said you never left me—can you clarify what that feels like for you right now?",
+                  "status": "complete",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-04",
+              "turn_id": "1"
+            }
+          ],
+          "wall_ms": 642.1770000015385,
+          "checks": {
+            "passed": true,
+            "errors": [],
+            "final_state": {
+              "schema_version": "1.0",
+              "session_id": "interaction-dev-04",
+              "turn_id": "1",
+              "input": {
+                "text": "What are you talkin’ about? I never left you! You’ve always been my agent!",
+                "video_present": true,
+                "received_at": "2026-09-25T05:38:35.174616+00:00",
+                "text_truncated_for_classification": false,
+                "clip_started_at": null,
+                "clip_ended_at": null,
+                "clock_source": "backend_utc; capture timestamps unavailable"
+              },
+              "emotion": {
+                "label": "anger",
+                "probabilities": {
+                  "neutral": 0.03654172271490097,
+                  "surprise": 0.1872011125087738,
+                  "fear": 0.049266330897808075,
+                  "sadness": 0.1643722951412201,
+                  "joy": 0.05310872942209244,
+                  "disgust": 0.18719401955604553,
+                  "anger": 0.32231587171554565
+                },
+                "source": "fusion",
+                "score_semantics": "uncalibrated_softmax"
+              },
+              "vision": {
+                "available": true,
+                "reason": "ok",
+                "valid_frame_fraction": 1.0,
+                "mean_detection_score": 0.9315026327967644,
+                "sampled_frames": 8,
+                "selected_frames": 8,
+                "duration_seconds": 4.9632878131823395,
+                "truncated": false,
+                "speaker_attribution": "unverified_heuristic"
+              },
+              "modalities": {
+                "text_label": "anger",
+                "vision_label": "sadness"
+              },
+              "modality_disagreement": true,
+              "timing": {
+                "classification_ms": 227.75170000386424,
+                "first_token_ms": 436.0324000008404,
+                "completion_ms": 641.9958999904338,
+                "model_load_ms": 0.000700005330145359
+              },
+              "response": {
+                "text": "I'm not sure what you mean by \"agent.\" You said you never left me—can you clarify what that feels like for you right now?",
+                "status": "complete",
+                "error": null
+              }
+            },
+            "streamed_text": "I'm not sure what you mean by \"agent.\" You said you never left me—can you clarify what that feels like for you right now?"
+          }
+        },
+        {
+          "input": {
+            "turn_id": "2",
+            "role": "user",
+            "input_kind": "fresh_real_dev_pair",
+            "text": "Oh-oh, you’re-you’re fellow scholars.",
+            "text_source_id": "dev:4:2",
+            "video_source_id": "dev:4:2",
+            "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia4_utt2.mp4",
+            "media_sha256": "b8c1cb615880fa7b8b3d260557f77d37e729cb7e31dccd26956d2b9f2b25e286",
+            "expected_source": "fusion",
+            "true_emotion_label": null,
+            "history_roles": [
+              "user",
+              "assistant"
+            ]
+          },
+          "history_sent": [
+            {
+              "role": "user",
+              "content": "What are you talkin’ about? I never left you! You’ve always been my agent!"
+            },
+            {
+              "role": "assistant",
+              "content": "I'm not sure what you mean by \"agent.\" You said you never left me—can you clarify what that feels like for you right now?"
+            }
+          ],
+          "events": [
+            {
+              "type": "state",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-04",
+                "turn_id": "2",
+                "input": {
+                  "text": "Oh-oh, you’re-you’re fellow scholars.",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:35.823864+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "neutral",
+                  "probabilities": {
+                    "neutral": 0.37013593316078186,
+                    "surprise": 0.12562276422977448,
+                    "fear": 0.127726748585701,
+                    "sadness": 0.029272280633449554,
+                    "joy": 0.1094871237874031,
+                    "disgust": 0.015028545632958412,
+                    "anger": 0.2227267026901245
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9243480190634727,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 2.3773731542133896,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "neutral",
+                  "vision_label": "anger"
+                },
+                "modality_disagreement": true,
+                "timing": {
+                  "classification_ms": 188.39359999401495,
+                  "first_token_ms": null,
+                  "completion_ms": null,
+                  "model_load_ms": 0.001200009137392044
+                },
+                "response": {
+                  "text": "",
+                  "status": "streaming",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "You",
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " mentioned",
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " we",
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "'re",
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " fellow",
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " scholars",
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "—",
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "what",
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " does",
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " that",
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " feel",
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " like",
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " in",
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " this",
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " moment",
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "?",
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            },
+            {
+              "type": "done",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-04",
+                "turn_id": "2",
+                "input": {
+                  "text": "Oh-oh, you’re-you’re fellow scholars.",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:35.823864+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "neutral",
+                  "probabilities": {
+                    "neutral": 0.37013593316078186,
+                    "surprise": 0.12562276422977448,
+                    "fear": 0.127726748585701,
+                    "sadness": 0.029272280633449554,
+                    "joy": 0.1094871237874031,
+                    "disgust": 0.015028545632958412,
+                    "anger": 0.2227267026901245
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9243480190634727,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 2.3773731542133896,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "neutral",
+                  "vision_label": "anger"
+                },
+                "modality_disagreement": true,
+                "timing": {
+                  "classification_ms": 188.39359999401495,
+                  "first_token_ms": 415.23459999007173,
+                  "completion_ms": 522.256299998844,
+                  "model_load_ms": 0.001200009137392044
+                },
+                "response": {
+                  "text": "You mentioned we're fellow scholars—what does that feel like in this moment?",
+                  "status": "complete",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-04",
+              "turn_id": "2"
+            }
+          ],
+          "wall_ms": 522.4720000114758,
+          "checks": {
+            "passed": true,
+            "errors": [],
+            "final_state": {
+              "schema_version": "1.0",
+              "session_id": "interaction-dev-04",
+              "turn_id": "2",
+              "input": {
+                "text": "Oh-oh, you’re-you’re fellow scholars.",
+                "video_present": true,
+                "received_at": "2026-09-25T05:38:35.823864+00:00",
+                "text_truncated_for_classification": false,
+                "clip_started_at": null,
+                "clip_ended_at": null,
+                "clock_source": "backend_utc; capture timestamps unavailable"
+              },
+              "emotion": {
+                "label": "neutral",
+                "probabilities": {
+                  "neutral": 0.37013593316078186,
+                  "surprise": 0.12562276422977448,
+                  "fear": 0.127726748585701,
+                  "sadness": 0.029272280633449554,
+                  "joy": 0.1094871237874031,
+                  "disgust": 0.015028545632958412,
+                  "anger": 0.2227267026901245
+                },
+                "source": "fusion",
+                "score_semantics": "uncalibrated_softmax"
+              },
+              "vision": {
+                "available": true,
+                "reason": "ok",
+                "valid_frame_fraction": 1.0,
+                "mean_detection_score": 0.9243480190634727,
+                "sampled_frames": 8,
+                "selected_frames": 8,
+                "duration_seconds": 2.3773731542133896,
+                "truncated": false,
+                "speaker_attribution": "unverified_heuristic"
+              },
+              "modalities": {
+                "text_label": "neutral",
+                "vision_label": "anger"
+              },
+              "modality_disagreement": true,
+              "timing": {
+                "classification_ms": 188.39359999401495,
+                "first_token_ms": 415.23459999007173,
+                "completion_ms": 522.256299998844,
+                "model_load_ms": 0.001200009137392044
+              },
+              "response": {
+                "text": "You mentioned we're fellow scholars—what does that feel like in this moment?",
+                "status": "complete",
+                "error": null
+              }
+            },
+            "streamed_text": "You mentioned we're fellow scholars—what does that feel like in this moment?"
+          }
+        }
+      ]
+    },
+    {
+      "session_id": "interaction-dev-05",
+      "mode": "synthetic_mismatch",
+      "turns": [
+        {
+          "input": {
+            "turn_id": "1",
+            "role": "user",
+            "input_kind": "real_dev_pair",
+            "text": "Really?!",
+            "text_source_id": "dev:2:3",
+            "video_source_id": "dev:2:3",
+            "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia2_utt3.mp4",
+            "media_sha256": "64d73664534674c680db987c0dcb6549004d00db20e8f615a9a076eb6f7784c3",
+            "expected_source": "fusion",
+            "true_emotion_label": null,
+            "history_roles": []
+          },
+          "history_sent": [],
+          "events": [
+            {
+              "type": "state",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-05",
+                "turn_id": "1",
+                "input": {
+                  "text": "Really?!",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:36.351411+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "surprise",
+                  "probabilities": {
+                    "neutral": 0.010415555909276009,
+                    "surprise": 0.8051750659942627,
+                    "fear": 0.0282591599971056,
+                    "sadness": 0.015905365347862244,
+                    "joy": 0.01742367073893547,
+                    "disgust": 0.04476083815097809,
+                    "anger": 0.07806029915809631
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9257269129157066,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 0.8758743199733541,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "surprise",
+                  "vision_label": "neutral"
+                },
+                "modality_disagreement": true,
+                "timing": {
+                  "classification_ms": 164.3865999940317,
+                  "first_token_ms": null,
+                  "completion_ms": null,
+                  "model_load_ms": 0.000900006853044033
+                },
+                "response": {
+                  "text": "",
+                  "status": "streaming",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-05",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "Really",
+              "session_id": "interaction-dev-05",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "?",
+              "session_id": "interaction-dev-05",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " That",
+              "session_id": "interaction-dev-05",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " sounds",
+              "session_id": "interaction-dev-05",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " like",
+              "session_id": "interaction-dev-05",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " a",
+              "session_id": "interaction-dev-05",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " big",
+              "session_id": "interaction-dev-05",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " moment",
+              "session_id": "interaction-dev-05",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "—",
+              "session_id": "interaction-dev-05",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "what",
+              "session_id": "interaction-dev-05",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " made",
+              "session_id": "interaction-dev-05",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " you",
+              "session_id": "interaction-dev-05",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " say",
+              "session_id": "interaction-dev-05",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " that",
+              "session_id": "interaction-dev-05",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "?",
+              "session_id": "interaction-dev-05",
+              "turn_id": "1"
+            },
+            {
+              "type": "done",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-05",
+                "turn_id": "1",
+                "input": {
+                  "text": "Really?!",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:36.351411+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "surprise",
+                  "probabilities": {
+                    "neutral": 0.010415555909276009,
+                    "surprise": 0.8051750659942627,
+                    "fear": 0.0282591599971056,
+                    "sadness": 0.015905365347862244,
+                    "joy": 0.01742367073893547,
+                    "disgust": 0.04476083815097809,
+                    "anger": 0.07806029915809631
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9257269129157066,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 0.8758743199733541,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "surprise",
+                  "vision_label": "neutral"
+                },
+                "modality_disagreement": true,
+                "timing": {
+                  "classification_ms": 164.3865999940317,
+                  "first_token_ms": 389.75019997451454,
+                  "completion_ms": 490.29869999503717,
+                  "model_load_ms": 0.000900006853044033
+                },
+                "response": {
+                  "text": "Really? That sounds like a big moment—what made you say that?",
+                  "status": "complete",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-05",
+              "turn_id": "1"
+            }
+          ],
+          "wall_ms": 490.4938000254333,
+          "checks": {
+            "passed": true,
+            "errors": [],
+            "final_state": {
+              "schema_version": "1.0",
+              "session_id": "interaction-dev-05",
+              "turn_id": "1",
+              "input": {
+                "text": "Really?!",
+                "video_present": true,
+                "received_at": "2026-09-25T05:38:36.351411+00:00",
+                "text_truncated_for_classification": false,
+                "clip_started_at": null,
+                "clip_ended_at": null,
+                "clock_source": "backend_utc; capture timestamps unavailable"
+              },
+              "emotion": {
+                "label": "surprise",
+                "probabilities": {
+                  "neutral": 0.010415555909276009,
+                  "surprise": 0.8051750659942627,
+                  "fear": 0.0282591599971056,
+                  "sadness": 0.015905365347862244,
+                  "joy": 0.01742367073893547,
+                  "disgust": 0.04476083815097809,
+                  "anger": 0.07806029915809631
+                },
+                "source": "fusion",
+                "score_semantics": "uncalibrated_softmax"
+              },
+              "vision": {
+                "available": true,
+                "reason": "ok",
+                "valid_frame_fraction": 1.0,
+                "mean_detection_score": 0.9257269129157066,
+                "sampled_frames": 8,
+                "selected_frames": 8,
+                "duration_seconds": 0.8758743199733541,
+                "truncated": false,
+                "speaker_attribution": "unverified_heuristic"
+              },
+              "modalities": {
+                "text_label": "surprise",
+                "vision_label": "neutral"
+              },
+              "modality_disagreement": true,
+              "timing": {
+                "classification_ms": 164.3865999940317,
+                "first_token_ms": 389.75019997451454,
+                "completion_ms": 490.29869999503717,
+                "model_load_ms": 0.000900006853044033
+              },
+              "response": {
+                "text": "Really? That sounds like a big moment—what made you say that?",
+                "status": "complete",
+                "error": null
+              }
+            },
+            "streamed_text": "Really? That sounds like a big moment—what made you say that?"
+          }
+        },
+        {
+          "input": {
+            "turn_id": "2",
+            "role": "user",
+            "input_kind": "synthetic_mismatched_dev_text_and_video",
+            "text": "What exactly were you looking for, hmm?",
+            "text_source_id": "dev:4:3",
+            "video_source_id": "dev:4:8",
+            "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia4_utt8.mp4",
+            "media_sha256": "8e475aa3a627ae97e9b175a7383b780eee899b37bf2d4e3f7d033a25053025f2",
+            "expected_source": "fusion",
+            "true_emotion_label": null,
+            "history_roles": [
+              "user",
+              "assistant"
+            ]
+          },
+          "history_sent": [
+            {
+              "role": "user",
+              "content": "Really?!"
+            },
+            {
+              "role": "assistant",
+              "content": "Really? That sounds like a big moment—what made you say that?"
+            }
+          ],
+          "events": [
+            {
+              "type": "state",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-05",
+                "turn_id": "2",
+                "input": {
+                  "text": "What exactly were you looking for, hmm?",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:36.848456+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "neutral",
+                  "probabilities": {
+                    "neutral": 0.6431695222854614,
+                    "surprise": 0.15130937099456787,
+                    "fear": 0.009764895774424076,
+                    "sadness": 0.052077531814575195,
+                    "joy": 0.028828252106904984,
+                    "disgust": 0.028327161446213722,
+                    "anger": 0.08652319759130478
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9104926809668541,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 3.294955775137856,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "neutral",
+                  "vision_label": "anger"
+                },
+                "modality_disagreement": true,
+                "timing": {
+                  "classification_ms": 203.2494000159204,
+                  "first_token_ms": null,
+                  "completion_ms": null,
+                  "model_load_ms": 0.001100008375942707
+                },
+                "response": {
+                  "text": "",
+                  "status": "streaming",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "What",
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " exactly",
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " were",
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " you",
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " looking",
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " for",
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "?",
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " Hmm",
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "—",
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "what",
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " did",
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " that",
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " mean",
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " to",
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " you",
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "?",
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            },
+            {
+              "type": "done",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-05",
+                "turn_id": "2",
+                "input": {
+                  "text": "What exactly were you looking for, hmm?",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:36.848456+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "neutral",
+                  "probabilities": {
+                    "neutral": 0.6431695222854614,
+                    "surprise": 0.15130937099456787,
+                    "fear": 0.009764895774424076,
+                    "sadness": 0.052077531814575195,
+                    "joy": 0.028828252106904984,
+                    "disgust": 0.028327161446213722,
+                    "anger": 0.08652319759130478
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9104926809668541,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 3.294955775137856,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "neutral",
+                  "vision_label": "anger"
+                },
+                "modality_disagreement": true,
+                "timing": {
+                  "classification_ms": 203.2494000159204,
+                  "first_token_ms": 432.5335999892559,
+                  "completion_ms": 538.2658999878913,
+                  "model_load_ms": 0.001100008375942707
+                },
+                "response": {
+                  "text": "What exactly were you looking for? Hmm—what did that mean to you?",
+                  "status": "complete",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-05",
+              "turn_id": "2"
+            }
+          ],
+          "wall_ms": 538.4814999997616,
+          "checks": {
+            "passed": true,
+            "errors": [],
+            "final_state": {
+              "schema_version": "1.0",
+              "session_id": "interaction-dev-05",
+              "turn_id": "2",
+              "input": {
+                "text": "What exactly were you looking for, hmm?",
+                "video_present": true,
+                "received_at": "2026-09-25T05:38:36.848456+00:00",
+                "text_truncated_for_classification": false,
+                "clip_started_at": null,
+                "clip_ended_at": null,
+                "clock_source": "backend_utc; capture timestamps unavailable"
+              },
+              "emotion": {
+                "label": "neutral",
+                "probabilities": {
+                  "neutral": 0.6431695222854614,
+                  "surprise": 0.15130937099456787,
+                  "fear": 0.009764895774424076,
+                  "sadness": 0.052077531814575195,
+                  "joy": 0.028828252106904984,
+                  "disgust": 0.028327161446213722,
+                  "anger": 0.08652319759130478
+                },
+                "source": "fusion",
+                "score_semantics": "uncalibrated_softmax"
+              },
+              "vision": {
+                "available": true,
+                "reason": "ok",
+                "valid_frame_fraction": 1.0,
+                "mean_detection_score": 0.9104926809668541,
+                "sampled_frames": 8,
+                "selected_frames": 8,
+                "duration_seconds": 3.294955775137856,
+                "truncated": false,
+                "speaker_attribution": "unverified_heuristic"
+              },
+              "modalities": {
+                "text_label": "neutral",
+                "vision_label": "anger"
+              },
+              "modality_disagreement": true,
+              "timing": {
+                "classification_ms": 203.2494000159204,
+                "first_token_ms": 432.5335999892559,
+                "completion_ms": 538.2658999878913,
+                "model_load_ms": 0.001100008375942707
+              },
+              "response": {
+                "text": "What exactly were you looking for? Hmm—what did that mean to you?",
+                "status": "complete",
+                "error": null
+              }
+            },
+            "streamed_text": "What exactly were you looking for? Hmm—what did that mean to you?"
+          }
+        }
+      ]
+    },
+    {
+      "session_id": "interaction-dev-06",
+      "mode": "synthetic_mismatch",
+      "turns": [
+        {
+          "input": {
+            "turn_id": "1",
+            "role": "user",
+            "input_kind": "real_dev_pair",
+            "text": "Yeah!",
+            "text_source_id": "dev:2:4",
+            "video_source_id": "dev:2:4",
+            "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia2_utt4.mp4",
+            "media_sha256": "d28a48cf387c2aa30659cbe63715f3db52cb69069340defbd1d15757614c4297",
+            "expected_source": "fusion",
+            "true_emotion_label": null,
+            "history_roles": []
+          },
+          "history_sent": [],
+          "events": [
+            {
+              "type": "state",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-06",
+                "turn_id": "1",
+                "input": {
+                  "text": "Yeah!",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:37.393013+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "joy",
+                  "probabilities": {
+                    "neutral": 0.06619233638048172,
+                    "surprise": 0.3596283495426178,
+                    "fear": 0.026932716369628906,
+                    "sadness": 0.032504502683877945,
+                    "joy": 0.39301592111587524,
+                    "disgust": 0.05217355117201805,
+                    "anger": 0.06955263018608093
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9285217151045799,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 1.209540727582251,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "joy",
+                  "vision_label": "joy"
+                },
+                "modality_disagreement": false,
+                "timing": {
+                  "classification_ms": 157.51809999346733,
+                  "first_token_ms": null,
+                  "completion_ms": null,
+                  "model_load_ms": 0.000700005330145359
+                },
+                "response": {
+                  "text": "",
+                  "status": "streaming",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "Yeah",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": ",",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " that",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "'s",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " great",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " to",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " hear",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": ".",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " Is",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " there",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " something",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " specific",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " you",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "'re",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " glad",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": " about",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "text_delta",
+              "text": "?",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            },
+            {
+              "type": "done",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-06",
+                "turn_id": "1",
+                "input": {
+                  "text": "Yeah!",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:37.393013+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "joy",
+                  "probabilities": {
+                    "neutral": 0.06619233638048172,
+                    "surprise": 0.3596283495426178,
+                    "fear": 0.026932716369628906,
+                    "sadness": 0.032504502683877945,
+                    "joy": 0.39301592111587524,
+                    "disgust": 0.05217355117201805,
+                    "anger": 0.06955263018608093
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9285217151045799,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 1.209540727582251,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "joy",
+                  "vision_label": "joy"
+                },
+                "modality_disagreement": false,
+                "timing": {
+                  "classification_ms": 157.51809999346733,
+                  "first_token_ms": 379.6186000108719,
+                  "completion_ms": 493.06360000628047,
+                  "model_load_ms": 0.000700005330145359
+                },
+                "response": {
+                  "text": "Yeah, that's great to hear. Is there something specific you're glad about?",
+                  "status": "complete",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-06",
+              "turn_id": "1"
+            }
+          ],
+          "wall_ms": 493.2684000232257,
+          "checks": {
+            "passed": true,
+            "errors": [],
+            "final_state": {
+              "schema_version": "1.0",
+              "session_id": "interaction-dev-06",
+              "turn_id": "1",
+              "input": {
+                "text": "Yeah!",
+                "video_present": true,
+                "received_at": "2026-09-25T05:38:37.393013+00:00",
+                "text_truncated_for_classification": false,
+                "clip_started_at": null,
+                "clip_ended_at": null,
+                "clock_source": "backend_utc; capture timestamps unavailable"
+              },
+              "emotion": {
+                "label": "joy",
+                "probabilities": {
+                  "neutral": 0.06619233638048172,
+                  "surprise": 0.3596283495426178,
+                  "fear": 0.026932716369628906,
+                  "sadness": 0.032504502683877945,
+                  "joy": 0.39301592111587524,
+                  "disgust": 0.05217355117201805,
+                  "anger": 0.06955263018608093
+                },
+                "source": "fusion",
+                "score_semantics": "uncalibrated_softmax"
+              },
+              "vision": {
+                "available": true,
+                "reason": "ok",
+                "valid_frame_fraction": 1.0,
+                "mean_detection_score": 0.9285217151045799,
+                "sampled_frames": 8,
+                "selected_frames": 8,
+                "duration_seconds": 1.209540727582251,
+                "truncated": false,
+                "speaker_attribution": "unverified_heuristic"
+              },
+              "modalities": {
+                "text_label": "joy",
+                "vision_label": "joy"
+              },
+              "modality_disagreement": false,
+              "timing": {
+                "classification_ms": 157.51809999346733,
+                "first_token_ms": 379.6186000108719,
+                "completion_ms": 493.06360000628047,
+                "model_load_ms": 0.000700005330145359
+              },
+              "response": {
+                "text": "Yeah, that's great to hear. Is there something specific you're glad about?",
+                "status": "complete",
+                "error": null
+              }
+            },
+            "streamed_text": "Yeah, that's great to hear. Is there something specific you're glad about?"
+          }
+        },
+        {
+          "input": {
+            "turn_id": "2",
+            "role": "user",
+            "input_kind": "synthetic_mismatched_dev_text_and_video",
+            "text": "Uh, actually I find Marion’s views far too progressionist.",
+            "text_source_id": "dev:4:7",
+            "video_source_id": "dev:4:10",
+            "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia4_utt10.mp4",
+            "media_sha256": "5b49a7f7e57dc014d0cf6a918f107ee17ea4e055230873b90f0d8b8565a033bc",
+            "expected_source": "fusion",
+            "true_emotion_label": null,
+            "history_roles": [
+              "user",
+              "assistant"
+            ]
+          },
+          "history_sent": [
+            {
+              "role": "user",
+              "content": "Yeah!"
+            },
+            {
+              "role": "assistant",
+              "content": "Yeah, that's great to hear. Is there something specific you're glad about?"
+            }
+          ],
+          "events": [
+            {
+              "type": "state",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-06",
+                "turn_id": "2",
+                "input": {
+                  "text": "Uh, actually I find Marion’s views far too progressionist.",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:37.894137+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "anger",
+                  "probabilities": {
+                    "neutral": 0.21480193734169006,
+                    "surprise": 0.0892992690205574,
+                    "fear": 0.03238014131784439,
+                    "sadness": 0.16894128918647766,
+                    "joy": 0.12902003526687622,
+                    "disgust": 0.08145684748888016,
+                    "anger": 0.2841004431247711
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9111299142241478,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 2.210539950408941,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "sadness",
+                  "vision_label": "anger"
+                },
+                "modality_disagreement": true,
+                "timing": {
+                  "classification_ms": 179.9472999991849,
+                  "first_token_ms": null,
+                  "completion_ms": null,
+                  "model_load_ms": 0.0014999823179095984
+                },
+                "response": {
+                  "text": "",
+                  "status": "streaming",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "You",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "'re",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " not",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " happy",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " with",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " Marion",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "’s",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " views",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": ",",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " huh",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "?",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " What",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " specifically",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " stands",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " out",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " to",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": " you",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "text_delta",
+              "text": "?",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            },
+            {
+              "type": "done",
+              "state": {
+                "schema_version": "1.0",
+                "session_id": "interaction-dev-06",
+                "turn_id": "2",
+                "input": {
+                  "text": "Uh, actually I find Marion’s views far too progressionist.",
+                  "video_present": true,
+                  "received_at": "2026-09-25T05:38:37.894137+00:00",
+                  "text_truncated_for_classification": false,
+                  "clip_started_at": null,
+                  "clip_ended_at": null,
+                  "clock_source": "backend_utc; capture timestamps unavailable"
+                },
+                "emotion": {
+                  "label": "anger",
+                  "probabilities": {
+                    "neutral": 0.21480193734169006,
+                    "surprise": 0.0892992690205574,
+                    "fear": 0.03238014131784439,
+                    "sadness": 0.16894128918647766,
+                    "joy": 0.12902003526687622,
+                    "disgust": 0.08145684748888016,
+                    "anger": 0.2841004431247711
+                  },
+                  "source": "fusion",
+                  "score_semantics": "uncalibrated_softmax"
+                },
+                "vision": {
+                  "available": true,
+                  "reason": "ok",
+                  "valid_frame_fraction": 1.0,
+                  "mean_detection_score": 0.9111299142241478,
+                  "sampled_frames": 8,
+                  "selected_frames": 8,
+                  "duration_seconds": 2.210539950408941,
+                  "truncated": false,
+                  "speaker_attribution": "unverified_heuristic"
+                },
+                "modalities": {
+                  "text_label": "sadness",
+                  "vision_label": "anger"
+                },
+                "modality_disagreement": true,
+                "timing": {
+                  "classification_ms": 179.9472999991849,
+                  "first_token_ms": 406.3996000040788,
+                  "completion_ms": 525.3536000091117,
+                  "model_load_ms": 0.0014999823179095984
+                },
+                "response": {
+                  "text": "You're not happy with Marion’s views, huh? What specifically stands out to you?",
+                  "status": "complete",
+                  "error": null
+                }
+              },
+              "session_id": "interaction-dev-06",
+              "turn_id": "2"
+            }
+          ],
+          "wall_ms": 525.5765999900177,
+          "checks": {
+            "passed": true,
+            "errors": [],
+            "final_state": {
+              "schema_version": "1.0",
+              "session_id": "interaction-dev-06",
+              "turn_id": "2",
+              "input": {
+                "text": "Uh, actually I find Marion’s views far too progressionist.",
+                "video_present": true,
+                "received_at": "2026-09-25T05:38:37.894137+00:00",
+                "text_truncated_for_classification": false,
+                "clip_started_at": null,
+                "clip_ended_at": null,
+                "clock_source": "backend_utc; capture timestamps unavailable"
+              },
+              "emotion": {
+                "label": "anger",
+                "probabilities": {
+                  "neutral": 0.21480193734169006,
+                  "surprise": 0.0892992690205574,
+                  "fear": 0.03238014131784439,
+                  "sadness": 0.16894128918647766,
+                  "joy": 0.12902003526687622,
+                  "disgust": 0.08145684748888016,
+                  "anger": 0.2841004431247711
+                },
+                "source": "fusion",
+                "score_semantics": "uncalibrated_softmax"
+              },
+              "vision": {
+                "available": true,
+                "reason": "ok",
+                "valid_frame_fraction": 1.0,
+                "mean_detection_score": 0.9111299142241478,
+                "sampled_frames": 8,
+                "selected_frames": 8,
+                "duration_seconds": 2.210539950408941,
+                "truncated": false,
+                "speaker_attribution": "unverified_heuristic"
+              },
+              "modalities": {
+                "text_label": "sadness",
+                "vision_label": "anger"
+              },
+              "modality_disagreement": true,
+              "timing": {
+                "classification_ms": 179.9472999991849,
+                "first_token_ms": 406.3996000040788,
+                "completion_ms": 525.3536000091117,
+                "model_load_ms": 0.0014999823179095984
+              },
+              "response": {
+                "text": "You're not happy with Marion’s views, huh? What specifically stands out to you?",
+                "status": "complete",
+                "error": null
+              }
+            },
+            "streamed_text": "You're not happy with Marion’s views, huh? What specifically stands out to you?"
+          }
+        }
+      ]
+    }
+  ],
+  "completed_turns": 12,
+  "attempted_turns": 12,
+  "scope": "Full local pipeline interaction and modality transitions. No browser, capture, therapeutic-quality, or emotion-accuracy score.",
+  "quality_score": null,
+  "elapsed_seconds": 15.91771469998639,
+  "finished_at": "2026-09-25T05:38:38.424193+00:00"
+}

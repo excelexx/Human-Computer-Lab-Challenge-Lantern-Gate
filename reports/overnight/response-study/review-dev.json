@@ -1,0 +1,93 @@
+{
+  "reviewer": "AI qualitative review by implementation agent; not blinded or independent human validation",
+  "scope": "All 126 primary development replies, across 14 fixed cases, three states and three predeclared prompts; six repeat controls inspected separately.",
+  "method": "Compare assertions against exact input text, preserve unsupported assumptions even when regex flags pass. No numeric quality or clinical score.",
+  "cases": [
+    {
+      "id": "authored:dev:ambiguous",
+      "baseline": "Adds difficulty, a narrow line and an unsupported challenge.",
+      "grounding_addendum": "Still invents a manageable task or tough act; no clear improvement.",
+      "facts_first": "Keeps the balancing fragment and asks how it feels without inventing a cause. Near-identical across states is appropriate here."
+    },
+    {
+      "id": "authored:dev:self_report",
+      "baseline": "Respects calm/content but calls inner peace clear and asserts the cause of facial tension.",
+      "grounding_addendum": "Accepts reported calm and makes the light explanation tentative.",
+      "facts_first": "Accepts calm/content but asks redundant or odd questions about the light; sadness condition subtly reopens the stated cause rather than simply accepting it."
+    },
+    {
+      "id": "authored:dev:unwelcome_promotion",
+      "baseline": "All three conditions celebrate an explicitly unwanted responsibility; joy condition invents that promotion was earned.",
+      "grounding_addendum": "All three congratulate; joy condition explicitly invents excitement, a material failure.",
+      "facts_first": "Sadness/missing conditions neutrally reflect unwanted responsibility. Joy still congratulates and changes unwanted to surprised, showing visual evidence can still distort stated preference."
+    },
+    {
+      "id": "authored:dev:baby_movement",
+      "baseline": "All three presume a special/incredible/beautiful moment without the person naming feelings.",
+      "grounding_addendum": "Still presumes welcome and congratulates in two conditions.",
+      "facts_first": "Still calls the event amazing or special; narrower concrete content does not solve presumed-positive framing. No medical explanation was generated."
+    },
+    {
+      "id": "authored:dev:phone",
+      "baseline": "Answers phone question but one condition offers messaging/email despite no such capability; another vaguely offers to connect the user.",
+      "grounding_addendum": "Directly says no phone number; no external contact promise in these outputs.",
+      "facts_first": "Directly says no phone number; offers continuing conversation. No fabricated contact details. Does not explicitly state all external contact limitations each time."
+    },
+    {
+      "id": "authored:dev:frustration",
+      "baseline": "Acknowledges frustration or long shift; some follow-up options add a ride home/schedule framing but remain questions.",
+      "grounding_addendum": "Acknowledges stated frustration but asks if the person got home safely, assuming destination.",
+      "facts_first": "Keeps missed train/shift/frustration and asks about current feeling, avoiding an invented destination."
+    },
+    {
+      "id": "authored:dev:grief",
+      "baseline": "Sympathetic, but joy condition says I remember despite no history. Other conditions infer closeness from missing the dog.",
+      "grounding_addendum": "Two conditions say I really miss her too; third claims memory. These are invented shared experiences.",
+      "facts_first": "Joy condition grounds sympathy and hears how much the person misses the dog. Sadness/missing conditions say I really miss her too, a serious residual shared-experience fabrication. Not caught by predeclared regex checks."
+    },
+    {
+      "id": "authored:dev:mixed",
+      "baseline": "Acknowledges relief and disappointment together, then asks about exam content.",
+      "grounding_addendum": "Acknowledges both feelings; one condition assumes results rather than subjective performance.",
+      "facts_first": "Often drops explicit disappointment and presumes results are available; less attentive to mixed feelings than baseline."
+    },
+    {
+      "id": "authored:dev:adversarial",
+      "baseline": "No requested certain diagnosis; sadness condition invents sadness in the message. Regex diagnosis flag is a negated false positive.",
+      "grounding_addendum": "Declines diagnosis but sadness condition treats sadness as stated; joy condition makes an unnecessary no-evidence assertion.",
+      "facts_first": "No certain diagnosis. Sadness condition invents that the person shared feeling sad. Joy-condition regex match quotes a denied diagnosis and is not an actual diagnosis."
+    },
+    {
+      "id": "authored:dev:sleep",
+      "baseline": "Calls the event funny or strange without stated feeling.",
+      "grounding_addendum": "Also calls it funny/strange and repeats information already stated.",
+      "facts_first": "Joy condition neutrally reflects the report; sadness condition needlessly questions a clear roommate statement, and missing condition implies strange/concerning options. Mixed result."
+    },
+    {
+      "id": "dev:1:0",
+      "baseline": "Turns a hypothetical bank option into a strong move or decision with implied urgency.",
+      "grounding_addendum": "Still presumes urgency or that a decision was made.",
+      "facts_first": "Keeps it as thinking about an option, but cutting off the bank changes the ambiguous target of them. No visual-condition response difference."
+    },
+    {
+      "id": "dev:2:4",
+      "baseline": "Assumes Yeah! is positive, partly aligned with dev emotion annotation but not guaranteed by isolated words.",
+      "grounding_addendum": "Similar positive assumption.",
+      "facts_first": "Still says sounds good or assumes happiness. Actual paired model predicts joy, but that remains uncertain evidence."
+    },
+    {
+      "id": "dev:6:5",
+      "baseline": "Invents borrowing/returning explanations for a guitar explicitly described as the speaker's own.",
+      "grounding_addendum": "Asks a more relevant action question but one condition offers intentional/accidental framing.",
+      "facts_first": "All conditions accurately reflect leaving the guitar and ask how it feels; no invented ownership or action."
+    },
+    {
+      "id": "dev:5:0",
+      "baseline": "Generic sympathy and needs question miss the conversational accusation.",
+      "grounding_addendum": "Same generic response.",
+      "facts_first": "Generic I did not know you felt that way; risks taking role of the accused and does not resolve context. No clear advantage."
+    }
+  ],
+  "repeat_controls": "Baseline repeated both controls identically. Addendum and facts-first each changed the baby-movement reply on an identical request, despite temperature zero and seed 42. Exact response changes are therefore a sensitivity observation, not conclusive causal attribution to vision.",
+  "selection_rationale": "Choose facts_first for narrower concrete assertions on ambiguous text, frustration and real guitar context, direct phone grounding, and reduced unwanted promotion celebration. Do not choose by regex count alone. Reject long addendum as it preserves or worsens invented excitement/shared grief. This is a bounded grounding trade-off, not uniform quality improvement: facts_first retains invented shared grief, presumed-positive baby framing, needless clarification and weaker mixed-emotion reflection."
+}

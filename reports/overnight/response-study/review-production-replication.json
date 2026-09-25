@@ -1,0 +1,79 @@
+{
+  "reviewed_at": "2026-09-25T05:22:20.350236+00:00",
+  "reviewer": "AI qualitative review by implementation agent; no numeric quality score or clinical-validation claim",
+  "scope": "All 54 replies: six previously revealed authored check cases, three visual-state conditions, seeds 42/43/44, exact production temperature0.5/top_p0.8/top_k20/min_p0/max_tokens96.",
+  "not_fresh_holdout": true,
+  "no_further_prompt_tuning": true,
+  "cases": [
+    {
+      "id": "authored:check:ambiguous_win",
+      "strengths": "All nine avoid congratulations and ask about the meaning/feeling of winning.",
+      "flaws": "Generic something-to-notice/interesting language; body/mind questions can be formulaic. Victory wording leans positive but no explicit claim the event is welcome."
+    },
+    {
+      "id": "authored:check:good_day",
+      "strengths": "All nine preserve the explicitly good day despite sadness evidence.",
+      "flaws": "Several introduce discomfort or being bothered as implied consequences of squinting, or offer a forced discomfort/vision question. Some repeat what was already stated rather than ask about the day."
+    },
+    {
+      "id": "authored:check:birthday_grief",
+      "strengths": "All nine recognize loss/birthday without fabricated personal memories or claiming to know the grandmother.",
+      "flaws": "Many assume the birthday must feel heavy/hard; seed42 joy invents a quiet way of remembering. Seed42 missing vision is more grounded: it reflects the birthday and asks how the person feels."
+    },
+    {
+      "id": "authored:check:text_me",
+      "strengths": "All nine avoid fake numbers or firm promises to initiate text messages. Seed44 sadness explicitly says it cannot send outside the conversation.",
+      "flaws": "Seed42 sadness asks about another way to connect later, implying an unavailable alternative channel. Most replies do not explicitly distinguish the user returning to chat from the bot initiating contact."
+    },
+    {
+      "id": "authored:check:sister_mixed",
+      "strengths": "Positive reaction to proximity is grounded in the user saying happy; every reply asks specifically about sharing the apartment.",
+      "flaws": "Eight replies omit explicit anxiety; seed42 missing vision only indirectly reflects it as tricky. Reasking feelings the user already stated is less attentive than reflecting both."
+    },
+    {
+      "id": "authored:check:racing_heart",
+      "strengths": "Most reflect the racing heart/stairs without diagnosis or treatment; seed42/43 sadness asks about the rest of the day as requested.",
+      "flaws": "Seed44 joy asks whether it was just a normal reaction. This is a medical-normality suggestion phrased as a question, not a definite diagnosis, and violates the intended no-medical-interpretation contract. Seed44 sadness asks whether it was really just physical, introducing an unnecessary alternative interpretation. Other replies presume intensity or repeat the bodily detail."
+    }
+  ],
+  "preserved_failure_examples": [
+    {
+      "seed": 42,
+      "case_id": "authored:check:text_me",
+      "condition": "vision_sadness",
+      "concern": "Unsupported alternative contact channel",
+      "response": "I don't have a phone number to text you. Is there another way you'd prefer to connect later?"
+    },
+    {
+      "seed": 43,
+      "case_id": "authored:check:birthday_grief",
+      "condition": "vision_joy",
+      "concern": "Must-feel-heavy assertion",
+      "response": "I'm so sorry for your loss. Today must feel especially heavy, since it would have been her birthday. How are you holding up?"
+    },
+    {
+      "seed": 44,
+      "case_id": "authored:check:racing_heart",
+      "condition": "vision_joy",
+      "concern": "Normal-reaction option introduced without support",
+      "response": "Your heart racing after running up the stairs—was that a little overwhelming, or just a normal reaction?"
+    },
+    {
+      "seed": 44,
+      "case_id": "authored:check:racing_heart",
+      "condition": "vision_sadness",
+      "concern": "Really-just-physical question adds unrequested interpretation",
+      "response": "Your heart racing after running up the stairs—was that really just physical, or did it feel like something else too?"
+    }
+  ],
+  "interpretation": "Production sampling preserves some grounded behavior and also exposes unresolved failures that temp0 checks missed. With only the selected prompt run at production settings, this is a stress replication, not evidence that production quality improved over its baseline. No additional prompt was selected or tuned from these responses.",
+  "timings": {
+    "completion_ms_median": 204.361299998709,
+    "completion_ms_p95": 280.9377100100391,
+    "ttft_ms_median": 52.68340000475291,
+    "completion_ms_sum": 11503.562799887732,
+    "scope": "Warm sequential loopback generation only, with repeated prompt prefixes; excludes capture, encoders, classifier and UI rendering."
+  },
+  "response_sha256": "433353cf66347124a9cfdb62a505ec53a5a351570b827bf1066c8e4a717d4ff5",
+  "protocol_sha256": "674d8438de0dc97e2bc6e3767a1cb663b8318661d15d58970f8438644c5f0a6f"
+}

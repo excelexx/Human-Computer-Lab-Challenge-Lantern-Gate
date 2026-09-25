@@ -1,7 +1,10 @@
 {
-  "source": "Official MELD train supervision with development-only model selection",
+  "source": "Official MELD train supervision; original MLP vision/fusion selected on dev, replacement text selected by train-dialogue cross-validation. See reports/overnight/model-study.",
   "encoders_frozen": true,
-  "seed": 42,
+  "seed": {
+    "original_mlp": 42,
+    "linear_study": 42
+  },
   "test_used_for_selection": false,
   "heads": [
     {
@@ -21,20 +24,61 @@
       "created_at": "2026-09-25T04:38:46.674510+00:00"
     },
     {
+      "schema_version": 2,
+      "architecture": "linear",
       "stage": "text",
-      "file": "text.pt",
-      "sha256": "a59e53cc2d8676d5c5f5e157add8e60694fea32ccf9ef52dc6d2cda4c5159b03",
+      "input_dim": 1024,
+      "labels": [
+        "neutral",
+        "surprise",
+        "fear",
+        "sadness",
+        "joy",
+        "disgust",
+        "anger"
+      ],
+      "seed": 42,
       "train_count": 9989,
-      "dev_selection_count": 1109,
-      "best_dev_macro_f1": 0.3688462572182492,
-      "best_epoch": 18,
-      "selected_loss": "weighted",
-      "feature_identity": "1f030a3ec7ff3c4b80486d7afac799d13507560374e7b7d84f6a40e20f7a3777",
+      "dev_count": 1109,
       "cache_sha256": {
         "train": "8111cc8f9de929cd460d4b0bfb3a9567bf69e048e51cbc2140c13f1a7d1b7678",
         "dev": "0d40d91bc48794b0c21afdec5dd99c17fd77ea4a9a5b5005bde5719e8d459879"
       },
-      "created_at": "2026-09-25T04:39:17.080373+00:00"
+      "feature_identity": "1f030a3ec7ff3c4b80486d7afac799d13507560374e7b7d84f6a40e20f7a3777",
+      "selected_config": {
+        "stage": "text",
+        "C": 0.01,
+        "weighting": "sqrt_balanced"
+      },
+      "selected_loss": "sqrt_balanced_logistic",
+      "best_dev_macro_f1": 0.3953800314321647,
+      "best_epoch": null,
+      "history": [],
+      "selection_population": "Prespecified three-fold training-dialogue CV; full development confirmation",
+      "hyperparameters": {
+        "C": 0.01,
+        "weighting": "sqrt_balanced",
+        "solver": "lbfgs",
+        "max_iter": 500,
+        "tolerance": 0.0001
+      },
+      "folded_scaler_provenance": {
+        "fit_population": "Official training text features only, 9989 utterances",
+        "formula": "saved_weight = coefficient / training_scale; saved_bias = intercept - saved_weight @ training_mean",
+        "runtime_scaler_required": false,
+        "runtime_scaler_parameters": 0,
+        "source_weight_dtype": "float64",
+        "deployment_weight_dtype": "float32"
+      },
+      "model_study_selection_sha256": "b757ae9b5b59c053ac040e2c65d3b6bf5faf52c5f3ef15120370237fdbb2790a",
+      "source_frozen_affine_sha256": "477f600ea65dff3674cdc06bb465cfdf35a64c2b17a2f973b92fc14a5ce09b28",
+      "created_at": "2026-09-25T05:21:38.077354+00:00",
+      "file": "text.pt",
+      "sha256": "8c9eb533e4c9419935a1085a9c8799025fa760542ba010f563236f1e0578ca63",
+      "parameters": 7175,
+      "replaces_sha256": "a59e53cc2d8676d5c5f5e157add8e60694fea32ccf9ef52dc6d2cda4c5159b03",
+      "preparation_status_at_creation": "Prepared only; requires an explicit separate promotion decision.",
+      "deployment_status": "Active in the shipped stack; checkpoint bytes retain their historical preparation metadata."
     },
     {
       "stage": "fusion",
@@ -52,5 +96,6 @@
       },
       "created_at": "2026-09-25T04:39:53.848796+00:00"
     }
-  ]
+  ],
+  "selection_note": "Hybrid follow-up was defined after the benchmark had already been observed; activation uses predeclared development/compatibility gates, not another test search."
 }

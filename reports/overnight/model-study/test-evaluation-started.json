@@ -1,0 +1,5 @@
+{
+  "started_at": "2026-09-25T05:16:03.994711+00:00",
+  "selection_sha256": "b757ae9b5b59c053ac040e2c65d3b6bf5faf52c5f3ef15120370237fdbb2790a",
+  "benchmark_status": "previously observed official test; NOT a fresh holdout"
+}

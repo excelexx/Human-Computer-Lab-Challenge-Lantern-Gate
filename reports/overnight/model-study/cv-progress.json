@@ -1,0 +1,1647 @@
+{
+  "selected_stages": {
+    "text": {
+      "name": "text-C0.01-sqrt_balanced",
+      "config": {
+        "stage": "text",
+        "C": 0.01,
+        "weighting": "sqrt_balanced"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 1.0914067999983672,
+          "iterations": 152,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 1.1294876000029035,
+          "iterations": 155,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 1.1074814000166953,
+          "iterations": 146,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 7175
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.3887947087610722,
+          0.40458935757150366,
+          0.41001265386936314
+        ],
+        "mean_macro_f1": 0.401132240067313,
+        "std_macro_f1": 0.011023340906138575
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.36904199896196677,
+          0.42384507403488886,
+          0.429406470857919
+        ],
+        "mean_macro_f1": 0.4074311812849249,
+        "std_macro_f1": 0.0333620933579533
+      },
+      "all_fits_converged": true
+    },
+    "vision": {
+      "name": "vision-C0.01-sqrt_balanced",
+      "config": {
+        "stage": "vision",
+        "C": 0.01,
+        "weighting": "sqrt_balanced"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 1675,
+          "validation_count": 866,
+          "fit_seconds": 0.35671210000873543,
+          "iterations": 131,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 1,
+          "train_count": 1672,
+          "validation_count": 869,
+          "fit_seconds": 0.4270013000059407,
+          "iterations": 163,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 2,
+          "train_count": 1735,
+          "validation_count": 806,
+          "fit_seconds": 0.47267019998980686,
+          "iterations": 176,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.1902144923138595,
+          0.17825701987199324,
+          0.17438815280654346
+        ],
+        "mean_macro_f1": 0.18095322166413208,
+        "std_macro_f1": 0.00825047778181104
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.1902144923138595,
+          0.17825701987199324,
+          0.17438815280654346
+        ],
+        "mean_macro_f1": 0.18095322166413208,
+        "std_macro_f1": 0.00825047778181104
+      },
+      "all_fits_converged": true
+    },
+    "fusion": {
+      "name": "fusion-C0.01-sqrt_balanced",
+      "config": {
+        "stage": "fusion",
+        "C": 0.01,
+        "weighting": "sqrt_balanced"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 3.27115899999626,
+          "iterations": 201,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 3.568550199997844,
+          "iterations": 213,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 3.485751500003971,
+          "iterations": 202,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 17052
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.3285843549975626,
+          0.34912783185525914,
+          0.3528111203253531
+        ],
+        "mean_macro_f1": 0.3435077690593917,
+        "std_macro_f1": 0.013054611021936988
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.3285843549975626,
+          0.34912783185525914,
+          0.3528111203253531
+        ],
+        "mean_macro_f1": 0.3435077690593917,
+        "std_macro_f1": 0.013054611021936988
+      },
+      "all_fits_converged": true
+    }
+  },
+  "completed_candidates": [
+    {
+      "name": "text-C0.01-unweighted",
+      "config": {
+        "stage": "text",
+        "C": 0.01,
+        "weighting": "unweighted"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 1.041097700013779,
+          "iterations": 153,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 1.28074800001923,
+          "iterations": 164,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 1.2109610999759752,
+          "iterations": 157,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 7175
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.3650813454423699,
+          0.3827317968321799,
+          0.3970607866422275
+        ],
+        "mean_macro_f1": 0.3816246429722591,
+        "std_macro_f1": 0.016018442718190185
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.3530679993508124,
+          0.37812807792388403,
+          0.4058214783375364
+        ],
+        "mean_macro_f1": 0.37900585187074426,
+        "std_macro_f1": 0.026387691290202384
+      },
+      "all_fits_converged": true
+    },
+    {
+      "name": "text-C0.01-sqrt_balanced",
+      "config": {
+        "stage": "text",
+        "C": 0.01,
+        "weighting": "sqrt_balanced"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 1.0914067999983672,
+          "iterations": 152,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 1.1294876000029035,
+          "iterations": 155,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 1.1074814000166953,
+          "iterations": 146,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 7175
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.3887947087610722,
+          0.40458935757150366,
+          0.41001265386936314
+        ],
+        "mean_macro_f1": 0.401132240067313,
+        "std_macro_f1": 0.011023340906138575
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.36904199896196677,
+          0.42384507403488886,
+          0.429406470857919
+        ],
+        "mean_macro_f1": 0.4074311812849249,
+        "std_macro_f1": 0.0333620933579533
+      },
+      "all_fits_converged": true
+    },
+    {
+      "name": "text-C0.1-unweighted",
+      "config": {
+        "stage": "text",
+        "C": 0.1,
+        "weighting": "unweighted"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 2.02764709998155,
+          "iterations": 272,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 2.204986700002337,
+          "iterations": 288,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 2.310333899979014,
+          "iterations": 301,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 7175
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.35563639170666633,
+          0.37596370845142335,
+          0.3803320531945527
+        ],
+        "mean_macro_f1": 0.37064405111754745,
+        "std_macro_f1": 0.013179263624856406
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.338764240165122,
+          0.3780779475119909,
+          0.4029869290736911
+        ],
+        "mean_macro_f1": 0.37327637225026805,
+        "std_macro_f1": 0.0323794655052736
+      },
+      "all_fits_converged": true
+    },
+    {
+      "name": "text-C0.1-sqrt_balanced",
+      "config": {
+        "stage": "text",
+        "C": 0.1,
+        "weighting": "sqrt_balanced"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 1.9593218000081833,
+          "iterations": 263,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 1.9478579999995418,
+          "iterations": 266,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 2.1293178999912925,
+          "iterations": 279,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 7175
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.3497573316596179,
+          0.37479522653810543,
+          0.3708854738384672
+        ],
+        "mean_macro_f1": 0.36514601067873015,
+        "std_macro_f1": 0.013469599957238211
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.32823038255504206,
+          0.3818886884362596,
+          0.3924501720720473
+        ],
+        "mean_macro_f1": 0.3675230810211163,
+        "std_macro_f1": 0.034435785873225384
+      },
+      "all_fits_converged": true
+    },
+    {
+      "name": "text-C1-unweighted",
+      "config": {
+        "stage": "text",
+        "C": 1.0,
+        "weighting": "unweighted"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 3.725187999982154,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 3.6303643999854103,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 3.8068502999958582,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 7175
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.32867692139519394,
+          0.34847228232368777,
+          0.3451642154238325
+        ],
+        "mean_macro_f1": 0.3407711397142381,
+        "std_macro_f1": 0.010603698138621567
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.30169505044058514,
+          0.35606632344687345,
+          0.3600317680590775
+        ],
+        "mean_macro_f1": 0.33926438064884534,
+        "std_macro_f1": 0.03259635128302069
+      },
+      "all_fits_converged": false
+    },
+    {
+      "name": "text-C1-sqrt_balanced",
+      "config": {
+        "stage": "text",
+        "C": 1.0,
+        "weighting": "sqrt_balanced"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 3.7782975000154693,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 3.6329062999866437,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 3.8052844000048935,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 7175
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.3273964172975301,
+          0.34212134745056993,
+          0.3388647680235869
+        ],
+        "mean_macro_f1": 0.33612751092389564,
+        "std_macro_f1": 0.00773468320782002
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.30051007494721116,
+          0.34889712523088134,
+          0.36259739458603796
+        ],
+        "mean_macro_f1": 0.3373348649213768,
+        "std_macro_f1": 0.03261860224752158
+      },
+      "all_fits_converged": false
+    },
+    {
+      "name": "text-C10-unweighted",
+      "config": {
+        "stage": "text",
+        "C": 10.0,
+        "weighting": "unweighted"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 3.6706536000128835,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 3.6589653000119142,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 3.8559703000064474,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 7175
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.3186716411391957,
+          0.3355257456844223,
+          0.32548074842669267
+        ],
+        "mean_macro_f1": 0.3265593784167702,
+        "std_macro_f1": 0.00847866687616501
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.30533393714391627,
+          0.3316519590318344,
+          0.33496391479018056
+        ],
+        "mean_macro_f1": 0.3239832703219771,
+        "std_macro_f1": 0.016235469926246377
+      },
+      "all_fits_converged": false
+    },
+    {
+      "name": "text-C10-sqrt_balanced",
+      "config": {
+        "stage": "text",
+        "C": 10.0,
+        "weighting": "sqrt_balanced"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 3.8099809999985155,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 3.7291056999820285,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 7175
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 3.7623998999770265,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 7175
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.31367399423141257,
+          0.32927084770493487,
+          0.3282802844363379
+        ],
+        "mean_macro_f1": 0.32374170879089514,
+        "std_macro_f1": 0.008732952606975828
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.3042233320615454,
+          0.33148924638086313,
+          0.34932079460294474
+        ],
+        "mean_macro_f1": 0.3283444576817844,
+        "std_macro_f1": 0.02271260781789751
+      },
+      "all_fits_converged": false
+    },
+    {
+      "name": "vision-C0.01-unweighted",
+      "config": {
+        "stage": "vision",
+        "C": 0.01,
+        "weighting": "unweighted"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 1675,
+          "validation_count": 866,
+          "fit_seconds": 0.4498345000029076,
+          "iterations": 173,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 1,
+          "train_count": 1672,
+          "validation_count": 869,
+          "fit_seconds": 0.4249040999857243,
+          "iterations": 165,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 2,
+          "train_count": 1735,
+          "validation_count": 806,
+          "fit_seconds": 0.520577699993737,
+          "iterations": 195,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.16821763409992638,
+          0.1591866170453462,
+          0.15212031101460285
+        ],
+        "mean_macro_f1": 0.1598415207199585,
+        "std_macro_f1": 0.008068619878615419
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.16821763409992638,
+          0.1591866170453462,
+          0.15212031101460285
+        ],
+        "mean_macro_f1": 0.1598415207199585,
+        "std_macro_f1": 0.008068619878615419
+      },
+      "all_fits_converged": true
+    },
+    {
+      "name": "vision-C0.01-sqrt_balanced",
+      "config": {
+        "stage": "vision",
+        "C": 0.01,
+        "weighting": "sqrt_balanced"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 1675,
+          "validation_count": 866,
+          "fit_seconds": 0.35671210000873543,
+          "iterations": 131,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 1,
+          "train_count": 1672,
+          "validation_count": 869,
+          "fit_seconds": 0.4270013000059407,
+          "iterations": 163,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 2,
+          "train_count": 1735,
+          "validation_count": 806,
+          "fit_seconds": 0.47267019998980686,
+          "iterations": 176,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.1902144923138595,
+          0.17825701987199324,
+          0.17438815280654346
+        ],
+        "mean_macro_f1": 0.18095322166413208,
+        "std_macro_f1": 0.00825047778181104
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.1902144923138595,
+          0.17825701987199324,
+          0.17438815280654346
+        ],
+        "mean_macro_f1": 0.18095322166413208,
+        "std_macro_f1": 0.00825047778181104
+      },
+      "all_fits_converged": true
+    },
+    {
+      "name": "vision-C0.1-unweighted",
+      "config": {
+        "stage": "vision",
+        "C": 0.1,
+        "weighting": "unweighted"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 1675,
+          "validation_count": 866,
+          "fit_seconds": 0.6214581000094768,
+          "iterations": 227,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 1,
+          "train_count": 1672,
+          "validation_count": 869,
+          "fit_seconds": 0.6298671000113245,
+          "iterations": 235,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 2,
+          "train_count": 1735,
+          "validation_count": 806,
+          "fit_seconds": 0.6985794999927748,
+          "iterations": 252,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.1655820255571872,
+          0.17366521951081668,
+          0.18413741041785534
+        ],
+        "mean_macro_f1": 0.17446155182861975,
+        "std_macro_f1": 0.009303288972302278
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.1655820255571872,
+          0.17366521951081668,
+          0.18413741041785534
+        ],
+        "mean_macro_f1": 0.17446155182861975,
+        "std_macro_f1": 0.009303288972302278
+      },
+      "all_fits_converged": true
+    },
+    {
+      "name": "vision-C0.1-sqrt_balanced",
+      "config": {
+        "stage": "vision",
+        "C": 0.1,
+        "weighting": "sqrt_balanced"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 1675,
+          "validation_count": 866,
+          "fit_seconds": 0.5753535999974702,
+          "iterations": 215,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 1,
+          "train_count": 1672,
+          "validation_count": 869,
+          "fit_seconds": 0.5902951000025496,
+          "iterations": 224,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 2,
+          "train_count": 1735,
+          "validation_count": 806,
+          "fit_seconds": 0.7004550000128802,
+          "iterations": 260,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.16936939384229013,
+          0.17577528295950023,
+          0.1700697956359665
+        ],
+        "mean_macro_f1": 0.17173815747925228,
+        "std_macro_f1": 0.0035137483227454798
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.16936939384229013,
+          0.17577528295950023,
+          0.1700697956359665
+        ],
+        "mean_macro_f1": 0.17173815747925228,
+        "std_macro_f1": 0.0035137483227454798
+      },
+      "all_fits_converged": true
+    },
+    {
+      "name": "vision-C1-unweighted",
+      "config": {
+        "stage": "vision",
+        "C": 1.0,
+        "weighting": "unweighted"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 1675,
+          "validation_count": 866,
+          "fit_seconds": 0.5419599000015296,
+          "iterations": 210,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 1,
+          "train_count": 1672,
+          "validation_count": 869,
+          "fit_seconds": 0.49511240000720136,
+          "iterations": 196,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 2,
+          "train_count": 1735,
+          "validation_count": 806,
+          "fit_seconds": 0.5696078999899328,
+          "iterations": 219,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.16409871742912666,
+          0.1754245562321974,
+          0.18242426255526847
+        ],
+        "mean_macro_f1": 0.1739825120721975,
+        "std_macro_f1": 0.009247487202592247
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.16409871742912666,
+          0.1754245562321974,
+          0.18242426255526847
+        ],
+        "mean_macro_f1": 0.1739825120721975,
+        "std_macro_f1": 0.009247487202592247
+      },
+      "all_fits_converged": true
+    },
+    {
+      "name": "vision-C1-sqrt_balanced",
+      "config": {
+        "stage": "vision",
+        "C": 1.0,
+        "weighting": "sqrt_balanced"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 1675,
+          "validation_count": 866,
+          "fit_seconds": 0.5760234000044875,
+          "iterations": 216,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 1,
+          "train_count": 1672,
+          "validation_count": 869,
+          "fit_seconds": 0.511549599992577,
+          "iterations": 195,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 2,
+          "train_count": 1735,
+          "validation_count": 806,
+          "fit_seconds": 0.5614894000173081,
+          "iterations": 217,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.160505933087245,
+          0.1691065721171283,
+          0.1827637944974867
+        ],
+        "mean_macro_f1": 0.17079209990061997,
+        "std_macro_f1": 0.011224252829078353
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.160505933087245,
+          0.1691065721171283,
+          0.1827637944974867
+        ],
+        "mean_macro_f1": 0.17079209990061997,
+        "std_macro_f1": 0.011224252829078353
+      },
+      "all_fits_converged": true
+    },
+    {
+      "name": "vision-C10-unweighted",
+      "config": {
+        "stage": "vision",
+        "C": 10.0,
+        "weighting": "unweighted"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 1675,
+          "validation_count": 866,
+          "fit_seconds": 0.4558942000148818,
+          "iterations": 179,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 1,
+          "train_count": 1672,
+          "validation_count": 869,
+          "fit_seconds": 0.48730490001617,
+          "iterations": 187,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 2,
+          "train_count": 1735,
+          "validation_count": 806,
+          "fit_seconds": 0.44658329998492263,
+          "iterations": 168,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.1646968044356217,
+          0.17186211493980028,
+          0.18916273559765048
+        ],
+        "mean_macro_f1": 0.1752405516576908,
+        "std_macro_f1": 0.012577989620717453
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.1646968044356217,
+          0.17186211493980028,
+          0.18916273559765048
+        ],
+        "mean_macro_f1": 0.1752405516576908,
+        "std_macro_f1": 0.012577989620717453
+      },
+      "all_fits_converged": true
+    },
+    {
+      "name": "vision-C10-sqrt_balanced",
+      "config": {
+        "stage": "vision",
+        "C": 10.0,
+        "weighting": "sqrt_balanced"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 1675,
+          "validation_count": 866,
+          "fit_seconds": 0.4490863000100944,
+          "iterations": 176,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 1,
+          "train_count": 1672,
+          "validation_count": 869,
+          "fit_seconds": 0.5165785999852233,
+          "iterations": 200,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        },
+        {
+          "fold": 2,
+          "train_count": 1735,
+          "validation_count": 806,
+          "fit_seconds": 0.4811877000029199,
+          "iterations": 181,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 9863
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.16063070644860442,
+          0.17045378619348492,
+          0.1891492723971049
+        ],
+        "mean_macro_f1": 0.17341125501306476,
+        "std_macro_f1": 0.014487481399602663
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.16063070644860442,
+          0.17045378619348492,
+          0.1891492723971049
+        ],
+        "mean_macro_f1": 0.17341125501306476,
+        "std_macro_f1": 0.014487481399602663
+      },
+      "all_fits_converged": true
+    },
+    {
+      "name": "fusion-C0.01-unweighted",
+      "config": {
+        "stage": "fusion",
+        "C": 0.01,
+        "weighting": "unweighted"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 3.122342699993169,
+          "iterations": 186,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 3.66408849999425,
+          "iterations": 220,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 3.620996300014667,
+          "iterations": 211,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 17052
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.3316181027600607,
+          0.3215847056089053,
+          0.34122915311592833
+        ],
+        "mean_macro_f1": 0.3314773204949648,
+        "std_macro_f1": 0.009822980413228467
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.3316181027600607,
+          0.3215847056089053,
+          0.34122915311592833
+        ],
+        "mean_macro_f1": 0.3314773204949648,
+        "std_macro_f1": 0.009822980413228467
+      },
+      "all_fits_converged": true
+    },
+    {
+      "name": "fusion-C0.01-sqrt_balanced",
+      "config": {
+        "stage": "fusion",
+        "C": 0.01,
+        "weighting": "sqrt_balanced"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 3.27115899999626,
+          "iterations": 201,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 3.568550199997844,
+          "iterations": 213,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 3.485751500003971,
+          "iterations": 202,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 17052
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.3285843549975626,
+          0.34912783185525914,
+          0.3528111203253531
+        ],
+        "mean_macro_f1": 0.3435077690593917,
+        "std_macro_f1": 0.013054611021936988
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.3285843549975626,
+          0.34912783185525914,
+          0.3528111203253531
+        ],
+        "mean_macro_f1": 0.3435077690593917,
+        "std_macro_f1": 0.013054611021936988
+      },
+      "all_fits_converged": true
+    },
+    {
+      "name": "fusion-C0.1-unweighted",
+      "config": {
+        "stage": "fusion",
+        "C": 0.1,
+        "weighting": "unweighted"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 4.868206000013743,
+          "iterations": 290,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 4.7233318999933545,
+          "iterations": 282,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 4.884414999978617,
+          "iterations": 285,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 17052
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.2800147242014014,
+          0.3053309990078234,
+          0.29327756886861983
+        ],
+        "mean_macro_f1": 0.2928744306926148,
+        "std_macro_f1": 0.012662951188813922
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.2800147242014014,
+          0.3053309990078234,
+          0.29327756886861983
+        ],
+        "mean_macro_f1": 0.2928744306926148,
+        "std_macro_f1": 0.012662951188813922
+      },
+      "all_fits_converged": true
+    },
+    {
+      "name": "fusion-C0.1-sqrt_balanced",
+      "config": {
+        "stage": "fusion",
+        "C": 0.1,
+        "weighting": "sqrt_balanced"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 4.670517000020482,
+          "iterations": 287,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 5.038369899993995,
+          "iterations": 309,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 5.054671500023687,
+          "iterations": 300,
+          "converged": true,
+          "warnings": [],
+          "learned_inference_parameters": 17052
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.28573728793002645,
+          0.308471029472517,
+          0.28732769922431595
+        ],
+        "mean_macro_f1": 0.29384533887561975,
+        "std_macro_f1": 0.012691157200916549
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.28573728793002645,
+          0.308471029472517,
+          0.28732769922431595
+        ],
+        "mean_macro_f1": 0.29384533887561975,
+        "std_macro_f1": 0.012691157200916549
+      },
+      "all_fits_converged": true
+    },
+    {
+      "name": "fusion-C1-unweighted",
+      "config": {
+        "stage": "fusion",
+        "C": 1.0,
+        "weighting": "unweighted"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 8.371712099993601,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 8.335454899992328,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 8.336912299972028,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 17052
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.25200499936601645,
+          0.27078733971267527,
+          0.26363684122437026
+        ],
+        "mean_macro_f1": 0.2621430601010207,
+        "std_macro_f1": 0.009479853045157855
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.25200499936601645,
+          0.27078733971267527,
+          0.26363684122437026
+        ],
+        "mean_macro_f1": 0.2621430601010207,
+        "std_macro_f1": 0.009479853045157855
+      },
+      "all_fits_converged": false
+    },
+    {
+      "name": "fusion-C1-sqrt_balanced",
+      "config": {
+        "stage": "fusion",
+        "C": 1.0,
+        "weighting": "sqrt_balanced"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 8.3247745000117,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 8.288069300004281,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 8.590375600004336,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 17052
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.24977300731913918,
+          0.26223094562434285,
+          0.2716145718957794
+        ],
+        "mean_macro_f1": 0.26120617494642046,
+        "std_macro_f1": 0.01095678337814678
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.24977300731913918,
+          0.26223094562434285,
+          0.2716145718957794
+        ],
+        "mean_macro_f1": 0.26120617494642046,
+        "std_macro_f1": 0.01095678337814678
+      },
+      "all_fits_converged": false
+    },
+    {
+      "name": "fusion-C10-unweighted",
+      "config": {
+        "stage": "fusion",
+        "C": 10.0,
+        "weighting": "unweighted"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 8.259941399999661,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 8.320347100001527,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 8.445738399983384,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 17052
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.236148508575695,
+          0.23921114698842497,
+          0.24284948835005177
+        ],
+        "mean_macro_f1": 0.2394030479713906,
+        "std_macro_f1": 0.003354609064337005
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.236148508575695,
+          0.23921114698842497,
+          0.24284948835005177
+        ],
+        "mean_macro_f1": 0.2394030479713906,
+        "std_macro_f1": 0.003354609064337005
+      },
+      "all_fits_converged": false
+    },
+    {
+      "name": "fusion-C10-sqrt_balanced",
+      "config": {
+        "stage": "fusion",
+        "C": 10.0,
+        "weighting": "sqrt_balanced"
+      },
+      "fits": [
+        {
+          "fold": 0,
+          "train_count": 6617,
+          "validation_count": 3372,
+          "fit_seconds": 8.378412299993215,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 1,
+          "train_count": 6584,
+          "validation_count": 3405,
+          "fit_seconds": 8.483963400009088,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 17052
+        },
+        {
+          "fold": 2,
+          "train_count": 6777,
+          "validation_count": 3212,
+          "fit_seconds": 8.42189659998985,
+          "iterations": 500,
+          "converged": false,
+          "warnings": [
+            "lbfgs failed to converge after 500 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=500).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+          ],
+          "learned_inference_parameters": 17052
+        }
+      ],
+      "selection": {
+        "fold_macro_f1": [
+          0.22672521272873386,
+          0.2249911490602315,
+          0.2515730304182429
+        ],
+        "mean_macro_f1": 0.23442979740240277,
+        "std_macro_f1": 0.014871771006781574
+      },
+      "eligible": {
+        "fold_macro_f1": [
+          0.22672521272873386,
+          0.2249911490602315,
+          0.2515730304182429
+        ],
+        "mean_macro_f1": 0.23442979740240277,
+        "std_macro_f1": 0.014871771006781574
+      },
+      "all_fits_converged": false
+    }
+  ]
+}

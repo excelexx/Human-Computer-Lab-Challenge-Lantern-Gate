@@ -6,7 +6,7 @@ This is a supportive reflection companion, not a clinical system. Facial express
 
 ## Model selection and parameter budget
 
-The upgraded stack has a conservative upper bound of **4,464,870,303 learned parameters**, below the **6,000,000,000** limit. The authoritative inventory is [manifests/models.json](manifests/models.json); it supersedes the earlier implementation plan's smaller model selection.
+The upgraded stack has a conservative upper bound of **4,464,745,375 learned parameters**, below the **6,000,000,000** limit. The authoritative inventory is [manifests/models.json](manifests/models.json); it supersedes the earlier implementation plan's smaller model selection.
 
 | Required component | Role | Parameters |
 |---|---|---:|
@@ -14,10 +14,10 @@ The upgraded stack has a conservative upper bound of **4,464,870,303 learned par
 | EmotiEffLib `enet_b2_7` | AffectNet-pretrained EfficientNet-B2 face features, including original FER head | 7,710,857 |
 | Microsoft DeBERTa-v3-large | Text features | 434,012,160 |
 | MELD vision head | 1,408 → 128 → 7 | 181,255 |
-| MELD text head | 1,024 → 128 → 7 | 132,103 |
+| MELD text head | 1,024 → 7, folded training scaler | 7,175 |
 | MELD fusion head | 2,435 → 128 → 7 | 312,711 |
 | Qwen3-4B-Instruct-2507 | Local response generation, Q5_K_M GGUF | 4,022,468,096 |
-| **Total** | **All required learned components** | **4,464,870,303** |
+| **Total** | **All required learned components** | **4,464,745,375** |
 
 YuNet's allowance includes 17 nonlearned initializer values, making the total slightly conservative. Frozen weights still count. Qwen's shared input/output embeddings count once; quantization changes memory use, not the number of learned parameters. Tokenization, frame sampling, geometric face selection, normalization, pooling, and the browser have no learned weights. There is no extra learned tracker, projector, adapter, auxiliary generator, or learned evaluation model.
 
@@ -25,31 +25,13 @@ The larger generator and text encoder use more of the available budget without a
 
 ## Completed and measured
 
-The end-to-end prototype is implemented and has run locally: MELD acquisition/preparation, feature extraction over all official train/dev/test rows, training of the vision, text, and fusion heads, held-out evaluation, local streamed generation, browser UI, replay, resource benchmarking, and parameter auditing. The pretrained vision and text encoders remain frozen; this is MELD head training, not full backbone fine-tuning. Text and fusion training used all 9,989 training rows; vision training used the 2,541 rows passing the visual quality checks. Checkpoints were selected using development data.
+The local prototype has processed all official MELD train/dev/test rows, trained vision/text/fusion heads, streamed local Qwen responses, and run the browser replay. The current stack retains the vision/fusion MLPs and replaces the text fallback with a regularized linear head selected by training-dialogue cross-validation. Both pretrained encoders stay frozen.
 
-The full official test split contains 2,610 utterances. Only 658 (25.2%) passed the visual checks; the other 1,952 use explicit text fallback. F1 scores below are percentages, with comparisons restricted to the same examples.
+The overnight work added **72 grouped CV fits, 760 real video stress conditions, 20 mismatched-modality permutations, and 204 local response-study generations**. Complete protocols and retained failures are under `reports/overnight/`. The current operational model improves full-dev macro F1 from .38059 to .41855; on the **reused** official test benchmark, macro F1 moves from .37845 to .40324, while weighted F1 slightly decreases (.58479 to .58374) and accuracy falls (.60115 to .59042). The original test was already observed; later figures are not a fresh holdout.
 
-| Test population | Model | Macro F1 | Weighted F1 |
-|---|---|---:|---:|
-| Same 658 visually eligible utterances | Vision | 21.13 | 39.58 |
-| Same 658 visually eligible utterances | Text | 37.50 | 57.62 |
-| Same 658 visually eligible utterances | Fusion | 36.71 | 56.38 |
-| All 2,610 utterances | Text | 37.87 | 58.73 |
-| All 2,610 utterances | Fusion with text fallback | 37.84 | 58.48 |
+**Vision still has no demonstrated accuracy advantage over text alone.** Only 658/2,610 test rows pass the visual checks. The new text control alone scores .41583 macro F1, above the multimodal system. Rare-class improvements and regressions are detailed in [REPORT.md](REPORT.md); [BASELINE_REPORT.md](BASELINE_REPORT.md) preserves the original evidence.
 
-**Fusion did not improve held-out performance over text.** The prototype demonstrates a working multimodal path, not an accuracy gain from vision. Three official test clips have exact video-byte overlap with train/dev; primary results preserve the official split and the report also includes a separate diagnostic excluding those clips.
-
-On the Windows RTX 3080 10 GB / 32 GB RAM machine, 30 warmed-up MELD fusion replays produced these backend timings:
-
-| Time from submission | Median | p95 |
-|---|---:|---:|
-| Emotion state | 202 ms | 264 ms |
-| First response token | 426 ms | 489 ms |
-| Completed response | 592 ms | 729 ms |
-
-The benchmark excludes three warm-up turns and also measures ten no-video fallback turns. Capture, upload/transcoding, and browser rendering are excluded; these are not webcam latency measurements. Sampled GPU usage peaked at **7,565 MiB**, including desktop/background GPU use. Python and generator process resident memory peaked at **3,164 MiB** and **3,249 MiB**, respectively. The parameter audit verified the conservative **4.465 billion** total against the six-billion limit.
-
-The complete 77-test suite passed before the final warm-up/prompt changes; 28 focused pipeline/review/UI checks passed after those changes. The 35 launcher tests also passed after the final Windows process-lifecycle fixes. A subsequent replay-path fix passed 20 UI tests, including its new regression. Test fixtures are confined to tests and are separate from the actual model runs above. See [REPORT.md](REPORT.md) for the evidence, conditions, response examples, limitations, and links to the measured reports.
+On the supplied RTX 3080, the updated warm benchmark produced emotion state / first token / completed reply at **246 / 458 / 623 ms p95**, across 30 fusion turns. Peak GPU use was **7,566 MiB**, including desktop processes. Capture, upload and browser rendering are excluded. The verified complete parameter count is **4,464,745,375**, below the six-billion cap. [REPORT.md](REPORT.md) links the audit, benchmark, stress results, response review and validation.
 
 ## Windows setup
 
@@ -107,7 +89,9 @@ Allow substantial disk space for the archive, extracted clips, models, and featu
 
 Feature extraction uses four CPU preprocessing workers and GPU encoders, and is resumable in chunks. The default uses the complete official splits; `--limit` is available for a clearly labeled smoke run. Limited caches are not full MELD results. Head training is small enough to default to CPU; `--device cuda` is also supported. `--stage all` runs vision, text, then fusion.
 
-The training command compares unweighted cross-entropy with inverse-square-root class-weighted loss. Defaults are 30 maximum epochs, early stopping after 5 non-improving epochs, batch size 128, and seed 42. Checkpoint selection uses development macro F1, never test performance: vision and fusion select on the visually eligible development subset, while text selects on all development examples. Fusion training still uses all training rows, with explicit missing-vision features and visual dropout. Checkpoint metadata records the label order, feature identity, cache hashes, seed, selected loss, and hyperparameters.
+These three training commands reproduce the original MLP baseline. The supplied current text head instead uses the subsequent grouped-CV linear selection; follow [the reproduction guide](reports/overnight/model-study/REPRODUCE.md) to reproduce that selection and prepare the replacement from cached features. Preparation writes to a separate candidate directory and does not overwrite active checkpoints.
+
+The baseline training command compares unweighted cross-entropy with inverse-square-root class-weighted loss. Defaults are 30 maximum epochs, early stopping after 5 non-improving epochs, batch size 128, and seed 42. Checkpoint selection uses development macro F1, never test performance: vision and fusion select on the visually eligible development subset, while text selects on all development examples. Fusion training still uses all training rows, with explicit missing-vision features and visual dropout. Checkpoint metadata records the label order, feature identity, cache hashes, seed, selected loss, and hyperparameters.
 
 ### Visual handling and fusion
 
@@ -142,7 +126,7 @@ If the handoff includes `trained-heads/vision.pt`, `text.pt`, and `fusion.pt`, y
 .\.venv\Scripts\python.exe -m checkin.cli audit-parameters
 ```
 
-The installer uses `CHECKIN_HOME` or `.artifacts`, with optional `--home` and `--source` arguments. It checks all three files before copying, verifies copied bytes, skips identical existing files, and refuses to overwrite a differing local checkpoint. Atomic installation requires a filesystem supporting hard links, such as NTFS. The runtime then validates that the supplied heads match the pinned model features. If `trained-heads` was not included, follow the MELD training steps above.
+The installer uses `CHECKIN_HOME` or `.artifacts`, with optional `--home` and `--source` arguments. It checks all three files before copying, verifies copied bytes, skips identical existing files, and refuses to overwrite a differing local checkpoint. Atomic installation requires a filesystem supporting hard links, such as NTFS. The runtime then validates that the supplied heads match the pinned model features. If `trained-heads` was not included, follow the baseline MELD training steps and the linked linear-head reproduction guide above.
 
 ### Launch the local application
 
@@ -180,7 +164,7 @@ In the browser:
 
 The generator receives the message, structured emotion evidence, and bounded prior text history. It does not receive the video pixels. The classifier determines the reported tag; the language model produces only the response. Generation uses a 4,096-token context, at most 96 new tokens, and one concurrent request. The prompt requests one to three sentences and at most one relevant follow-up question.
 
-Record/select a fresh clip for each new message. The selected clip remains until replaced or cleared, so check it before sending another message. User messages are capped at 4,000 characters; the text classifier sees at most 128 wordpieces, so concise check-ins work best.
+A completed or stopped turn clears its message and clip. Add a fresh clip for a new message, or continue with words alone. Failed turns keep the inputs for retry. Compatible uploads/replay clips preserve the video stream while audio is removed; other formats display a conversion warning. User messages are capped at 4,000 characters; the text classifier sees at most 128 wordpieces, so concise check-ins work best.
 
 ## Trace one input and measure interaction speed
 

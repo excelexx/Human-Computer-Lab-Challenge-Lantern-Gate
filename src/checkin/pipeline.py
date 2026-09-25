@@ -30,18 +30,25 @@ class CheckInPipeline:
         return False
 
     def status(self):
+        from .audit import runtime_inventory
         required=["models/vision/yunet.onnx","models/vision/enet_b2_7.pt","models/text/pytorch_model.bin",
                   "models/text/config.json","models/text/tokenizer_config.json","models/text/spm.model",
                   "checkpoints/vision.pt","checkpoints/text.pt","checkpoints/fusion.pt"]
         missing=[name for name in required if not (self.home/name).is_file()]
         generator=self.generator.status()
         errors=["Missing artifact: "+name for name in missing]
+        inventory,head_checks=runtime_inventory(self.home,loaded_heads=self.heads if self._loaded else None,verify_hashes=False)
+        invalid_heads=[check for check in head_checks if check["status"]=="invalid"]
+        errors.extend(f"Invalid {check['name']} classifier: {check['error']}" for check in invalid_heads)
         if not generator.get("available"):
             errors.append("Local response generator is not running. Start the local generator script.")
-        return {"ready":not errors,"classification_ready":not missing,"loaded":self._loaded,
+        return {"ready":not errors,"classification_ready":not missing and not invalid_heads,"loaded":self._loaded,
                 "device":self.device,"running":self._active_session is not None,"errors":errors,"components":{"generator":generator},
                 "artifact_validation":"loaded" if self._loaded else "pending_first_load",
-                "parameter_budget":4_464_870_303}
+                "parameter_budget":inventory["total_parameter_upper_bound"],
+                "parameter_limit":inventory["parameter_limit"],
+                "parameter_accounting_status":"invalid" if invalid_heads else "loaded_runtime" if self._loaded else "checkpoints_counted" if all(check["status"]=="verified" for check in head_checks) else "planned",
+                "head_inventory":head_checks}
 
     def _load(self):
         if self._loaded:

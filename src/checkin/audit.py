@@ -6,8 +6,65 @@ import json
 from pathlib import Path
 
 from .downloads import artifacts, model_manifest, sha256_file
-from .models import DIMENSIONS, EmotionHead, load_head
-from .settings import runtime_home
+from .models import DIMENSIONS, EmotionHead, LinearEmotionHead, load_head
+from .settings import LABELS, runtime_home
+
+
+def describe_head(stage, model):
+    """Count the actual module, including frozen parameters and learned biases."""
+    if isinstance(model, LinearEmotionHead):
+        dimensions = [model.net.in_features, model.net.out_features]
+        kind = "linear"
+    elif isinstance(model, EmotionHead):
+        dimensions = [model.net[0].in_features, model.net[0].out_features, model.net[-1].out_features]
+        kind = "mlp"
+    else:
+        raise ValueError(f"Unsupported runtime head module: {type(model).__name__}")
+    if dimensions[0] != DIMENSIONS[stage] or dimensions[-1] != len(LABELS):
+        raise ValueError(f"The {stage} head has incompatible input/output dimensions")
+    return {"name": f"MELD {stage} head", "parameters": sum(parameter.numel() for parameter in model.parameters()),
+            "architecture_kind": kind, "architecture": " -> ".join(map(str, dimensions))}
+
+
+def runtime_inventory(home, loaded_heads=None, verify_hashes=True):
+    """Resolve runtime heads on CPU; loaded modules take precedence over disk.
+
+    Missing/invalid checkpoints use the shipped architecture solely as an
+    explicitly planned count. Such an inventory is never a verified audit.
+    """
+    home = Path(home)
+    planned = {stage: next(c for c in model_manifest()["components"] if c["name"] == f"MELD {stage} head") for stage in DIMENSIONS}
+    components, checks = {}, []
+    for stage, dimension in DIMENSIONS.items():
+        path = home / "checkpoints" / f"{stage}.pt"
+        record = {"name": stage, "path": str(path)}
+        description = None
+        try:
+            if loaded_heads is not None:
+                description = describe_head(stage, loaded_heads[stage])
+                record.update(status="verified", count_method="loaded inference module")
+            elif path.is_file():
+                model, payload = load_head(path, device="cpu")
+                if payload.get("stage") != stage or payload.get("input_dim") != dimension or payload.get("labels") != LABELS:
+                    raise ValueError("Checkpoint stage, input dimension or label order differs from the runtime contract")
+                description = describe_head(stage, model)
+                record.update(status="verified", count_method="loaded checkpoint")
+                if verify_hashes:
+                    record["sha256"] = sha256_file(path)
+            else:
+                record["status"] = "planned_missing_checkpoint"
+        except Exception as error:
+            record.update(status="invalid", error=str(error))
+        if description is None:
+            description = {key: planned[stage][key] for key in ("name", "parameters", "architecture_kind", "architecture")}
+            record["count_method"] = "shipped architecture plan; actual checkpoint not verified"
+        record.update({key: value for key, value in description.items() if key != "name"})
+        components[stage] = {**description, "local_count_status": record["status"], "count_method": record["count_method"],
+                             "count_kind": "exact loaded architecture" if record["status"] == "verified" else "planned architecture"}
+        if "sha256" in record:
+            components[stage]["checkpoint_sha256"] = record["sha256"]
+        checks.append(record)
+    return model_manifest(components), checks
 
 
 def audit_parameters(home: str | Path) -> dict:
@@ -18,7 +75,7 @@ def audit_parameters(home: str | Path) -> dict:
     recount the quantized generator or perform an inference benchmark.
     """
     home = runtime_home(home)
-    manifest = model_manifest()
+    manifest, head_checks = runtime_inventory(home)
     inventory = [dict(component) for component in manifest["components"]]
     checks = []
     for artifact in artifacts(include_meld=False):
@@ -32,32 +89,7 @@ def audit_parameters(home: str | Path) -> dict:
             check["actual_sha256"] = sha256_file(path)
             check["status"] = "verified" if check["actual_sha256"] == check["expected_sha256"] else "checksum_mismatch"
         checks.append(check)
-    head_checks = []
-    actual_head_total = 0
-    for name, dimension in DIMENSIONS.items():
-        path = home / "checkpoints" / f"{name}.pt"
-        record = {"name": name, "path": str(path)}
-        if path.is_file():
-            try:
-                model, payload = load_head(path, device="cpu")
-                if payload["input_dim"] != dimension:
-                    raise ValueError(f"Expected {dimension} input features, got {payload['input_dim']}.")
-                record.update(status="verified", sha256=sha256_file(path))
-            except Exception as error:
-                model = EmotionHead(dimension)
-                record.update(status="invalid", error=str(error))
-        else:
-            model = EmotionHead(dimension)
-            record["status"] = "planned_missing_checkpoint"
-        count = sum(parameter.numel() for parameter in model.parameters())
-        record["parameters"] = count
-        record["count_method"] = "loaded checkpoint" if record["status"] == "verified" else "untrained architecture; checkpoint not verified"
-        actual_head_total += count
-        head_checks.append(record)
-        for component in inventory:
-            if component["name"] == f"MELD {name} head":
-                component["parameters"] = count
-                component["local_count_status"] = record["status"]
+    actual_head_total = sum(record["parameters"] for record in head_checks)
     total = sum(component["parameters"] for component in inventory)
     errors = any(check["status"] == "checksum_mismatch" for check in checks) or any(check["status"] == "invalid" for check in head_checks)
     complete = all(check["status"] == "verified" for check in checks + head_checks)

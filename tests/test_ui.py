@@ -211,7 +211,8 @@ def test_new_conversation_cancels_old_session_and_resets_all_turn_state(ui):
     assert result[3] == {}
     assert result[5] != "old-session"
     assert result[6] == 0
-    assert result[8] is None
+    assert result[8]["value"] is None
+    assert result[8]["interactive"] is True
 
 
 def test_pipeline_error_is_explicit_and_does_not_invent_a_tag(ui):
@@ -236,3 +237,40 @@ def test_completed_text_without_deltas_uses_nested_response(ui):
     pipeline.stream = completed
     result = list(handler("Hello", None, [], "session", 0))[-1]
     assert result[0][-1]["content"] == "A finished fixture response."
+
+
+def test_clip_is_retained_during_processing_and_cleared_only_after_turn(ui):
+    _, handler, pipeline = ui
+    results = list(handler("My day", "fresh.mp4", [], "session", 0))
+    assert results[0][8] == {"interactive": False, "__type__": "update"}
+    assert results[0][9] == {"interactive": False, "__type__": "update"}
+    assert all("value" not in result[8] for result in results[:-1])
+    assert pipeline.calls[0]["clip"] == "fresh.mp4"
+    assert results[-1][8] == {"value": None, "interactive": True, "__type__": "update"}
+    assert results[-1][9] == {"value": "", "interactive": True, "__type__": "update"}
+    list(handler("Another day", results[-1][8]["value"], results[-1][1], "session", 1))
+    assert pipeline.calls[-1]["clip"] is None
+
+
+def test_failure_keeps_media_for_retry_and_restores_composer(ui):
+    _, handler, pipeline = ui
+    def failed(*args):
+        yield {"type": "error", "error": "Busy"}
+    pipeline.stream = failed
+    last = list(handler("My day", "retry.mp4", [], "session", 0))[-1]
+    assert last[8] == {"interactive": True, "__type__": "update"}
+    assert last[9] == {"interactive": True, "__type__": "update"}
+    assert "kept so you can retry" in last[4]
+
+
+def test_stop_clears_consumed_clip_when_gradio_cancels_generator(ui):
+    app, handler, _ = ui
+    run = handler("My day", "consumed.mp4", [], "session", 0)
+    next(run)
+    next(run)
+    run.close()
+    stop = next(fn.fn for fn in app.fns.values() if getattr(fn.fn, "__name__", "") == "stop_current")
+    result = stop("session")
+    assert result[3]["value"] is None
+    assert result[3]["interactive"] is True
+    assert result[4]["value"] == ""

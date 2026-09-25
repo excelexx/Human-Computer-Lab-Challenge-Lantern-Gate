@@ -1,0 +1,229 @@
+{
+  "id": "dev:36:5",
+  "label": "sadness",
+  "text": "Okay. Oh wait, wait-wait, you’re not gonna come with me?",
+  "source_media_sha256": "2547649768d35ee7d209928cb644d4c9e392550ff7c9a3a85203edd6a696f3ba",
+  "protocol_identity": "1df40d45bef78ab7e5ce926890ed7f8832e6a11d809aa978a5c1f5e09cb80801",
+  "conditions": {
+    "original": {
+      "probabilities": [
+        0.13621100783348083,
+        0.22517670691013336,
+        0.1132197305560112,
+        0.18562400341033936,
+        0.0172470323741436,
+        0.14254863560199738,
+        0.17997276782989502
+      ],
+      "label": "surprise",
+      "quality": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.917165994644165,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 1.8351652418489324,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "source": "fusion",
+      "wall_ms": 234.13269998854958,
+      "media_sha256": "2547649768d35ee7d209928cb644d4c9e392550ff7c9a3a85203edd6a696f3ba",
+      "feature_max_abs_delta_from_cached": 0.0
+    },
+    "silent_copy": {
+      "probabilities": [
+        0.13621100783348083,
+        0.22517670691013336,
+        0.1132197305560112,
+        0.18562400341033936,
+        0.0172470323741436,
+        0.14254863560199738,
+        0.17997276782989502
+      ],
+      "label": "surprise",
+      "quality": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.917165994644165,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 1.8351652418489324,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "source": "fusion",
+      "wall_ms": 339.8321999993641,
+      "media_sha256": "b103a7b6c4110159ff18118bac8e052a9462f710ea53658d575e3f155d258ebf",
+      "feature_max_abs_delta_from_cached": 0.0
+    },
+    "h264_reencode": {
+      "probabilities": [
+        0.13490259647369385,
+        0.22348786890506744,
+        0.12373771518468857,
+        0.18870683014392853,
+        0.017135273665189743,
+        0.13636542856693268,
+        0.1756642758846283
+      ],
+      "label": "surprise",
+      "quality": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9166240394115448,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 1.8351652418489324,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "source": "fusion",
+      "wall_ms": 1182.7650000050198,
+      "media_sha256": "623477a68ed130cd0318055e4757eb7899df26cd51bc9552ad606b540d917e7c",
+      "feature_max_abs_delta_from_cached": 0.016067735850811005
+    },
+    "half_resolution": {
+      "probabilities": [
+        0.12850749492645264,
+        0.21165674924850464,
+        0.12835140526294708,
+        0.1410343199968338,
+        0.018707968294620514,
+        0.1537192016839981,
+        0.2180228978395462
+      ],
+      "label": "anger",
+      "quality": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9171137139201164,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 1.8351652418489324,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "source": "fusion",
+      "wall_ms": 481.2200000160374,
+      "media_sha256": "b66e79727a1bce903435e9060bfeebeaf7f37aab95a08387f64079132e6ce159",
+      "feature_max_abs_delta_from_cached": 0.04215184226632118
+    },
+    "half_brightness": {
+      "probabilities": [
+        0.14181260764598846,
+        0.22053785622119904,
+        0.1767427772283554,
+        0.19927330315113068,
+        0.02646157704293728,
+        0.08804161846637726,
+        0.14713022112846375
+      ],
+      "label": "surprise",
+      "quality": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9174181446433067,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 1.8351652418489324,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "source": "fusion",
+      "wall_ms": 1148.1497999920975,
+      "media_sha256": "799f3df4064d741ada3c6325d1f97cf9cf3587407e2da8702c2bd4e9fcf2428d",
+      "feature_max_abs_delta_from_cached": 0.06665612757205963
+    },
+    "gaussian_blur": {
+      "probabilities": [
+        0.12226759642362595,
+        0.24412648379802704,
+        0.2336820513010025,
+        0.10219486802816391,
+        0.02732820063829422,
+        0.11852968484163284,
+        0.15187107026576996
+      ],
+      "label": "surprise",
+      "quality": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9143588468432426,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 1.8351652418489324,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "source": "fusion",
+      "wall_ms": 1143.5235999815632,
+      "media_sha256": "0fed9f9e696d3e43fe7705daf0e3f0676e37211845f27b3aab0744ab4bae40b2",
+      "feature_max_abs_delta_from_cached": 0.13849620521068573
+    },
+    "horizontal_flip": {
+      "probabilities": [
+        0.10812755674123764,
+        0.19438622891902924,
+        0.11313117295503616,
+        0.17564576864242554,
+        0.015376875177025795,
+        0.12325555831193924,
+        0.2700768709182739
+      ],
+      "label": "anger",
+      "quality": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9248493015766144,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 1.8351652418489324,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "source": "fusion",
+      "wall_ms": 1267.4027000030037,
+      "media_sha256": "c733be46bb22de9f4a21339596158003eb394aca666d8909d45a9c9d7f9fb424",
+      "feature_max_abs_delta_from_cached": 0.04684145003557205
+    },
+    "black_control": {
+      "probabilities": [
+        0.16403783857822418,
+        0.17799754440784454,
+        0.20715607702732086,
+        0.16564370691776276,
+        0.07240244746208191,
+        0.0780986100435257,
+        0.13466383516788483
+      ],
+      "label": "fear",
+      "quality": {
+        "available": false,
+        "reason": "insufficient_face_frames",
+        "valid_frame_fraction": 0.0,
+        "mean_detection_score": 0.0,
+        "sampled_frames": 8,
+        "selected_frames": 0,
+        "duration_seconds": 1.8351652418489324,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "source": "text_fallback",
+      "wall_ms": 339.5994000020437,
+      "media_sha256": "0c9b6c59eaed647032424dc308ae41a7202ea52494db16e9042fe2e101a52757",
+      "feature_max_abs_delta_from_cached": 0.1568470299243927
+    }
+  },
+  "features": {
+    "path": "features/dev-36-5-f3fe36c537837197c59fb458a826711d674a6ef6dc0347d2a6879bb86abefc98.npz",
+    "sha256": "f3fe36c537837197c59fb458a826711d674a6ef6dc0347d2a6879bb86abefc98"
+  }
+}

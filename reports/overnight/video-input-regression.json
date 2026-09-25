@@ -1,0 +1,12 @@
+{
+  "input_id": "test:4:2",
+  "source": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\test\\output_repeated_splits_test\\dia4_utt2.mp4",
+  "mode": "stream_copy",
+  "source_duration_seconds": 1.515,
+  "muted_duration_seconds": 1.511,
+  "decoded_frame_count": 36,
+  "all_decoded_frames_identical": true,
+  "audio_absent": true,
+  "decoder": "OpenCV BGR frame SHA256; every decoded frame compared",
+  "scope": "CPU media preparation only; no model, webcam, or browser latency claim"
+}

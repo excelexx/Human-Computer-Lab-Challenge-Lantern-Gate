@@ -1,0 +1,40 @@
+{
+  "reviewed_at": "2026-09-25T05:18:46.280575+00:00",
+  "reviewer": "AI qualitative review by implementation agent; not blinded or an independent human assessment",
+  "scope": "All 18 reserved authored replies, generated once after dev-only prompt selection; no subsequent prompt retuning.",
+  "not_clinical_validation": true,
+  "cases": [
+    {
+      "id": "authored:check:ambiguous_win",
+      "strengths": "Does not congratulate or decide that winning was welcome. Asks how it feels.",
+      "remaining_flaws": "That is something to notice/interesting is generic; a body-focused question may not fit the meaning-focused input."
+    },
+    {
+      "id": "authored:check:good_day",
+      "strengths": "All three conditions accept the explicitly good day despite sadness evidence.",
+      "remaining_flaws": "Missing-vision reply asserts discomfort that the user did not state. Other questions shift focus to the sun instead of the day; one asks a forced hard-to-see/uncomfortable choice."
+    },
+    {
+      "id": "authored:check:birthday_grief",
+      "strengths": "Recognizes the loss and birthday context without claiming shared memories or knowing the grandmother.",
+      "remaining_flaws": "Must feel especially heavy and it is hard to think about her birthday presume the emotional experience. Compassionate phrasing remains overconfident."
+    },
+    {
+      "id": "authored:check:text_me",
+      "strengths": "No invented phone number or definite promise to text later; joy/missing conditions locate later conversation in this chat.",
+      "remaining_flaws": "Sadness condition asks about another way to connect later, implying unsupported contact options. None directly states that it cannot initiate future contact."
+    },
+    {
+      "id": "authored:check:sister_mixed",
+      "strengths": "Positive framing is grounded in the user explicitly saying happy about proximity; asks specifically about sharing the apartment.",
+      "remaining_flaws": "Does not reflect the explicitly stated anxiety and asks how the person feels about something they already named."
+    },
+    {
+      "id": "authored:check:racing_heart",
+      "strengths": "Reflects the reported racing heart/stairs without diagnosing, calling it normal, or declaring safety.",
+      "remaining_flaws": "Calls it intense without explicit intensity and asks a repetitive bodily question instead of moving toward the requested conversation about the day."
+    }
+  ],
+  "regex_result_interpretation": "All 18 pass the narrow predeclared patterns, yet qualitative flaws remain. This directly illustrates why pattern passes are not quality or clinical-validity scores.",
+  "selection_integrity": "Facts-first was selected before these outputs; results are disclosed without changing that prompt."
+}

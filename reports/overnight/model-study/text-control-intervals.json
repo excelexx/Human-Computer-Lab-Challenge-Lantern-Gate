@@ -1,0 +1,28 @@
+{
+  "analysis": "Descriptive paired intervals for the pre-frozen text control versus existing text baseline.",
+  "source": "The saved prediction artifact from the single reused-test evaluation; no test cache reopened, retraining, model selection, or production change.",
+  "intervals": {
+    "all": {
+      "paired_delta_macro_f1": 0.037129994659069965,
+      "percentile_95_interval": [
+        0.013854357462977874,
+        0.06058492795617503
+      ],
+      "dialogue_count": 280,
+      "replicates": 1000,
+      "seed": 314159,
+      "scope": "Conditional paired dialogue bootstrap; reused benchmark and selection bias remain."
+    },
+    "eligible": {
+      "paired_delta_macro_f1": 0.05194723567277093,
+      "percentile_95_interval": [
+        0.002565762727864696,
+        0.10075034794169915
+      ],
+      "dialogue_count": 195,
+      "replicates": 1000,
+      "seed": 314159,
+      "scope": "Conditional paired dialogue bootstrap; reused benchmark and selection bias remain."
+    }
+  }
+}

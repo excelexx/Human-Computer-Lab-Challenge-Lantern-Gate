@@ -35,23 +35,35 @@
     {
       "name": "MELD vision head",
       "parameters": 181255,
-      "count_kind": "exact architecture",
+      "count_kind": "exact loaded architecture",
       "source": "src/checkin/models.py",
-      "architecture": "1408 -> 128 -> 7"
+      "architecture_kind": "mlp",
+      "architecture": "1408 -> 128 -> 7",
+      "local_count_status": "verified",
+      "count_method": "loaded checkpoint",
+      "checkpoint_sha256": "9882939db93780c96481f978cc93ace61a80d52a3c63465ae551cb8ace23a465"
     },
     {
       "name": "MELD text head",
-      "parameters": 132103,
-      "count_kind": "exact architecture",
+      "parameters": 7175,
+      "count_kind": "exact loaded architecture",
       "source": "src/checkin/models.py",
-      "architecture": "1024 -> 128 -> 7"
+      "architecture_kind": "linear",
+      "architecture": "1024 -> 7",
+      "local_count_status": "verified",
+      "count_method": "loaded checkpoint",
+      "checkpoint_sha256": "8c9eb533e4c9419935a1085a9c8799025fa760542ba010f563236f1e0578ca63"
     },
     {
       "name": "MELD fusion head",
       "parameters": 312711,
-      "count_kind": "exact architecture",
+      "count_kind": "exact loaded architecture",
       "source": "src/checkin/models.py",
-      "architecture": "2435 -> 128 -> 7"
+      "architecture_kind": "mlp",
+      "architecture": "2435 -> 128 -> 7",
+      "local_count_status": "verified",
+      "count_method": "loaded checkpoint",
+      "checkpoint_sha256": "3f126c4e1033fcec4cb57641fcbcd2a83798bb5f39d118861fc671207df9c0ea"
     },
     {
       "name": "Qwen3-4B-Instruct-2507",
@@ -67,7 +79,7 @@
       "quantization_source": "https://huggingface.co/bartowski/Qwen_Qwen3-4B-Instruct-2507-GGUF/blob/ae44f08e1392f39c0e474af10c3ff8355c8b6688/README.md"
     }
   ],
-  "total_parameter_upper_bound": 4464870303,
+  "head_inventory_source": "runtime head inspection; see each component's local_count_status",
   "zero_parameter_operations": [
     "tokenizers",
     "geometric face selection",
@@ -160,5 +172,6 @@
     "name": "MELD",
     "source": "https://github.com/declare-lab/MELD",
     "note": "Acquisition instructions only. Do not redistribute television clips; record dataset/media terms separately."
-  }
+  },
+  "total_parameter_upper_bound": 4464745375
 }

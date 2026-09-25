@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-25T04:27:37.029782+00:00",
+  "verification_status": "passed",
+  "method": "Instantiate source-defined neural architectures inside torch.device(\"meta\") and sum numel() over model.parameters(); unique learned parameters include frozen weights, exclude nonlearned buffers, and count tied embeddings once.",
+  "execution": {
+    "python": "3.12.10",
+    "software_versions": {
+      "torch": "2.8.0+cu126",
+      "torchvision": "0.23.0+cu126",
+      "timm": "0.9.16",
+      "transformers": "4.57.1",
+      "numpy": "2.2.6"
+    },
+    "device": "meta",
+    "model_checkpoint_weight_bytes_read": 0,
+    "gpu_allocation_required": false,
+    "downloads_performed": false
+  },
+  "components": [
+    {
+      "name": "EfficientNet-B2 including original seven-class classifier",
+      "parameters": 7710857,
+      "verification": "independent meta-tensor construction",
+      "construction": "timm.create_model(\"tf_efficientnet_b2\", pretrained=False, num_classes=7, global_pool=\"max\")",
+      "architecture_source": "timm 0.9.16 EfficientNet implementation",
+      "artifact_provenance": "https://github.com/sb-ai-lab/EmotiEffLib/tree/520a051c64cd191521e5934655314e769a319684",
+      "note": "This check constructs the matching architecture; the separate pinned checkpoint hash check links the authored weights to runtime."
+    },
+    {
+      "name": "DeBERTa-v3-large encoder",
+      "parameters": 434012160,
+      "verification": "independent meta-tensor construction",
+      "construction": "AutoModel.from_config(AutoConfig.from_pretrained(local_config_directory, local_files_only=True))",
+      "model_id": "microsoft/deberta-v3-large",
+      "revision": "64a8c8eab3e352a784c658aef62be1662607476f",
+      "config_source": "https://huggingface.co/microsoft/deberta-v3-large/blob/64a8c8eab3e352a784c658aef62be1662607476f/config.json",
+      "local_config_at_verification": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\models\\text\\config.json",
+      "config_sha256": "ddec8b81d079d218ce9e54fc0af5d1d5937d6d53b5d42e70c1f251a1cebc830d",
+      "config": {
+        "model_type": "deberta-v2",
+        "attention_probs_dropout_prob": 0.1,
+        "hidden_act": "gelu",
+        "hidden_dropout_prob": 0.1,
+        "hidden_size": 1024,
+        "initializer_range": 0.02,
+        "intermediate_size": 4096,
+        "max_position_embeddings": 512,
+        "relative_attention": true,
+        "position_buckets": 256,
+        "norm_rel_ebd": "layer_norm",
+        "share_att_key": true,
+        "pos_att_type": "p2c|c2p",
+        "layer_norm_eps": 1e-07,
+        "max_relative_positions": -1,
+        "position_biased_input": false,
+        "num_attention_heads": 16,
+        "num_hidden_layers": 24,
+        "type_vocab_size": 0,
+        "vocab_size": 128100
+      },
+      "note": "Includes the embedding table. Pretraining-only heads are not required by the encoder inference path."
+    },
+    {
+      "name": "Qwen3-4B-Instruct-2507",
+      "parameters": 4022468096,
+      "verification": "independent meta-tensor construction",
+      "construction": "AutoModelForCausalLM.from_config(Qwen3Config(**recorded_config_arguments))",
+      "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "config_source": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507/blob/cdbee75f17c01a7cc42f958dc650907174af0554/config.json",
+      "recorded_config_arguments": {
+        "vocab_size": 151936,
+        "hidden_size": 2560,
+        "intermediate_size": 9728,
+        "num_hidden_layers": 36,
+        "num_attention_heads": 32,
+        "num_key_value_heads": 8,
+        "head_dim": 128,
+        "tie_word_embeddings": true,
+        "attention_bias": false,
+        "max_position_embeddings": 262144,
+        "rope_theta": 5000000
+      },
+      "note": "Arguments were reconstructed from the previously inspected pinned original configuration. Other Qwen3Config values use Transformers 4.57.1 defaults; tied input/output embedding is counted once."
+    },
+    {
+      "name": "MELD vision head",
+      "parameters": 181255,
+      "verification": "independent meta-tensor construction",
+      "construction": "EmotionHead(1408)",
+      "architecture": "1408 -> 128 -> 7",
+      "source": "src/checkin/models.py"
+    },
+    {
+      "name": "MELD text head",
+      "parameters": 132103,
+      "verification": "independent meta-tensor construction",
+      "construction": "EmotionHead(1024)",
+      "architecture": "1024 -> 128 -> 7",
+      "source": "src/checkin/models.py"
+    },
+    {
+      "name": "MELD fusion head",
+      "parameters": 312711,
+      "verification": "independent meta-tensor construction",
+      "construction": "EmotionHead(2435)",
+      "architecture": "2435 -> 128 -> 7",
+      "source": "src/checkin/models.py"
+    },
+    {
+      "name": "YuNet face detector conservative allowance",
+      "parameters": 53121,
+      "verification": "prior ONNX initializer inspection; not reloaded in this meta-tensor check",
+      "nonlearned_constants_included": 17,
+      "count_method": "Sum of ONNX initializer element counts; conservatively includes 17 nonlearned values.",
+      "artifact_source": "https://github.com/opencv/opencv_zoo/blob/f12e12798e8314f7c074a6656816c048dcc95b7a/models/face_detection_yunet/face_detection_yunet_2023mar.onnx",
+      "artifact_sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4"
+    }
+  ],
+  "parameter_limit": 6000000000,
+  "total_parameter_upper_bound": 4464870303,
+  "remaining_parameter_budget": 1535129697,
+  "scope_note": "Architecture verification, not a model-quality, trained-checkpoint, latency, or resource benchmark. Learned-count verification does not prove local artifact availability. Run audit-parameters to check downloaded artifacts and trained heads."
+}

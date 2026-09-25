@@ -1,0 +1,312 @@
+{
+  "schema_version": 1,
+  "split": "dev",
+  "session_count": 6,
+  "turn_count": 12,
+  "fingerprints": {
+    "feature_identity": "1f030a3ec7ff3c4b80486d7afac799d13507560374e7b7d84f6a40e20f7a3777",
+    "dev_cache_sha256": "0d40d91bc48794b0c21afdec5dd99c17fd77ea4a9a5b5005bde5719e8d459879",
+    "feature_contract": {
+      "feature_metadata": {
+        "vision": {
+          "model": "EmotiEffLib/enet_b2_7",
+          "revision": "520a051c64cd191521e5934655314e769a319684",
+          "sha256": "e687fd9e7bee45486c7325f11222740f841c3bebac531badb903a50e82b9ac0f",
+          "adapted_sha256": null,
+          "parameter_count": 7710857,
+          "feature_dim": 1408,
+          "preprocessing": "RGB; resize 260x260 bilinear PIL; ImageNet normalization; max pooling",
+          "diagnostic_labels": [
+            "anger",
+            "disgust",
+            "fear",
+            "joy",
+            "neutral",
+            "sadness",
+            "surprise"
+          ]
+        },
+        "text": {
+          "model": "microsoft/deberta-v3-large",
+          "parameter_count": 434012160,
+          "revision": "64a8c8eab3e352a784c658aef62be1662607476f",
+          "sha256": "dd5b5d93e2db101aaf281df0ea1216c07ad73620ff59c5b42dccac4bf2eef5b5",
+          "feature_dim": 1024,
+          "max_length": 128,
+          "pooling": "attention-mask mean, including non-padding special tokens",
+          "adapted_sha256": null
+        },
+        "processor": "yunet-eightframes-v1-score08-singleface-sixvalid",
+        "frames": 8,
+        "min_valid": 6,
+        "implementation_sha256": "173c67ee82e7d4e7bcac91982e9f01a524f1bccfd84ff90253922983b1f9a492",
+        "normalization": "mean over valid frames then L2; text masked mean then L2"
+      },
+      "live_implementation_sha256": "173c67ee82e7d4e7bcac91982e9f01a524f1bccfd84ff90253922983b1f9a492",
+      "yunet_sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4"
+    },
+    "head_checkpoints": {
+      "vision": {
+        "sha256": "9882939db93780c96481f978cc93ace61a80d52a3c63465ae551cb8ace23a465",
+        "architecture": "mlp",
+        "parameters": 181255
+      },
+      "text": {
+        "sha256": "8c9eb533e4c9419935a1085a9c8799025fa760542ba010f563236f1e0578ca63",
+        "architecture": "linear",
+        "parameters": 7175
+      },
+      "fusion": {
+        "sha256": "3f126c4e1033fcec4cb57641fcbcd2a83798bb5f39d118861fc671207df9c0ea",
+        "architecture": "mlp",
+        "parameters": 312711
+      }
+    },
+    "generator": {
+      "artifact": "Qwen_Qwen3-4B-Instruct-2507-Q5_K_M.gguf",
+      "sha256": "66713ce35a58a82fe87642d4ec13425bf9b9a46800fff5c49a665ef5701439dc",
+      "llama_revision": "b11146",
+      "server_binary_sha256": "7b886298b688509ced3e92b420edd57dd3d665da72c1fc207d7a537be5870352",
+      "base_url": "http://127.0.0.1:8081",
+      "sampler": "Unchanged LocalGenerator.stream implementation; no seed override"
+    },
+    "system_prompt_sha256": "f58357075ccb24a80feff71cc7891bb0518fbdec2a169d0b8a8e381c10a8f844",
+    "source_sha256": {
+      "interaction_backtest.py": "bf250f7d49fc0f5b11baf2b8c917962aa2a50536e086f2765f1099387ef6f676",
+      "pipeline.py": "492e69ac7acb231871c1c48edb8895bc00acf42ae905f3f6205112fa693f641f",
+      "generator.py": "c5144439a631d295116fefe49ddbe60a810533069eb021a57c76a08f29e605e5",
+      "schema.py": "88bdf5af3f87354137296872d4a16e0d13ca2168cb7d80f9c6e3ab1f0db33900",
+      "models.py": "31a3b73ec426e4da574c42806443476df2454578f1ac7a176a96b5fed5ad8f7d"
+    }
+  },
+  "sessions": [
+    {
+      "session_id": "interaction-dev-01",
+      "mode": "missing_vision",
+      "turns": [
+        {
+          "turn_id": "1",
+          "role": "user",
+          "input_kind": "real_dev_pair",
+          "text": "Or! Or, we could go to the bank, close our accounts and cut them off at the source.",
+          "text_source_id": "dev:1:0",
+          "video_source_id": "dev:1:0",
+          "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia1_utt0.mp4",
+          "media_sha256": "18319bfdd5cf78016df0fe64b23aacf8291d17735b40616cc601238fdd816c2d",
+          "expected_source": "fusion",
+          "true_emotion_label": null,
+          "history_roles": []
+        },
+        {
+          "turn_id": "2",
+          "role": "user",
+          "input_kind": "authored_followup_no_video",
+          "text": "I want to talk a little more about how that felt.",
+          "text_source_id": null,
+          "video_source_id": null,
+          "video_path": null,
+          "media_sha256": null,
+          "expected_source": "text_fallback",
+          "true_emotion_label": null,
+          "history_roles": [
+            "user",
+            "assistant"
+          ]
+        }
+      ]
+    },
+    {
+      "session_id": "interaction-dev-02",
+      "mode": "missing_vision",
+      "turns": [
+        {
+          "turn_id": "1",
+          "role": "user",
+          "input_kind": "real_dev_pair",
+          "text": "On the touchy.",
+          "text_source_id": "dev:1:8",
+          "video_source_id": "dev:1:8",
+          "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia1_utt8.mp4",
+          "media_sha256": "49aabb722e0b8f66a83105aecfdca6cc30478eaf07dc58c801ca822176be2473",
+          "expected_source": "fusion",
+          "true_emotion_label": null,
+          "history_roles": []
+        },
+        {
+          "turn_id": "2",
+          "role": "user",
+          "input_kind": "authored_followup_no_video",
+          "text": "I am still sorting out my feelings. Could we slow down and talk about them?",
+          "text_source_id": null,
+          "video_source_id": null,
+          "video_path": null,
+          "media_sha256": null,
+          "expected_source": "text_fallback",
+          "true_emotion_label": null,
+          "history_roles": [
+            "user",
+            "assistant"
+          ]
+        }
+      ]
+    },
+    {
+      "session_id": "interaction-dev-03",
+      "mode": "fresh_real_pair",
+      "turns": [
+        {
+          "turn_id": "1",
+          "role": "user",
+          "input_kind": "real_dev_pair",
+          "text": "And",
+          "text_source_id": "dev:1:9",
+          "video_source_id": "dev:1:9",
+          "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia1_utt9.mp4",
+          "media_sha256": "d96faa8215e734e6b266b6448458d0d5ddcaf513ecb1b19c10f1d7cd0353329b",
+          "expected_source": "fusion",
+          "true_emotion_label": null,
+          "history_roles": []
+        },
+        {
+          "turn_id": "2",
+          "role": "user",
+          "input_kind": "fresh_real_dev_pair",
+          "text": "Oh well, no harm, no foul.",
+          "text_source_id": "dev:2:5",
+          "video_source_id": "dev:2:5",
+          "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia2_utt5.mp4",
+          "media_sha256": "500fd8ae0701804f35708407ba089a77ddd714097a6a2f650c695055675d4f81",
+          "expected_source": "fusion",
+          "true_emotion_label": null,
+          "history_roles": [
+            "user",
+            "assistant"
+          ]
+        }
+      ]
+    },
+    {
+      "session_id": "interaction-dev-04",
+      "mode": "fresh_real_pair",
+      "turns": [
+        {
+          "turn_id": "1",
+          "role": "user",
+          "input_kind": "real_dev_pair",
+          "text": "What are you talkin’ about? I never left you! You’ve always been my agent!",
+          "text_source_id": "dev:2:2",
+          "video_source_id": "dev:2:2",
+          "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia2_utt2.mp4",
+          "media_sha256": "2615f40cd2d07854377f5db61c43a22c2e61a60480da5a9165300b2e2badc482",
+          "expected_source": "fusion",
+          "true_emotion_label": null,
+          "history_roles": []
+        },
+        {
+          "turn_id": "2",
+          "role": "user",
+          "input_kind": "fresh_real_dev_pair",
+          "text": "Oh-oh, you’re-you’re fellow scholars.",
+          "text_source_id": "dev:4:2",
+          "video_source_id": "dev:4:2",
+          "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia4_utt2.mp4",
+          "media_sha256": "b8c1cb615880fa7b8b3d260557f77d37e729cb7e31dccd26956d2b9f2b25e286",
+          "expected_source": "fusion",
+          "true_emotion_label": null,
+          "history_roles": [
+            "user",
+            "assistant"
+          ]
+        }
+      ]
+    },
+    {
+      "session_id": "interaction-dev-05",
+      "mode": "synthetic_mismatch",
+      "turns": [
+        {
+          "turn_id": "1",
+          "role": "user",
+          "input_kind": "real_dev_pair",
+          "text": "Really?!",
+          "text_source_id": "dev:2:3",
+          "video_source_id": "dev:2:3",
+          "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia2_utt3.mp4",
+          "media_sha256": "64d73664534674c680db987c0dcb6549004d00db20e8f615a9a076eb6f7784c3",
+          "expected_source": "fusion",
+          "true_emotion_label": null,
+          "history_roles": []
+        },
+        {
+          "turn_id": "2",
+          "role": "user",
+          "input_kind": "synthetic_mismatched_dev_text_and_video",
+          "text": "What exactly were you looking for, hmm?",
+          "text_source_id": "dev:4:3",
+          "video_source_id": "dev:4:8",
+          "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia4_utt8.mp4",
+          "media_sha256": "8e475aa3a627ae97e9b175a7383b780eee899b37bf2d4e3f7d033a25053025f2",
+          "expected_source": "fusion",
+          "true_emotion_label": null,
+          "history_roles": [
+            "user",
+            "assistant"
+          ]
+        }
+      ]
+    },
+    {
+      "session_id": "interaction-dev-06",
+      "mode": "synthetic_mismatch",
+      "turns": [
+        {
+          "turn_id": "1",
+          "role": "user",
+          "input_kind": "real_dev_pair",
+          "text": "Yeah!",
+          "text_source_id": "dev:2:4",
+          "video_source_id": "dev:2:4",
+          "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia2_utt4.mp4",
+          "media_sha256": "d28a48cf387c2aa30659cbe63715f3db52cb69069340defbd1d15757614c4297",
+          "expected_source": "fusion",
+          "true_emotion_label": null,
+          "history_roles": []
+        },
+        {
+          "turn_id": "2",
+          "role": "user",
+          "input_kind": "synthetic_mismatched_dev_text_and_video",
+          "text": "Uh, actually I find Marion’s views far too progressionist.",
+          "text_source_id": "dev:4:7",
+          "video_source_id": "dev:4:10",
+          "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia4_utt10.mp4",
+          "media_sha256": "5b49a7f7e57dc014d0cf6a918f107ee17ea4e055230873b90f0d8b8565a033bc",
+          "expected_source": "fusion",
+          "true_emotion_label": null,
+          "history_roles": [
+            "user",
+            "assistant"
+          ]
+        }
+      ]
+    }
+  ],
+  "selection": "First twelve distinct cached-eligible development clips in manifest order; no prediction or label selection.",
+  "history_protocol": "Reset to an empty list for each session. Turn two receives exactly the first user message and its actual completed assistant response. Prior messages never cross sessions.",
+  "checks": [
+    "event and state IDs",
+    "validated state schema",
+    "one completed nonempty response per turn",
+    "state before text and one done event",
+    "streamed text equals final response",
+    "expected fusion/text fallback",
+    "fresh or absent second-turn media",
+    "declared history roles",
+    "finite backend timings"
+  ],
+  "scope": "Full local pipeline interaction and modality transitions. No browser, capture, therapeutic-quality, or emotion-accuracy score.",
+  "input_notes": "MELD turns are replay fragments, not a newly recorded coherent human conversation. Authored follow-ups and synthetic mismatches have no ground-truth emotion label. Real-pair reference labels are intentionally not passed or scored.",
+  "run_policy": "No hidden warmup, sampler override, automatic retry, or result overwrite. First-turn model loading remains visible. A fresh declared directory is required for another attempt.",
+  "protocol_identity": "91017c8ed303c626120dcfb3a75bb5135212cb032bbc9de1b66ec6c9b28f7409",
+  "created_at": "2026-09-25T05:38:12.498567+00:00"
+}

@@ -1,0 +1,17 @@
+{
+  "recorded_at": "2026-09-25T05:39:12.086450+00:00",
+  "benchmark_sha256": "b5327a7994a0ce396c5dd511869f7106368e1d582d8e4b4fbe9f6ea947b948b9",
+  "artifact_timestamp_utc": "2026-09-25T05:36:37.345855+00:00",
+  "checkpoint_sha256": {
+    "vision": "9882939db93780c96481f978cc93ace61a80d52a3c63465ae551cb8ace23a465",
+    "text": "8c9eb533e4c9419935a1085a9c8799025fa760542ba010f563236f1e0578ca63",
+    "fusion": "3f126c4e1033fcec4cb57641fcbcd2a83798bb5f39d118861fc671207df9c0ea"
+  },
+  "source_sha256": {
+    "cli.py": "d696df6bba581cc4579c8f57eec0b791dd725cc8e36c1936c5e4984f1dd25ca5",
+    "pipeline.py": "492e69ac7acb231871c1c48edb8895bc00acf42ae905f3f6205112fa693f641f",
+    "generator.py": "c5144439a631d295116fefe49ddbe60a810533069eb021a57c76a08f29e605e5",
+    "models.py": "31a3b73ec426e4da574c42806443476df2454578f1ac7a176a96b5fed5ad8f7d"
+  },
+  "scope": "Actual updated stack; 30 fusion + 10 fallback measured turns after three excluded warmup turns. App stopped during benchmark; existing local Qwen server remained running. Capture/upload/browser excluded. No attribution of speed changes to a particular code change."
+}
