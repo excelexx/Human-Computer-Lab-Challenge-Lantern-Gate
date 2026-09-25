@@ -1,0 +1,15 @@
+{
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.10",
+  "torch": "2.8.0+cu126",
+  "cuda_available": true,
+  "ram_total_gib": 31.102954864501953,
+  "home": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime",
+  "cpu": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+  "physical_cpu_cores": 8,
+  "logical_cpu_cores": 16,
+  "torch_cuda_runtime": "12.6",
+  "nvidia_driver": "610.60",
+  "gpu": "NVIDIA GeForce RTX 3080",
+  "vram_mib": 10239.5
+}

@@ -1,0 +1,25 @@
+{
+  "method": "Actual browser interaction on localhost:7860 using agent-authored test messages, with no selected video after New conversation.",
+  "is_user_personal_data": false,
+  "turns": [
+    {
+      "input": "Today was exhausting. I finished a big project, but I still feel tense and want to unwind.",
+      "displayed_emotion": "joy",
+      "displayed_evidence_note": "Based on your words; a usable face was not available. This interpretation can be wrong.",
+      "response": "Finished a big project — that takes strength. How have you been trying to unwind?"
+    },
+    {
+      "input": "Mostly staring at my phone. I'd like something simple to help me slow down.",
+      "displayed_emotion": "neutral",
+      "displayed_evidence_note": "Based on your words; a usable face was not available. This interpretation can be wrong.",
+      "response": "Staring at your phone is a quiet way to ground yourself. Would you like to try a simple breath-focused pause instead?"
+    }
+  ],
+  "observations": [
+    "Both turns completed and appeared together in the same conversation.",
+    "New conversation cleared prior messages, selected media, and emotion state.",
+    "The joy tag does not reflect the explicitly stated tension and exhaustion well; no ground-truth dataset label is available for these constructed messages.",
+    "The second response offers a pause but makes an unsupported generalization that staring at a phone is grounding.",
+    "This verifies software interaction, not clinical effectiveness or reliable emotion interpretation."
+  ]
+}

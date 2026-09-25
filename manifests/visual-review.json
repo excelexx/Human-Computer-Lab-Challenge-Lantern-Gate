@@ -1,0 +1,25 @@
+{
+  "reviewer": "Codex visual inspection, not a human annotation study",
+  "scope": "Twelve convenience samples from the first 64 training utterances; eight-frame contact sheets inspected visually.",
+  "sampling": "Convenience sample spanning accepted, multiple-face and track-change outcomes; not representative of MELD.",
+  "reviewed_count": 12,
+  "accepted_count": 7,
+  "rejected_count": 5,
+  "speaker_identity_verified": false,
+  "emotion_ground_truth_verified": false,
+  "rows": [
+    {"id":"train:0:0","available":false,"observation":"Two visible faces; rejection is consistent with the single-face rule."},
+    {"id":"train:0:1","available":true,"observation":"One detected frontal face remains in view; another person's back is visible."},
+    {"id":"train:0:10","available":true,"observation":"One detected face remains in view with changing expression."},
+    {"id":"train:0:12","available":false,"observation":"View changes from one face to multiple faces; rejection is consistent with the rule."},
+    {"id":"train:0:2","available":false,"observation":"A shot change replaces the selected face; track-change rejection is appropriate."},
+    {"id":"train:0:4","available":true,"observation":"One face remains visible while its pose and expression change."},
+    {"id":"train:1:0","available":true,"observation":"One face remains visible through the sampled frames."},
+    {"id":"train:1:3","available":true,"observation":"One frontal face is detected; a second person's back is visible. Speaker attribution remains uncertain."},
+    {"id":"train:2:6","available":false,"observation":"Several foreground/background faces and a shot change; conservative rejection is consistent."},
+    {"id":"train:3:2","available":true,"observation":"One clear face remains visible in a short clip."},
+    {"id":"train:4:5","available":true,"observation":"Partially occluded face during an embrace; only two unique frame positions repeat across eight samples. Accepted by the current rule but provides limited evidence."},
+    {"id":"train:5:0","available":false,"observation":"Shot change replaces the selected face; track-change rejection is appropriate."}
+  ],
+  "conclusion": "Face boxes and rejection reasons looked plausible in this small sample. This does not validate speaker assignment or utterance emotion labels. Repeated frames in extremely short clips and partially occluded accepted faces remain limitations. No thresholds were changed based on this inspection."
+}

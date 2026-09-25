@@ -1,0 +1,8 @@
+............................                                             [100%]
+============================== warnings summary ===============================
+tests/test_ui.py::test_http_routes_serve_the_full_local_app
+  C:\Users\zdfzd\Documents\Codex\2026-09-24\ml-challenge-real-time-multimodal-ml\work\venv\Lib\site-packages\starlette\testclient.py:45: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+28 passed, 1 warning in 5.92s

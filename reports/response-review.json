@@ -1,0 +1,505 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-25T04:55:32.089002+00:00",
+  "reviewer": {
+    "type": "AI reviewer",
+    "description": "Independent qualitative review of saved outputs by the collaborating coding agent; not a human panel or clinical reviewer."
+  },
+  "review_method": {
+    "selection": "First ten fusion-path samples in the latest saved benchmark.json, preserving manifest order and every selected response. No cherry-picking or rewriting.",
+    "sample_count": 10,
+    "source_text": "Exact utterance text joined by split-aware MELD ID from the prepared manifest.",
+    "generation_context": "The benchmark supplies an empty history to each replay. These are isolated television-dialogue fragments, not live personal check-ins.",
+    "video_reviewed": false,
+    "no_quality_score_assigned": true,
+    "scope": "Grounding, unsupported assumptions, usefulness of follow-up, and relation to the reported emotion evidence. The seven-class MELD label is an annotation reference, not certain knowledge of anyone's feelings."
+  },
+  "sources": {
+    "benchmark": {
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\reports\\benchmark.json",
+      "sha256": "babd3377ce6640936ebb9c799b33133b5c5edd717c56e5c6f5789a98b40d6464"
+    },
+    "evaluation_test": {
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\reports\\evaluation-test.json",
+      "sha256": "ffc0a9336395fd95cc7440fa3764993868dea6d19b1bdef362b434c20959a7d8"
+    },
+    "ablation_dev": {
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\reports\\ablation-dev.json",
+      "sha256": "8bde7cd91905f08fab885d2fc94071b588c97310629e44fd1925f8b38a7cb7d7"
+    },
+    "parameter_audit": {
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\reports\\parameters.json",
+      "sha256": "71bc6471556b0ba8369ecdf316b778cc83451e3f463670c08589113a9524948c"
+    },
+    "meld_manifest": {
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\manifests\\meld.jsonl",
+      "sha256": "f57541dd17861cca7172120b361873ac7b6babe7255edfdb618cc3073cd927ab"
+    },
+    "model_manifest": {
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\outputs\\checkin\\manifests\\models.json",
+      "sha256": "5da3c3eacca065d1b833d66b0e305b4bafe363205b6a45fe18a709abb2d72c81"
+    },
+    "architecture_counts": {
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\outputs\\checkin\\manifests\\architecture-counts.json",
+      "sha256": "78ee46c2c3226b63fda3b7707e4cc60b4422d6650cf9635f28a66c8aff3c050e"
+    },
+    "generator_source_at_review": {
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\outputs\\checkin\\src\\checkin\\generator.py",
+      "sha256": "418d36eba9112e81663683f7cd31daab449ddadd54d3293adf7deecfc63f8a36"
+    },
+    "pipeline_source_at_review": {
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\outputs\\checkin\\src\\checkin\\pipeline.py",
+      "sha256": "d791e4dcc58e37ead3d578bb6861b27e305ca4366ab71bbf086163eb695729e8"
+    }
+  },
+  "provenance_limit": "Current generator and pipeline source hashes are recorded for this review. The benchmark does not itself record a generation-time source/prompt hash, so these hashes do not prove which exact source snapshot created the saved replies.",
+  "items": [
+    {
+      "review_order": 1,
+      "id": "test:1:1",
+      "input_text": "Push!",
+      "response_text": "Pushing? What’s that about?",
+      "meld_reference_label": "joy",
+      "predicted_emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.5942382216453552,
+          "surprise": 0.026726009324193,
+          "fear": 0.02447420172393322,
+          "sadness": 0.07179680466651917,
+          "joy": 0.01974623277783394,
+          "disgust": 0.06405404210090637,
+          "anger": 0.19896438717842102
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "vision_availability": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9295385926961899,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 0.6673328152177936,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "review": {
+        "strengths": [
+          "Briefly echoes the actual word and asks for context instead of inventing a scene."
+        ],
+        "grounding_flaws": [],
+        "emotion_conditioning_observation": "The output asks for clarification and does not present the neutral prediction as certain. The MELD reference is joy; this isolated fragment is insufficient to judge its emotional context from text alone.",
+        "follow_up_observation": "An open clarification is appropriate for such a short fragment."
+      }
+    },
+    {
+      "review_order": 2,
+      "id": "test:2:5",
+      "input_text": "Oh okay, lift it straight up over your head!",
+      "response_text": "Got it—lifting straight up over your head! Was that part of a workout or a fun challenge?",
+      "meld_reference_label": "anger",
+      "predicted_emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.3419590890407562,
+          "surprise": 0.23670722544193268,
+          "fear": 0.029726330190896988,
+          "sadness": 0.015426184982061386,
+          "joy": 0.1443648785352707,
+          "disgust": 0.01723434403538704,
+          "anger": 0.2145819365978241
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "vision_availability": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9351608902215958,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.085415047555605,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "review": {
+        "strengths": [
+          "References the actual lifting instruction and asks one follow-up question."
+        ],
+        "grounding_flaws": [
+          "Introduces a workout or fun challenge as possible context without support from the provided utterance. These are questions rather than assertions, but they narrow the interpretation toward an invented, playful setting.",
+          "The opening sounds like acknowledgement of a lifting instruction to the assistant rather than reflection on a reported experience."
+        ],
+        "emotion_conditioning_observation": "The predicted neutral tag differs from MELD anger. The cheerful framing does not reflect that reference context; no video interpretation was made during this review.",
+        "follow_up_observation": "A neutral request for what was happening would avoid the unsupported candidate scenarios."
+      }
+    },
+    {
+      "review_order": 3,
+      "id": "test:3:0",
+      "input_text": "Oh, okay, I get it.",
+      "response_text": "I'm glad we cleared that up. Was there something specific you were trying to understand?",
+      "meld_reference_label": "neutral",
+      "predicted_emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.24486801028251648,
+          "surprise": 0.1364518404006958,
+          "fear": 0.07874297350645065,
+          "sadness": 0.13540656864643097,
+          "joy": 0.1813918799161911,
+          "disgust": 0.15259595215320587,
+          "anger": 0.07054267823696136
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "vision_availability": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9261752888560295,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.001998445653381,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "review": {
+        "strengths": [
+          "Acknowledges that the person says they understand and keeps the response short."
+        ],
+        "grounding_flaws": [
+          "Says we cleared that up although this benchmark supplied no earlier conversation establishing a shared explanation."
+        ],
+        "emotion_conditioning_observation": "Neutral prediction matches the MELD reference, but this does not validate the invented shared conversational history.",
+        "follow_up_observation": "The question seeks context, though the opening should not imply an earlier explanation by the assistant."
+      }
+    },
+    {
+      "review_order": 4,
+      "id": "test:4:2",
+      "input_text": "It kicked! I think the baby kicked!",
+      "response_text": "That's so exciting — congratulations on feeling the baby move! Did you know where it kicked exactly?",
+      "meld_reference_label": "surprise",
+      "predicted_emotion": {
+        "label": "anger",
+        "probabilities": {
+          "neutral": 0.00932325143367052,
+          "surprise": 0.3215307891368866,
+          "fear": 0.04505356028676033,
+          "sadness": 0.028202427551150322,
+          "joy": 0.19185812771320343,
+          "disgust": 0.06388109922409058,
+          "anger": 0.34015071392059326
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "vision_availability": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9192245826125145,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 1.5014988342400355,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "review": {
+        "strengths": [
+          "Grounds the topic in the baby moving and avoids telling the user they are angry."
+        ],
+        "grounding_flaws": [
+          "Assumes the event is exciting and welcome and congratulates the person without confirmation.",
+          "The question about the exact location of the kick is not a clear reflective follow-up about the user's experience."
+        ],
+        "emotion_conditioning_observation": "Preserved classifier failure: final anger differs from MELD surprise. Anger score is approximately .340 and surprise approximately .322, so even the classifier margin is small. The generator appears to prioritize the message over the wrong tag, but this single output cannot establish causal use or non-use of the emotion evidence.",
+        "follow_up_observation": "A question about how the moment felt would leave room for surprise, concern or mixed feelings."
+      }
+    },
+    {
+      "review_order": 5,
+      "id": "test:4:7",
+      "input_text": "Look, I know I feel asleep before I could shower and now I don’t have time!",
+      "response_text": "I hear you — starting your day without a shower must feel really frustrating. Did you at least get a quick rinse or something to feel cleaner?",
+      "meld_reference_label": "anger",
+      "predicted_emotion": {
+        "label": "sadness",
+        "probabilities": {
+          "neutral": 0.12297846376895905,
+          "surprise": 0.043267957866191864,
+          "fear": 0.19450363516807556,
+          "sadness": 0.3197397291660309,
+          "joy": 0.06014338880777359,
+          "disgust": 0.04075426608324051,
+          "anger": 0.21861256659030914
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "vision_availability": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9258656948804855,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.752747862773399,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "review": {
+        "strengths": [
+          "Connects the reply to missing a shower and a lack of time.",
+          "Acknowledges likely frustration rather than announcing the predicted sadness label."
+        ],
+        "grounding_flaws": [
+          "Adds starting your day even though the utterance does not explicitly establish the time of day.",
+          "Must feel really frustrating states an interpretation confidently rather than leaving room for the person's account."
+        ],
+        "emotion_conditioning_observation": "Predicted sadness differs from MELD anger. The generated wording is plausibly responsive to the text, but that does not repair the structured tag.",
+        "follow_up_observation": "Asking whether they got a rinse relates to the event but gives limited attention to the stated lack of time."
+      }
+    },
+    {
+      "review_order": 6,
+      "id": "test:5:2",
+      "input_text": "Hi.",
+      "response_text": "Hi! It's good to connect. How's your day going so far?",
+      "meld_reference_label": "neutral",
+      "predicted_emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.5496122241020203,
+          "surprise": 0.01635684259235859,
+          "fear": 0.004616650752723217,
+          "sadness": 0.005589121952652931,
+          "joy": 0.41386908292770386,
+          "disgust": 0.005119066219776869,
+          "anger": 0.004837025888264179
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "vision_availability": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9221064299345016,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 1.251249028533363,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "review": {
+        "strengths": [
+          "Responds directly to the greeting and opens a daily check-in without inventing events.",
+          "Uses a concise, natural follow-up."
+        ],
+        "grounding_flaws": [],
+        "emotion_conditioning_observation": "Neutral prediction matches the reference. The generic greeting does not reveal whether the emotion state affected generation.",
+        "follow_up_observation": "The day-oriented question fits the companion framing."
+      }
+    },
+    {
+      "review_order": 7,
+      "id": "test:5:6",
+      "input_text": "I talk in my sleep.",
+      "response_text": "That's interesting — do you remember what you're saying in your sleep? It’s pretty unique, and sometimes those dreams can be surprisingly vivid.",
+      "meld_reference_label": "neutral",
+      "predicted_emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.3911844491958618,
+          "surprise": 0.05956621840596199,
+          "fear": 0.1094457134604454,
+          "sadness": 0.08439922332763672,
+          "joy": 0.16433213651180267,
+          "disgust": 0.10461434721946716,
+          "anger": 0.08645797520875931
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "vision_availability": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.8931529596447945,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 1.5014988342400355,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "review": {
+        "strengths": [
+          "Acknowledges the stated sleep-talking and asks a related question."
+        ],
+        "grounding_flaws": [
+          "Calls sleep-talking pretty unique without evidence.",
+          "Introduces dreams and their vividness even though the person reported sleep-talking, not dreams."
+        ],
+        "emotion_conditioning_observation": "Neutral prediction matches the reference, but unsupported elaboration remains a generation-grounding failure.",
+        "follow_up_observation": "A question about how the person learned of the sleep-talking or how they feel about it would be more tightly grounded."
+      }
+    },
+    {
+      "review_order": 8,
+      "id": "test:5:8",
+      "input_text": "So why don’t you give me your number?",
+      "response_text": "I'm not sure I understand what you're asking. Could you clarify what you'd like me to do or share?",
+      "meld_reference_label": "neutral",
+      "predicted_emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.3777884840965271,
+          "surprise": 0.06687283515930176,
+          "fear": 0.05486129969358444,
+          "sadness": 0.045216891914606094,
+          "joy": 0.2523462772369385,
+          "disgust": 0.060534048825502396,
+          "anger": 0.14238028228282928
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "vision_availability": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 0.875,
+        "mean_detection_score": 0.8740100179399762,
+        "sampled_frames": 8,
+        "selected_frames": 7,
+        "duration_seconds": 2.2522482513600535,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "review": {
+        "strengths": [
+          "Does not fabricate a telephone number or personal contact details."
+        ],
+        "grounding_flaws": [
+          "Treats an explicit request for a number as vague or incomprehensible. The question is clear even if the surrounding social context is missing."
+        ],
+        "emotion_conditioning_observation": "The neutral label matches the reference; the main failure is conversational understanding, not label mismatch.",
+        "follow_up_observation": "The reply could directly address the request and explain the companion's contact limitations without claiming not to understand it."
+      }
+    },
+    {
+      "review_order": 9,
+      "id": "test:6:1",
+      "input_text": "I don’t know exactly. It’s-it’s sorta like wrestling.",
+      "response_text": "It sounds like it’s a tough situation—wrestling with something really hard, huh? Is there a specific thing you’re trying to work through right now?",
+      "meld_reference_label": "neutral",
+      "predicted_emotion": {
+        "label": "sadness",
+        "probabilities": {
+          "neutral": 0.302930623292923,
+          "surprise": 0.049045443534851074,
+          "fear": 0.11014997214078903,
+          "sadness": 0.3570358157157898,
+          "joy": 0.05273640155792236,
+          "disgust": 0.0610399954020977,
+          "anger": 0.06706172972917557
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "vision_availability": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.8911188095808029,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.5859146589689503,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "review": {
+        "strengths": [
+          "Uses the actual wrestling comparison and asks for more detail."
+        ],
+        "grounding_flaws": [
+          "Assumes the ambiguous comparison means emotional difficulty and a tough situation. It could instead refer to an activity or another literal comparison."
+        ],
+        "emotion_conditioning_observation": "Predicted sadness differs from MELD neutral. The response is consistent with that sadness framing, but a controlled generation comparison would be needed to attribute the assumption to the tag.",
+        "follow_up_observation": "Clarifying what is like wrestling would avoid building an unsupported distress narrative."
+      }
+    },
+    {
+      "review_order": 10,
+      "id": "test:6:2",
+      "input_text": "Oh?!",
+      "response_text": "Oh really? What surprised you?",
+      "meld_reference_label": "surprise",
+      "predicted_emotion": {
+        "label": "surprise",
+        "probabilities": {
+          "neutral": 0.08422314375638962,
+          "surprise": 0.5653355121612549,
+          "fear": 0.03588438034057617,
+          "sadness": 0.11141415685415268,
+          "joy": 0.02928760088980198,
+          "disgust": 0.040192220360040665,
+          "anger": 0.13366293907165527
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "vision_availability": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9244418665766716,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.2522482513600535,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      },
+      "review": {
+        "strengths": [
+          "Gives a brief clarification closely related to the surprised interjection.",
+          "Avoids inventing the event that caused the reaction."
+        ],
+        "grounding_flaws": [],
+        "emotion_conditioning_observation": "Surprise matches the MELD reference and is plausible from the interjection. This example alone cannot separate text influence from emotion-state influence.",
+        "follow_up_observation": "The follow-up is relevant and leaves the event unspecified."
+      }
+    }
+  ],
+  "qualitative_summary": {
+    "strengths": [
+      "The selected replies are short, generally use one question, and often repeat a relevant detail from the message.",
+      "Greeting and very brief surprise/command fragments can elicit useful clarification without an invented event.",
+      "The baby-kick response does not blindly accuse the person of anger despite the incorrect structured tag."
+    ],
+    "persistent_failures": [
+      "Unsupported context: workout/fun challenge, shared prior explanation, vivid dreams, morning routine, and distress inferred from wrestling.",
+      "Unconfirmed positive emotion: the baby-kick reply assumes excitement and welcome news.",
+      "Conversational misunderstanding: the direct phone-number request receives a vague request for clarification.",
+      "Structured prediction errors remain visible even when a response sounds conversationally plausible."
+    ],
+    "emotion_conditioning_limit": "Source inspection confirms that generation receives the fused label, class scores, available modality diagnostics and the user message. These ten replies do not establish that changing only the emotion evidence reliably changes responses. The dev ablation evaluates classifier sensitivity, not generator conditioning.",
+    "clinical_limit": "This review makes no claim of therapeutic effectiveness, clinical validity, diagnostic accuracy, or general safety."
+  },
+  "parameter_cap_check": {
+    "audit_status": "verified",
+    "sum_of_all_registered_runtime_components": 4464870303,
+    "limit": 6000000000,
+    "within_limit": true,
+    "remaining": 1535129697,
+    "inventory_sources_agree": true,
+    "all_required_artifact_and_head_checks_verified": true,
+    "nonlearned_detector_constants_conservatively_included": 17,
+    "note": "Quantization does not reduce learned counts; tied generator embeddings are counted once. This is a verified inventory upper bound, not a quality score."
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "split_counts": {
+    "train": 9989,
+    "dev": 1109,
+    "test": 2610
+  },
+  "missing_media": [
+    "dev:110:7"
+  ],
+  "archive_sha256": "a56b4407d574195cbce470d86f9c9d72fcfea59b0e34502ecd4babee4a5c613e",
+  "cross_split_exact_media_duplicates": [
+    {
+      "sha256": "022c0e69112ec9f0c35c23c118c54005cebc85f539ca68638d8eff01f1f7491c",
+      "ids": [
+        "test:117:8",
+        "train:887:0"
+      ],
+      "splits": [
+        "test",
+        "train"
+      ]
+    },
+    {
+      "sha256": "06662e6283a4458ce49ef3fec273924585e6b05246d07a9d2f9db0300dc78c9d",
+      "ids": [
+        "test:85:1",
+        "train:12:8"
+      ],
+      "splits": [
+        "test",
+        "train"
+      ]
+    },
+    {
+      "sha256": "18b97c376b71ae9921f3e3f74b779cef80ac39366fee6d98a1420cf3ee445ad7",
+      "ids": [
+        "test:85:0",
+        "train:12:7"
+      ],
+      "splits": [
+        "test",
+        "train"
+      ]
+    }
+  ],
+  "annotation_provenance": {
+    "train": {
+      "revision": "e8cedf27b5d2877e198332c957127e16eb214afe",
+      "url": "https://raw.githubusercontent.com/declare-lab/MELD/e8cedf27b5d2877e198332c957127e16eb214afe/data/MELD/train_sent_emo.csv",
+      "sha256": "d2fa2d6529cf03cac2989efec05c9b27d8fd2f4c8fc5974c7ae88aa537fa02db",
+      "rows": 9989
+    },
+    "dev": {
+      "revision": "e8cedf27b5d2877e198332c957127e16eb214afe",
+      "url": "https://raw.githubusercontent.com/declare-lab/MELD/e8cedf27b5d2877e198332c957127e16eb214afe/data/MELD/dev_sent_emo.csv",
+      "sha256": "2e89c6f8aa182d6f62f8c6331aece905ac7273ca4999660bfb5213e1d0370c1c",
+      "rows": 1109
+    },
+    "test": {
+      "revision": "e8cedf27b5d2877e198332c957127e16eb214afe",
+      "url": "https://raw.githubusercontent.com/declare-lab/MELD/e8cedf27b5d2877e198332c957127e16eb214afe/data/MELD/test_sent_emo.csv",
+      "sha256": "8d37103938f7067600839fe29d5a114a6cd1bcdafb75bec101e06464c5006888",
+      "rows": 2610
+    }
+  }
+}

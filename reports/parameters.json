@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-25T04:40:21.515747+00:00",
+  "status": "verified",
+  "within_parameter_limit": true,
+  "parameter_limit": 6000000000,
+  "total_parameter_upper_bound": 4464870303,
+  "remaining_parameter_budget": 1535129697,
+  "learned_head_parameters": 626069,
+  "components": [
+    {
+      "name": "YuNet face detector",
+      "parameters": 53121,
+      "count_kind": "conservative upper bound",
+      "nonlearned_values_included": 17,
+      "license": "MIT",
+      "revision": "f12e12798e8314f7c074a6656816c048dcc95b7a",
+      "source": "https://github.com/opencv/opencv_zoo/tree/f12e12798e8314f7c074a6656816c048dcc95b7a/models/face_detection_yunet",
+      "count_evidence": "Sum of ONNX initializer elements; includes 17 nonlearned values."
+    },
+    {
+      "name": "EmotiEffLib AffectNet EfficientNet-B2 including original FER head",
+      "parameters": 7710857,
+      "count_kind": "exact",
+      "license": "Apache-2.0 repository; document AffectNet data terms separately",
+      "revision": "520a051c64cd191521e5934655314e769a319684",
+      "source": "https://github.com/sb-ai-lab/EmotiEffLib/tree/520a051c64cd191521e5934655314e769a319684",
+      "count_evidence": "Loaded pinned author's module and counted unique learned parameters, retaining original classifier."
+    },
+    {
+      "name": "DeBERTa-v3-large text encoder",
+      "parameters": 434012160,
+      "count_kind": "exact",
+      "license": "MIT",
+      "model_id": "microsoft/deberta-v3-large",
+      "revision": "64a8c8eab3e352a784c658aef62be1662607476f",
+      "source": "https://huggingface.co/microsoft/deberta-v3-large/tree/64a8c8eab3e352a784c658aef62be1662607476f",
+      "count_evidence": "Instantiated AutoModel encoder; excludes pretraining-only heads unused by local inference."
+    },
+    {
+      "name": "MELD vision head",
+      "parameters": 181255,
+      "count_kind": "exact architecture",
+      "source": "src/checkin/models.py",
+      "architecture": "1408 -> 128 -> 7",
+      "local_count_status": "verified"
+    },
+    {
+      "name": "MELD text head",
+      "parameters": 132103,
+      "count_kind": "exact architecture",
+      "source": "src/checkin/models.py",
+      "architecture": "1024 -> 128 -> 7",
+      "local_count_status": "verified"
+    },
+    {
+      "name": "MELD fusion head",
+      "parameters": 312711,
+      "count_kind": "exact architecture",
+      "source": "src/checkin/models.py",
+      "architecture": "2435 -> 128 -> 7",
+      "local_count_status": "verified"
+    },
+    {
+      "name": "Qwen3-4B-Instruct-2507",
+      "parameters": 4022468096,
+      "count_kind": "exact",
+      "license": "Apache-2.0",
+      "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "source": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507/blob/cdbee75f17c01a7cc42f958dc650907174af0554/config.json",
+      "count_evidence": "Config reconstruction and original safetensors metadata agree; tied embeddings counted once. Q5 preserves this learned count.",
+      "quantized_by": "bartowski",
+      "quantization_revision": "ae44f08e1392f39c0e474af10c3ff8355c8b6688",
+      "quantization_source": "https://huggingface.co/bartowski/Qwen_Qwen3-4B-Instruct-2507-GGUF/blob/ae44f08e1392f39c0e474af10c3ff8355c8b6688/README.md"
+    }
+  ],
+  "artifact_checks": [
+    {
+      "name": "yunet",
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\models\\vision\\yunet.onnx",
+      "expected_sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4",
+      "actual_sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4",
+      "status": "verified"
+    },
+    {
+      "name": "affectnet_efficientnet_b2",
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\models\\vision\\enet_b2_7.pt",
+      "expected_sha256": "e687fd9e7bee45486c7325f11222740f841c3bebac531badb903a50e82b9ac0f",
+      "actual_sha256": "e687fd9e7bee45486c7325f11222740f841c3bebac531badb903a50e82b9ac0f",
+      "status": "verified"
+    },
+    {
+      "name": "qwen3_4b_q5",
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\models\\qwen\\Qwen_Qwen3-4B-Instruct-2507-Q5_K_M.gguf",
+      "expected_sha256": "66713ce35a58a82fe87642d4ec13425bf9b9a46800fff5c49a665ef5701439dc",
+      "actual_sha256": "66713ce35a58a82fe87642d4ec13425bf9b9a46800fff5c49a665ef5701439dc",
+      "status": "verified"
+    },
+    {
+      "name": "deberta_config.json",
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\models\\text\\config.json",
+      "expected_sha256": "ddec8b81d079d218ce9e54fc0af5d1d5937d6d53b5d42e70c1f251a1cebc830d",
+      "actual_sha256": "ddec8b81d079d218ce9e54fc0af5d1d5937d6d53b5d42e70c1f251a1cebc830d",
+      "status": "verified"
+    },
+    {
+      "name": "deberta_tokenizer_config.json",
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\models\\text\\tokenizer_config.json",
+      "expected_sha256": "3f3978e0c036f2c2588cac34a6047cbb0af0b0dc1814254e291028529805496d",
+      "actual_sha256": "3f3978e0c036f2c2588cac34a6047cbb0af0b0dc1814254e291028529805496d",
+      "status": "verified"
+    },
+    {
+      "name": "deberta_spm.model",
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\models\\text\\spm.model",
+      "expected_sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+      "actual_sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+      "status": "verified"
+    },
+    {
+      "name": "deberta_pytorch_model.bin",
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\models\\text\\pytorch_model.bin",
+      "expected_sha256": "dd5b5d93e2db101aaf281df0ea1216c07ad73620ff59c5b42dccac4bf2eef5b5",
+      "actual_sha256": "dd5b5d93e2db101aaf281df0ea1216c07ad73620ff59c5b42dccac4bf2eef5b5",
+      "status": "verified"
+    }
+  ],
+  "head_checks": [
+    {
+      "name": "vision",
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\checkpoints\\vision.pt",
+      "status": "verified",
+      "sha256": "9882939db93780c96481f978cc93ace61a80d52a3c63465ae551cb8ace23a465",
+      "parameters": 181255,
+      "count_method": "loaded checkpoint"
+    },
+    {
+      "name": "text",
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\checkpoints\\text.pt",
+      "status": "verified",
+      "sha256": "a59e53cc2d8676d5c5f5e157add8e60694fea32ccf9ef52dc6d2cda4c5159b03",
+      "parameters": 132103,
+      "count_method": "loaded checkpoint"
+    },
+    {
+      "name": "fusion",
+      "path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\checkpoints\\fusion.pt",
+      "status": "verified",
+      "sha256": "3f126c4e1033fcec4cb57641fcbcd2a83798bb5f39d118861fc671207df9c0ea",
+      "parameters": 312711,
+      "count_method": "loaded checkpoint"
+    }
+  ],
+  "verification_scope": "Pinned inference artifact SHA256 checks and loaded trained-head parameter counts. Pretrained parameter counts use recorded architecture/checkpoint evidence, not bytes on disk. Missing heads remain explicitly planned.",
+  "notes": [
+    "The YuNet allowance includes 17 nonlearned constants, so the overall value is a conservative upper bound.",
+    "All three runtime heads and the original AffectNet classifier are included.",
+    "Qwen embeddings shared with the output layer count once; quantization does not alter learned count.",
+    "No extra learned projector, tracker, adapter, response grader, or auxiliary generator is required.",
+    "A parameter audit does not establish task accuracy, memory fit, or successful inference."
+  ]
+}

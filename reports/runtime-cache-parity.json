@@ -1,0 +1,7 @@
+{
+  "id": "test:4:2",
+  "runtime_label": "anger",
+  "cached_label": "anger",
+  "max_absolute_probability_difference": 0.00011932849884033203,
+  "note": "Same frozen features and heads; GPU feature batch sizes differ. Single-example parity check, not a comprehensive equivalence proof."
+}

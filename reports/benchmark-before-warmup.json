@@ -1,0 +1,1579 @@
+{
+  "warmup": 3,
+  "samples": [
+    {
+      "id": "test:1:1",
+      "path": "fusion",
+      "wall_ms": 576.5614999982063,
+      "timing": {
+        "classification_ms": 148.7321000022348,
+        "first_token_ms": 383.8847999868449,
+        "completion_ms": 576.3872999814339,
+        "model_load_ms": 0.000800006091594696
+      },
+      "response": "\"Push!\" \u2014 that sounds like a strong action. Did that happen in a situation where you needed to move forward or set something in motion?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.5942382216453552,
+          "surprise": 0.026726009324193,
+          "fear": 0.02447420172393322,
+          "sadness": 0.07179680466651917,
+          "joy": 0.01974623277783394,
+          "disgust": 0.06405404210090637,
+          "anger": 0.19896438717842102
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 5,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9295385926961899,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 0.6673328152177936,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:2:5",
+      "path": "fusion",
+      "wall_ms": 560.2068000007421,
+      "timing": {
+        "classification_ms": 196.78810000186786,
+        "first_token_ms": 391.1602000007406,
+        "completion_ms": 560.025000013411,
+        "model_load_ms": 0.000600004568696022
+      },
+      "response": "Got it\u2014lifting straight up over your head! Sounds like a fun challenge. How did it feel when you did it?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.3419590890407562,
+          "surprise": 0.23670722544193268,
+          "fear": 0.029726330190896988,
+          "sadness": 0.015426184982061386,
+          "joy": 0.1443648785352707,
+          "disgust": 0.01723434403538704,
+          "anger": 0.2145819365978241
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 44,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9351608902215958,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.085415047555605,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:3:0",
+      "path": "fusion",
+      "wall_ms": 807.6597999897785,
+      "timing": {
+        "classification_ms": 460.4393000190612,
+        "first_token_ms": 682.6123000064399,
+        "completion_ms": 807.4868000112474,
+        "model_load_ms": 0.000600004568696022
+      },
+      "response": "I'm glad we got that straightened out. Did anything specific help make it click?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.24486801028251648,
+          "surprise": 0.1364518404006958,
+          "fear": 0.07874297350645065,
+          "sadness": 0.13540656864643097,
+          "joy": 0.1813918799161911,
+          "disgust": 0.15259595215320587,
+          "anger": 0.07054267823696136
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 19,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9261752888560295,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.001998445653381,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:4:2",
+      "path": "fusion",
+      "wall_ms": 628.0846000008751,
+      "timing": {
+        "classification_ms": 178.0633000016678,
+        "first_token_ms": 413.71690001687966,
+        "completion_ms": 627.9109000170138,
+        "model_load_ms": 0.001100008375942707
+      },
+      "response": "That's so exciting \u2014 congratulations on feeling the baby move! It\u2019s a wonderful sign of life. Have you shared this moment with your partner or doctor yet?",
+      "emotion": {
+        "label": "anger",
+        "probabilities": {
+          "neutral": 0.00932325143367052,
+          "surprise": 0.3215307891368866,
+          "fear": 0.04505356028676033,
+          "sadness": 0.028202427551150322,
+          "joy": 0.19185812771320343,
+          "disgust": 0.06388109922409058,
+          "anger": 0.34015071392059326
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 35,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9192245826125145,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 1.5014988342400355,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:4:7",
+      "path": "fusion",
+      "wall_ms": 587.1150000020862,
+      "timing": {
+        "classification_ms": 204.16890000342391,
+        "first_token_ms": 410.6887999805622,
+        "completion_ms": 586.906699987594,
+        "model_load_ms": 0.000800006091594696
+      },
+      "response": "I hear you\u2014shower time slipping away feels frustrating. Did you at least get a quick rinse before you had to go?",
+      "emotion": {
+        "label": "sadness",
+        "probabilities": {
+          "neutral": 0.12297846376895905,
+          "surprise": 0.043267957866191864,
+          "fear": 0.19450363516807556,
+          "sadness": 0.3197397291660309,
+          "joy": 0.06014338880777359,
+          "disgust": 0.04075426608324051,
+          "anger": 0.21861256659030914
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 75,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9258656948804855,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.752747862773399,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:5:2",
+      "path": "fusion",
+      "wall_ms": 505.2883999887854,
+      "timing": {
+        "classification_ms": 188.91559998155572,
+        "first_token_ms": 396.23179999762215,
+        "completion_ms": 505.08929998613894,
+        "model_load_ms": 0.000800006091594696
+      },
+      "response": "Hi! It's good to connect. How's your day going so far?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.5496122241020203,
+          "surprise": 0.01635684259235859,
+          "fear": 0.004616650752723217,
+          "sadness": 0.005589121952652931,
+          "joy": 0.41386908292770386,
+          "disgust": 0.005119066219776869,
+          "anger": 0.004837025888264179
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 3,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9221064299345016,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 1.251249028533363,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:5:6",
+      "path": "fusion",
+      "wall_ms": 593.0563000147231,
+      "timing": {
+        "classification_ms": 206.9488000124693,
+        "first_token_ms": 431.69789999956265,
+        "completion_ms": 592.8698000207078,
+        "model_load_ms": 0.0010999792721122503
+      },
+      "response": "That's interesting \u2014 do you remember what you say in your sleep? It\u2019s a little unusual, but not uncommon.",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.3911844491958618,
+          "surprise": 0.05956621840596199,
+          "fear": 0.1094457134604454,
+          "sadness": 0.08439922332763672,
+          "joy": 0.16433213651180267,
+          "disgust": 0.10461434721946716,
+          "anger": 0.08645797520875931
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 19,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.8931529596447945,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 1.5014988342400355,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:5:8",
+      "path": "fusion",
+      "wall_ms": 3975.0640999991447,
+      "timing": {
+        "classification_ms": 3392.725599987898,
+        "first_token_ms": 3802.936599997338,
+        "completion_ms": 3974.868299992522,
+        "model_load_ms": 0.000900006853044033
+      },
+      "response": "I'm not sure I understand what you're asking. Could you clarify what you'd like to share or connect about?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.3777884840965271,
+          "surprise": 0.06687283515930176,
+          "fear": 0.05486129969358444,
+          "sadness": 0.045216891914606094,
+          "joy": 0.2523462772369385,
+          "disgust": 0.060534048825502396,
+          "anger": 0.14238028228282928
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 37,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 0.875,
+        "mean_detection_score": 0.8740100179399762,
+        "sampled_frames": 8,
+        "selected_frames": 7,
+        "duration_seconds": 2.2522482513600535,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:6:1",
+      "path": "fusion",
+      "wall_ms": 628.220099984901,
+      "timing": {
+        "classification_ms": 211.14830000442453,
+        "first_token_ms": 415.435399976559,
+        "completion_ms": 628.0413999920711,
+        "model_load_ms": 0.001300009898841381
+      },
+      "response": "It sounds like you're describing something physical or intense\u2014wrestling maybe in a metaphorical way. Is there a particular moment or feeling behind that image?",
+      "emotion": {
+        "label": "sadness",
+        "probabilities": {
+          "neutral": 0.302930623292923,
+          "surprise": 0.049045443534851074,
+          "fear": 0.11014997214078903,
+          "sadness": 0.3570358157157898,
+          "joy": 0.05273640155792236,
+          "disgust": 0.0610399954020977,
+          "anger": 0.06706172972917557
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 53,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.8911188095808029,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.5859146589689503,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:6:2",
+      "path": "fusion",
+      "wall_ms": 459.2961999878753,
+      "timing": {
+        "classification_ms": 188.9800000062678,
+        "first_token_ms": 397.34539997880347,
+        "completion_ms": 459.0711999917403,
+        "model_load_ms": 0.000600004568696022
+      },
+      "response": "Oh really? What happened that surprised you?",
+      "emotion": {
+        "label": "surprise",
+        "probabilities": {
+          "neutral": 0.08422314375638962,
+          "surprise": 0.5653355121612549,
+          "fear": 0.03588438034057617,
+          "sadness": 0.11141415685415268,
+          "joy": 0.02928760088980198,
+          "disgust": 0.040192220360040665,
+          "anger": 0.13366293907165527
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 4,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9244418665766716,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.2522482513600535,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:7:3",
+      "path": "fusion",
+      "wall_ms": 604.6025999821723,
+      "timing": {
+        "classification_ms": 257.9363999830093,
+        "first_token_ms": 443.2860999950208,
+        "completion_ms": 604.3911000015214,
+        "model_load_ms": 0.000800006091594696
+      },
+      "response": "It sounds like you're describing a game or scenario with two people in a ring. What\u2019s the rule about them?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.6708781719207764,
+          "surprise": 0.01884719915688038,
+          "fear": 0.03425155207514763,
+          "sadness": 0.06514512002468109,
+          "joy": 0.0706215351819992,
+          "disgust": 0.049340441823005676,
+          "anger": 0.09091601520776749
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 58,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9192152991890907,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 4.212538396062322,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:8:0",
+      "path": "fusion",
+      "wall_ms": 686.147800006438,
+      "timing": {
+        "classification_ms": 278.16420001909137,
+        "first_token_ms": 518.8668000046164,
+        "completion_ms": 685.9612000116613,
+        "model_load_ms": 0.0009999785106629133
+      },
+      "response": "You really stood out\u2014no wonder you had to bite your lip. Was there something specific that made you feel so strongly?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.2884705364704132,
+          "surprise": 0.11216432601213455,
+          "fear": 0.05632377043366432,
+          "sadness": 0.21117174625396729,
+          "joy": 0.08233954757452011,
+          "disgust": 0.13534116744995117,
+          "anger": 0.11418889462947845
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 95,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.934353418648243,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 9.592909218755782,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:8:1",
+      "path": "fusion",
+      "wall_ms": 655.2882000105456,
+      "timing": {
+        "classification_ms": 221.74450001330115,
+        "first_token_ms": 440.05549998837523,
+        "completion_ms": 655.0923000031617,
+        "model_load_ms": 0.000900006853044033
+      },
+      "response": "That sounds like a nice moment for you \u2014 glad something made you feel good! \ud83d\ude0a  \nWas there a specific thing that brought that feeling to mind?",
+      "emotion": {
+        "label": "disgust",
+        "probabilities": {
+          "neutral": 0.2089712768793106,
+          "surprise": 0.11722942441701889,
+          "fear": 0.022258887067437172,
+          "sadness": 0.210067480802536,
+          "joy": 0.041339125484228134,
+          "disgust": 0.284485787153244,
+          "anger": 0.11564798653125763
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 33,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.935599684715271,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.6276229599200622,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:8:2",
+      "path": "fusion",
+      "wall_ms": 588.6577000201214,
+      "timing": {
+        "classification_ms": 237.88709999644198,
+        "first_token_ms": 466.087000007974,
+        "completion_ms": 588.4812000149395,
+        "model_load_ms": 0.00100000761449337
+      },
+      "response": "The bumpy ride must have been really uncomfortable. How did that feel when it happened?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.3116181194782257,
+          "surprise": 0.056540947407484055,
+          "fear": 0.020724555477499962,
+          "sadness": 0.2157391905784607,
+          "joy": 0.038093797862529755,
+          "disgust": 0.2464151531457901,
+          "anger": 0.1108681932091713
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 33,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9341162219643593,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.6276229599200622,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:8:3",
+      "path": "fusion",
+      "wall_ms": 434.1318999940995,
+      "timing": {
+        "classification_ms": 136.4148999855388,
+        "first_token_ms": 344.83120002551004,
+        "completion_ms": 433.95990002318285,
+        "model_load_ms": 0.00100000761449337
+      },
+      "response": "Bumpy? Like the road, or something else? \ud83d\ude0a",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.2759324610233307,
+          "surprise": 0.19937211275100708,
+          "fear": 0.015424879267811775,
+          "sadness": 0.09518950432538986,
+          "joy": 0.014073687605559826,
+          "disgust": 0.21598802506923676,
+          "anger": 0.1840192973613739
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 6,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9277319982647896,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 0.2085415047555605,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:9:2",
+      "path": "fusion",
+      "wall_ms": 575.3561000165064,
+      "timing": {
+        "classification_ms": 206.00249999552034,
+        "first_token_ms": 407.54449999076314,
+        "completion_ms": 575.1755999808665,
+        "model_load_ms": 0.001200009137392044
+      },
+      "response": "The damage is mostly contained in the bedrooms \u2014 that sounds like a good sign. How are you holding up with everything else?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.8171551823616028,
+          "surprise": 0.003935529850423336,
+          "fear": 0.015513121150434017,
+          "sadness": 0.05664459988474846,
+          "joy": 0.07857054471969604,
+          "disgust": 0.0053729587234556675,
+          "anger": 0.022807955741882324
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 68,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9329206869006157,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.127123348506717,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:9:3",
+      "path": "fusion",
+      "wall_ms": 3795.5727000080515,
+      "timing": {
+        "classification_ms": 3288.0366000172216,
+        "first_token_ms": 3636.9305000116583,
+        "completion_ms": 3795.3673000156414,
+        "model_load_ms": 0.000700005330145359
+      },
+      "response": "Oh, interesting! What surprised you?",
+      "emotion": {
+        "label": "surprise",
+        "probabilities": {
+          "neutral": 0.19068047404289246,
+          "surprise": 0.3621205985546112,
+          "fear": 0.05917593836784363,
+          "sadness": 0.05246378108859062,
+          "joy": 0.1486353874206543,
+          "disgust": 0.019140692427754402,
+          "anger": 0.16778303682804108
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 3,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 0.75,
+        "mean_detection_score": 0.9071461459000906,
+        "sampled_frames": 8,
+        "selected_frames": 6,
+        "duration_seconds": 1.0009992228266904,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:10:1",
+      "path": "fusion",
+      "wall_ms": 613.4122999792453,
+      "timing": {
+        "classification_ms": 218.10009999899194,
+        "first_token_ms": 425.96989998128265,
+        "completion_ms": 613.2022999809124,
+        "model_load_ms": 0.001200009137392044
+      },
+      "response": "I hear you're noticing a difference in what we do. Is there a specific part of our interaction that stands out to you?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.6734204292297363,
+          "surprise": 0.06834806501865387,
+          "fear": 0.05688412860035896,
+          "sadness": 0.05355758219957352,
+          "joy": 0.03785611689090729,
+          "disgust": 0.03712276369333267,
+          "anger": 0.0728108286857605
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 58,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.926817424595356,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.752747862773399,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:12:1",
+      "path": "fusion",
+      "wall_ms": 547.8092999837827,
+      "timing": {
+        "classification_ms": 214.87649998744018,
+        "first_token_ms": 419.4769999885466,
+        "completion_ms": 547.6022999791894,
+        "model_load_ms": 0.000800006091594696
+      },
+      "response": "Thanks for the support, Ross \u2014 that really helps. How\u2019s everything going with the plan?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.6007380485534668,
+          "surprise": 0.01426573097705841,
+          "fear": 0.04451993107795715,
+          "sadness": 0.045818716287612915,
+          "joy": 0.11647038906812668,
+          "disgust": 0.024539252743124962,
+          "anger": 0.15364794433116913
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 25,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9287758693099022,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 3.1281225713334075,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:12:2",
+      "path": "fusion",
+      "wall_ms": 760.7323999982327,
+      "timing": {
+        "classification_ms": 350.56699998676777,
+        "first_token_ms": 560.7643999974243,
+        "completion_ms": 760.5161000101361,
+        "model_load_ms": 0.000600004568696022
+      },
+      "response": "That\u2019s so thoughtful of you to stand up for people you care about\u2014even when it feels silly. I wonder what made you decide to take action?",
+      "emotion": {
+        "label": "joy",
+        "probabilities": {
+          "neutral": 0.2964664697647095,
+          "surprise": 0.026780512183904648,
+          "fear": 0.047570087015628815,
+          "sadness": 0.19942878186702728,
+          "joy": 0.31576934456825256,
+          "disgust": 0.028907813131809235,
+          "anger": 0.08507692813873291
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 132,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9302285015583038,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 8.466785093075757,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:12:3",
+      "path": "fusion",
+      "wall_ms": 617.6938000135124,
+      "timing": {
+        "classification_ms": 270.2419999986887,
+        "first_token_ms": 489.9894999980461,
+        "completion_ms": 617.5206000043545,
+        "model_load_ms": 0.0008999777492135763
+      },
+      "response": "I hear you're ready to move past the fun stuff\u2014what's on your mind now?",
+      "emotion": {
+        "label": "joy",
+        "probabilities": {
+          "neutral": 0.09835519641637802,
+          "surprise": 0.041474927216768265,
+          "fear": 0.0230493675917387,
+          "sadness": 0.011561610735952854,
+          "joy": 0.7431778907775879,
+          "disgust": 0.015453794039785862,
+          "anger": 0.06692719459533691
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 32,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9220379889011383,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 4.671329706524555,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:12:4",
+      "path": "fusion",
+      "wall_ms": 508.00879998132586,
+      "timing": {
+        "classification_ms": 206.7529000050854,
+        "first_token_ms": 399.721399997361,
+        "completion_ms": 507.83200000296347,
+        "model_load_ms": 0.000800006091594696
+      },
+      "response": "You seem frustrated about something\u2014maybe a misunderstanding or a moment that felt off?",
+      "emotion": {
+        "label": "joy",
+        "probabilities": {
+          "neutral": 0.07079385221004486,
+          "surprise": 0.1156785637140274,
+          "fear": 0.10039612650871277,
+          "sadness": 0.01666603982448578,
+          "joy": 0.4884861707687378,
+          "disgust": 0.04697992280125618,
+          "anger": 0.1609993726015091
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 49,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9067296162247658,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.2939565523111654,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:12:18",
+      "path": "fusion",
+      "wall_ms": 529.5776999846566,
+      "timing": {
+        "classification_ms": 172.71970000001602,
+        "first_token_ms": 399.44870001636446,
+        "completion_ms": 529.3843000254128,
+        "model_load_ms": 0.0010999792721122503
+      },
+      "response": "Thanks for saying yes \u2014 that\u2019s a solid start. How\u2019s your day going so far?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.7930968403816223,
+          "surprise": 0.013196897692978382,
+          "fear": 0.005897399038076401,
+          "sadness": 0.023814577609300613,
+          "joy": 0.14639191329479218,
+          "disgust": 0.011490408331155777,
+          "anger": 0.006112018134444952
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 4,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9377366825938225,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 1.1261241256800267,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:13:2",
+      "path": "fusion",
+      "wall_ms": 641.2033000087831,
+      "timing": {
+        "classification_ms": 202.04140001442283,
+        "first_token_ms": 428.4879000042565,
+        "completion_ms": 641.0166999849025,
+        "model_load_ms": 0.000700005330145359
+      },
+      "response": "I hear you're not surprised they feel that way\u2014sounds like you've seen the situation from a grounded perspective. How are you holding up in this moment?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.31176042556762695,
+          "surprise": 0.04718374088406563,
+          "fear": 0.12524351477622986,
+          "sadness": 0.20438933372497559,
+          "joy": 0.2260926514863968,
+          "disgust": 0.02613852359354496,
+          "anger": 0.0591917410492897
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 58,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.932699978351593,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.2522482513600535,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:13:7",
+      "path": "fusion",
+      "wall_ms": 611.1152000084985,
+      "timing": {
+        "classification_ms": 199.63990000542253,
+        "first_token_ms": 443.72030001250096,
+        "completion_ms": 610.9154000005219,
+        "model_load_ms": 0.000900006853044033
+      },
+      "response": "I hear you're feeling a bit lonely right now. Maybe sharing what you're really hoping for could help lighten the load?",
+      "emotion": {
+        "label": "sadness",
+        "probabilities": {
+          "neutral": 0.10159255564212799,
+          "surprise": 0.08767225593328476,
+          "fear": 0.10448498278856277,
+          "sadness": 0.2982909679412842,
+          "joy": 0.28177163004875183,
+          "disgust": 0.05447887256741524,
+          "anger": 0.07170865684747696
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 21,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9465345293283463,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.7944561637245107,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:14:3",
+      "path": "fusion",
+      "wall_ms": 471.29749998566695,
+      "timing": {
+        "classification_ms": 133.44669999787584,
+        "first_token_ms": 356.75399997853674,
+        "completion_ms": 471.10049999901094,
+        "model_load_ms": 0.000800006091594696
+      },
+      "response": "That \"yeah!\" sounds like a great moment \u2014 was there something exciting that happened?",
+      "emotion": {
+        "label": "surprise",
+        "probabilities": {
+          "neutral": 0.05752304568886757,
+          "surprise": 0.41373002529144287,
+          "fear": 0.021533016115427017,
+          "sadness": 0.042839374393224716,
+          "joy": 0.12115176022052765,
+          "disgust": 0.08876753598451614,
+          "anger": 0.2544552683830261
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 5,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9284843876957893,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 0.2919581066577847,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:14:4",
+      "path": "fusion",
+      "wall_ms": 565.5103000171948,
+      "timing": {
+        "classification_ms": 222.54960000282153,
+        "first_token_ms": 443.026099994313,
+        "completion_ms": 565.3075999871362,
+        "model_load_ms": 0.000900006853044033
+      },
+      "response": "You just take a big, big swing. That sounds intense\u2014what was that about?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.559139609336853,
+          "surprise": 0.03368745371699333,
+          "fear": 0.03133377805352211,
+          "sadness": 0.06509943306446075,
+          "joy": 0.04044094681739807,
+          "disgust": 0.09423861652612686,
+          "anger": 0.17606016993522644
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 31,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9341882690787315,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.6276229599200622,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:17:18",
+      "path": "fusion",
+      "wall_ms": 556.1476000002585,
+      "timing": {
+        "classification_ms": 220.79589997883886,
+        "first_token_ms": 441.21249997988343,
+        "completion_ms": 555.9474999899976,
+        "model_load_ms": 0.001100008375942707
+      },
+      "response": "I'm glad you're back! What would you like to know about the place?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.5278766751289368,
+          "surprise": 0.01834878697991371,
+          "fear": 0.034603942185640335,
+          "sadness": 0.24203254282474518,
+          "joy": 0.09716495126485825,
+          "disgust": 0.03972802683711052,
+          "anger": 0.04024507850408554
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 75,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9255009517073631,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.961289367528959,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:17:19",
+      "path": "fusion",
+      "wall_ms": 560.2559999970254,
+      "timing": {
+        "classification_ms": 204.62360000237823,
+        "first_token_ms": 411.1280999786686,
+        "completion_ms": 560.067499987781,
+        "model_load_ms": 0.000700005330145359
+      },
+      "response": "I remember you mentioned Monica used to turn on the lights in her bedroom every evening. Has anything changed lately?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.5311379432678223,
+          "surprise": 0.06946728378534317,
+          "fear": 0.03651280328631401,
+          "sadness": 0.19464173913002014,
+          "joy": 0.026454370468854904,
+          "disgust": 0.07656753063201904,
+          "anger": 0.06521839648485184
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 52,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9316600933670998,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 2.3773731542133896,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:17:21",
+      "path": "fusion",
+      "wall_ms": 466.5975000243634,
+      "timing": {
+        "classification_ms": 181.22030000085942,
+        "first_token_ms": 376.9916000019293,
+        "completion_ms": 466.4020999916829,
+        "model_load_ms": 0.000900006853044033
+      },
+      "response": "I see you started your message \u2014 how are you feeling today?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.8922231793403625,
+          "surprise": 0.01313093677163124,
+          "fear": 0.015988770872354507,
+          "sadness": 0.055992238223552704,
+          "joy": 0.004607564304023981,
+          "disgust": 0.005036253482103348,
+          "anger": 0.013021224178373814
+        },
+        "source": "fusion",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 4,
+      "vision": {
+        "available": true,
+        "reason": "ok",
+        "valid_frame_fraction": 1.0,
+        "mean_detection_score": 0.9185881987214088,
+        "sampled_frames": 8,
+        "selected_frames": 8,
+        "duration_seconds": 1.2929573294844752,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:1:1",
+      "path": "text_fallback",
+      "wall_ms": 382.68509999033995,
+      "timing": {
+        "classification_ms": 28.142299997853115,
+        "first_token_ms": 254.8763999948278,
+        "completion_ms": 382.58700000005774,
+        "model_load_ms": 0.000700005330145359
+      },
+      "response": "Push! \u2014 sounds like a command or a challenge. What\u2019s on your mind right now?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.3330521583557129,
+          "surprise": 0.06601582467556,
+          "fear": 0.058503564447164536,
+          "sadness": 0.10989919304847717,
+          "joy": 0.10731006413698196,
+          "disgust": 0.06852871179580688,
+          "anger": 0.2566904127597809
+        },
+        "source": "text_fallback",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 5,
+      "vision": {
+        "available": false,
+        "reason": "missing_video",
+        "valid_frame_fraction": 0.0,
+        "mean_detection_score": 0.0,
+        "sampled_frames": 0,
+        "selected_frames": 0,
+        "duration_seconds": null,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:2:5",
+      "path": "text_fallback",
+      "wall_ms": 367.60959998355247,
+      "timing": {
+        "classification_ms": 30.118599999696016,
+        "first_token_ms": 232.6351999945473,
+        "completion_ms": 367.5126000016462,
+        "model_load_ms": 0.000900006853044033
+      },
+      "response": "Got it\u2014lifting straight up over your head sounds like a fun challenge! How did that go?",
+      "emotion": {
+        "label": "joy",
+        "probabilities": {
+          "neutral": 0.17088375985622406,
+          "surprise": 0.07246696203947067,
+          "fear": 0.040851593017578125,
+          "sadness": 0.07998611032962799,
+          "joy": 0.34432047605514526,
+          "disgust": 0.07507447153329849,
+          "anger": 0.2164166122674942
+        },
+        "source": "text_fallback",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 44,
+      "vision": {
+        "available": false,
+        "reason": "missing_video",
+        "valid_frame_fraction": 0.0,
+        "mean_detection_score": 0.0,
+        "sampled_frames": 0,
+        "selected_frames": 0,
+        "duration_seconds": null,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:3:0",
+      "path": "text_fallback",
+      "wall_ms": 371.68760001077317,
+      "timing": {
+        "classification_ms": 30.781299981754273,
+        "first_token_ms": 229.58319997997023,
+        "completion_ms": 371.6011999931652,
+        "model_load_ms": 0.000900006853044033
+      },
+      "response": "I'm glad we got that straightened out. Is there something specific you'd like to talk about?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.3771536648273468,
+          "surprise": 0.047141183167696,
+          "fear": 0.09723446518182755,
+          "sadness": 0.20943583548069,
+          "joy": 0.14075197279453278,
+          "disgust": 0.0708024874329567,
+          "anger": 0.05748038366436958
+        },
+        "source": "text_fallback",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 19,
+      "vision": {
+        "available": false,
+        "reason": "missing_video",
+        "valid_frame_fraction": 0.0,
+        "mean_detection_score": 0.0,
+        "sampled_frames": 0,
+        "selected_frames": 0,
+        "duration_seconds": null,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:4:2",
+      "path": "text_fallback",
+      "wall_ms": 377.6872000016738,
+      "timing": {
+        "classification_ms": 27.21570001449436,
+        "first_token_ms": 255.48910000361502,
+        "completion_ms": 377.5908999959938,
+        "model_load_ms": 0.00100000761449337
+      },
+      "response": "That's so exciting \u2014 congratulations on feeling the baby move! How did the kick feel?",
+      "emotion": {
+        "label": "anger",
+        "probabilities": {
+          "neutral": 0.01712700165808201,
+          "surprise": 0.1594286859035492,
+          "fear": 0.08341288566589355,
+          "sadness": 0.07612768560647964,
+          "joy": 0.24522176384925842,
+          "disgust": 0.08121517300605774,
+          "anger": 0.33746686577796936
+        },
+        "source": "text_fallback",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 35,
+      "vision": {
+        "available": false,
+        "reason": "missing_video",
+        "valid_frame_fraction": 0.0,
+        "mean_detection_score": 0.0,
+        "sampled_frames": 0,
+        "selected_frames": 0,
+        "duration_seconds": null,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:4:7",
+      "path": "text_fallback",
+      "wall_ms": 437.2422999877017,
+      "timing": {
+        "classification_ms": 23.564100003568456,
+        "first_token_ms": 230.7245999982115,
+        "completion_ms": 437.15839998913,
+        "model_load_ms": 0.000700005330145359
+      },
+      "response": "I hear you\u2014showering before bed can feel so important when you're running behind. Did you end up getting a quick rinse or just skipping it?",
+      "emotion": {
+        "label": "anger",
+        "probabilities": {
+          "neutral": 0.07213618606328964,
+          "surprise": 0.04145658016204834,
+          "fear": 0.1351586878299713,
+          "sadness": 0.2238190621137619,
+          "joy": 0.0939565971493721,
+          "disgust": 0.10409895330667496,
+          "anger": 0.32937389612197876
+        },
+        "source": "text_fallback",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 75,
+      "vision": {
+        "available": false,
+        "reason": "missing_video",
+        "valid_frame_fraction": 0.0,
+        "mean_detection_score": 0.0,
+        "sampled_frames": 0,
+        "selected_frames": 0,
+        "duration_seconds": null,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:5:2",
+      "path": "text_fallback",
+      "wall_ms": 293.91839998424985,
+      "timing": {
+        "classification_ms": 25.774799985811114,
+        "first_token_ms": 225.7017999945674,
+        "completion_ms": 293.81760000251234,
+        "model_load_ms": 0.000700005330145359
+      },
+      "response": "Hi! How's your day going so far?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.8560293912887573,
+          "surprise": 0.010224748402833939,
+          "fear": 0.010553679428994656,
+          "sadness": 0.02729470655322075,
+          "joy": 0.08052860200405121,
+          "disgust": 0.006769069470465183,
+          "anger": 0.008599823340773582
+        },
+        "source": "text_fallback",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 3,
+      "vision": {
+        "available": false,
+        "reason": "missing_video",
+        "valid_frame_fraction": 0.0,
+        "mean_detection_score": 0.0,
+        "sampled_frames": 0,
+        "selected_frames": 0,
+        "duration_seconds": null,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:5:6",
+      "path": "text_fallback",
+      "wall_ms": 426.8560000055004,
+      "timing": {
+        "classification_ms": 30.9461000142619,
+        "first_token_ms": 272.3577999859117,
+        "completion_ms": 426.7604999768082,
+        "model_load_ms": 0.000600004568696022
+      },
+      "response": "That\u2019s interesting \u2014 do you remember what you say in your sleep? It\u2019s kind of a unique little habit!",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.3122444748878479,
+          "surprise": 0.02104664407670498,
+          "fear": 0.12774761021137238,
+          "sadness": 0.2735220789909363,
+          "joy": 0.05281989276409149,
+          "disgust": 0.09933286905288696,
+          "anger": 0.11328646540641785
+        },
+        "source": "text_fallback",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 19,
+      "vision": {
+        "available": false,
+        "reason": "missing_video",
+        "valid_frame_fraction": 0.0,
+        "mean_detection_score": 0.0,
+        "sampled_frames": 0,
+        "selected_frames": 0,
+        "duration_seconds": null,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:5:8",
+      "path": "text_fallback",
+      "wall_ms": 397.92710001347587,
+      "timing": {
+        "classification_ms": 25.70709999417886,
+        "first_token_ms": 236.9116000190843,
+        "completion_ms": 397.8281000163406,
+        "model_load_ms": 0.0010999792721122503
+      },
+      "response": "I'm not sure I understand what you're asking. Could you clarify what you'd like to share or connect about?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.24151621758937836,
+          "surprise": 0.09034346789121628,
+          "fear": 0.11125635355710983,
+          "sadness": 0.15572041273117065,
+          "joy": 0.10108062624931335,
+          "disgust": 0.06351648271083832,
+          "anger": 0.23656640946865082
+        },
+        "source": "text_fallback",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 37,
+      "vision": {
+        "available": false,
+        "reason": "missing_video",
+        "valid_frame_fraction": 0.0,
+        "mean_detection_score": 0.0,
+        "sampled_frames": 0,
+        "selected_frames": 0,
+        "duration_seconds": null,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:6:1",
+      "path": "text_fallback",
+      "wall_ms": 361.9112999876961,
+      "timing": {
+        "classification_ms": 25.930700008757412,
+        "first_token_ms": 219.32010000455193,
+        "completion_ms": 361.8101000029128,
+        "model_load_ms": 0.0009999785106629133
+      },
+      "response": "Wrestling sounds like a lot of physical effort\u2014what part of it feels most intense for you?",
+      "emotion": {
+        "label": "neutral",
+        "probabilities": {
+          "neutral": 0.371451735496521,
+          "surprise": 0.025402970612049103,
+          "fear": 0.19456225633621216,
+          "sadness": 0.24223969876766205,
+          "joy": 0.07367050647735596,
+          "disgust": 0.036040157079696655,
+          "anger": 0.05663261562585831
+        },
+        "source": "text_fallback",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 53,
+      "vision": {
+        "available": false,
+        "reason": "missing_video",
+        "valid_frame_fraction": 0.0,
+        "mean_detection_score": 0.0,
+        "sampled_frames": 0,
+        "selected_frames": 0,
+        "duration_seconds": null,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    },
+    {
+      "id": "test:6:2",
+      "path": "text_fallback",
+      "wall_ms": 276.3873999938369,
+      "timing": {
+        "classification_ms": 24.887200008379295,
+        "first_token_ms": 226.50509999948554,
+        "completion_ms": 276.2905999843497,
+        "model_load_ms": 0.000700005330145359
+      },
+      "response": "Oh really? What surprised you?",
+      "emotion": {
+        "label": "surprise",
+        "probabilities": {
+          "neutral": 0.03890945017337799,
+          "surprise": 0.6094238758087158,
+          "fear": 0.033854853361845016,
+          "sadness": 0.03507941961288452,
+          "joy": 0.04335106909275055,
+          "disgust": 0.05356861278414726,
+          "anger": 0.1858127862215042
+        },
+        "source": "text_fallback",
+        "score_semantics": "uncalibrated_softmax"
+      },
+      "text_characters": 4,
+      "vision": {
+        "available": false,
+        "reason": "missing_video",
+        "valid_frame_fraction": 0.0,
+        "mean_detection_score": 0.0,
+        "sampled_frames": 0,
+        "selected_frames": 0,
+        "duration_seconds": null,
+        "truncated": false,
+        "speaker_attribution": "unverified_heuristic"
+      }
+    }
+  ],
+  "summary": {
+    "fusion": {
+      "n": 30,
+      "classification_ms": {
+        "p50": 206.85085000877734,
+        "p95": 2015.6178150180415,
+        "max": 3392.725599987898
+      },
+      "first_token_ms": {
+        "p50": 422.7234499849146,
+        "p95": 2307.487310009302,
+        "max": 3802.936599997338
+      },
+      "completion_ms": {
+        "p50": 587.6939500012668,
+        "p95": 2450.821075013656,
+        "max": 3974.868299992522
+      }
+    },
+    "text_fallback": {
+      "n": 10,
+      "classification_ms": {
+        "p50": 26.573200011625886,
+        "p95": 30.87193999963347,
+        "max": 30.9461000142619
+      },
+      "first_token_ms": {
+        "p50": 231.6798999963794,
+        "p95": 264.7668849938782,
+        "max": 272.3577999859117
+      },
+      "completion_ms": {
+        "p50": 374.5960499945795,
+        "p95": 432.4793449835852,
+        "max": 437.15839998913
+      }
+    }
+  },
+  "observed_peaks": {
+    "gpu_used_mib": 7495.0,
+    "python_rss_mib": 3197.421875,
+    "generator_rss_mib": 3186.72265625,
+    "system_ram_used_mib": 25398.08984375
+  },
+  "conditions": {
+    "frames": 8,
+    "text_max_wordpieces": 128,
+    "generation_max_tokens": 96,
+    "concurrency": 1,
+    "sampling": "First eligible official test utterances in manifest order; fallback reuses their text without video. This is a MELD replay benchmark, not a webcam or browser latency study.",
+    "gpu_sampling_seconds": 0.5,
+    "clock": "backend monotonic; capture excluded",
+    "memory_scope": "GPU and system RAM peaks include desktop/background processes; Python and generator RSS are process-specific."
+  }
+}

@@ -1,0 +1,184 @@
+"""Shared local inference path, with turn serialization and explicit fallbacks."""
+from __future__ import annotations
+import threading
+import time
+from datetime import datetime,timezone
+from pathlib import Path
+import numpy as np
+import torch
+from .data import VideoProcessor,l2_normalize
+from .encoders import VisionEncoder,TextEncoder
+from .generator import LocalGenerator
+from .models import DIMENSIONS,load_head
+from .schema import CheckInState,Emotion
+from .settings import LABELS,runtime_home
+
+class CheckInPipeline:
+    def __init__(self, home=None, device=None):
+        self.home=runtime_home(home)
+        self.device=device or ("cuda" if torch.cuda.is_available() else "cpu")
+        self.generator=LocalGenerator()
+        self._lock=threading.Lock()
+        self._cancel=threading.Event()
+        self._active_session=None
+        self._loaded=False
+
+    def cancel(self,session_id=None):
+        if self._active_session is not None and (session_id is None or str(session_id)==self._active_session):
+            self._cancel.set()
+            return True
+        return False
+
+    def status(self):
+        required=["models/vision/yunet.onnx","models/vision/enet_b2_7.pt","models/text/pytorch_model.bin",
+                  "models/text/config.json","models/text/tokenizer_config.json","models/text/spm.model",
+                  "checkpoints/vision.pt","checkpoints/text.pt","checkpoints/fusion.pt"]
+        missing=[name for name in required if not (self.home/name).is_file()]
+        generator=self.generator.status()
+        errors=["Missing artifact: "+name for name in missing]
+        if not generator.get("available"):
+            errors.append("Local response generator is not running. Start the local generator script.")
+        return {"ready":not errors,"classification_ready":not missing,"loaded":self._loaded,
+                "device":self.device,"running":self._active_session is not None,"errors":errors,"components":{"generator":generator},
+                "artifact_validation":"loaded" if self._loaded else "pending_first_load",
+                "parameter_budget":4_464_870_303}
+
+    def _load(self):
+        if self._loaded:
+            return
+        torch.set_num_threads(4)
+        self.processor=VideoProcessor(self.home/"models/vision/yunet.onnx")
+        self.vision_encoder=VisionEncoder(self.home/"models/vision/enet_b2_7.pt",device=self.device)
+        self.text_encoder=TextEncoder(self.home/"models/text",device=self.device,batch_size=1)
+        self.heads={}
+        identities=set()
+        for stage in ("vision","text","fusion"):
+            model,payload=load_head(self.home/f"checkpoints/{stage}.pt","cpu")
+            if payload.get("stage")!=stage or payload.get("input_dim")!=DIMENSIONS[stage] or payload.get("labels")!=LABELS:
+                raise ValueError(f"The {stage} checkpoint has an incompatible stage, dimension or label order; retrain it")
+            self.heads[stage]=model
+            if not payload.get("feature_identity"):
+                raise ValueError("Classifier checkpoint has no feature provenance; retrain it")
+            identities.add(payload["feature_identity"])
+        from .features import feature_metadata,feature_identity
+        actual=feature_identity(feature_metadata(self.vision_encoder,self.text_encoder,self.processor))
+        if identities!={actual}:
+            raise ValueError("Classifier checkpoints do not match current encoders/preprocessing; re-extract and retrain")
+        if self.device.startswith("cuda"):
+            # CUDA lazily initializes kernels for each accepted face-batch size.
+            # Pay that one-time cost during model loading, not mid-conversation.
+            # Warm-up images never enter a classifier or a user-visible state.
+            blank=np.zeros((260,260,3),dtype=np.uint8)
+            for count in range(self.processor.min_valid,self.processor.frames+1):
+                self.vision_encoder.encode_faces([blank]*count)
+            self.text_encoder.encode(["How was your day?"])
+            self._synchronize()
+        self._loaded=True
+
+    def _synchronize(self):
+        if self.device.startswith("cuda"):
+            torch.cuda.synchronize()
+
+    @staticmethod
+    def _predict(model,features):
+        with torch.inference_mode():
+            return torch.softmax(model(torch.from_numpy(np.asarray(features,dtype=np.float32)).reshape(1,-1)),dim=-1)[0].numpy()
+
+    def classify(self,text,video_path,session_id,turn_id,received_at=None):
+        received=received_at or datetime.now(timezone.utc).isoformat()
+        self._load()
+        self._synchronize()
+        started=time.perf_counter()
+        try:
+            crops,quality=self.processor.process(video_path)
+        except Exception as error:
+            crops=[]
+            quality={"available":False,"reason":"preprocess_error","error":str(error),
+                     "valid_frame_fraction":0.0,"mean_detection_score":0.0,"speaker_attribution":"unverified_heuristic"}
+        visual=np.zeros(1408,dtype=np.float32)
+        if crops:
+            visual=l2_normalize(self.vision_encoder.encode_faces(crops).mean(axis=0))
+        textual=l2_normalize(self.text_encoder.encode([text]))[0]
+        text_truncated=len(self.text_encoder.tokenizer.encode(text,add_special_tokens=True))>self.text_encoder.max_length
+        text_p=self._predict(self.heads["text"],textual)
+        visual_p=self._predict(self.heads["vision"],visual) if crops else None
+        if crops:
+            q=np.array([quality["valid_frame_fraction"],quality["mean_detection_score"],1.0],dtype=np.float32)
+            probabilities=self._predict(self.heads["fusion"],np.concatenate([visual,textual,q]))
+            source="fusion"
+        else:
+            probabilities=text_p
+            source="text_fallback"
+        self._synchronize()
+        elapsed=(time.perf_counter()-started)*1000
+        state=CheckInState(session_id=str(session_id),turn_id=str(turn_id),
+            input={"text":text,"video_present":bool(video_path),"received_at":received,
+                   "text_truncated_for_classification":text_truncated,
+                   "clip_started_at":None,"clip_ended_at":None,"clock_source":"backend_utc; capture timestamps unavailable"},
+            emotion=Emotion(label=LABELS[int(probabilities.argmax())],
+                probabilities={label:float(p) for label,p in zip(LABELS,probabilities)},source=source),
+            vision=quality,modalities={"text_label":LABELS[int(text_p.argmax())],
+                "vision_label":LABELS[int(visual_p.argmax())] if visual_p is not None else None},
+            modality_disagreement=visual_p is not None and int(text_p.argmax())!=int(visual_p.argmax()),
+            timing={"classification_ms":elapsed,"first_token_ms":None,"completion_ms":None})
+        return state.model_dump()
+
+    def stream(self,text,video_path=None,history=None,session_id="local",turn_id="turn"):
+        if not isinstance(text,str) or not text.strip():
+            raise ValueError("Write a message before sending your check-in.")
+        if len(text)>4000:
+            raise ValueError("Keep your message below 4,000 characters.")
+        if video_path is not None and not Path(video_path).is_file():
+            raise ValueError("The selected video is no longer available. Record or select it again.")
+        if not self._lock.acquire(blocking=False):
+            raise RuntimeError("Another turn is still running. Wait or stop it first.")
+        self._cancel.clear()
+        self._active_session=str(session_id)
+        event_ids={"session_id":str(session_id),"turn_id":str(turn_id)}
+        received=datetime.now(timezone.utc).isoformat()
+        stream=None
+        try:
+            cold_started=time.perf_counter()
+            self._load()
+            if self._cancel.is_set():
+                return
+            load_ms=(time.perf_counter()-cold_started)*1000
+            started=time.perf_counter()
+            state=self.classify(text.strip(),video_path,session_id,turn_id,received_at=received)
+            if self._cancel.is_set():
+                state["response"]["status"]="cancelled"
+                yield {"type":"done","state":state,**event_ids}
+                return
+            state["timing"]["model_load_ms"]=load_ms
+            state["response"]["status"]="streaming"
+            yield {"type":"state","state":state,**event_ids}
+            stream=self.generator.stream(text.strip(),state,history or [])
+            first=True
+            for delta in stream:
+                if self._cancel.is_set():
+                    state["response"]["status"]="cancelled"
+                    yield {"type":"done","state":state,**event_ids}
+                    return
+                if first:
+                    state["timing"]["first_token_ms"]=(time.perf_counter()-started)*1000
+                    first=False
+                state["response"]["text"]+=delta
+                yield {"type":"text_delta","text":delta,**event_ids}
+            state["timing"]["completion_ms"]=(time.perf_counter()-started)*1000
+            state["response"]["status"]="complete"
+            yield {"type":"done","state":CheckInState.model_validate(state).model_dump(),**event_ids}
+        except GeneratorExit:
+            raise
+        except Exception as error:
+            if "state" in locals():
+                state["response"].update(status="error",error=str(error))
+                yield {"type":"state","state":state,**event_ids}
+            yield {"type":"error","error":str(error),**event_ids}
+        finally:
+            try:
+                close=getattr(stream,"close",None)
+                if callable(close):
+                    close()
+            finally:
+                self._active_session=None
+                self._lock.release()

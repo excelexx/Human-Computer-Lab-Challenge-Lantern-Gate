@@ -1,0 +1,64 @@
+{
+  "verification": "Actual browser interaction through localhost:7860, observed via accessibility tree and visible structured-state component.",
+  "dataset_id": "test:4:2",
+  "reference_label_evaluation_only": "surprise",
+  "actions": ["MELD replay", "Select 4/2", "Use this utterance", "Send check-in", "Open diagnostics"],
+  "state": {
+    "schema_version": "1.0",
+    "session_id": "25387ae1-04b7-402c-87b7-32743850f674",
+    "turn_id": "1",
+    "input": {
+      "text": "It kicked! I think the baby kicked!",
+      "video_present": true,
+      "received_at": "2026-09-25T04:57:40.668781+00:00",
+      "text_truncated_for_classification": false,
+      "clip_started_at": null,
+      "clip_ended_at": null,
+      "clock_source": "backend_utc; capture timestamps unavailable"
+    },
+    "emotion": {
+      "label": "surprise",
+      "probabilities": {
+        "neutral": 0.008608090691268444,
+        "surprise": 0.34948089718818665,
+        "fear": 0.047207657247781754,
+        "sadness": 0.025235041975975037,
+        "joy": 0.20956547558307648,
+        "disgust": 0.05859438702464104,
+        "anger": 0.3013085126876831
+      },
+      "source": "fusion",
+      "score_semantics": "uncalibrated_softmax"
+    },
+    "vision": {
+      "available": true,
+      "reason": "ok",
+      "valid_frame_fraction": 1,
+      "mean_detection_score": 0.9189396724104881,
+      "sampled_frames": 8,
+      "selected_frames": 8,
+      "duration_seconds": 1.5014988342400355,
+      "truncated": false,
+      "speaker_attribution": "unverified_heuristic"
+    },
+    "modalities": {"text_label": "anger", "vision_label": "neutral"},
+    "modality_disagreement": true,
+    "timing": {
+      "classification_ms": 344.47750000981614,
+      "first_token_ms": 613.0069999780972,
+      "completion_ms": 759.4274999864865,
+      "model_load_ms": 10883.608000003733
+    },
+    "response": {
+      "text": "That's so exciting — congratulations on feeling the baby move! What was the feeling like when it kicked?",
+      "status": "complete",
+      "error": null
+    }
+  },
+  "limitations": [
+    "The UI video preprocessing removes audio using Gradio 5.49.1 FFmpeg conversion; it re-encodes the video. The raw CLI replay of this example predicted anger. UI and CLI input media are therefore not byte-identical, and this borderline result is sensitive to preprocessing.",
+    "This response still assumes the experience felt positive.",
+    "The reference label was not supplied to inference.",
+    "Webcam hardware and permission flow were not exercised."
+  ]
+}

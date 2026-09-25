@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "parameter_limit": 6000000000,
+  "parameter_policy": "All required unique learned weights, frozen or trainable; quantization does not reduce counts. YuNet count conservatively includes 17 constants.",
+  "components": [
+    {
+      "name": "YuNet face detector",
+      "parameters": 53121,
+      "count_kind": "conservative upper bound",
+      "nonlearned_values_included": 17,
+      "license": "MIT",
+      "revision": "f12e12798e8314f7c074a6656816c048dcc95b7a",
+      "source": "https://github.com/opencv/opencv_zoo/tree/f12e12798e8314f7c074a6656816c048dcc95b7a/models/face_detection_yunet",
+      "count_evidence": "Sum of ONNX initializer elements; includes 17 nonlearned values."
+    },
+    {
+      "name": "EmotiEffLib AffectNet EfficientNet-B2 including original FER head",
+      "parameters": 7710857,
+      "count_kind": "exact",
+      "license": "Apache-2.0 repository; document AffectNet data terms separately",
+      "revision": "520a051c64cd191521e5934655314e769a319684",
+      "source": "https://github.com/sb-ai-lab/EmotiEffLib/tree/520a051c64cd191521e5934655314e769a319684",
+      "count_evidence": "Loaded pinned author's module and counted unique learned parameters, retaining original classifier."
+    },
+    {
+      "name": "DeBERTa-v3-large text encoder",
+      "parameters": 434012160,
+      "count_kind": "exact",
+      "license": "MIT",
+      "model_id": "microsoft/deberta-v3-large",
+      "revision": "64a8c8eab3e352a784c658aef62be1662607476f",
+      "source": "https://huggingface.co/microsoft/deberta-v3-large/tree/64a8c8eab3e352a784c658aef62be1662607476f",
+      "count_evidence": "Instantiated AutoModel encoder; excludes pretraining-only heads unused by local inference."
+    },
+    {
+      "name": "MELD vision head",
+      "parameters": 181255,
+      "count_kind": "exact architecture",
+      "source": "src/checkin/models.py",
+      "architecture": "1408 -> 128 -> 7"
+    },
+    {
+      "name": "MELD text head",
+      "parameters": 132103,
+      "count_kind": "exact architecture",
+      "source": "src/checkin/models.py",
+      "architecture": "1024 -> 128 -> 7"
+    },
+    {
+      "name": "MELD fusion head",
+      "parameters": 312711,
+      "count_kind": "exact architecture",
+      "source": "src/checkin/models.py",
+      "architecture": "2435 -> 128 -> 7"
+    },
+    {
+      "name": "Qwen3-4B-Instruct-2507",
+      "parameters": 4022468096,
+      "count_kind": "exact",
+      "license": "Apache-2.0",
+      "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "source": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507/blob/cdbee75f17c01a7cc42f958dc650907174af0554/config.json",
+      "count_evidence": "Config reconstruction and original safetensors metadata agree; tied embeddings counted once. Q5 preserves this learned count.",
+      "quantized_by": "bartowski",
+      "quantization_revision": "ae44f08e1392f39c0e474af10c3ff8355c8b6688",
+      "quantization_source": "https://huggingface.co/bartowski/Qwen_Qwen3-4B-Instruct-2507-GGUF/blob/ae44f08e1392f39c0e474af10c3ff8355c8b6688/README.md"
+    }
+  ],
+  "total_parameter_upper_bound": 4464870303,
+  "zero_parameter_operations": [
+    "tokenizers",
+    "geometric face selection",
+    "mean pooling",
+    "normalization",
+    "browser UI",
+    "llama.cpp runtime"
+  ],
+  "training_only_learned_models": [],
+  "evaluation_only_learned_models": [],
+  "artifacts": [
+    {
+      "name": "yunet",
+      "path": "models/vision/yunet.onnx",
+      "url": "https://github.com/opencv/opencv_zoo/raw/f12e12798e8314f7c074a6656816c048dcc95b7a/models/face_detection_yunet/face_detection_yunet_2023mar.onnx",
+      "sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4",
+      "kind": "inference_model"
+    },
+    {
+      "name": "affectnet_efficientnet_b2",
+      "path": "models/vision/enet_b2_7.pt",
+      "url": "https://raw.githubusercontent.com/sb-ai-lab/EmotiEffLib/520a051c64cd191521e5934655314e769a319684/models/affectnet_emotions/enet_b2_7.pt",
+      "sha256": "e687fd9e7bee45486c7325f11222740f841c3bebac531badb903a50e82b9ac0f",
+      "kind": "inference_model"
+    },
+    {
+      "name": "qwen3_4b_q5",
+      "path": "models/qwen/Qwen_Qwen3-4B-Instruct-2507-Q5_K_M.gguf",
+      "url": "https://huggingface.co/bartowski/Qwen_Qwen3-4B-Instruct-2507-GGUF/resolve/ae44f08e1392f39c0e474af10c3ff8355c8b6688/Qwen_Qwen3-4B-Instruct-2507-Q5_K_M.gguf",
+      "sha256": "66713ce35a58a82fe87642d4ec13425bf9b9a46800fff5c49a665ef5701439dc",
+      "kind": "inference_model"
+    },
+    {
+      "name": "deberta_config.json",
+      "path": "models/text/config.json",
+      "url": "https://huggingface.co/microsoft/deberta-v3-large/resolve/64a8c8eab3e352a784c658aef62be1662607476f/config.json",
+      "sha256": "ddec8b81d079d218ce9e54fc0af5d1d5937d6d53b5d42e70c1f251a1cebc830d",
+      "kind": "inference_model"
+    },
+    {
+      "name": "deberta_tokenizer_config.json",
+      "path": "models/text/tokenizer_config.json",
+      "url": "https://huggingface.co/microsoft/deberta-v3-large/resolve/64a8c8eab3e352a784c658aef62be1662607476f/tokenizer_config.json",
+      "sha256": "3f3978e0c036f2c2588cac34a6047cbb0af0b0dc1814254e291028529805496d",
+      "kind": "inference_model"
+    },
+    {
+      "name": "deberta_spm.model",
+      "path": "models/text/spm.model",
+      "url": "https://huggingface.co/microsoft/deberta-v3-large/resolve/64a8c8eab3e352a784c658aef62be1662607476f/spm.model",
+      "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+      "kind": "inference_model"
+    },
+    {
+      "name": "deberta_pytorch_model.bin",
+      "path": "models/text/pytorch_model.bin",
+      "url": "https://huggingface.co/microsoft/deberta-v3-large/resolve/64a8c8eab3e352a784c658aef62be1662607476f/pytorch_model.bin",
+      "sha256": "dd5b5d93e2db101aaf281df0ea1216c07ad73620ff59c5b42dccac4bf2eef5b5",
+      "kind": "inference_model"
+    },
+    {
+      "name": "llama-bin.zip",
+      "path": "downloads/llama-bin.zip",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11146/llama-b11146-bin-win-cuda-12.4-x64.zip",
+      "sha256": "3c806a6ceccc3dae1c743ceb1a1fb2cce5b76f40bfbd4c6b7b8afb6ef45a5807",
+      "kind": "runtime"
+    },
+    {
+      "name": "llama-cudart.zip",
+      "path": "downloads/llama-cudart.zip",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11146/cudart-llama-bin-win-cuda-12.4-x64.zip",
+      "sha256": "8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6",
+      "kind": "runtime"
+    },
+    {
+      "name": "MELD.Raw.tar.gz",
+      "path": "downloads/MELD.Raw.tar.gz",
+      "url": "https://huggingface.co/datasets/declare-lab/MELD/resolve/main/MELD.Raw.tar.gz",
+      "sha256": "a56b4407d574195cbce470d86f9c9d72fcfea59b0e34502ecd4babee4a5c613e",
+      "kind": "training_dataset"
+    }
+  ],
+  "runtime": {
+    "name": "llama.cpp",
+    "revision": "b11146",
+    "platform": "Windows x64 CUDA 12.4",
+    "license": "MIT; accompanying CUDA libraries have NVIDIA license terms"
+  },
+  "dataset": {
+    "name": "MELD",
+    "source": "https://github.com/declare-lab/MELD",
+    "note": "Acquisition instructions only. Do not redistribute television clips; record dataset/media terms separately."
+  }
+}

@@ -1,0 +1,324 @@
+{
+  "input": {
+    "id": "test:4:2",
+    "split": "test",
+    "dialogue_id": 4,
+    "utterance_id": 2,
+    "text": "It kicked! I think the baby kicked!",
+    "speaker_audit_only": "Phoebe",
+    "label": 1,
+    "emotion": "surprise",
+    "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\test\\output_repeated_splits_test\\dia4_utt2.mp4",
+    "media_available": true,
+    "media_sha256": "3986ed5d6a97912cc9f5bea15b6d24e690c84843c29663f14d1a6d391cf9a392"
+  },
+  "events": [
+    {
+      "type": "state",
+      "state": {
+        "schema_version": "1.0",
+        "session_id": "meld-replay",
+        "turn_id": "test:4:2",
+        "input": {
+          "text": "It kicked! I think the baby kicked!",
+          "video_present": true,
+          "received_at": "2026-09-25T04:52:52.165636+00:00",
+          "text_truncated_for_classification": false,
+          "clip_started_at": null,
+          "clip_ended_at": null,
+          "clock_source": "backend_utc; capture timestamps unavailable"
+        },
+        "emotion": {
+          "label": "anger",
+          "probabilities": {
+            "neutral": 0.00932325143367052,
+            "surprise": 0.3215307891368866,
+            "fear": 0.04505356028676033,
+            "sadness": 0.028202427551150322,
+            "joy": 0.19185812771320343,
+            "disgust": 0.06388109922409058,
+            "anger": 0.34015071392059326
+          },
+          "source": "fusion",
+          "score_semantics": "uncalibrated_softmax"
+        },
+        "vision": {
+          "available": true,
+          "reason": "ok",
+          "valid_frame_fraction": 1.0,
+          "mean_detection_score": 0.9192245826125145,
+          "sampled_frames": 8,
+          "selected_frames": 8,
+          "duration_seconds": 1.5014988342400355,
+          "truncated": false,
+          "speaker_attribution": "unverified_heuristic"
+        },
+        "modalities": {
+          "text_label": "anger",
+          "vision_label": "neutral"
+        },
+        "modality_disagreement": true,
+        "timing": {
+          "classification_ms": 254.69880001037382,
+          "first_token_ms": null,
+          "completion_ms": null,
+          "model_load_ms": 12139.331100013806
+        },
+        "response": {
+          "text": "",
+          "status": "streaming",
+          "error": null
+        }
+      },
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": "That",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": "'s",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " so",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " exciting",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " —",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " congratulations",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " on",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " feeling",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " the",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " baby",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " move",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": "!",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " It",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": "’s",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " a",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " wonderful",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " sign",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " of",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " growth",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": ".",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " Is",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " it",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " the",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " first",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " time",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " you",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": "’ve",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " felt",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " that",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": " kick",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "text_delta",
+      "text": "?",
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    },
+    {
+      "type": "done",
+      "state": {
+        "schema_version": "1.0",
+        "session_id": "meld-replay",
+        "turn_id": "test:4:2",
+        "input": {
+          "text": "It kicked! I think the baby kicked!",
+          "video_present": true,
+          "received_at": "2026-09-25T04:52:52.165636+00:00",
+          "text_truncated_for_classification": false,
+          "clip_started_at": null,
+          "clip_ended_at": null,
+          "clock_source": "backend_utc; capture timestamps unavailable"
+        },
+        "emotion": {
+          "label": "anger",
+          "probabilities": {
+            "neutral": 0.00932325143367052,
+            "surprise": 0.3215307891368866,
+            "fear": 0.04505356028676033,
+            "sadness": 0.028202427551150322,
+            "joy": 0.19185812771320343,
+            "disgust": 0.06388109922409058,
+            "anger": 0.34015071392059326
+          },
+          "source": "fusion",
+          "score_semantics": "uncalibrated_softmax"
+        },
+        "vision": {
+          "available": true,
+          "reason": "ok",
+          "valid_frame_fraction": 1.0,
+          "mean_detection_score": 0.9192245826125145,
+          "sampled_frames": 8,
+          "selected_frames": 8,
+          "duration_seconds": 1.5014988342400355,
+          "truncated": false,
+          "speaker_attribution": "unverified_heuristic"
+        },
+        "modalities": {
+          "text_label": "anger",
+          "vision_label": "neutral"
+        },
+        "modality_disagreement": true,
+        "timing": {
+          "classification_ms": 254.69880001037382,
+          "first_token_ms": 501.6748999769334,
+          "completion_ms": 716.981699981261,
+          "model_load_ms": 12139.331100013806
+        },
+        "response": {
+          "text": "That's so exciting — congratulations on feeling the baby move! It’s a wonderful sign of growth. Is it the first time you’ve felt that kick?",
+          "status": "complete",
+          "error": null
+        }
+      },
+      "session_id": "meld-replay",
+      "turn_id": "test:4:2"
+    }
+  ],
+  "note": "Ground-truth emotion is retained for evaluation only; not supplied to inference."
+}
