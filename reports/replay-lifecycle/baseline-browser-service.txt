@@ -1,0 +1,6 @@
+* Running on local URL:  http://127.0.0.1:7862
+* To create a public link, set `share=True` in `launch()`.
+BASELINE_FIXTURE_READY; lifetime150seconds; no inference
+{"event": "loader_entered", "monotonic": 166840.328}
+{"event": "loader_returned", "monotonic": 166842.828}
+Closing server running on port: 7862

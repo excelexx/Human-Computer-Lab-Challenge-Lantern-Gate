@@ -35,6 +35,8 @@ On the supplied RTX 3080, the updated warm benchmark produced emotion state / fi
 
 The second follow-through pass fixed four reproduced cancellation/ownership failures: all eight real-model lifecycle cases and 48 alternating video/text turns now pass. Exact local context budgeting preserves inputs and returns an actionable overflow error. A development confidence diagnostic did not justify calibration, so it was not deployed. See the [reliability report](reports/reliability/REPORT.md) for protocols, failures, resource limits and browser evidence.
 
+A later browser check reproduced and fixed delayed replay loading overwriting a fresh draft after reset. The fixed UI passed New/Stop/normal-load checks and the full **268-test** software suite. A real text+video replay completed; its known wrong emotion and response assumptions remain recorded in the [replay lifecycle report](reports/replay-lifecycle/REPORT.md).
+
 ## Windows setup
 
 The target machine is Windows with an RTX 3080 (10 GB VRAM) and 32 GB system RAM. Use Python **3.12**, a compatible NVIDIA driver, and FFmpeg/ffprobe on `PATH`. FFmpeg is required by Gradio to inspect and mute video inputs; it does not add learned parameters. See the [official FFmpeg download page](https://ffmpeg.org/download.html) for Windows distribution links.

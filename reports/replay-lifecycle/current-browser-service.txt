@@ -1,0 +1,10 @@
+* Running on local URL:  http://127.0.0.1:7863
+* To create a public link, set `share=True` in `launch()`.
+SYNTHETIC ONLY: http://127.0.0.1:7863; bounded lifetime 150.0s
+SYNTHETIC replay preparation entered
+SYNTHETIC replay preparation finished
+SYNTHETIC replay preparation entered
+SYNTHETIC replay preparation finished
+SYNTHETIC replay preparation entered
+SYNTHETIC replay preparation finished
+Closing server running on port: 7863

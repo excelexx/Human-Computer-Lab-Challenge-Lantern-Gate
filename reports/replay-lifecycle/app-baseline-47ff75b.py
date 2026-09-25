@@ -200,11 +200,6 @@ def load_replay_rows(home: Path) -> list[dict[str, Any]]:
     return rows
 
 
-def replay_values(row: dict[str, Any]) -> tuple[str, str | None]:
-    """Resolve one selected replay; kept separate for controlled scheduling probes."""
-    return row["text"], row["video_path"]
-
-
 def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
     """Build the UI without downloading models or starting a web server."""
     os.environ.setdefault("GRADIO_ANALYTICS_ENABLED", "False")
@@ -274,12 +269,6 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         session = gr.State(lambda: str(uuid.uuid4()))
         turn = gr.State(0)
         conversation_state = gr.State([])
-        # Gradio deep-copies the initial dictionary for each browser session.
-        # Callbacks in that session share this object, including while queued.
-        initial_replay_epoch = str(uuid.uuid4())
-        replay_guard = gr.State({"owner": None, "epoch": initial_replay_epoch})
-        replay_epoch = gr.Textbox(value=initial_replay_epoch, visible=False)
-        replay_ticket = gr.JSON(visible=False)
         load_replay = None
         gr.HTML('<div id="masthead"><div class="brand-lockup"><span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 18C6 10 10 5 18 5C18 13 14 18 6 18Z" stroke="#537263" stroke-width="1.35"/><path d="M6 18L14 10" stroke="#537263" stroke-width="1.35" stroke-linecap="round"/></svg></span><strong>Check-in</strong></div><span class="privacy-note">Private, on your computer</span></div>')
         gr.HTML('<section id="invitation"><h1>A little space<br>for your day.</h1><p>Start wherever you are. Share a few words and a short clip, and take a moment to reflect.</p></section>')
@@ -350,35 +339,23 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             gr.Markdown("Camera clips are processed on this computer. Temporary browser uploads are eligible for cleanup after one hour. New conversation clears the displayed history; it does not immediately erase temporary files.")
             gr.Markdown("Audio is removed by copying the original video stream for H.264 MP4 and VP8/VP9 WebM. Other formats may require H.264 conversion, which changes pixels and displays a warning. Replay and uploaded clips use this same preparation.")
 
-        compose_controls = [camera, message] + ([load_replay, replay_select] if load_replay is not None else [])
-        outputs = [chat, conversation_state, emotion, output_state, activity, turn, send, stop] + compose_controls + [replay_epoch]
+        compose_controls = [camera, message] + ([load_replay] if load_replay is not None else [])
+        outputs = [chat, conversation_state, emotion, output_state, activity, turn, send, stop] + compose_controls
 
         def compose_update(*, active: bool = False, clear: bool = False) -> tuple[Any, ...]:
             video_update = gr.update(interactive=not active, **({"value": None} if clear else {}))
             text_update = gr.update(interactive=not active, **({"value": ""} if clear else {}))
-            replay_update = (gr.update(interactive=not active), gr.update(interactive=not active)) if load_replay is not None else ()
+            replay_update = (gr.update(interactive=not active),) if load_replay is not None else ()
             return (video_update, text_update) + replay_update
 
-        def invalidate_replay(guard: dict[str, Any] | None) -> bool:
-            if guard is None:
-                return False
-            pending = guard.get("owner") is not None
-            guard["owner"] = None
-            guard["epoch"] = str(uuid.uuid4())
-            return pending
-
-        def epoch_value(guard: dict[str, Any] | None) -> tuple[Any]:
-            return (guard["epoch"] if guard is not None else gr.skip(),)
-
-        def run_turn(text: str, clip: Any, history: Any, session_id: str, turn_id: int, guard: dict[str, Any] | None = None) -> Iterator[tuple[Any, ...]]:
-            invalidate_replay(guard)
+        def run_turn(text: str, clip: Any, history: Any, session_id: str, turn_id: int) -> Iterator[tuple[Any, ...]]:
             prior = clean_history(history)
             next_turn = int(turn_id or 0)
             if not text or not text.strip():
-                yield (prior, prior, gr.skip(), gr.skip(), "Write a message about your day before sending.", next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update() + epoch_value(guard)
+                yield (prior, prior, gr.skip(), gr.skip(), "Write a message about your day before sending.", next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update()
                 return
             if len(text) > 4000:
-                yield (prior, prior, gr.skip(), gr.skip(), "Please shorten your message to 4,000 characters or fewer.", next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update() + epoch_value(guard)
+                yield (prior, prior, gr.skip(), gr.skip(), "Please shorten your message to 4,000 characters or fewer.", next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update()
                 return
 
             next_turn += 1
@@ -387,7 +364,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             response = ""
             cancelled_before_state = False
             stream = None
-            yield (messages, messages, emotion_html(), state, "Considering your words and clip…", next_turn, gr.update(interactive=False), gr.update(interactive=True)) + compose_update(active=True) + epoch_value(guard)
+            yield (messages, messages, emotion_html(), state, "Considering your words and clip…", next_turn, gr.update(interactive=False), gr.update(interactive=True)) + compose_update(active=True)
             try:
                 stream = pipeline.stream(text.strip(), video_path(clip), prior, session_id, str(next_turn))
                 for event in stream:
@@ -412,84 +389,24 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                         raise RuntimeError(str(event.get("error") or "The local pipeline could not finish this turn."))
                     visible = messages + ([{"role": "assistant", "content": response}] if response else [])
                     progress = "Stopped before the emotion signal was ready." if cancelled_before_state else "Responding…" if response else "Emotion signal ready. Preparing a response…" if state else "Considering your check-in…"
-                    yield (visible, prior if cancelled_before_state else visible, emotion_html(state), state, progress, next_turn, gr.update(interactive=False), gr.update(interactive=True)) + tuple(gr.skip() for _ in compose_controls) + (gr.skip(),)
+                    yield (visible, prior if cancelled_before_state else visible, emotion_html(state), state, progress, next_turn, gr.update(interactive=False), gr.update(interactive=True)) + tuple(gr.skip() for _ in compose_controls)
 
                 visible = messages + ([{"role": "assistant", "content": response}] if response else [])
                 cancelled = cancelled_before_state or (isinstance(state.get("response"), dict) and state["response"].get("status") == "cancelled")
                 complete = "Stopped before the emotion signal was ready." if cancelled_before_state else "Stopped. Any partial response is shown above." if cancelled else "Ready for your next check-in. Add a fresh clip, or continue with words alone." if response else "The turn finished without response text. See diagnostics for details."
-                yield (visible, prior if cancelled_before_state else visible, emotion_html(state), state, complete, next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update(clear=True) + (gr.skip(),)
+                yield (visible, prior if cancelled_before_state else visible, emotion_html(state), state, complete, next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update(clear=True)
             except Exception as exc:
                 visible = messages + ([{"role": "assistant", "content": response}] if response else [])
                 error_state = {**state, "error": f"{type(exc).__name__}: {exc}"}
                 # The draft remains for retry, but a failed attempt must not also
                 # enter model history and duplicate the next submitted message.
-                yield (visible, prior, emotion_html(state), error_state, failure_message(exc), next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update() + (gr.skip(),)
+                yield (visible, prior, emotion_html(state), error_state, failure_message(exc), next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update()
             finally:
                 if stream is not None and hasattr(stream, "close"):
                     stream.close()
 
-        replay_events = []
-        if load_replay is not None:
-            replay_outputs = [activity, send, stop] + compose_controls
-
-            def begin_replay(index: str | None, epoch: str, guard: dict[str, Any]) -> Iterator[tuple[Any, ...]]:
-                if epoch != guard.get("epoch"):
-                    yield tuple(gr.skip() for _ in range(len(replay_outputs) + 1))
-                    return
-                if index is None:
-                    yield (None, "Choose a recorded utterance first.") + tuple(gr.skip() for _ in replay_outputs[1:])
-                    return
-                ticket = {"id": str(uuid.uuid4()), "index": int(index), "epoch": epoch}
-                guard["owner"] = ticket["id"]
-                yield (ticket, "Loading the recorded check-in…", gr.update(interactive=False), gr.update(interactive=True)) + compose_update(active=True)
-
-            def select_replay(ticket: dict[str, Any] | None, guard: dict[str, Any]) -> Iterator[tuple[Any, ...]]:
-                # The ticket is a non-State input captured when this request is
-                # queued. A reset/edit cannot give an old request a new ticket.
-                if not ticket or guard.get("owner") != ticket.get("id") or guard.get("epoch") != ticket.get("epoch"):
-                    yield tuple(gr.skip() for _ in replay_outputs)
-                    return
-                try:
-                    yield ("Loading the recorded check-in…",) + tuple(gr.skip() for _ in replay_outputs[1:])
-                    text, clip = replay_values(replay_rows[ticket["index"]])
-                    if guard.get("owner") != ticket["id"]:
-                        yield tuple(gr.skip() for _ in replay_outputs)
-                        return
-                    guard["owner"] = None
-                    yield ("Recorded check-in ready. You can edit it before sending.", gr.update(interactive=True), gr.update(interactive=False),
-                           gr.update(value=clip, interactive=True), gr.update(value=text, interactive=True),
-                           gr.update(interactive=True), gr.update(interactive=True))
-                except Exception:
-                    if guard.get("owner") == ticket["id"]:
-                        guard["owner"] = None
-                        yield ("The recorded check-in could not load. Your draft is kept; choose another utterance or try again.",
-                               gr.update(interactive=True), gr.update(interactive=False)) + compose_update()
-                # Cancelling the iterator alone does not release UI ownership:
-                # the Stop/New/edit/Send callback invalidates it and restores
-                # or takes over the controls. This also covers close-before-
-                # callback ordering without leaving the composer disabled.
-
-            admission = load_replay.click(begin_replay, [replay_select, replay_epoch, replay_guard], [replay_ticket] + replay_outputs,
-                                          concurrency_limit=1, concurrency_id="replay-admission", trigger_mode="once", api_name=False)
-            # A cancelled admission can still produce a Gradio completion
-            # notification. Only an actual ticket update may schedule loading.
-            loading = replay_ticket.change(select_replay, [replay_ticket, replay_guard], replay_outputs,
-                                           concurrency_limit=1, concurrency_id="gpu", api_name=False)
-            replay_events = [admission, loading]
-
-            def abandon_replay(guard: dict[str, Any]) -> tuple[Any, ...]:
-                if not invalidate_replay(guard):
-                    return tuple(gr.skip() for _ in replay_outputs) + epoch_value(guard)
-                return ("Replay loading stopped. Your draft is ready to edit.", gr.update(interactive=True), gr.update(interactive=False)) + compose_update() + epoch_value(guard)
-
-            # These are user-only edits. Programmatic replay values must not
-            # cancel themselves, so do not bind the broad change event.
-            for edit_event in (message.input, replay_select.input, camera.upload, camera.clear, camera.start_recording):
-                edit_event(abandon_replay, [replay_guard], replay_outputs + [replay_epoch], cancels=replay_events, queue=False, api_name=False)
-
-        inputs = [message, camera, conversation_state, session, turn, replay_guard]
-        send_event = send.click(run_turn, inputs, outputs, concurrency_limit=1, concurrency_id="gpu", trigger_mode="once", api_name=False,
-                                cancels=replay_events or None)
+        inputs = [message, camera, conversation_state, session, turn]
+        send_event = send.click(run_turn, inputs, outputs, concurrency_limit=1, concurrency_id="gpu", trigger_mode="once", api_name=False)
 
         def request_cancel(session_id: str, turn_id: Any = None) -> bool:
             cancel = getattr(pipeline, "cancel", None)
@@ -497,34 +414,29 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                 return False
             return bool(cancel(session_id, str(turn_id))) if turn_id is not None else bool(cancel(session_id))
 
-        def stop_current(session_id: str, turn_id: Any = None, guard: dict[str, Any] | None = None) -> tuple[Any, ...]:
-            replay_pending = invalidate_replay(guard)
+        def stop_current(session_id: str, turn_id: Any = None) -> tuple[Any, ...]:
             pending = request_cancel(session_id, turn_id)
-            status = "Stopping after the current processing step. A new check-in may need to wait." if pending else "Replay loading stopped. Add a fresh clip or continue with words alone." if replay_pending else "No active response to stop."
-            return (status, gr.update(interactive=True), gr.update(interactive=False)) + compose_update(clear=True) + epoch_value(guard)
+            status = "Stopping after the current processing step. A new check-in may need to wait." if pending else "No active response to stop."
+            return (status, gr.update(interactive=True), gr.update(interactive=False)) + compose_update(clear=True)
 
-        def new_conversation(session_id: str, turn_id: Any = None, guard: dict[str, Any] | None = None) -> tuple[Any, ...]:
-            invalidate_replay(guard)
-            next_epoch = str(uuid.uuid4())
-            if guard is not None:
-                guard["epoch"] = next_epoch
+        def new_conversation(session_id: str, turn_id: Any = None) -> tuple[Any, ...]:
             pending = request_cancel(session_id, turn_id)
             status = "A fresh conversation. The previous check-in is stopping after its current processing step." if pending else "A fresh conversation. Share something from your day."
-            return ([], [], emotion_html(), {}, status, str(uuid.uuid4()), 0, gr.update(value="", interactive=True), gr.update(value=None, interactive=True), gr.update(interactive=True), gr.update(interactive=False)) + ((gr.update(interactive=True), gr.update(interactive=True)) if load_replay is not None else ()) + (next_epoch,)
+            return ([], [], emotion_html(), {}, status, str(uuid.uuid4()), 0, gr.update(value="", interactive=True), gr.update(value=None, interactive=True), gr.update(interactive=True), gr.update(interactive=False)) + ((gr.update(interactive=True),) if load_replay is not None else ())
 
         stop.click(
             stop_current,
-            inputs=[session, turn, replay_guard],
-            outputs=[activity, send, stop] + compose_controls + [replay_epoch],
-            cancels=[send_event] + replay_events,
+            inputs=[session, turn],
+            outputs=[activity, send, stop] + compose_controls,
+            cancels=[send_event],
             queue=False,
             api_name=False,
         )
         new.click(
             new_conversation,
-            inputs=[session, turn, replay_guard],
-            outputs=[chat, conversation_state, emotion, output_state, activity, session, turn, message, camera, send, stop] + ([load_replay, replay_select] if load_replay is not None else []) + [replay_epoch],
-            cancels=[send_event] + replay_events,
+            inputs=[session, turn],
+            outputs=[chat, conversation_state, emotion, output_state, activity, session, turn, message, camera, send, stop] + ([load_replay] if load_replay is not None else []),
+            cancels=[send_event],
             queue=False,
             api_name=False,
         )
@@ -533,6 +445,15 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             return status, status_message(status)
 
         refresh.click(refresh_status, outputs=[setup, activity], queue=False, api_name=False)
+        if replay_rows:
+            def select_replay(index: str | None) -> tuple[Any, Any]:
+                if index is None:
+                    return gr.skip(), gr.skip()
+                row = replay_rows[int(index)]
+                return row["text"], row["video_path"]
+
+            load_replay.click(select_replay, [replay_select], [message, camera], queue=False, api_name=False)
+
     app.queue(default_concurrency_limit=1, max_size=8)
     return app
 

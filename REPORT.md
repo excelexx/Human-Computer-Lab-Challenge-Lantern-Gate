@@ -8,6 +8,8 @@ The current prototype includes a stronger text fallback, video preparation that 
 
 The subsequent pass corrected four reproduced stop/ownership failures. All eight fixed real-model cases, eight recovery turns and 48 alternating video/text burst turns passed. The four real context-boundary checks also passed, with explicit overflow errors and whole-history eviction. Model weights, prompt and sampler remain unchanged; confidence calibration was investigated and not deployed. The latest warm fusion p95 state/first-word/completion is **241/440/604 ms**, with **7,581 MiB** peak total GPU usage. The first-pass measurements below remain historical evidence. Full comparison, operational limits, confidence results and browser checks are in [the reliability report](reports/reliability/REPORT.md).
 
+A later browser check reproduced and fixed delayed replay loading overwriting a fresh draft after reset. The fixed UI passed New/Stop/normal-load checks and the full **268-test** software suite. A real text+video replay completed; its known wrong emotion and response assumptions remain recorded in the [replay lifecycle report](reports/replay-lifecycle/REPORT.md).
+
 ## Current models and training
 
 | Required component | Learned parameters |

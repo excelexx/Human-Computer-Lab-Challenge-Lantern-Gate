@@ -1,0 +1,25 @@
+{
+  "kind": "synthetic CPU controlled scheduling; no inference/browser claim",
+  "baseline_commit": "47ff75b1286cafcb51322f1631078b4af152ad0b",
+  "app_sha256": "5591ce132135ce39a3c3d1ebf53892f10baeff23b8b7aa20bad7c63ebcd8d2d4",
+  "reset_text": {
+    "interactive": true,
+    "value": "",
+    "__type__": "update"
+  },
+  "late_loader_outputs": [
+    "OLD REPLAY",
+    null
+  ],
+  "new_session": "48a36af1-e61b-47d9-a324-09a6eec0b8e2",
+  "reset_cancellation_dependencies": [
+    [
+      0
+    ],
+    [
+      0
+    ]
+  ],
+  "loader_id": 6,
+  "stale_output_reproduced": true
+}

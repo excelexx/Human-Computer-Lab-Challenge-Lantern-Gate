@@ -1,0 +1,19 @@
+{
+  "declared_at": "2026-09-25T07:03:30.101387+00:00",
+  "baseline_revision": "47ff75b1286cafcb51322f1631078b4af152ad0b",
+  "baseline_app_sha256": "5591ce132135ce39a3c3d1ebf53892f10baeff23b8b7aa20bad7c63ebcd8d2d4",
+  "discovery": "Read-only review and controlled CPU process_api reproduction established a late replay result after reset. That was exploratory, not a predeclared browser outcome.",
+  "scope": "Fix only the replay-loader interaction lifecycle. No model, prompt, sampler, training or inference changes.",
+  "before_after_plan": [
+    "Use the same Gradio build_app with a controlled delayed replay selection and no model inference.",
+    "Start replay load, reset while result is pending, type a fresh draft, then inspect after the delayed callback completes.",
+    "Preserve baseline late overwrite and compare fixed behavior without modifying timing to obtain a preferred result.",
+    "Verify controls restore after cancel and successful replay loading.",
+    "Finally restart and verify production app uses real MELD replay."
+  ],
+  "limitations": [
+    "Artificial delay is an explicit scheduling probe, not natural latency or model output.",
+    "Single browser session; no additional cross-session isolation claim.",
+    "Previous model and measured benchmark evidence remains unchanged."
+  ]
+}

@@ -66,3 +66,12 @@ One GPU workload runs at a time. The app is temporarily stopped while direct rel
 ### Next heartbeat
 
 Do not rerun completed training, confidence, corruption, response or short-burst studies. The app is warm and usable; both study batches and source checkpoints are saved. Further work should address a concrete new issue or an auditability gap, not inflate inference/test counts. If no justified change remains, preserve this version and stay quiet until the morning handoff. The 48-turn burst cannot support long-duration claims. At 13:00 UTC complete a bounded in-progress step, verify package/app status, summarize supported outcomes and weaknesses, then pause the existing heartbeat. A sleeping machine or inactive interval is a recorded gap, not continuous execution.
+
+## Third bounded pass completed (2026-09-25T07:21:25.366652+00:00)
+
+- A concrete delayed replay/reset overwrite was reproduced in CPU scheduling and the actual browser before editing. The unchanged synthetic delay was then used with the fixed UI: New and Stop preserved fresh drafts, and ordinary loading restored controls.
+- Queued replay admission, per-browser epoch/ticket ownership, cancellation and composer locking prevent the reproduced stale callback. Already-dispatched frontend updates remain a documented Gradio transport boundary.
+- Full software suite: 268 passed, one dependency warning. A production MELD 4/2 text+video turn used fusion and completed a local response. Its wrong anger tag and presumptive reply remain documented. Models, prompt, sampler and 4,464,745,375 parameter count are unchanged; no new accuracy or speed claim.
+- Both synthetic services exited; the real app is warm and ready for a fresh conversation. See [the replay lifecycle report](reports/replay-lifecycle/REPORT.md). Source/ZIP are refreshed after this entry.
+
+Do not duplicate these three completed study batches. Subsequent passes should address only a concrete new issue or an auditability gap; otherwise preserve the app and stay quiet. Inactive intervals are not continuous computation. At 13:00 UTC, verify the handoff and pause the existing heartbeat as already instructed.
