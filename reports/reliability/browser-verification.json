@@ -1,0 +1,65 @@
+{
+  "checked_at": "2026-09-25T06:26:47.774937+00:00",
+  "surface": "Codex in-app browser, existing localhost7860 tab; real production app and local generator",
+  "method": "Agent-observed visible DOM/actions and final screenshot; observations transcribed from tool results, not a synthetic browser fixture.",
+  "source_sha256": {
+    "app.py": "5591ce132135ce39a3c3d1ebf53892f10baeff23b8b7aa20bad7c63ebcd8d2d4",
+    "pipeline.py": "b3970a63e20c114c73dfa191f5c13ce702aa89d1b763e752d0fac8555bf6ebd2",
+    "generator.py": "22a019d4c28f90d9f0994fbef2e83467d55ae0f960753d451cefbe7a732cf58c",
+    "video_input.py": "a1c078fccdaad347a6331c391f0636fa2f7062382e1127570c9b3562bc620a81"
+  },
+  "checks": [
+    {
+      "case": "stop during cold loading",
+      "observed": "Initial state showed Considering your words and clip, disabled composer and Awaiting a check-in. Stop acknowledged current processing step, cleared composer and restored controls. New conversation cleared the stopped message.",
+      "passed": true
+    },
+    {
+      "case": "recovery after stop",
+      "input": "I feel both happy and nervous about tomorrow.",
+      "emotion": "neutral",
+      "source": "text_fallback",
+      "response": "You're feeling happy and nervous about tomorrow—how are those two feelings showing up for you right now?",
+      "observed": "Real reply completed, inputs cleared, next-turn controls enabled.",
+      "passed": true
+    },
+    {
+      "case": "overflow and retry before status-copy improvement",
+      "input": "4,000 repeated CJK characters",
+      "observed": "Genuine anger label remained, input still contained4000characters and was editable. Diagnostics showed Please shorten your message. Shorter retry displayed only its new user message and a completed real response.",
+      "response": "That sounds peaceful. Was there anything specific that stood out in the quiet?",
+      "passed": true
+    },
+    {
+      "case": "New conversation during cold loading after app restart",
+      "observed": "New acknowledged that the previous check-in was still stopping. Fresh draft A fresh draft after reset. remained editable in a later observation; no old user message, emotion tag or reply reappeared.",
+      "passed": true
+    },
+    {
+      "case": "actionable overflow in main status",
+      "input": "4,000 repeated CJK characters",
+      "observed": "Your message is too long for the local model. Shorten it and retry; your draft and clip are kept. DOM confirmed4000characters retained and disabled=false.",
+      "passed": true
+    },
+    {
+      "case": "recovery after reset and overflow",
+      "input": "I feel both happy and nervous about tomorrow.",
+      "emotion": "neutral",
+      "source": "text_fallback",
+      "response": "You're feeling happy and nervous about tomorrow—sounds like a mix of excitement and a little uncertainty. How are you holding up in the moment?",
+      "observed": "Only the shortened user message and real reply appeared. Ready-for-next-check-in status, cleared composer and restored controls.",
+      "passed": true
+    },
+    {
+      "case": "handoff",
+      "observed": "New conversation left empty history, empty text/video, Awaiting a check-in, Send enabled, Stop disabled, diagnostics collapsed and the page scrolled to top. Final screenshot retained the existing ivory/sage design.",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "One browser session and bounded timings only; no exhaustive Gradio interleaving or multi-browser queue-isolation test.",
+    "Physical camera permission was not requested and camera hardware remains untested.",
+    "No response-quality or emotion-accuracy score. The quiet-day reply presumed peacefulness; these checks do not establish therapeutic quality.",
+    "Multimodal model behavior was checked in the separate48turnburst; this browser follow-up used authored text-only inputs to isolate stop/reset/overflow behavior."
+  ]
+}

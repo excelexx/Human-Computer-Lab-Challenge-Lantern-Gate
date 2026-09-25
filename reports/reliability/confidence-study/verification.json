@@ -1,0 +1,21 @@
+{
+  "verified_at": "2026-09-25T06:09:13.902824+00:00",
+  "status": "passed",
+  "copied_evidence_byte_hashes_verified": true,
+  "protocol_and_source_hashes_verified": true,
+  "recorded_chronology_consistent": true,
+  "development_rows": 1109,
+  "dialogues": 114,
+  "all_saved_metric_coverage_and_fold_values_recomputed": true,
+  "held_dialogue_route_isolation_verified": true,
+  "argmax_unchanged": true,
+  "supplied_active_head_hashes_verified": {
+    "vision": true,
+    "text": true,
+    "fusion": true
+  },
+  "original_model_inference_repeated": false,
+  "original_feature_caches_read_or_included": false,
+  "media_or_model_binaries_included": false,
+  "scope": "Independent numeric and provenance checks on the saved development logits; not a new model evaluation, calibration deployment, or independent generalization study."
+}

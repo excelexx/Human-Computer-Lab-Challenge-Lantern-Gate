@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-25T06:16:22.612375+00:00",
+  "home": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime",
+  "fingerprints": {
+    "feature_identity": "1f030a3ec7ff3c4b80486d7afac799d13507560374e7b7d84f6a40e20f7a3777",
+    "dev_cache_sha256": "0d40d91bc48794b0c21afdec5dd99c17fd77ea4a9a5b5005bde5719e8d459879",
+    "feature_contract": {
+      "feature_metadata": {
+        "vision": {
+          "model": "EmotiEffLib/enet_b2_7",
+          "revision": "520a051c64cd191521e5934655314e769a319684",
+          "sha256": "e687fd9e7bee45486c7325f11222740f841c3bebac531badb903a50e82b9ac0f",
+          "adapted_sha256": null,
+          "parameter_count": 7710857,
+          "feature_dim": 1408,
+          "preprocessing": "RGB; resize 260x260 bilinear PIL; ImageNet normalization; max pooling",
+          "diagnostic_labels": [
+            "anger",
+            "disgust",
+            "fear",
+            "joy",
+            "neutral",
+            "sadness",
+            "surprise"
+          ]
+        },
+        "text": {
+          "model": "microsoft/deberta-v3-large",
+          "parameter_count": 434012160,
+          "revision": "64a8c8eab3e352a784c658aef62be1662607476f",
+          "sha256": "dd5b5d93e2db101aaf281df0ea1216c07ad73620ff59c5b42dccac4bf2eef5b5",
+          "feature_dim": 1024,
+          "max_length": 128,
+          "pooling": "attention-mask mean, including non-padding special tokens",
+          "adapted_sha256": null
+        },
+        "processor": "yunet-eightframes-v1-score08-singleface-sixvalid",
+        "frames": 8,
+        "min_valid": 6,
+        "implementation_sha256": "173c67ee82e7d4e7bcac91982e9f01a524f1bccfd84ff90253922983b1f9a492",
+        "normalization": "mean over valid frames then L2; text masked mean then L2"
+      },
+      "live_implementation_sha256": "173c67ee82e7d4e7bcac91982e9f01a524f1bccfd84ff90253922983b1f9a492",
+      "yunet_sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4"
+    },
+    "head_checkpoints": {
+      "vision": {
+        "sha256": "9882939db93780c96481f978cc93ace61a80d52a3c63465ae551cb8ace23a465",
+        "architecture": "mlp",
+        "parameters": 181255
+      },
+      "text": {
+        "sha256": "8c9eb533e4c9419935a1085a9c8799025fa760542ba010f563236f1e0578ca63",
+        "architecture": "linear",
+        "parameters": 7175
+      },
+      "fusion": {
+        "sha256": "3f126c4e1033fcec4cb57641fcbcd2a83798bb5f39d118861fc671207df9c0ea",
+        "architecture": "mlp",
+        "parameters": 312711
+      }
+    },
+    "generator": {
+      "artifact": "Qwen_Qwen3-4B-Instruct-2507-Q5_K_M.gguf",
+      "sha256": "66713ce35a58a82fe87642d4ec13425bf9b9a46800fff5c49a665ef5701439dc",
+      "llama_revision": "b11146",
+      "server_binary_sha256": "7b886298b688509ced3e92b420edd57dd3d665da72c1fc207d7a537be5870352",
+      "base_url": "http://127.0.0.1:8081",
+      "sampler": "Unchanged LocalGenerator.stream implementation; no seed override"
+    },
+    "system_prompt_sha256": "f58357075ccb24a80feff71cc7891bb0518fbdec2a169d0b8a8e381c10a8f844",
+    "source_sha256": {
+      "interaction_backtest.py": "bf250f7d49fc0f5b11baf2b8c917962aa2a50536e086f2765f1099387ef6f676",
+      "pipeline.py": "b3970a63e20c114c73dfa191f5c13ce702aa89d1b763e752d0fac8555bf6ebd2",
+      "generator.py": "22a019d4c28f90d9f0994fbef2e83467d55ae0f960753d451cefbe7a732cf58c",
+      "schema.py": "88bdf5af3f87354137296872d4a16e0d13ca2168cb7d80f9c6e3ab1f0db33900",
+      "models.py": "31a3b73ec426e4da574c42806443476df2454578f1ac7a176a96b5fed5ad8f7d"
+    }
+  },
+  "source_sha256": "751b942559916a9ff5d2c9909692710e6e3e1acedc0faa85683d93a21b4285a5",
+  "cases": [
+    "cold_load_cancel",
+    "cancel_after_state",
+    "cancel_after_first_delta",
+    "close_after_state",
+    "close_after_first_delta",
+    "wrong_session_and_busy",
+    "cancel_at_generator_exhaustion",
+    "terminal_ownership"
+  ],
+  "rows": [
+    {
+      "id": "dev:7:5",
+      "split": "dev",
+      "dialogue_id": 7,
+      "utterance_id": 5,
+      "text": "Yes! She’s gonna help us take care of the baby! Woo-hoo.",
+      "speaker_audit_only": "Rachel",
+      "label": 4,
+      "emotion": "joy",
+      "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia7_utt5.mp4",
+      "media_available": true,
+      "media_sha256": "062edb69514cd339cf8edd2b0b5bac534444d7ca437449f2be94404d0e2b8b8d"
+    },
+    {
+      "id": "dev:7:6",
+      "split": "dev",
+      "dialogue_id": 7,
+      "utterance_id": 6,
+      "text": "What—You’re not serious.",
+      "speaker_audit_only": "Ross",
+      "label": 1,
+      "emotion": "surprise",
+      "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia7_utt6.mp4",
+      "media_available": true,
+      "media_sha256": "c64177fba6245b9b8335f454e7266d096f9a592fe9d0e68fe77cc8ff94a52aba"
+    },
+    {
+      "id": "dev:7:9",
+      "split": "dev",
+      "dialogue_id": 7,
+      "utterance_id": 9,
+      "text": "Hi Ross!",
+      "speaker_audit_only": "Mrs. Green",
+      "label": 4,
+      "emotion": "joy",
+      "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia7_utt9.mp4",
+      "media_available": true,
+      "media_sha256": "c8953aaacf49c4a7c775dc767fd9a40fcbdfe622d07c7bdb4ca2f2e89b2e0d2b"
+    },
+    {
+      "id": "dev:7:10",
+      "split": "dev",
+      "dialogue_id": 7,
+      "utterance_id": 10,
+      "text": "Hi roomie!",
+      "speaker_audit_only": "Ross",
+      "label": 4,
+      "emotion": "joy",
+      "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia7_utt10.mp4",
+      "media_available": true,
+      "media_sha256": "27525fe0fdfd81e778b0aef2d76ab13e39e961a2b021236cdf21064a194544fb"
+    },
+    {
+      "id": "dev:8:3",
+      "split": "dev",
+      "dialogue_id": 8,
+      "utterance_id": 3,
+      "text": "This is a serious, legitimate movie.",
+      "speaker_audit_only": "Joey",
+      "label": 0,
+      "emotion": "neutral",
+      "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia8_utt3.mp4",
+      "media_available": true,
+      "media_sha256": "7ee20046adef5975fe97bb26f9d1f3f9cdd0851548bc3c8cac5f5f03a34d48a8"
+    },
+    {
+      "id": "dev:8:4",
+      "split": "dev",
+      "dialogue_id": 8,
+      "utterance_id": 4,
+      "text": "And the nudity is really important to the story.",
+      "speaker_audit_only": "Joey",
+      "label": 0,
+      "emotion": "neutral",
+      "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia8_utt4.mp4",
+      "media_available": true,
+      "media_sha256": "2527c1add1f9ffe405b616efce65be5dbeea1ac4cdb7d490b9a87f5ddfe6bedc"
+    },
+    {
+      "id": "dev:8:5",
+      "split": "dev",
+      "dialogue_id": 8,
+      "utterance_id": 5,
+      "text": "That’s what you say about porn.",
+      "speaker_audit_only": "Monica",
+      "label": 0,
+      "emotion": "neutral",
+      "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia8_utt5.mp4",
+      "media_available": true,
+      "media_sha256": "7ff9b8990e69e3cfcedd920581e42277dc000a4ca94e75e5ed879bf8cd43ee0a"
+    },
+    {
+      "id": "dev:8:6",
+      "split": "dev",
+      "dialogue_id": 8,
+      "utterance_id": 6,
+      "text": "You’re right. Maybe I shouldn’t even go on the call back.",
+      "speaker_audit_only": "Joey",
+      "label": 0,
+      "emotion": "neutral",
+      "video_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\data\\raw\\MELD.Raw\\dev\\dev_splits_complete\\dia8_utt6.mp4",
+      "media_available": true,
+      "media_sha256": "57d3d0cdd7fa29a1eb7c31629b7d1fbb45f285a75678b7e42273f502e32cc7f6"
+    }
+  ],
+  "rounds": 48,
+  "selection": "Eligible dev rows 25–32 in manifest order; no label/prediction selection.",
+  "expected_contract": [
+    "Accepted cancellation has one terminal event",
+    "Already-cancelled state does not open a generator request",
+    "No new text deltas after accepted cancellation",
+    "Another session cannot cancel or enter a held pipeline",
+    "Closing a consumer releases owned resources",
+    "Terminal events release ownership even if the consumer stops iterating",
+    "Closing an old completed iterator cannot release a newer owner",
+    "Every recovery and burst turn completes with matching stream/final text"
+  ],
+  "burst": "Alternate real paired dev input and no-video text in a single warmed pipeline; reset history every four turns, retain measured responses within each group. No deliberate delays or latency SLA score.",
+  "instrumentation": "ObservedGenerator forwards actual deltas unchanged. The exhaustion case injects only cancel(session) at the real iterator exhaustion boundary; it is an explicit scheduling probe.",
+  "memory": "Post-turn snapshots, not peaks. Process RSS includes retained report/event snapshots. PyTorch allocated/reserved VRAM excludes llama.cpp and desktop. Generator RSS/handles are separate. No forced garbage collection or allocator empty_cache.",
+  "limitations": [
+    "A short burst does not establish overnight stability or absence of slow memory leaks.",
+    "Control scheduling probes are not human browser timing or webcam tests.",
+    "Response content is retained but not given a quality score.",
+    "Development data already informed models; no accuracy or independent holdout claim.",
+    "Run this CLI in its own process. An unresolved cold worker fails the run, prevents recovery/burst work and exits nonzero; never reuse that pipeline in-process."
+  ],
+  "protocol_identity": "b9575ec0055b2463ae347e3b225ce1028393b856aa6d94c0be65b31f10973246"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "packaged_at": "2026-09-25T06:09:13.335688+00:00",
+  "copied_evidence": [
+    {
+      "file": "protocol.json",
+      "bytes": 4452,
+      "sha256": "821ba5951bc7ec1b98cfc9b55c225d82ff21198c87569c5d098893f189debd96"
+    },
+    {
+      "file": "results.json",
+      "bytes": 200322,
+      "sha256": "ab1a38bb54f9b419fcc0e5dd9e37e7c8b5ee1ecadfaac18ce729ede4390a0fde"
+    },
+    {
+      "file": "SUMMARY.md",
+      "bytes": 4136,
+      "sha256": "7299bd2225222f1b3bb8ac145a6a859ad44318d81aef81b87fce12c3264b4728"
+    },
+    {
+      "file": "NOTES.md",
+      "bytes": 2747,
+      "sha256": "b875a44195c3b54f2b5c15de6f6bd33fd15af4a0c97428bd904ab2d7e5febaab"
+    },
+    {
+      "file": "dev-confidence.npz",
+      "bytes": 134622,
+      "sha256": "93c6459695dc1b481b5cb60560e7d03add8ecf9c5509a6022505254abfa2b97c"
+    },
+    {
+      "file": "source_snapshot.py",
+      "bytes": 21570,
+      "sha256": "cdb77c557ef336ffd425dd196a873c80ba35979d86f4da1a3b5c36e5e4217a96"
+    },
+    {
+      "file": "run-started.json",
+      "bytes": 146,
+      "sha256": "a9bc6e790e4cb98772d21c7a96413a273f398268d1c2d92613697209da2e6962"
+    }
+  ],
+  "copied_evidence_total_bytes": 367995,
+  "preservation": "Every listed artifact copied byte-for-byte from the frozen confidence study; no line-ending or JSON normalization.",
+  "contains_original_feature_caches": false,
+  "contains_media": false,
+  "contains_model_weights": false
+}

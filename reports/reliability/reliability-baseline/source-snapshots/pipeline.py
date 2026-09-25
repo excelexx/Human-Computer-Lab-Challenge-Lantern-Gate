@@ -2,7 +2,6 @@
 from __future__ import annotations
 import threading
 import time
-from dataclasses import dataclass,field
 from datetime import datetime,timezone
 from pathlib import Path
 import numpy as np
@@ -14,55 +13,21 @@ from .models import DIMENSIONS,load_head
 from .schema import CheckInState,Emotion
 from .settings import LABELS,runtime_home
 
-
-@dataclass(frozen=True)
-class _TurnOwner:
-    session_id: str
-    turn_id: str
-    cancelled: threading.Event = field(default_factory=threading.Event)
-
-
 class CheckInPipeline:
     def __init__(self, home=None, device=None):
         self.home=runtime_home(home)
         self.device=device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.generator=LocalGenerator()
         self._lock=threading.Lock()
-        self._lifecycle_lock=threading.Lock()
-        self._active_turn=None
         self._cancel=threading.Event()
         self._active_session=None
         self._loaded=False
 
-    def cancel(self,session_id=None,turn_id=None):
-        session_id=str(session_id) if session_id is not None else None
-        turn_id=str(turn_id) if turn_id is not None else None
-        with self._lifecycle_lock:
-            owner=self._active_turn
-            if owner is None or (session_id is not None and session_id!=owner.session_id) or (turn_id is not None and turn_id!=owner.turn_id):
-                return False
-            owner.cancelled.set()
+    def cancel(self,session_id=None):
+        if self._active_session is not None and (session_id is None or str(session_id)==self._active_session):
+            self._cancel.set()
             return True
-
-    def _claim_turn(self,session_id,turn_id):
-        with self._lifecycle_lock:
-            if not self._lock.acquire(blocking=False):
-                raise RuntimeError("Another turn is still running. Wait or stop it first.")
-            owner=_TurnOwner(str(session_id),str(turn_id))
-            self._active_turn=owner
-            # Compatibility aliases for diagnostics; ownership uses the record.
-            self._active_session=owner.session_id
-            self._cancel=owner.cancelled
-            return owner
-
-    def _release_turn(self,owner):
-        with self._lifecycle_lock:
-            cancelled=owner.cancelled.is_set()
-            if self._active_turn is owner:
-                self._active_turn=None
-                self._active_session=None
-                self._lock.release()
-            return cancelled
+        return False
 
     def status(self):
         from .audit import runtime_inventory
@@ -172,83 +137,55 @@ class CheckInPipeline:
             raise ValueError("Keep your message below 4,000 characters.")
         if video_path is not None and not Path(video_path).is_file():
             raise ValueError("The selected video is no longer available. Record or select it again.")
-        owner=self._claim_turn(session_id,turn_id)
-        event_ids={"session_id":owner.session_id,"turn_id":owner.turn_id}
+        if not self._lock.acquire(blocking=False):
+            raise RuntimeError("Another turn is still running. Wait or stop it first.")
+        self._cancel.clear()
+        self._active_session=str(session_id)
+        event_ids={"session_id":str(session_id),"turn_id":str(turn_id)}
         received=datetime.now(timezone.utc).isoformat()
         stream=None
-        state=None
-        started=None
-        released=False
-        cancelled_at_release=False
-
-        def cleanup():
-            nonlocal released,cancelled_at_release
-            if not released:
-                released=True
-                try:
-                    close=getattr(stream,"close",None)
-                    if callable(close):
-                        close()
-                finally:
-                    # Snapshot cancellation and release atomically, before a
-                    # terminal yield. An old iterator can never unlock a new one.
-                    cancelled_at_release=self._release_turn(owner)
-            return cancelled_at_release
-
         try:
             cold_started=time.perf_counter()
             self._load()
-            if owner.cancelled.is_set():
-                cleanup()
-                yield {"type":"cancelled","phase":"before_classification",
-                       "reason":"Stopped before an emotion state was produced.",**event_ids}
+            if self._cancel.is_set():
                 return
             load_ms=(time.perf_counter()-cold_started)*1000
             started=time.perf_counter()
             state=self.classify(text.strip(),video_path,session_id,turn_id,received_at=received)
+            if self._cancel.is_set():
+                state["response"]["status"]="cancelled"
+                yield {"type":"done","state":state,**event_ids}
+                return
             state["timing"]["model_load_ms"]=load_ms
-            if not owner.cancelled.is_set():
-                state["response"]["status"]="streaming"
-                yield {"type":"state","state":state,**event_ids}
-            if not owner.cancelled.is_set():
-                stream=self.generator.stream(text.strip(),state,history or [])
-                first=True
-                while not owner.cancelled.is_set():
-                    try:
-                        delta=next(stream)
-                    except StopIteration:
-                        break
-                    if owner.cancelled.is_set():
-                        break
-                    if first:
-                        state["timing"]["first_token_ms"]=(time.perf_counter()-started)*1000
-                        first=False
-                    state["response"]["text"]+=delta
-                    yield {"type":"text_delta","text":delta,**event_ids}
-            was_cancelled=cleanup()
+            state["response"]["status"]="streaming"
+            yield {"type":"state","state":state,**event_ids}
+            stream=self.generator.stream(text.strip(),state,history or [])
+            first=True
+            for delta in stream:
+                if self._cancel.is_set():
+                    state["response"]["status"]="cancelled"
+                    yield {"type":"done","state":state,**event_ids}
+                    return
+                if first:
+                    state["timing"]["first_token_ms"]=(time.perf_counter()-started)*1000
+                    first=False
+                state["response"]["text"]+=delta
+                yield {"type":"text_delta","text":delta,**event_ids}
             state["timing"]["completion_ms"]=(time.perf_counter()-started)*1000
-            state["response"]["status"]="cancelled" if was_cancelled else "complete"
+            state["response"]["status"]="complete"
             yield {"type":"done","state":CheckInState.model_validate(state).model_dump(),**event_ids}
         except GeneratorExit:
             raise
         except Exception as error:
-            try:
-                was_cancelled=cleanup()
-            except Exception as close_error:
-                was_cancelled=cancelled_at_release
-                error=RuntimeError(f"{error}; response cleanup also failed: {close_error}")
-            if was_cancelled:
-                if state is None:
-                    yield {"type":"cancelled","phase":"before_classification",
-                           "reason":"Stopped before an emotion state was produced.",**event_ids}
-                else:
-                    state["response"].update(status="cancelled",error=None)
-                    state["timing"]["completion_ms"]=(time.perf_counter()-started)*1000
-                    yield {"type":"done","state":CheckInState.model_validate(state).model_dump(),**event_ids}
-                return
-            if state is not None:
+            if "state" in locals():
                 state["response"].update(status="error",error=str(error))
                 yield {"type":"state","state":state,**event_ids}
             yield {"type":"error","error":str(error),**event_ids}
         finally:
-            cleanup()
+            try:
+                close=getattr(stream,"close",None)
+                if callable(close):
+                    close()
+            finally:
+                self._active_session=None
+                self._lock.release()

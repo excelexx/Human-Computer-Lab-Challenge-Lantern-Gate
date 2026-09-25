@@ -1,0 +1,89 @@
+Benchmark 1/43: warmup
+Benchmark 2/43: warmup
+Benchmark 3/43: warmup
+Benchmark 4/43: fusion
+Benchmark 5/43: fusion
+Benchmark 6/43: fusion
+Benchmark 7/43: fusion
+Benchmark 8/43: fusion
+Benchmark 9/43: fusion
+Benchmark 10/43: fusion
+Benchmark 11/43: fusion
+Benchmark 12/43: fusion
+Benchmark 13/43: fusion
+Benchmark 14/43: fusion
+Benchmark 15/43: fusion
+Benchmark 16/43: fusion
+Benchmark 17/43: fusion
+Benchmark 18/43: fusion
+Benchmark 19/43: fusion
+Benchmark 20/43: fusion
+Benchmark 21/43: fusion
+Benchmark 22/43: fusion
+Benchmark 23/43: fusion
+Benchmark 24/43: fusion
+Benchmark 25/43: fusion
+Benchmark 26/43: fusion
+Benchmark 27/43: fusion
+Benchmark 28/43: fusion
+Benchmark 29/43: fusion
+Benchmark 30/43: fusion
+Benchmark 31/43: fusion
+Benchmark 32/43: fusion
+Benchmark 33/43: fusion
+Benchmark 34/43: text_fallback
+Benchmark 35/43: text_fallback
+Benchmark 36/43: text_fallback
+Benchmark 37/43: text_fallback
+Benchmark 38/43: text_fallback
+Benchmark 39/43: text_fallback
+Benchmark 40/43: text_fallback
+Benchmark 41/43: text_fallback
+Benchmark 42/43: text_fallback
+Benchmark 43/43: text_fallback
+{
+  "summary": {
+    "fusion": {
+      "n": 30,
+      "classification_ms": {
+        "p50": 179.70040001091547,
+        "p95": 241.2138699946808,
+        "max": 310.87939999997616
+      },
+      "first_token_ms": {
+        "p50": 383.66814999608323,
+        "p95": 439.7911299936822,
+        "max": 529.1652999876533
+      },
+      "completion_ms": {
+        "p50": 517.9893500026083,
+        "p95": 604.0048349910649,
+        "max": 738.0938999995124
+      }
+    },
+    "text_fallback": {
+      "n": 10,
+      "classification_ms": {
+        "p50": 22.613349996390752,
+        "p95": 24.872800007869955,
+        "max": 25.105000007897615
+      },
+      "first_token_ms": {
+        "p50": 209.49919999111444,
+        "p95": 228.67660000920296,
+        "max": 231.38830001698807
+      },
+      "completion_ms": {
+        "p50": 335.19864999107085,
+        "p95": 397.73250499565614,
+        "max": 413.8907000015024
+      }
+    }
+  },
+  "observed_peaks": {
+    "gpu_used_mib": 7581.0,
+    "python_rss_mib": 3187.48046875,
+    "generator_rss_mib": 3777.4296875,
+    "system_ram_used_mib": 26292.7421875
+  }
+}

@@ -1,0 +1,9 @@
+short_control {'one_terminal': True, 'actual_state_precedes_terminal': True, 'ownership_released': True, 'valid_actual_state': True, 'one_chat_request': True, 'completed': True, 'actual_text_preserved': True, 'current_message_exact': True, 'fits_context': True}
+emoji_current_overflow {'one_terminal': True, 'actual_state_precedes_terminal': True, 'ownership_released': True, 'valid_actual_state': True, 'no_chat_request': True, 'error_state': True, 'actionable_error': True}
+cjk_current_overflow {'one_terminal': True, 'actual_state_precedes_terminal': True, 'ownership_released': True, 'valid_actual_state': True, 'no_chat_request': True, 'error_state': True, 'actionable_error': True}
+whole_history_eviction {'one_terminal': True, 'actual_state_precedes_terminal': True, 'ownership_released': True, 'valid_actual_state': True, 'one_chat_request': True, 'generation_completed_or_explicit_length_limit': True, 'actual_text_preserved': True, 'current_message_exact': True, 'fits_context': True, 'history_evicted': True, 'whole_newest_groups_exact': True}
+{
+  "protocol_identity": "9694f34716688a20899a06b3210b95d6c4f4d744fe89af18c1702aa83b45adad",
+  "status": "passed",
+  "elapsed_seconds": 11.411784500000067
+}

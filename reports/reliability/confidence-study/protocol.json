@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "frozen_at": "2026-09-25T06:00:19.610007+00:00",
+  "home": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime",
+  "labels": [
+    "neutral",
+    "surprise",
+    "fear",
+    "sadness",
+    "joy",
+    "disgust",
+    "anger"
+  ],
+  "study_source_sha256": "cdb77c557ef336ffd425dd196a873c80ba35979d86f4da1a3b5c36e5e4217a96",
+  "feature_identity": "1f030a3ec7ff3c4b80486d7afac799d13507560374e7b7d84f6a40e20f7a3777",
+  "cache_sha256": {
+    "train": "8111cc8f9de929cd460d4b0bfb3a9567bf69e048e51cbc2140c13f1a7d1b7678",
+    "dev": "0d40d91bc48794b0c21afdec5dd99c17fd77ea4a9a5b5005bde5719e8d459879"
+  },
+  "active_head_sha256": {
+    "vision": "9882939db93780c96481f978cc93ace61a80d52a3c63465ae551cb8ace23a465",
+    "text": "8c9eb533e4c9419935a1085a9c8799025fa760542ba010f563236f1e0578ca63",
+    "fusion": "3f126c4e1033fcec4cb57641fcbcd2a83798bb5f39d118861fc671207df9c0ea"
+  },
+  "head_metadata": {
+    "vision": {
+      "architecture": "mlp",
+      "feature_identity": "1f030a3ec7ff3c4b80486d7afac799d13507560374e7b7d84f6a40e20f7a3777",
+      "cache_sha256": {
+        "train": "8111cc8f9de929cd460d4b0bfb3a9567bf69e048e51cbc2140c13f1a7d1b7678",
+        "dev": "0d40d91bc48794b0c21afdec5dd99c17fd77ea4a9a5b5005bde5719e8d459879"
+      },
+      "parameters": 181255
+    },
+    "text": {
+      "architecture": "linear",
+      "feature_identity": "1f030a3ec7ff3c4b80486d7afac799d13507560374e7b7d84f6a40e20f7a3777",
+      "cache_sha256": {
+        "train": "8111cc8f9de929cd460d4b0bfb3a9567bf69e048e51cbc2140c13f1a7d1b7678",
+        "dev": "0d40d91bc48794b0c21afdec5dd99c17fd77ea4a9a5b5005bde5719e8d459879"
+      },
+      "parameters": 7175
+    },
+    "fusion": {
+      "architecture": "mlp",
+      "feature_identity": "1f030a3ec7ff3c4b80486d7afac799d13507560374e7b7d84f6a40e20f7a3777",
+      "cache_sha256": {
+        "train": "8111cc8f9de929cd460d4b0bfb3a9567bf69e048e51cbc2140c13f1a7d1b7678",
+        "dev": "0d40d91bc48794b0c21afdec5dd99c17fd77ea4a9a5b5005bde5719e8d459879"
+      },
+      "parameters": 312711
+    }
+  },
+  "population": "Official development split only; no test cache access.",
+  "route": "fusion when cached quality availability is 1; active text head otherwise",
+  "diagnostics": [
+    "operational all",
+    "fusion route",
+    "text fallback route",
+    "text-only all",
+    "text-only on fusion-eligible rows"
+  ],
+  "metrics": {
+    "accuracy": "argmax",
+    "nll": "natural log loss from stable logsumexp, in nats",
+    "brier": "Mean sum over seven classes of (p - onehot)^2; range 0..2",
+    "ece": "Top-label ECE, ten fixed equal-width confidence bins; last bin includes confidence 1",
+    "support": "All seven true-label and predicted-label counts retained, including zeros"
+  },
+  "fixed_coverages": [
+    1.0,
+    0.8,
+    0.5
+  ],
+  "coverage_rule": "Keep ceil(fraction*N) highest-confidence rows within each reported population; ties broken lexicographically by ID. No threshold optimization.",
+  "controlled_experiment": {
+    "method": "Five-fold stratified dialogue-group cross-fitting on dev",
+    "folds": 5,
+    "seed": 20260925,
+    "routes": [
+      "fusion",
+      "text_fallback"
+    ],
+    "fit": "One positive scalar temperature per route, using only the other four folds; minimize NLL",
+    "bounds": [
+      0.25,
+      4.0
+    ],
+    "optimizer": "bounded minimize_scalar, xatol=1e-5, maxiter=200; also compare exact endpoints and T=1",
+    "prediction": "Each row uses only its held-fold route temperature; report every fold/support/temperature and unchanged argmax",
+    "no_final_fit": "Do not fit deployable full-dev temperatures or select a confidence threshold"
+  },
+  "limitations": [
+    "Development data already influenced head selection/confirmation; this study is not independent generalization evidence.",
+    "Cross-fitting protects the temperature fit from its held dialogue labels, not from earlier head-selection bias.",
+    "ECE depends on binning and sample size; differences are descriptive without a significance claim.",
+    "Top-confidence subsets may disproportionately retain common/easier classes; report supports.",
+    "No deployment, production parameter change, threshold selection, model retraining, encoder inference, or GPU usage."
+  ],
+  "resource": "CPU only; PyTorch and BLAS limited to two threads"
+}

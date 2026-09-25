@@ -12,9 +12,11 @@ class EventFixturePipeline:
         self.calls = []
         self.closed = []
         self.cancel_calls = []
+        self.cancel_turns = []
 
-    def cancel(self, session_id):
+    def cancel(self, session_id, turn_id=None):
         self.cancel_calls.append(session_id)
+        self.cancel_turns.append(turn_id)
         return True
 
     def status(self):
@@ -274,3 +276,65 @@ def test_stop_clears_consumed_clip_when_gradio_cancels_generator(ui):
     assert result[3]["value"] is None
     assert result[3]["interactive"] is True
     assert result[4]["value"] == ""
+
+
+def test_stop_and_reset_scope_cancellation_to_the_submitted_turn(ui):
+    app, _, pipeline = ui
+    stop = next(fn.fn for fn in app.fns.values() if getattr(fn.fn, "__name__", "") == "stop_current")
+    reset = next(fn.fn for fn in app.fns.values() if getattr(fn.fn, "__name__", "") == "new_conversation")
+    stop("session", 3)
+    reset("session", 4)
+    assert pipeline.cancel_turns == ["3", "4"]
+
+
+def test_cold_cancellation_displays_stop_without_inventing_emotion_or_history(ui):
+    _, handler, pipeline = ui
+    def cancelled(*args):
+        yield {"type": "cancelled", "session_id": "session", "turn_id": "1", "phase": "before_classification", "reason": "Stopped"}
+    pipeline.stream = cancelled
+    result = list(handler("Hello", None, [], "session", 0))[-1]
+    assert "Stopped before the emotion signal was ready" in result[4]
+    assert "Awaiting a check-in" in result[2]
+    assert result[3]["cancelled"] is True and "emotion" not in result[3]
+    assert result[1] == []
+
+
+def test_failed_retry_does_not_duplicate_the_user_message_in_model_history(ui):
+    _, handler, pipeline = ui
+    original = pipeline.stream
+    def failed(*args):
+        yield {"type": "error", "error": "Still stopping"}
+    pipeline.stream = failed
+    prior = [{"role": "user", "content": "Earlier"}, {"role": "assistant", "content": "Prior reply"}]
+    failed_result = list(handler("Try this", None, prior, "session", 0))[-1]
+    assert failed_result[1] == prior
+    pipeline.stream = original
+    list(handler("Try this", None, failed_result[1], "session", failed_result[5]))
+    assert pipeline.calls[-1]["history"] == prior
+    assert pipeline.calls[-1]["text"] == "Try this"
+
+
+@pytest.mark.parametrize("error,partial,expected", [
+    ("Please shorten your message: it exceeds the local model's token budget even without conversation history.", "", "Shorten it and retry"),
+    ("The local response reached its length limit. Any partial response is preserved; try a shorter check-in.", "A partial response", "Try a shorter check-in"),
+])
+def test_model_length_errors_show_actionable_status_without_losing_state_or_draft(ui, error, partial, expected):
+    _, handler, pipeline = ui
+    state = {"emotion": {"label": "neutral"}, "vision": {"available": True},
+             "response": {"text": partial, "status": "error", "error": error}}
+    def failed(*args):
+        yield {"type": "state", "state": state}
+        if partial:
+            yield {"type": "text_delta", "text": partial}
+        yield {"type": "error", "error": error}
+    pipeline.stream = failed
+    prior = [{"role": "user", "content": "Earlier"}, {"role": "assistant", "content": "Prior reply"}]
+    last = list(handler("Day " * 1000, "retry.mp4", prior, "session", 0))[-1]
+    assert expected in last[4] and "draft and clip are kept" in last[4]
+    assert last[3]["emotion"] == state["emotion"]
+    assert error in last[3]["error"]
+    assert last[1] == prior
+    assert last[8] == {"interactive": True, "__type__": "update"}
+    assert last[9] == {"interactive": True, "__type__": "update"}
+    if partial:
+        assert last[0][-1] == {"role": "assistant", "content": partial}

@@ -144,16 +144,6 @@ def video_path(value: Any) -> str | None:
     return None
 
 
-def failure_message(error: Exception) -> str:
-    """Expose useful recovery steps for known errors, keeping details in diagnostics."""
-    detail = str(error)
-    if detail.startswith("Please shorten your message:"):
-        return "Your message is too long for the local model. Shorten it and retry; your draft and clip are kept."
-    if detail.startswith("The local response reached its length limit."):
-        return "The response reached its length limit. Any partial reply is shown above. Try a shorter check-in; your draft and clip are kept."
-    return "This check-in could not finish. Your message and clip are kept so you can retry. See diagnostics for the error."
-
-
 def emotion_html(state: dict[str, Any] | None = None) -> str:
     state = state or {}
     emotion = state.get("emotion") or state.get("final_emotion")
@@ -362,16 +352,12 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             messages = prior + [{"role": "user", "content": text.strip()}]
             state: dict[str, Any] = {}
             response = ""
-            cancelled_before_state = False
             stream = None
             yield (messages, messages, emotion_html(), state, "Considering your words and clip…", next_turn, gr.update(interactive=False), gr.update(interactive=True)) + compose_update(active=True)
             try:
                 stream = pipeline.stream(text.strip(), video_path(clip), prior, session_id, str(next_turn))
                 for event in stream:
                     event_type = event.get("type")
-                    if (("session_id" in event and str(event["session_id"]) != str(session_id))
-                            or ("turn_id" in event and str(event["turn_id"]) != str(next_turn))):
-                        raise RuntimeError("Received an event for a different check-in.")
                     if event_type in {"state", "done"}:
                         state = event.get("state") or state
                         if event_type == "done" and not response:
@@ -379,28 +365,20 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                             response = str(completed_response.get("text") or "") if isinstance(completed_response, dict) else str(completed_response)
                     elif event_type == "text_delta":
                         response += str(event.get("text") or "")
-                    elif event_type == "cancelled":
-                        cancelled_before_state = True
-                        # This is a cancellation record, not a fabricated emotion state.
-                        state = {"cancelled": True, "session_id": event.get("session_id"),
-                                 "turn_id": event.get("turn_id"), "phase": event.get("phase"),
-                                 "reason": event.get("reason")}
                     elif event_type == "error":
                         raise RuntimeError(str(event.get("error") or "The local pipeline could not finish this turn."))
                     visible = messages + ([{"role": "assistant", "content": response}] if response else [])
-                    progress = "Stopped before the emotion signal was ready." if cancelled_before_state else "Responding…" if response else "Emotion signal ready. Preparing a response…" if state else "Considering your check-in…"
-                    yield (visible, prior if cancelled_before_state else visible, emotion_html(state), state, progress, next_turn, gr.update(interactive=False), gr.update(interactive=True)) + tuple(gr.skip() for _ in compose_controls)
+                    progress = "Responding…" if response else "Emotion signal ready. Preparing a response…" if state else "Considering your check-in…"
+                    yield (visible, visible, emotion_html(state), state, progress, next_turn, gr.update(interactive=False), gr.update(interactive=True)) + tuple(gr.skip() for _ in compose_controls)
 
                 visible = messages + ([{"role": "assistant", "content": response}] if response else [])
-                cancelled = cancelled_before_state or (isinstance(state.get("response"), dict) and state["response"].get("status") == "cancelled")
-                complete = "Stopped before the emotion signal was ready." if cancelled_before_state else "Stopped. Any partial response is shown above." if cancelled else "Ready for your next check-in. Add a fresh clip, or continue with words alone." if response else "The turn finished without response text. See diagnostics for details."
-                yield (visible, prior if cancelled_before_state else visible, emotion_html(state), state, complete, next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update(clear=True)
+                cancelled = isinstance(state.get("response"), dict) and state["response"].get("status") == "cancelled"
+                complete = "Stopped. Any partial response is shown above." if cancelled else "Ready for your next check-in. Add a fresh clip, or continue with words alone." if response else "The turn finished without response text. See diagnostics for details."
+                yield (visible, visible, emotion_html(state), state, complete, next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update(clear=True)
             except Exception as exc:
                 visible = messages + ([{"role": "assistant", "content": response}] if response else [])
                 error_state = {**state, "error": f"{type(exc).__name__}: {exc}"}
-                # The draft remains for retry, but a failed attempt must not also
-                # enter model history and duplicate the next submitted message.
-                yield (visible, prior, emotion_html(state), error_state, failure_message(exc), next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update()
+                yield (visible, visible, emotion_html(state), error_state, "This check-in could not finish. Your message and clip are kept so you can retry. See diagnostics for the error.", next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update()
             finally:
                 if stream is not None and hasattr(stream, "close"):
                     stream.close()
@@ -408,25 +386,23 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         inputs = [message, camera, conversation_state, session, turn]
         send_event = send.click(run_turn, inputs, outputs, concurrency_limit=1, concurrency_id="gpu", trigger_mode="once", api_name=False)
 
-        def request_cancel(session_id: str, turn_id: Any = None) -> bool:
+        def request_cancel(session_id: str) -> bool:
             cancel = getattr(pipeline, "cancel", None)
-            if not callable(cancel):
-                return False
-            return bool(cancel(session_id, str(turn_id))) if turn_id is not None else bool(cancel(session_id))
+            return bool(cancel(session_id)) if callable(cancel) else False
 
-        def stop_current(session_id: str, turn_id: Any = None) -> tuple[Any, ...]:
-            pending = request_cancel(session_id, turn_id)
+        def stop_current(session_id: str) -> tuple[Any, ...]:
+            pending = request_cancel(session_id)
             status = "Stopping after the current processing step. A new check-in may need to wait." if pending else "No active response to stop."
             return (status, gr.update(interactive=True), gr.update(interactive=False)) + compose_update(clear=True)
 
-        def new_conversation(session_id: str, turn_id: Any = None) -> tuple[Any, ...]:
-            pending = request_cancel(session_id, turn_id)
+        def new_conversation(session_id: str) -> tuple[Any, ...]:
+            pending = request_cancel(session_id)
             status = "A fresh conversation. The previous check-in is stopping after its current processing step." if pending else "A fresh conversation. Share something from your day."
             return ([], [], emotion_html(), {}, status, str(uuid.uuid4()), 0, gr.update(value="", interactive=True), gr.update(value=None, interactive=True), gr.update(interactive=True), gr.update(interactive=False)) + ((gr.update(interactive=True),) if load_replay is not None else ())
 
         stop.click(
             stop_current,
-            inputs=[session, turn],
+            inputs=[session],
             outputs=[activity, send, stop] + compose_controls,
             cancels=[send_event],
             queue=False,
@@ -434,7 +410,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         )
         new.click(
             new_conversation,
-            inputs=[session, turn],
+            inputs=[session],
             outputs=[chat, conversation_state, emotion, output_state, activity, session, turn, message, camera, send, stop] + ([load_replay] if load_replay is not None else []),
             cancels=[send_event],
             queue=False,

@@ -4,6 +4,10 @@ Updated 25 September 2026. Check-in runs text + vision inference locally on the 
 
 The current prototype includes a stronger text fallback, video preparation that preserves decoded frames where the format permits, automatic clearing of a used clip, and a revised response prompt. **There is still no demonstrated accuracy gain from adding vision.** The evidence below includes failures and trade-offs. This is a reflection companion, not clinical assessment or treatment.
 
+## Reliability follow-through
+
+The subsequent pass corrected four reproduced stop/ownership failures. All eight fixed real-model cases, eight recovery turns and 48 alternating video/text burst turns passed. The four real context-boundary checks also passed, with explicit overflow errors and whole-history eviction. Model weights, prompt and sampler remain unchanged; confidence calibration was investigated and not deployed. The latest warm fusion p95 state/first-word/completion is **241/440/604 ms**, with **7,581 MiB** peak total GPU usage. The first-pass measurements below remain historical evidence. Full comparison, operational limits, confidence results and browser checks are in [the reliability report](reports/reliability/REPORT.md).
+
 ## Current models and training
 
 | Required component | Learned parameters |
@@ -92,7 +96,7 @@ Fallback first-token p50/p95 was 215/250 ms. GPU usage peaked at **7,566 MiB** (
 
 Use [README.md](README.md) for Windows setup, installing the included heads, launching, the live/replay interface, and training/evaluation commands. [OVERNIGHT.md](OVERNIGHT.md) records the continuing work protocol; [the original report](BASELINE_REPORT.md) preserves baseline measurements. Protocols, model hashes, predictions, failures and selected artifacts accompany each study under `reports/overnight/`. Original and transformed television video is not bundled.
 
-The final combined CPU software suite passed **185 tests**, with one upstream deprecation warning. The [test report](reports/overnight/software-tests-final.xml) and [log](reports/overnight/software-tests-final.txt) distinguish contract checks from actual inference. Supplied heads installed successfully into a clean artifact directory; [the installation record](reports/overnight/portable-install.json) retains copied hashes.
+The first-pass combined CPU software suite passed **185 tests**, with one upstream deprecation warning. The [test report](reports/overnight/software-tests-final.xml) and [log](reports/overnight/software-tests-final.txt) distinguish contract checks from actual inference. Supplied heads installed successfully into a clean artifact directory; [the installation record](reports/overnight/portable-install.json) retains copied hashes.
 
 An additional [actual multi-turn study](reports/overnight/interaction-study/report.json) completed **12/12 turns in six isolated conversations**: two transitions to missing-video fallback, two to fresh real dev pairs, and two deliberately mismatched pairs. All schema, event identity, streamed/final-text, history, fresh-clip and fallback checks passed (ten fusion turns, two text fallbacks). Its protocol was frozen before execution. This is operational validation, not response-quality scoring; one ambiguous fragment still elicited an invented “big moment.”
 

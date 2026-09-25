@@ -1,0 +1,315 @@
+{
+  "created_at": "2026-09-25T06:24:34.653456+00:00",
+  "baseline_revision": "050f9f8b4a8d473459eb7c0be567f246649c1709",
+  "baseline_protocol": "e68ced1d30cbe019d4f11418e71437b604eda7bb480a4a0daf303330fc89d5e0",
+  "current_protocol": "b9575ec0055b2463ae347e3b225ce1028393b856aa6d94c0be65b31f10973246",
+  "cases": [
+    {
+      "case": "cold_load_cancel",
+      "before": false,
+      "after": true,
+      "before_checks": {
+        "request_preceded_finished_load": true,
+        "cancel_accepted": true,
+        "worker_errors_absent": true,
+        "one_cancel_terminal": false,
+        "generator_not_started": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      },
+      "after_checks": {
+        "request_preceded_finished_load": true,
+        "cancel_accepted": true,
+        "worker_errors_absent": true,
+        "one_cancel_terminal": true,
+        "generator_not_started": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      }
+    },
+    {
+      "case": "cancel_after_state",
+      "before": false,
+      "after": true,
+      "before_checks": {
+        "first_event_is_state": true,
+        "cancel_accepted": true,
+        "one_cancel_terminal": true,
+        "generator_not_started": false,
+        "no_text_delta": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      },
+      "after_checks": {
+        "first_event_is_state": true,
+        "cancel_accepted": true,
+        "one_cancel_terminal": true,
+        "generator_not_started": true,
+        "no_text_delta": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      }
+    },
+    {
+      "case": "cancel_after_first_delta",
+      "before": true,
+      "after": true,
+      "before_checks": {
+        "first_event_is_state": true,
+        "actual_first_delta": true,
+        "cancel_accepted": true,
+        "one_cancel_terminal": true,
+        "no_extra_delta": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      },
+      "after_checks": {
+        "first_event_is_state": true,
+        "actual_first_delta": true,
+        "cancel_accepted": true,
+        "one_cancel_terminal": true,
+        "no_extra_delta": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      }
+    },
+    {
+      "case": "close_after_state",
+      "before": true,
+      "after": true,
+      "before_checks": {
+        "first_event_is_state": true,
+        "generator_not_started": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      },
+      "after_checks": {
+        "first_event_is_state": true,
+        "generator_not_started": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      }
+    },
+    {
+      "case": "close_after_first_delta",
+      "before": true,
+      "after": true,
+      "before_checks": {
+        "first_event_is_state": true,
+        "actual_first_delta": true,
+        "real_generator_closed": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      },
+      "after_checks": {
+        "first_event_is_state": true,
+        "actual_first_delta": true,
+        "real_generator_closed": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      }
+    },
+    {
+      "case": "wrong_session_and_busy",
+      "before": true,
+      "after": true,
+      "before_checks": {
+        "first_event_is_state": true,
+        "wrong_session_rejected": true,
+        "busy_rejected": true,
+        "original_owner_retained": true,
+        "original_completes": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      },
+      "after_checks": {
+        "first_event_is_state": true,
+        "wrong_session_rejected": true,
+        "busy_rejected": true,
+        "original_owner_retained": true,
+        "original_completes": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      }
+    },
+    {
+      "case": "cancel_at_generator_exhaustion",
+      "before": false,
+      "after": true,
+      "before_checks": {
+        "first_event_is_state": true,
+        "exhaustion_cancel_accepted": true,
+        "one_cancel_terminal": false,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      },
+      "after_checks": {
+        "first_event_is_state": true,
+        "exhaustion_cancel_accepted": true,
+        "one_cancel_terminal": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      }
+    },
+    {
+      "case": "terminal_ownership",
+      "before": false,
+      "after": true,
+      "before_checks": {
+        "first_event_is_state": true,
+        "completed_terminal": true,
+        "released_before_consumer_resumes": false,
+        "old_close_retains_new_owner": false,
+        "new_owner_completes": false,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      },
+      "after_checks": {
+        "first_event_is_state": true,
+        "completed_terminal": true,
+        "released_before_consumer_resumes": true,
+        "old_close_retains_new_owner": true,
+        "new_owner_completes": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      }
+    }
+  ],
+  "baseline_recovery": {
+    "passed": 8,
+    "total": 8
+  },
+  "current_recovery": {
+    "passed": 8,
+    "total": 8
+  },
+  "burst": {
+    "passed": 48,
+    "total": 48,
+    "fusion": 24,
+    "fallback": 24
+  },
+  "current_generator_entries": 62,
+  "current_generator_closes": 62,
+  "elapsed_seconds": 43.07226809998974,
+  "context_boundary_status": "passed",
+  "context_boundary_cases": [
+    {
+      "name": "short_control",
+      "passed": true,
+      "checks": {
+        "one_terminal": true,
+        "actual_state_precedes_terminal": true,
+        "ownership_released": true,
+        "valid_actual_state": true,
+        "one_chat_request": true,
+        "completed": true,
+        "actual_text_preserved": true,
+        "current_message_exact": true,
+        "fits_context": true
+      }
+    },
+    {
+      "name": "emoji_current_overflow",
+      "passed": true,
+      "checks": {
+        "one_terminal": true,
+        "actual_state_precedes_terminal": true,
+        "ownership_released": true,
+        "valid_actual_state": true,
+        "no_chat_request": true,
+        "error_state": true,
+        "actionable_error": true
+      }
+    },
+    {
+      "name": "cjk_current_overflow",
+      "passed": true,
+      "checks": {
+        "one_terminal": true,
+        "actual_state_precedes_terminal": true,
+        "ownership_released": true,
+        "valid_actual_state": true,
+        "no_chat_request": true,
+        "error_state": true,
+        "actionable_error": true
+      }
+    },
+    {
+      "name": "whole_history_eviction",
+      "passed": true,
+      "checks": {
+        "one_terminal": true,
+        "actual_state_precedes_terminal": true,
+        "ownership_released": true,
+        "valid_actual_state": true,
+        "one_chat_request": true,
+        "generation_completed_or_explicit_length_limit": true,
+        "actual_text_preserved": true,
+        "current_message_exact": true,
+        "fits_context": true,
+        "history_evicted": true,
+        "whole_newest_groups_exact": true
+      }
+    }
+  ],
+  "resources": {
+    "python_rss_mib": {
+      "first": 3137.8671875,
+      "last": 3110.7421875,
+      "min": 3107.79296875,
+      "max": 3143.60546875,
+      "first8_median": 3124.31640625,
+      "last8_median": 3114.111328125
+    },
+    "python_handles": {
+      "first": 1027,
+      "last": 1030,
+      "min": 996,
+      "max": 1034,
+      "first8_median": 1016.0,
+      "last8_median": 1021.0
+    },
+    "cuda_allocated_mib": {
+      "first": 1694.31787109375,
+      "last": 1694.31787109375,
+      "min": 1694.31787109375,
+      "max": 1694.31787109375,
+      "first8_median": 1694.31787109375,
+      "last8_median": 1694.31787109375
+    },
+    "cuda_reserved_mib": {
+      "first": 1860.0,
+      "last": 1860.0,
+      "min": 1860.0,
+      "max": 1860.0,
+      "first8_median": 1860.0,
+      "last8_median": 1860.0
+    },
+    "generator_rss_mib": {
+      "first": 3289.18359375,
+      "last": 3289.18359375,
+      "min": 3289.18359375,
+      "max": 3289.18359375,
+      "first8_median": 3289.18359375,
+      "last8_median": 3289.18359375
+    },
+    "generator_handles": {
+      "first": 281,
+      "last": 281,
+      "min": 281,
+      "max": 281,
+      "first8_median": 281.0,
+      "last8_median": 281.0
+    }
+  },
+  "limitations": [
+    "Short consecutive replay burst, not hours of continuous use or proof of no slow leak.",
+    "Post-turn memory snapshots miss peaks; Python RSS includes retained event/report data.",
+    "PyTorch allocated/reserved VRAM excludes llama.cpp and desktop; separate benchmark samples total GPU usage.",
+    "Scheduling probes test lifecycle contracts; actual browser timing is separately recorded.",
+    "No emotion-accuracy, response-quality or clinical score; model weights, prompt and sampler unchanged.",
+    "Development clips were previously used for model selection; no fresh holdout claim.",
+    "Timeout/malformed-server branches use separately labeled controlled CPU tests."
+  ]
+}

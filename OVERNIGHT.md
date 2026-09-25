@@ -33,12 +33,36 @@ Detailed results will be appended as each study completes. An interrupted or sle
 ## First improvement batch completed (2026-09-25T05:46:52.737693+00:00)
 
 - 72 dialogue-group CV fits, three final classifier fits and a fixed fallback-only hybrid. New linear text head is activated; old vision/fusion remain unchanged. Total 4,464,745,375 required parameters. Baseline commit/ZIP/heads are preserved.
-- 95 dev clips × eight real video conditions completed without extraction errors. Twenty visual-evidence permutations and a provenance-checked CPU comparison retained null results and regressions. No visual accuracy advantage is established.
+- 95 dev clips Ã— eight real video conditions completed without extraction errors. Twenty visual-evidence permutations and a provenance-checked CPU comparison retained null results and regressions. No visual accuracy advantage is established.
 - 204 local response-study generations, then 40 measured benchmark turns and 12 additional actual multi-turn checks. Prompt improvements are bounded and qualitative; harmful assumptions remain recorded.
 - Lossless compatible video muting, single-turn clip use, locked composer, mixed-head loader/inventory, reproducible study preparation and explicit cache requirements implemented.
-- Final CPU suite: 185 passed, one dependency deprecation warning. Clean head installation, parameter audit and live browser fusion→text-fallback sequence passed. Browser replay still misclassifies 4/2 and presumes excitement; no cherry-picking or retuning on that test case.
+- Final CPU suite: 185 passed, one dependency deprecation warning. Clean head installation, parameter audit and live browser fusionâ†’text-fallback sequence passed. Browser replay still misclassifies 4/2 and presumes excitement; no cherry-picking or retuning on that test case.
 - Updated warm fusion p95 state/first-token/completion: 246/458/623 ms. GPU peak 7,566 MiB including desktop. Full details: [REPORT.md](REPORT.md). Source checkpoint and portable package are refreshed after this record.
 
 ## Follow-through priorities for subsequent heartbeats
 
 The first batch is finished: do not repeat these studies or change their frozen artifacts. Read the current status and review before starting anything. Useful next work is a bounded confidence/calibration diagnostic using the current saved predictions, with train/dev-only decisions and a protocol written before fitting, or an actual long-running reliability check covering cancellation, session isolation and resource growth. New synthetic tests must be labeled. Preserve the working app and full parameter accounting; avoid loading another full GPU pipeline alongside the warmed app. Do not chase a favorable test result, repeatedly tune the prompt on exposed failures, or run duplicate inference merely to increase a test count. If a further change cannot be justified, retain the measured working version and focus on auditability and the morning handoff. At 13:00 UTC complete the bounded step, refresh the package, report supported results, and pause the existing heartbeat.
+
+## Second pass declared (2026-09-25 around 05:52 UTC)
+
+This pass resumes from first-batch revision `050f9f8b4a8d473459eb7c0be567f246649c1709`; its complete ZIP and package record are preserved in `work/overnight/first-batch`. It does not repeat model selection or tune the prompt on exposed response failures.
+
+- Five dialogue-group cross-fit confidence diagnostics use development predictions only, with route-specific temperature fits on the other folds. Reused development data cannot become a fresh holdout. No learned calibration is deployed unless justified; no selective threshold is chosen from this diagnostic.
+- Eight predeclared lifecycle cases use real development clips and local generation: cancellation during cold loading, after state, after the first delta, closing after state/delta, wrong-session/busy admission, cancellation at real generator exhaustion, and ownership at a terminal yield. The exhaustion callback is an explicit scheduling probe, not fabricated model output. Baseline evidence precedes production edits.
+- Repeat those fixed cases after justified fixes, followed by 48 consecutive alternating paired-video and text-only turns with four-turn histories. Measure process memory, GPU allocator memory and handle counts; a brief burst does not establish hours of stability or absence of slow leaks.
+- Check the exact local tokenizer boundary using four authored cases: a short message, 4,000 emoji, 4,000 CJK characters, and a current message plus long history requiring whole-turn eviction. Retain actual state on rejection; no fake completion, remote fallback or silent current-message rewriting. These are transport/context checks, not emotion accuracy or therapeutic-quality tests.
+- Run one updated backend benchmark after transport changes, focused CPU fault/race checks, and live browser stop/reset/recovery verification. Preserve failures, protocols, model/source hashes and operational limits. Leave the app usable and refresh the portable package.
+
+One GPU workload runs at a time. The app is temporarily stopped while direct reliability checks own the encoders; the already running local generator is shared sequentially. Read `work/overnight/status.json` before another pass so studies are not duplicated.
+
+## Second pass completed (2026-09-25T06:26:47.774937+00:00)
+
+- Preserved a real-model baseline with four failures out of eight lifecycle cases. After ownership/cancellation fixes, all eight cases and eight recovery turns passed, followed by 48/48 alternating fusion/fallback turns. All 62 generator entries closed successfully. The bounded run lasted 43.07 seconds; it is not continuous overnight stability evidence.
+- Four actual local context checks passed, including preserved state/input on overflow and whole-history eviction. Transport now bounds preflight and SSE data, distinguishes length limits from completion, and has documented cooperative cancellation limits. Prompt, sampler, models and 4,464,745,375 parameter count are unchanged.
+- The independently verified development confidence diagnostic did not justify calibration; no calibration or threshold was deployed. All previous classifier/response evidence and limitations remain applicable.
+- Final software suite: 252 passed, one dependency warning. Live browser Stop, New during cold loading, preserved overflow input, clearer main-status guidance, clean retry and final fresh conversation were observed. Multi-browser queue isolation and physical camera remain untested.
+- Updated warm fusion p95 state/firstword/completion: 241/440/604 ms; peak total GPU 7,581 MiB. No causal speed-improvement claim. Full report: [interaction reliability](reports/reliability/REPORT.md).
+
+### Next heartbeat
+
+Do not rerun completed training, confidence, corruption, response or short-burst studies. The app is warm and usable; both study batches and source checkpoints are saved. Further work should address a concrete new issue or an auditability gap, not inflate inference/test counts. If no justified change remains, preserve this version and stay quiet until the morning handoff. The 48-turn burst cannot support long-duration claims. At 13:00 UTC complete a bounded in-progress step, verify package/app status, summarize supported outcomes and weaknesses, then pause the existing heartbeat. A sleeping machine or inactive interval is a recorded gap, not continuous execution.

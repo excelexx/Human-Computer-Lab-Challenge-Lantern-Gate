@@ -1,0 +1,61 @@
+reliability cold_load_cancel: pass; recovery=True
+reliability cancel_after_state: pass; recovery=True
+reliability cancel_after_first_delta: pass; recovery=True
+reliability close_after_state: pass; recovery=True
+reliability close_after_first_delta: pass; recovery=True
+reliability wrong_session_and_busy: pass; recovery=True
+reliability cancel_at_generator_exhaustion: pass; recovery=True
+reliability terminal_ownership: pass; recovery=True
+reliability burst 1/48
+reliability burst 2/48
+reliability burst 3/48
+reliability burst 4/48
+reliability burst 5/48
+reliability burst 6/48
+reliability burst 7/48
+reliability burst 8/48
+reliability burst 9/48
+reliability burst 10/48
+reliability burst 11/48
+reliability burst 12/48
+reliability burst 13/48
+reliability burst 14/48
+reliability burst 15/48
+reliability burst 16/48
+reliability burst 17/48
+reliability burst 18/48
+reliability burst 19/48
+reliability burst 20/48
+reliability burst 21/48
+reliability burst 22/48
+reliability burst 23/48
+reliability burst 24/48
+reliability burst 25/48
+reliability burst 26/48
+reliability burst 27/48
+reliability burst 28/48
+reliability burst 29/48
+reliability burst 30/48
+reliability burst 31/48
+reliability burst 32/48
+reliability burst 33/48
+reliability burst 34/48
+reliability burst 35/48
+reliability burst 36/48
+reliability burst 37/48
+reliability burst 38/48
+reliability burst 39/48
+reliability burst 40/48
+reliability burst 41/48
+reliability burst 42/48
+reliability burst 43/48
+reliability burst 44/48
+reliability burst 45/48
+reliability burst 46/48
+reliability burst 47/48
+reliability burst 48/48
+{
+  "protocol_identity": "b9575ec0055b2463ae347e3b225ce1028393b856aa6d94c0be65b31f10973246",
+  "status": "passed",
+  "elapsed_seconds": 43.07226809998974
+}

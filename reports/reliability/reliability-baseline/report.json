@@ -1,0 +1,2997 @@
+{
+  "protocol_identity": "e68ced1d30cbe019d4f11418e71437b604eda7bb480a4a0daf303330fc89d5e0",
+  "status": "contract_failures",
+  "cases": [
+    {
+      "case": "cold_load_cancel",
+      "id": "dev:7:5",
+      "checks": {
+        "request_preceded_finished_load": true,
+        "cancel_accepted": true,
+        "worker_errors_absent": true,
+        "one_cancel_terminal": false,
+        "generator_not_started": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      },
+      "passed": false,
+      "events": [],
+      "generator_entries": 0,
+      "elapsed_ms": 9931.766499998048
+    },
+    {
+      "case": "cancel_after_state",
+      "id": "dev:7:6",
+      "checks": {
+        "first_event_is_state": true,
+        "cancel_accepted": true,
+        "one_cancel_terminal": true,
+        "generator_not_started": false,
+        "no_text_delta": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      },
+      "passed": false,
+      "events": [
+        {
+          "type": "state",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "reliability-cancel_after_state",
+            "turn_id": "1",
+            "input": {
+              "text": "What—You’re not serious.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:43.215974+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "surprise",
+              "probabilities": {
+                "neutral": 0.1221858412027359,
+                "surprise": 0.39499494433403015,
+                "fear": 0.0955403670668602,
+                "sadness": 0.27081984281539917,
+                "joy": 0.01119617186486721,
+                "disgust": 0.04173652082681656,
+                "anger": 0.06352625787258148
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.937315508723259,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.168833333333333,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "surprise",
+              "vision_label": "sadness"
+            },
+            "modality_disagreement": true,
+            "timing": {
+              "classification_ms": 243.808800005354,
+              "first_token_ms": null,
+              "completion_ms": null,
+              "model_load_ms": 0.000900006853044033
+            },
+            "response": {
+              "text": "",
+              "status": "streaming",
+              "error": null
+            }
+          },
+          "session_id": "reliability-cancel_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "done",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "reliability-cancel_after_state",
+            "turn_id": "1",
+            "input": {
+              "text": "What—You’re not serious.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:43.215974+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "surprise",
+              "probabilities": {
+                "neutral": 0.1221858412027359,
+                "surprise": 0.39499494433403015,
+                "fear": 0.0955403670668602,
+                "sadness": 0.27081984281539917,
+                "joy": 0.01119617186486721,
+                "disgust": 0.04173652082681656,
+                "anger": 0.06352625787258148
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.937315508723259,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.168833333333333,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "surprise",
+              "vision_label": "sadness"
+            },
+            "modality_disagreement": true,
+            "timing": {
+              "classification_ms": 243.808800005354,
+              "first_token_ms": null,
+              "completion_ms": null,
+              "model_load_ms": 0.000900006853044033
+            },
+            "response": {
+              "text": "",
+              "status": "cancelled",
+              "error": null
+            }
+          },
+          "session_id": "reliability-cancel_after_state",
+          "turn_id": "1"
+        }
+      ],
+      "generator_entries": 1,
+      "elapsed_ms": 465.84509999956936
+    },
+    {
+      "case": "cancel_after_first_delta",
+      "id": "dev:7:9",
+      "checks": {
+        "first_event_is_state": true,
+        "actual_first_delta": true,
+        "cancel_accepted": true,
+        "one_cancel_terminal": true,
+        "no_extra_delta": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      },
+      "passed": true,
+      "events": [
+        {
+          "type": "state",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "reliability-cancel_after_first_delta",
+            "turn_id": "1",
+            "input": {
+              "text": "Hi Ross!",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:44.272865+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "anger",
+              "probabilities": {
+                "neutral": 0.2385243922472,
+                "surprise": 0.07768069952726364,
+                "fear": 0.037647053599357605,
+                "sadness": 0.0704205110669136,
+                "joy": 0.1818046271800995,
+                "disgust": 0.0860196202993393,
+                "anger": 0.3079030513763428
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 0.75,
+              "mean_detection_score": 0.8763760328292847,
+              "sampled_frames": 8,
+              "selected_frames": 6,
+              "duration_seconds": 0.5005,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "joy",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": true,
+            "timing": {
+              "classification_ms": 2624.0059999981895,
+              "first_token_ms": null,
+              "completion_ms": null,
+              "model_load_ms": 0.000900006853044033
+            },
+            "response": {
+              "text": "",
+              "status": "streaming",
+              "error": null
+            }
+          },
+          "session_id": "reliability-cancel_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "Hi",
+          "session_id": "reliability-cancel_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "done",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "reliability-cancel_after_first_delta",
+            "turn_id": "1",
+            "input": {
+              "text": "Hi Ross!",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:44.272865+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "anger",
+              "probabilities": {
+                "neutral": 0.2385243922472,
+                "surprise": 0.07768069952726364,
+                "fear": 0.037647053599357605,
+                "sadness": 0.0704205110669136,
+                "joy": 0.1818046271800995,
+                "disgust": 0.0860196202993393,
+                "anger": 0.3079030513763428
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 0.75,
+              "mean_detection_score": 0.8763760328292847,
+              "sampled_frames": 8,
+              "selected_frames": 6,
+              "duration_seconds": 0.5005,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "joy",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": true,
+            "timing": {
+              "classification_ms": 2624.0059999981895,
+              "first_token_ms": 2895.9943000227213,
+              "completion_ms": null,
+              "model_load_ms": 0.000900006853044033
+            },
+            "response": {
+              "text": "Hi",
+              "status": "cancelled",
+              "error": null
+            }
+          },
+          "session_id": "reliability-cancel_after_first_delta",
+          "turn_id": "1"
+        }
+      ],
+      "generator_entries": 1,
+      "elapsed_ms": 2917.6853999961168
+    },
+    {
+      "case": "close_after_state",
+      "id": "dev:7:10",
+      "checks": {
+        "first_event_is_state": true,
+        "generator_not_started": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      },
+      "passed": true,
+      "events": [
+        {
+          "type": "state",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "reliability-close_after_state",
+            "turn_id": "1",
+            "input": {
+              "text": "Hi roomie!",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:47.582052+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "joy",
+              "probabilities": {
+                "neutral": 0.06241215020418167,
+                "surprise": 0.05859886482357979,
+                "fear": 0.009153958410024643,
+                "sadness": 0.0031618208158761263,
+                "joy": 0.7861786484718323,
+                "disgust": 0.006483824923634529,
+                "anger": 0.07401073724031448
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 0.75,
+              "mean_detection_score": 0.9212472438812256,
+              "sampled_frames": 8,
+              "selected_frames": 6,
+              "duration_seconds": 2.2105416666666664,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "joy",
+              "vision_label": "joy"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 183.089199999813,
+              "first_token_ms": null,
+              "completion_ms": null,
+              "model_load_ms": 0.00100000761449337
+            },
+            "response": {
+              "text": "",
+              "status": "streaming",
+              "error": null
+            }
+          },
+          "session_id": "reliability-close_after_state",
+          "turn_id": "1"
+        }
+      ],
+      "generator_entries": 0,
+      "elapsed_ms": 183.3576999779325
+    },
+    {
+      "case": "close_after_first_delta",
+      "id": "dev:8:3",
+      "checks": {
+        "first_event_is_state": true,
+        "actual_first_delta": true,
+        "real_generator_closed": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      },
+      "passed": true,
+      "events": [
+        {
+          "type": "state",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "reliability-close_after_first_delta",
+            "turn_id": "1",
+            "input": {
+              "text": "This is a serious, legitimate movie.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:48.237215+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "neutral",
+              "probabilities": {
+                "neutral": 0.6059670448303223,
+                "surprise": 0.07516229897737503,
+                "fear": 0.06482289731502533,
+                "sadness": 0.09746536612510681,
+                "joy": 0.03626874089241028,
+                "disgust": 0.05754898115992546,
+                "anger": 0.0627647191286087
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.9127575159072876,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.5859146589689503,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "neutral",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 193.86040000244975,
+              "first_token_ms": null,
+              "completion_ms": null,
+              "model_load_ms": 0.000700005330145359
+            },
+            "response": {
+              "text": "",
+              "status": "streaming",
+              "error": null
+            }
+          },
+          "session_id": "reliability-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "You",
+          "session_id": "reliability-close_after_first_delta",
+          "turn_id": "1"
+        }
+      ],
+      "generator_entries": 1,
+      "elapsed_ms": 401.67369999107905
+    },
+    {
+      "case": "wrong_session_and_busy",
+      "id": "dev:8:4",
+      "checks": {
+        "first_event_is_state": true,
+        "wrong_session_rejected": true,
+        "busy_rejected": true,
+        "original_owner_retained": true,
+        "original_completes": true,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      },
+      "passed": true,
+      "events": [
+        {
+          "type": "state",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "reliability-wrong_session_and_busy",
+            "turn_id": "1",
+            "input": {
+              "text": "And the nudity is really important to the story.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:49.129965+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "neutral",
+              "probabilities": {
+                "neutral": 0.7155078649520874,
+                "surprise": 0.028615674003958702,
+                "fear": 0.06579172611236572,
+                "sadness": 0.08058669418096542,
+                "joy": 0.057882219552993774,
+                "disgust": 0.021804241463541985,
+                "anger": 0.02981143444776535
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.9104540273547173,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.419081455164502,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "neutral",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 176.3937000068836,
+              "first_token_ms": null,
+              "completion_ms": null,
+              "model_load_ms": 0.000800006091594696
+            },
+            "response": {
+              "text": "",
+              "status": "streaming",
+              "error": null
+            }
+          },
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "The",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " nudity",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " is",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " really",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " important",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " to",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " the",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " story",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": ".",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " Is",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " that",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " something",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " you",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "'re",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " particularly",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " focused",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " on",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " right",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " now",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "?",
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "done",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "reliability-wrong_session_and_busy",
+            "turn_id": "1",
+            "input": {
+              "text": "And the nudity is really important to the story.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:49.129965+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "neutral",
+              "probabilities": {
+                "neutral": 0.7155078649520874,
+                "surprise": 0.028615674003958702,
+                "fear": 0.06579172611236572,
+                "sadness": 0.08058669418096542,
+                "joy": 0.057882219552993774,
+                "disgust": 0.021804241463541985,
+                "anger": 0.02981143444776535
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.9104540273547173,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.419081455164502,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "neutral",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 176.3937000068836,
+              "first_token_ms": 381.2919000047259,
+              "completion_ms": 512.4500000092667,
+              "model_load_ms": 0.000800006091594696
+            },
+            "response": {
+              "text": "The nudity is really important to the story. Is that something you're particularly focused on right now?",
+              "status": "complete",
+              "error": null
+            }
+          },
+          "session_id": "reliability-wrong_session_and_busy",
+          "turn_id": "1"
+        }
+      ],
+      "generator_entries": 1,
+      "elapsed_ms": 512.6770000206307
+    },
+    {
+      "case": "cancel_at_generator_exhaustion",
+      "id": "dev:8:5",
+      "checks": {
+        "first_event_is_state": true,
+        "exhaustion_cancel_accepted": true,
+        "one_cancel_terminal": false,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      },
+      "passed": false,
+      "events": [
+        {
+          "type": "state",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "reliability-cancel_at_generator_exhaustion",
+            "turn_id": "1",
+            "input": {
+              "text": "That’s what you say about porn.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:50.140596+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "neutral",
+              "probabilities": {
+                "neutral": 0.5577606558799744,
+                "surprise": 0.044820502400398254,
+                "fear": 0.020821668207645416,
+                "sadness": 0.15409807860851288,
+                "joy": 0.058506324887275696,
+                "disgust": 0.05633416399359703,
+                "anger": 0.10765870660543442
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.9358452931046486,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.1688316494578292,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "neutral",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 186.52660000952892,
+              "first_token_ms": null,
+              "completion_ms": null,
+              "model_load_ms": 0.0009999785106629133
+            },
+            "response": {
+              "text": "",
+              "status": "streaming",
+              "error": null
+            }
+          },
+          "session_id": "reliability-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "You",
+          "session_id": "reliability-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " said",
+          "session_id": "reliability-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " that",
+          "session_id": "reliability-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " about",
+          "session_id": "reliability-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " porn",
+          "session_id": "reliability-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": ".",
+          "session_id": "reliability-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " How",
+          "session_id": "reliability-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " did",
+          "session_id": "reliability-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " that",
+          "session_id": "reliability-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " feel",
+          "session_id": "reliability-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "?",
+          "session_id": "reliability-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "done",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "reliability-cancel_at_generator_exhaustion",
+            "turn_id": "1",
+            "input": {
+              "text": "That’s what you say about porn.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:50.140596+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "neutral",
+              "probabilities": {
+                "neutral": 0.5577606558799744,
+                "surprise": 0.044820502400398254,
+                "fear": 0.020821668207645416,
+                "sadness": 0.15409807860851288,
+                "joy": 0.058506324887275696,
+                "disgust": 0.05633416399359703,
+                "anger": 0.10765870660543442
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.9358452931046486,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.1688316494578292,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "neutral",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 186.52660000952892,
+              "first_token_ms": 390.3357000090182,
+              "completion_ms": 466.15429999656044,
+              "model_load_ms": 0.0009999785106629133
+            },
+            "response": {
+              "text": "You said that about porn. How did that feel?",
+              "status": "complete",
+              "error": null
+            }
+          },
+          "session_id": "reliability-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        }
+      ],
+      "generator_entries": 1,
+      "elapsed_ms": 466.34079999057576
+    },
+    {
+      "case": "terminal_ownership",
+      "id": "dev:8:6",
+      "checks": {
+        "first_event_is_state": true,
+        "completed_terminal": true,
+        "released_before_consumer_resumes": false,
+        "old_close_retains_new_owner": false,
+        "new_owner_completes": false,
+        "ownership_released": true,
+        "generator_entries_closed": true
+      },
+      "passed": false,
+      "events": [
+        {
+          "type": "state",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "reliability-terminal_ownership",
+            "turn_id": "1",
+            "input": {
+              "text": "You’re right. Maybe I shouldn’t even go on the call back.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:51.096852+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "neutral",
+              "probabilities": {
+                "neutral": 0.5952547788619995,
+                "surprise": 0.021274354308843613,
+                "fear": 0.07910561561584473,
+                "sadness": 0.1941346973180771,
+                "joy": 0.04476365074515343,
+                "disgust": 0.0342949703335762,
+                "anger": 0.031171968206763268
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.9253548979759216,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.3356648532622777,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "neutral",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 175.84000001079403,
+              "first_token_ms": null,
+              "completion_ms": null,
+              "model_load_ms": 0.000700005330145359
+            },
+            "response": {
+              "text": "",
+              "status": "streaming",
+              "error": null
+            }
+          },
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "You",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "'re",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " thinking",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " about",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " not",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " going",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " on",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " the",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " call",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " back",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": ".",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " How",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " are",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " you",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " feeling",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " about",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " that",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " decision",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "?",
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "done",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "reliability-terminal_ownership",
+            "turn_id": "1",
+            "input": {
+              "text": "You’re right. Maybe I shouldn’t even go on the call back.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:51.096852+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "neutral",
+              "probabilities": {
+                "neutral": 0.5952547788619995,
+                "surprise": 0.021274354308843613,
+                "fear": 0.07910561561584473,
+                "sadness": 0.1941346973180771,
+                "joy": 0.04476365074515343,
+                "disgust": 0.0342949703335762,
+                "anger": 0.031171968206763268
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.9253548979759216,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.3356648532622777,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "neutral",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 175.84000001079403,
+              "first_token_ms": 375.42300001950935,
+              "completion_ms": 500.16060000052676,
+              "model_load_ms": 0.000700005330145359
+            },
+            "response": {
+              "text": "You're thinking about not going on the call back. How are you feeling about that decision?",
+              "status": "complete",
+              "error": null
+            }
+          },
+          "session_id": "reliability-terminal_ownership",
+          "turn_id": "1"
+        }
+      ],
+      "generator_entries": 1,
+      "elapsed_ms": 500.4093999741599
+    }
+  ],
+  "recovery": [
+    {
+      "after": "cold_load_cancel",
+      "events": [
+        {
+          "type": "state",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "recovery-cold_load_cancel",
+            "turn_id": "1",
+            "input": {
+              "text": "Yes! She’s gonna help us take care of the baby! Woo-hoo.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:39.875895+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "joy",
+              "probabilities": {
+                "neutral": 0.033141788095235825,
+                "surprise": 0.13060522079467773,
+                "fear": 0.028909971937537193,
+                "sadness": 0.026775391772389412,
+                "joy": 0.6739845871925354,
+                "disgust": 0.056723546236753464,
+                "anger": 0.04985954985022545
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.9261069446802139,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 3.795458333333333,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "joy",
+              "vision_label": "joy"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 2797.6884999952745,
+              "first_token_ms": null,
+              "completion_ms": null,
+              "model_load_ms": 0.001300009898841381
+            },
+            "response": {
+              "text": "",
+              "status": "streaming",
+              "error": null
+            }
+          },
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "That",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " sounds",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " exciting",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "—",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "really",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " happy",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " for",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " you",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " both",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "!",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " How",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " are",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " you",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " feeling",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " about",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " the",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " next",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " steps",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "?",
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        },
+        {
+          "type": "done",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "recovery-cold_load_cancel",
+            "turn_id": "1",
+            "input": {
+              "text": "Yes! She’s gonna help us take care of the baby! Woo-hoo.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:39.875895+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "joy",
+              "probabilities": {
+                "neutral": 0.033141788095235825,
+                "surprise": 0.13060522079467773,
+                "fear": 0.028909971937537193,
+                "sadness": 0.026775391772389412,
+                "joy": 0.6739845871925354,
+                "disgust": 0.056723546236753464,
+                "anger": 0.04985954985022545
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.9261069446802139,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 3.795458333333333,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "joy",
+              "vision_label": "joy"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 2797.6884999952745,
+              "first_token_ms": 3206.814500008477,
+              "completion_ms": 3337.4186999863014,
+              "model_load_ms": 0.001300009898841381
+            },
+            "response": {
+              "text": "That sounds exciting—really happy for you both! How are you feeling about the next steps?",
+              "status": "complete",
+              "error": null
+            }
+          },
+          "session_id": "recovery-cold_load_cancel",
+          "turn_id": "1"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "after": "cancel_after_state",
+      "events": [
+        {
+          "type": "state",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "recovery-cancel_after_state",
+            "turn_id": "1",
+            "input": {
+              "text": "What—You’re not serious.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:43.682168+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "surprise",
+              "probabilities": {
+                "neutral": 0.1221858412027359,
+                "surprise": 0.39499494433403015,
+                "fear": 0.0955403670668602,
+                "sadness": 0.27081984281539917,
+                "joy": 0.01119617186486721,
+                "disgust": 0.04173652082681656,
+                "anger": 0.06352625787258148
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.937315508723259,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.168833333333333,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "surprise",
+              "vision_label": "sadness"
+            },
+            "modality_disagreement": true,
+            "timing": {
+              "classification_ms": 400.0330999842845,
+              "first_token_ms": null,
+              "completion_ms": null,
+              "model_load_ms": 0.001100008375942707
+            },
+            "response": {
+              "text": "",
+              "status": "streaming",
+              "error": null
+            }
+          },
+          "session_id": "recovery-cancel_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "What",
+          "session_id": "recovery-cancel_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " made",
+          "session_id": "recovery-cancel_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " you",
+          "session_id": "recovery-cancel_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " think",
+          "session_id": "recovery-cancel_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " that",
+          "session_id": "recovery-cancel_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "?",
+          "session_id": "recovery-cancel_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "done",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "recovery-cancel_after_state",
+            "turn_id": "1",
+            "input": {
+              "text": "What—You’re not serious.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:43.682168+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "surprise",
+              "probabilities": {
+                "neutral": 0.1221858412027359,
+                "surprise": 0.39499494433403015,
+                "fear": 0.0955403670668602,
+                "sadness": 0.27081984281539917,
+                "joy": 0.01119617186486721,
+                "disgust": 0.04173652082681656,
+                "anger": 0.06352625787258148
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.937315508723259,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.168833333333333,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "surprise",
+              "vision_label": "sadness"
+            },
+            "modality_disagreement": true,
+            "timing": {
+              "classification_ms": 400.0330999842845,
+              "first_token_ms": 546.9673000043258,
+              "completion_ms": 585.4956000111997,
+              "model_load_ms": 0.001100008375942707
+            },
+            "response": {
+              "text": "What made you think that?",
+              "status": "complete",
+              "error": null
+            }
+          },
+          "session_id": "recovery-cancel_after_state",
+          "turn_id": "1"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "after": "cancel_after_first_delta",
+      "events": [
+        {
+          "type": "state",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "recovery-cancel_after_first_delta",
+            "turn_id": "1",
+            "input": {
+              "text": "Hi Ross!",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:47.190893+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "anger",
+              "probabilities": {
+                "neutral": 0.2385243922472,
+                "surprise": 0.07768069952726364,
+                "fear": 0.037647053599357605,
+                "sadness": 0.0704205110669136,
+                "joy": 0.1818046271800995,
+                "disgust": 0.0860196202993393,
+                "anger": 0.3079030513763428
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 0.75,
+              "mean_detection_score": 0.8763760328292847,
+              "sampled_frames": 8,
+              "selected_frames": 6,
+              "duration_seconds": 0.5005,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "joy",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": true,
+            "timing": {
+              "classification_ms": 148.71879998827353,
+              "first_token_ms": null,
+              "completion_ms": null,
+              "model_load_ms": 0.0012999807950109243
+            },
+            "response": {
+              "text": "",
+              "status": "streaming",
+              "error": null
+            }
+          },
+          "session_id": "recovery-cancel_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "Hi",
+          "session_id": "recovery-cancel_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "!",
+          "session_id": "recovery-cancel_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " How",
+          "session_id": "recovery-cancel_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " are",
+          "session_id": "recovery-cancel_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " you",
+          "session_id": "recovery-cancel_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " doing",
+          "session_id": "recovery-cancel_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " today",
+          "session_id": "recovery-cancel_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "?",
+          "session_id": "recovery-cancel_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "done",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "recovery-cancel_after_first_delta",
+            "turn_id": "1",
+            "input": {
+              "text": "Hi Ross!",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:47.190893+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "anger",
+              "probabilities": {
+                "neutral": 0.2385243922472,
+                "surprise": 0.07768069952726364,
+                "fear": 0.037647053599357605,
+                "sadness": 0.0704205110669136,
+                "joy": 0.1818046271800995,
+                "disgust": 0.0860196202993393,
+                "anger": 0.3079030513763428
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 0.75,
+              "mean_detection_score": 0.8763760328292847,
+              "sampled_frames": 8,
+              "selected_frames": 6,
+              "duration_seconds": 0.5005,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "joy",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": true,
+            "timing": {
+              "classification_ms": 148.71879998827353,
+              "first_token_ms": 334.8260000057053,
+              "completion_ms": 388.1929000199307,
+              "model_load_ms": 0.0012999807950109243
+            },
+            "response": {
+              "text": "Hi! How are you doing today?",
+              "status": "complete",
+              "error": null
+            }
+          },
+          "session_id": "recovery-cancel_after_first_delta",
+          "turn_id": "1"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "after": "close_after_state",
+      "events": [
+        {
+          "type": "state",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "recovery-close_after_state",
+            "turn_id": "1",
+            "input": {
+              "text": "Hi roomie!",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:47.765601+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "joy",
+              "probabilities": {
+                "neutral": 0.06241215020418167,
+                "surprise": 0.05859886482357979,
+                "fear": 0.009153958410024643,
+                "sadness": 0.0031618208158761263,
+                "joy": 0.7861786484718323,
+                "disgust": 0.006483824923634529,
+                "anger": 0.07401073724031448
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 0.75,
+              "mean_detection_score": 0.9212472438812256,
+              "sampled_frames": 8,
+              "selected_frames": 6,
+              "duration_seconds": 2.2105416666666664,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "joy",
+              "vision_label": "joy"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 183.91620001057163,
+              "first_token_ms": null,
+              "completion_ms": null,
+              "model_load_ms": 0.000800006091594696
+            },
+            "response": {
+              "text": "",
+              "status": "streaming",
+              "error": null
+            }
+          },
+          "session_id": "recovery-close_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "Hi",
+          "session_id": "recovery-close_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "!",
+          "session_id": "recovery-close_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " How",
+          "session_id": "recovery-close_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "’s",
+          "session_id": "recovery-close_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " your",
+          "session_id": "recovery-close_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " day",
+          "session_id": "recovery-close_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " going",
+          "session_id": "recovery-close_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " so",
+          "session_id": "recovery-close_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " far",
+          "session_id": "recovery-close_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "?",
+          "session_id": "recovery-close_after_state",
+          "turn_id": "1"
+        },
+        {
+          "type": "done",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "recovery-close_after_state",
+            "turn_id": "1",
+            "input": {
+              "text": "Hi roomie!",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:47.765601+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "joy",
+              "probabilities": {
+                "neutral": 0.06241215020418167,
+                "surprise": 0.05859886482357979,
+                "fear": 0.009153958410024643,
+                "sadness": 0.0031618208158761263,
+                "joy": 0.7861786484718323,
+                "disgust": 0.006483824923634529,
+                "anger": 0.07401073724031448
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 0.75,
+              "mean_detection_score": 0.9212472438812256,
+              "sampled_frames": 8,
+              "selected_frames": 6,
+              "duration_seconds": 2.2105416666666664,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "joy",
+              "vision_label": "joy"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 183.91620001057163,
+              "first_token_ms": 396.28680000896566,
+              "completion_ms": 466.25319999293424,
+              "model_load_ms": 0.000800006091594696
+            },
+            "response": {
+              "text": "Hi! How’s your day going so far?",
+              "status": "complete",
+              "error": null
+            }
+          },
+          "session_id": "recovery-close_after_state",
+          "turn_id": "1"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "after": "close_after_first_delta",
+      "events": [
+        {
+          "type": "state",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "recovery-close_after_first_delta",
+            "turn_id": "1",
+            "input": {
+              "text": "This is a serious, legitimate movie.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:48.638116+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "neutral",
+              "probabilities": {
+                "neutral": 0.6059670448303223,
+                "surprise": 0.07516229897737503,
+                "fear": 0.06482289731502533,
+                "sadness": 0.09746536612510681,
+                "joy": 0.03626874089241028,
+                "disgust": 0.05754898115992546,
+                "anger": 0.0627647191286087
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.9127575159072876,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.5859146589689503,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "neutral",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 191.3275999831967,
+              "first_token_ms": null,
+              "completion_ms": null,
+              "model_load_ms": 0.000700005330145359
+            },
+            "response": {
+              "text": "",
+              "status": "streaming",
+              "error": null
+            }
+          },
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "You",
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " said",
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " this",
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " is",
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " a",
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " serious",
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": ",",
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " legitimate",
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " movie",
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": ".",
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " How",
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " does",
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " that",
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " feel",
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " to",
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " you",
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "?",
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        },
+        {
+          "type": "done",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "recovery-close_after_first_delta",
+            "turn_id": "1",
+            "input": {
+              "text": "This is a serious, legitimate movie.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:48.638116+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "neutral",
+              "probabilities": {
+                "neutral": 0.6059670448303223,
+                "surprise": 0.07516229897737503,
+                "fear": 0.06482289731502533,
+                "sadness": 0.09746536612510681,
+                "joy": 0.03626874089241028,
+                "disgust": 0.05754898115992546,
+                "anger": 0.0627647191286087
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.9127575159072876,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.5859146589689503,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "neutral",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 191.3275999831967,
+              "first_token_ms": 378.8775999855716,
+              "completion_ms": 488.03929999121465,
+              "model_load_ms": 0.000700005330145359
+            },
+            "response": {
+              "text": "You said this is a serious, legitimate movie. How does that feel to you?",
+              "status": "complete",
+              "error": null
+            }
+          },
+          "session_id": "recovery-close_after_first_delta",
+          "turn_id": "1"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "after": "wrong_session_and_busy",
+      "events": [
+        {
+          "type": "state",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "recovery-wrong_session_and_busy",
+            "turn_id": "1",
+            "input": {
+              "text": "And the nudity is really important to the story.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:49.642806+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "neutral",
+              "probabilities": {
+                "neutral": 0.7155078649520874,
+                "surprise": 0.028615674003958702,
+                "fear": 0.06579172611236572,
+                "sadness": 0.08058669418096542,
+                "joy": 0.057882219552993774,
+                "disgust": 0.021804241463541985,
+                "anger": 0.02981143444776535
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.9104540273547173,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.419081455164502,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "neutral",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 183.86219997773878,
+              "first_token_ms": null,
+              "completion_ms": null,
+              "model_load_ms": 0.000800006091594696
+            },
+            "response": {
+              "text": "",
+              "status": "streaming",
+              "error": null
+            }
+          },
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "The",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " nudity",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " is",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " really",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " important",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " to",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " the",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " story",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": ".",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " Is",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " that",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " something",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " you",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "'re",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " particularly",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " focused",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " on",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " right",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " now",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "?",
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        },
+        {
+          "type": "done",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "recovery-wrong_session_and_busy",
+            "turn_id": "1",
+            "input": {
+              "text": "And the nudity is really important to the story.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:49.642806+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "neutral",
+              "probabilities": {
+                "neutral": 0.7155078649520874,
+                "surprise": 0.028615674003958702,
+                "fear": 0.06579172611236572,
+                "sadness": 0.08058669418096542,
+                "joy": 0.057882219552993774,
+                "disgust": 0.021804241463541985,
+                "anger": 0.02981143444776535
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.9104540273547173,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.419081455164502,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "neutral",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 183.86219997773878,
+              "first_token_ms": 362.3510000179522,
+              "completion_ms": 491.8515000026673,
+              "model_load_ms": 0.000800006091594696
+            },
+            "response": {
+              "text": "The nudity is really important to the story. Is that something you're particularly focused on right now?",
+              "status": "complete",
+              "error": null
+            }
+          },
+          "session_id": "recovery-wrong_session_and_busy",
+          "turn_id": "1"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "after": "cancel_at_generator_exhaustion",
+      "events": [
+        {
+          "type": "state",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "recovery-cancel_at_generator_exhaustion",
+            "turn_id": "1",
+            "input": {
+              "text": "That’s what you say about porn.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:50.606468+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "neutral",
+              "probabilities": {
+                "neutral": 0.5577606558799744,
+                "surprise": 0.044820502400398254,
+                "fear": 0.020821668207645416,
+                "sadness": 0.15409807860851288,
+                "joy": 0.058506324887275696,
+                "disgust": 0.05633416399359703,
+                "anger": 0.10765870660543442
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.9358452931046486,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.1688316494578292,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "neutral",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 179.99659999622963,
+              "first_token_ms": null,
+              "completion_ms": null,
+              "model_load_ms": 0.000600004568696022
+            },
+            "response": {
+              "text": "",
+              "status": "streaming",
+              "error": null
+            }
+          },
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "You",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "'re",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " saying",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " I",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "'m",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " not",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " being",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " honest",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " about",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " porn",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": ".",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " How",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " do",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " you",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " feel",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " about",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " that",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "?",
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        },
+        {
+          "type": "done",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "recovery-cancel_at_generator_exhaustion",
+            "turn_id": "1",
+            "input": {
+              "text": "That’s what you say about porn.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:50.606468+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "neutral",
+              "probabilities": {
+                "neutral": 0.5577606558799744,
+                "surprise": 0.044820502400398254,
+                "fear": 0.020821668207645416,
+                "sadness": 0.15409807860851288,
+                "joy": 0.058506324887275696,
+                "disgust": 0.05633416399359703,
+                "anger": 0.10765870660543442
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.9358452931046486,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.1688316494578292,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "neutral",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 179.99659999622963,
+              "first_token_ms": 370.0650999962818,
+              "completion_ms": 485.68990000057966,
+              "model_load_ms": 0.000600004568696022
+            },
+            "response": {
+              "text": "You're saying I'm not being honest about porn. How do you feel about that?",
+              "status": "complete",
+              "error": null
+            }
+          },
+          "session_id": "recovery-cancel_at_generator_exhaustion",
+          "turn_id": "1"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "after": "terminal_ownership",
+      "events": [
+        {
+          "type": "state",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "recovery-terminal_ownership",
+            "turn_id": "1",
+            "input": {
+              "text": "You’re right. Maybe I shouldn’t even go on the call back.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:51.597175+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "neutral",
+              "probabilities": {
+                "neutral": 0.5952547788619995,
+                "surprise": 0.021274354308843613,
+                "fear": 0.07910561561584473,
+                "sadness": 0.1941346973180771,
+                "joy": 0.04476365074515343,
+                "disgust": 0.0342949703335762,
+                "anger": 0.031171968206763268
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.9253548979759216,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.3356648532622777,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "neutral",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 175.0164999975823,
+              "first_token_ms": null,
+              "completion_ms": null,
+              "model_load_ms": 0.0007999769877642393
+            },
+            "response": {
+              "text": "",
+              "status": "streaming",
+              "error": null
+            }
+          },
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "You",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "'re",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " thinking",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " about",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " not",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " going",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " on",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " the",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " call",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " back",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "—",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "what",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "'s",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " that",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " feeling",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " like",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " for",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " you",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " right",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": " now",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "text_delta",
+          "text": "?",
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        },
+        {
+          "type": "done",
+          "state": {
+            "schema_version": "1.0",
+            "session_id": "recovery-terminal_ownership",
+            "turn_id": "1",
+            "input": {
+              "text": "You’re right. Maybe I shouldn’t even go on the call back.",
+              "video_present": true,
+              "received_at": "2026-09-25T06:00:51.597175+00:00",
+              "text_truncated_for_classification": false,
+              "clip_started_at": null,
+              "clip_ended_at": null,
+              "clock_source": "backend_utc; capture timestamps unavailable"
+            },
+            "emotion": {
+              "label": "neutral",
+              "probabilities": {
+                "neutral": 0.5952547788619995,
+                "surprise": 0.021274354308843613,
+                "fear": 0.07910561561584473,
+                "sadness": 0.1941346973180771,
+                "joy": 0.04476365074515343,
+                "disgust": 0.0342949703335762,
+                "anger": 0.031171968206763268
+              },
+              "source": "fusion",
+              "score_semantics": "uncalibrated_softmax"
+            },
+            "vision": {
+              "available": true,
+              "reason": "ok",
+              "valid_frame_fraction": 1.0,
+              "mean_detection_score": 0.9253548979759216,
+              "sampled_frames": 8,
+              "selected_frames": 8,
+              "duration_seconds": 2.3356648532622777,
+              "truncated": false,
+              "speaker_attribution": "unverified_heuristic"
+            },
+            "modalities": {
+              "text_label": "neutral",
+              "vision_label": "neutral"
+            },
+            "modality_disagreement": false,
+            "timing": {
+              "classification_ms": 175.0164999975823,
+              "first_token_ms": 343.82360000745393,
+              "completion_ms": 478.8831000041682,
+              "model_load_ms": 0.0007999769877642393
+            },
+            "response": {
+              "text": "You're thinking about not going on the call back—what's that feeling like for you right now?",
+              "status": "complete",
+              "error": null
+            }
+          },
+          "session_id": "recovery-terminal_ownership",
+          "turn_id": "1"
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "burst": [],
+  "resources": [
+    {
+      "phase": "before_load",
+      "monotonic_seconds": 162551.5048079,
+      "python_rss_mib": 659.8984375,
+      "python_handles": 913,
+      "cuda_allocated_mib": 0.0,
+      "cuda_reserved_mib": 0.0,
+      "generator_rss_mib": 3289.171875,
+      "generator_handles": 281
+    },
+    {
+      "phase": "cold_load_cancel",
+      "monotonic_seconds": 162564.7746048,
+      "python_rss_mib": 3068.77734375,
+      "python_handles": 995,
+      "cuda_allocated_mib": 1694.31787109375,
+      "cuda_reserved_mib": 1860.0,
+      "generator_rss_mib": 3289.171875,
+      "generator_handles": 281
+    },
+    {
+      "phase": "cancel_after_state",
+      "monotonic_seconds": 162565.829573,
+      "python_rss_mib": 3079.30859375,
+      "python_handles": 1007,
+      "cuda_allocated_mib": 1694.31787109375,
+      "cuda_reserved_mib": 1860.0,
+      "generator_rss_mib": 3289.17578125,
+      "generator_handles": 281
+    },
+    {
+      "phase": "cancel_after_first_delta",
+      "monotonic_seconds": 162569.1403568,
+      "python_rss_mib": 3136.765625,
+      "python_handles": 1003,
+      "cuda_allocated_mib": 1694.31787109375,
+      "cuda_reserved_mib": 1860.0,
+      "generator_rss_mib": 3289.17578125,
+      "generator_handles": 281
+    },
+    {
+      "phase": "close_after_state",
+      "monotonic_seconds": 162569.7935033,
+      "python_rss_mib": 3138.76171875,
+      "python_handles": 1007,
+      "cuda_allocated_mib": 1694.31787109375,
+      "cuda_reserved_mib": 1860.0,
+      "generator_rss_mib": 3289.17578125,
+      "generator_handles": 281
+    },
+    {
+      "phase": "close_after_first_delta",
+      "monotonic_seconds": 162570.688179,
+      "python_rss_mib": 3139.46875,
+      "python_handles": 1003,
+      "cuda_allocated_mib": 1694.31787109375,
+      "cuda_reserved_mib": 1860.0,
+      "generator_rss_mib": 3289.17578125,
+      "generator_handles": 281
+    },
+    {
+      "phase": "wrong_session_and_busy",
+      "monotonic_seconds": 162571.6964593,
+      "python_rss_mib": 3135.35546875,
+      "python_handles": 1011,
+      "cuda_allocated_mib": 1694.31787109375,
+      "cuda_reserved_mib": 1860.0,
+      "generator_rss_mib": 3289.17578125,
+      "generator_handles": 281
+    },
+    {
+      "phase": "cancel_at_generator_exhaustion",
+      "monotonic_seconds": 162572.6542988,
+      "python_rss_mib": 3138.71484375,
+      "python_handles": 1003,
+      "cuda_allocated_mib": 1694.31787109375,
+      "cuda_reserved_mib": 1860.0,
+      "generator_rss_mib": 3289.17578125,
+      "generator_handles": 281
+    },
+    {
+      "phase": "terminal_ownership",
+      "monotonic_seconds": 162573.6376505,
+      "python_rss_mib": 3136.66796875,
+      "python_handles": 1011,
+      "cuda_allocated_mib": 1694.31787109375,
+      "cuda_reserved_mib": 1860.0,
+      "generator_rss_mib": 3289.17578125,
+      "generator_handles": 281
+    }
+  ],
+  "response_quality_score": null,
+  "elapsed_seconds": 22.137447299988708,
+  "completed_at": "2026-09-25T06:00:52.080281+00:00",
+  "generator_entries": 14,
+  "generator_closes": 14,
+  "ownership_released": true
+}

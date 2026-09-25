@@ -31,7 +31,9 @@ The overnight work added **72 grouped CV fits, 760 real video stress conditions,
 
 **Vision still has no demonstrated accuracy advantage over text alone.** Only 658/2,610 test rows pass the visual checks. The new text control alone scores .41583 macro F1, above the multimodal system. Rare-class improvements and regressions are detailed in [REPORT.md](REPORT.md); [BASELINE_REPORT.md](BASELINE_REPORT.md) preserves the original evidence.
 
-On the supplied RTX 3080, the updated warm benchmark produced emotion state / first token / completed reply at **246 / 458 / 623 ms p95**, across 30 fusion turns. Peak GPU use was **7,566 MiB**, including desktop processes. Capture, upload and browser rendering are excluded. The verified complete parameter count is **4,464,745,375**, below the six-billion cap. [REPORT.md](REPORT.md) links the audit, benchmark, stress results, response review and validation.
+On the supplied RTX 3080, the updated warm benchmark produced emotion state / first token / completed reply at **241 / 440 / 604 ms p95**, across 30 fusion turns. Peak GPU use was **7,581 MiB**, including desktop processes. Capture, upload and browser rendering are excluded. The verified complete parameter count is **4,464,745,375**, below the six-billion cap. [REPORT.md](REPORT.md) links the audit, benchmark, stress results, response review and validation.
+
+The second follow-through pass fixed four reproduced cancellation/ownership failures: all eight real-model lifecycle cases and 48 alternating video/text turns now pass. Exact local context budgeting preserves inputs and returns an actionable overflow error. A development confidence diagnostic did not justify calibration, so it was not deployed. See the [reliability report](reports/reliability/REPORT.md) for protocols, failures, resource limits and browser evidence.
 
 ## Windows setup
 
@@ -190,7 +192,7 @@ Typed text + clip
 
 The state includes session/turn IDs, received time, input availability, seven uncalibrated class probabilities, evidence source, visual quality/rejection reason, modality-specific labels/disagreement, response status/text, and backend timings. Capture-start/end timestamps are currently unavailable and are explicitly null; received time is recorded on the backend.
 
-“Real-time” here means a turn-based check-in after text and clip are ready. Engineering targets are a warmed-up emotion state within one second and first response token within three seconds. The measured backend replay sample met those targets; it does not establish a guarantee for other clips or an end-to-end webcam latency. `benchmark` excludes three warm-up turns, measures 30 usable fusion inputs and ten no-video fallback inputs, and reports p50/p95/max latency. It also samples GPU memory and the Python/generator resident memory. Video capture, upload/transcoding, and browser rendering are outside these backend timings; cold model-load time is reported separately by the pipeline.
+“Real-time” here means a turn-based check-in after text and clip are ready. Engineering targets are a warmed-up emotion state within one second and first response token within two seconds. The measured backend replay sample met those targets; it does not establish a guarantee for other clips or an end-to-end webcam latency. `benchmark` excludes three warm-up turns, measures 30 usable fusion inputs and ten no-video fallback inputs, and reports p50/p95/max latency. It also samples GPU memory and the Python/generator resident memory. Video capture, upload/transcoding, and browser rendering are outside these backend timings; cold model-load time is reported separately by the pipeline.
 
 ## Data handling, limitations, and handoff
 

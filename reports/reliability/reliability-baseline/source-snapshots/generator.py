@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import json
 import math
-import time
 from collections.abc import Iterator, Mapping
 from typing import Any
 from urllib.parse import urlsplit
@@ -13,13 +12,6 @@ import httpx
 
 
 LABELS = frozenset({"anger", "disgust", "fear", "joy", "neutral", "sadness", "surprise"})
-MAX_OUTPUT_TOKENS = 96
-CONTEXT_RESERVE_TOKENS = 16
-TOTAL_BUDGET_SECONDS = 90.0
-READ_TIMEOUT_SECONDS = 10.0
-MAX_SSE_LINE_BYTES = 65536
-MAX_SSE_EVENT_BYTES = 65536
-MAX_STREAM_BYTES = 262144
 SYSTEM_PROMPT = """You are a warm daily check-in companion, not a therapist.
 Write one or two short conversational sentences and at most one gentle question.
 The final user message is JSON: message is what the person said; emotion_evidence
@@ -89,8 +81,8 @@ def _messages(text: str, state: dict[str, Any], history: list[Any]) -> list[dict
         raise ValueError("A nonempty check-in message is required.")
     if len(text) > 4000:
         raise ValueError("Keep the check-in message to 4,000 characters or fewer.")
-    # This first-stage character bound keeps at most six prior messages. The
-    # local template/tokenizer preflight in _fit_context verifies the token budget.
+    # Keep up to three prior turns and a conservative character budget. The server
+    # remains responsible for enforcing its exact tokenizer context limit.
     previous: list[dict[str, str]] = []
     for item in history:
         if isinstance(item, Mapping):
@@ -118,131 +110,15 @@ def _messages(text: str, state: dict[str, Any], history: list[Any]) -> list[dict
 def _sse_data(lines: Iterator[str]) -> Iterator[str]:
     """Decode standard SSE events, including multiline data and keepalives."""
     data: list[str] = []
-    event_bytes = 0
     for line in lines:
         if not line:
             if data:
                 yield "\n".join(data)
                 data.clear()
-            event_bytes = 0
         elif line.startswith("data:"):
-            value = line[5:].removeprefix(" ")
-            event_bytes += len(value.encode("utf-8")) + 1
-            if event_bytes > MAX_SSE_EVENT_BYTES:
-                raise GeneratorError("The local generator returned an oversized stream event.")
-            data.append(value)
+            data.append(line[5:].removeprefix(" "))
     if data:
         yield "\n".join(data)
-
-
-def _check_deadline(deadline: float) -> float:
-    remaining = deadline - time.monotonic()
-    if remaining <= 0:
-        raise GeneratorError("The local response exceeded its time budget. Any partial response is preserved.")
-    return remaining
-
-
-def _request_timeout(deadline: float) -> httpx.Timeout:
-    remaining = _check_deadline(deadline)
-    return httpx.Timeout(connect=min(5.0, remaining), read=min(READ_TIMEOUT_SECONDS, remaining),
-                         write=min(10.0, remaining), pool=min(5.0, remaining))
-
-
-def _bounded_chunks(response: httpx.Response, deadline: float) -> Iterator[bytes]:
-    """Bound preprocessing and streaming bodies at incoming chunk boundaries.
-
-    No worker thread is created. A completely quiet socket may block until its
-    read timeout; the total budget is observed at the next chunk/read boundary.
-    """
-    chunks = iter(response.iter_bytes())
-    total = 0
-    while True:
-        _check_deadline(deadline)
-        try:
-            chunk = next(chunks)
-        except StopIteration:
-            break
-        _check_deadline(deadline)
-        total += len(chunk)
-        if total > MAX_STREAM_BYTES:
-            raise GeneratorError("The local generator exceeded the response stream size limit.")
-        yield chunk
-
-
-def _bounded_lines(response: httpx.Response, deadline: float) -> Iterator[str]:
-    """Keep UTF-8 boundaries intact while limiting unfinished SSE lines."""
-    pending = b""
-    for chunk in _bounded_chunks(response, deadline):
-        pending += chunk
-        while b"\n" in pending:
-            line, pending = pending.split(b"\n", 1)
-            if len(line) > MAX_SSE_LINE_BYTES:
-                raise GeneratorError("The local generator returned an oversized stream line.")
-            try:
-                yield line.removesuffix(b"\r").decode("utf-8")
-            except UnicodeDecodeError as error:
-                raise GeneratorError("The local generator returned invalid UTF-8 stream data.") from error
-            _check_deadline(deadline)
-        if len(pending) > MAX_SSE_LINE_BYTES:
-            raise GeneratorError("The local generator returned an oversized stream line.")
-    if pending:
-        try:
-            yield pending.removesuffix(b"\r").decode("utf-8")
-        except UnicodeDecodeError as error:
-            raise GeneratorError("The local generator returned invalid UTF-8 stream data.") from error
-
-
-def _context_request(client: httpx.Client, method: str, url: str, operation: str,
-                     deadline: float, payload: dict[str, Any] | None = None) -> dict[str, Any]:
-    with client.stream(method, url, json=payload, timeout=_request_timeout(deadline)) as response:
-        if response.status_code != 200:
-            raise GeneratorError(f"Cannot verify the local model context: {operation} failed (HTTP {response.status_code}).")
-        body = b"".join(_bounded_chunks(response, deadline))
-    try:
-        value = json.loads(body)
-    except (ValueError, UnicodeDecodeError) as error:
-        raise GeneratorError(f"Cannot verify the local model context: invalid {operation} response.") from error
-    if not isinstance(value, dict):
-        raise GeneratorError(f"Cannot verify the local model context: invalid {operation} response.")
-    return value
-
-
-def _drop_oldest_history_group(messages: list[dict[str, str]]) -> list[dict[str, str]]:
-    """Remove one prior user turn and its following assistant text as a unit."""
-    history = messages[1:-1]
-    for index in range(1, len(history)):
-        if history[index]["role"] == "user":
-            return [messages[0], *history[index:], messages[-1]]
-    return [messages[0], messages[-1]]
-
-
-def _fit_context(client: httpx.Client, base_url: str, messages: list[dict[str, str]],
-                 deadline: float) -> list[dict[str, str]]:
-    """Count the server-rendered prompt, evicting whole old turns if necessary."""
-    props = _context_request(client, "GET", base_url + "/props", "properties", deadline)
-    _check_deadline(deadline)
-    context = _mapping(props.get("default_generation_settings")).get("n_ctx")
-    if isinstance(context, bool) or not isinstance(context, int) or context <= MAX_OUTPUT_TOKENS + CONTEXT_RESERVE_TOKENS:
-        raise GeneratorError("Cannot verify the local model context: invalid context capacity.")
-    # _messages retains at most six history messages; each iteration drops a
-    # complete oldest group, so this loop is bounded by that existing limit.
-    while True:
-        formatted = _context_request(client, "POST", base_url + "/apply-template", "chat template", deadline, {"messages": messages})
-        _check_deadline(deadline)
-        prompt = formatted.get("prompt")
-        if not isinstance(prompt, str) or not prompt:
-            raise GeneratorError("Cannot verify the local model context: missing formatted prompt.")
-        tokenized = _context_request(client, "POST", base_url + "/tokenize", "tokenizer", deadline,
-            {"content": prompt, "add_special": True, "parse_special": True, "with_pieces": False})
-        _check_deadline(deadline)
-        tokens = tokenized.get("tokens")
-        if not isinstance(tokens, list) or not tokens or any(isinstance(token, bool) or not isinstance(token, int) or token < 0 for token in tokens):
-            raise GeneratorError("Cannot verify the local model context: invalid tokenizer result.")
-        if len(tokens) + MAX_OUTPUT_TOKENS + CONTEXT_RESERVE_TOKENS <= context:
-            return messages
-        if len(messages) <= 2:
-            raise GeneratorError("Please shorten your message: it exceeds the local model's token budget even without conversation history.")
-        messages = _drop_oldest_history_group(messages)
 
 
 class LocalGenerator:
@@ -261,7 +137,7 @@ class LocalGenerator:
         ):
             raise ValueError("Generation requires an HTTP loopback server URL without a path.")
         self.base_url = base_url.rstrip("/")
-        self.timeout = httpx.Timeout(connect=5.0, read=READ_TIMEOUT_SECONDS, write=10.0, pool=5.0)
+        self.timeout = httpx.Timeout(connect=5.0, read=90.0, write=10.0, pool=5.0)
 
     def status(self) -> dict[str, Any]:
         """Return health without raising or pretending an unavailable model works."""
@@ -282,12 +158,11 @@ class LocalGenerator:
 
     def stream(self, text: str, state: dict[str, Any], history: list[Any]) -> Iterator[str]:
         """Yield real text deltas; preserve partial output and raise on failure."""
-        deadline = time.monotonic() + TOTAL_BUDGET_SECONDS
         payload = {
             "model": "checkin-qwen",
             "messages": _messages(text, state, history),
             "stream": True,
-            "max_tokens": MAX_OUTPUT_TOKENS,
+            "max_tokens": 96,
             "temperature": 0.5,
             "top_p": 0.8,
             "top_k": 20,
@@ -297,14 +172,13 @@ class LocalGenerator:
         completed = False
         try:
             with httpx.Client(trust_env=False, follow_redirects=False, timeout=self.timeout) as client:
-                payload["messages"] = _fit_context(client, self.base_url, payload["messages"], deadline)
-                with client.stream("POST", f"{self.base_url}/v1/chat/completions", json=payload,
-                                   timeout=_request_timeout(deadline)) as response:
+                with client.stream("POST", f"{self.base_url}/v1/chat/completions", json=payload) as response:
                     if response.status_code != 200:
                         raise GeneratorError(f"Local generation failed (HTTP {response.status_code}).")
-                    for data in _sse_data(_bounded_lines(response, deadline)):
+                    for data in _sse_data(response.iter_lines()):
                         if data.strip() == "[DONE]":
-                            raise GeneratorError("The local generation stream ended without a completion reason.")
+                            completed = True
+                            break
                         try:
                             event = json.loads(data)
                         except json.JSONDecodeError as error:
@@ -316,29 +190,16 @@ class LocalGenerator:
                             raise GeneratorError("The local generator returned malformed choices.")
                         if not choices:  # Optional usage-only event.
                             continue
-                        if len(choices) != 1:
-                            raise GeneratorError("The local generator returned an unexpected number of choices.")
                         choice = choices[0]
                         if not isinstance(choice, dict):
                             raise GeneratorError("The local generator returned a malformed choice.")
-                        raw_delta = choice.get("delta", {})
-                        if not isinstance(raw_delta, Mapping):
-                            raise GeneratorError("The local generator returned a malformed text delta.")
-                        delta = raw_delta
+                        delta = _mapping(choice.get("delta"))
                         content = delta.get("content")
-                        if content is not None and not isinstance(content, str):
-                            raise GeneratorError("The local generator returned a malformed text delta.")
                         if isinstance(content, str) and content:
                             produced_text = produced_text or bool(content.strip())
                             yield content
-                        finish_reason = choice.get("finish_reason")
-                        if finish_reason == "length":
-                            raise GeneratorError("The local response reached its length limit. Any partial response is preserved; try a shorter check-in.")
-                        if finish_reason == "stop":
+                        if choice.get("finish_reason") is not None:
                             completed = True
-                            break
-                        if finish_reason is not None:
-                            raise GeneratorError("The local generator returned an unsupported completion reason.")
             if not completed:
                 raise GeneratorError("The local generation stream ended before completion.")
             if not produced_text:
