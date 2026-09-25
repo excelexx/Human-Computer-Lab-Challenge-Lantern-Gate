@@ -34,4 +34,3 @@ class CheckInState(BaseModel):
     modality_disagreement: bool
     timing: dict[str,float|None]
     response: Response = Field(default_factory=Response)
-
