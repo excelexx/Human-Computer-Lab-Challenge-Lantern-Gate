@@ -1,5 +1,7 @@
 # Check-in
 
+Start with the [morning handoff](HANDOFF.md) for the ready-to-try app, measured improvements and remaining weaknesses.
+
 A local text-and-vision prototype that asks how your day went, estimates a MELD emotion category, and streams a short supportive response. Type a message and record a 3–5 second webcam clip. The browser is the interface; Python and a local llama.cpp server perform inference on your computer.
 
 This is a supportive reflection companion, not a clinical system. Facial expressions are uncertain evidence. The person's own account takes precedence over appearance-based speculation.

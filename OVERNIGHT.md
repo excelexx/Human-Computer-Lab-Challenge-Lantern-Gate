@@ -75,3 +75,9 @@ Do not rerun completed training, confidence, corruption, response or short-burst
 - Both synthetic services exited; the real app is warm and ready for a fresh conversation. See [the replay lifecycle report](reports/replay-lifecycle/REPORT.md). Source/ZIP are refreshed after this entry.
 
 Do not duplicate these three completed study batches. Subsequent passes should address only a concrete new issue or an auditability gap; otherwise preserve the app and stay quiet. Inactive intervals are not continuous computation. At 13:00 UTC, verify the handoff and pause the existing heartbeat as already instructed.
+
+## Morning handoff (25 September 2026, after 13:00 UTC)
+
+The authorized overnight window has ended. All three study batches are complete; no training or GPU experiment remains active. Subsequent 30-minute passes found no new justified change and recorded clean source plus healthy app/generator responses. Those intervals were inactive apart from health checks, not continuous computation or inference stability tests.
+
+Final verification confirmed the prior package's archive checks and 416 source-file hashes, matching source revision `705eb8fc1b461c855bfb58df1a90e32fcd3187fa`, consistent parameter inventories, and healthy loopback services. Independent review confirmed the reported scores, counts and retained failures. The final package is refreshed only to add this record and [HANDOFF.md](HANDOFF.md); inference code, weights and measured outcomes are unchanged. The existing heartbeat is being paused after packaging, and the local app is left running.
