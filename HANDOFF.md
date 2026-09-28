@@ -1,21 +1,23 @@
-# Check-in: morning handoff
+# Lantern Gate: handoff
 
-25 September 2026. The local text-and-vision prototype is ready to try at [127.0.0.1:7860](http://127.0.0.1:7860/). It returns a tentative MELD emotion tag and a streamed supportive response. All inference runs on this computer, within **4,464,745,375 total required learned parameters**.
+28 September 2026. The local text-and-vision prototype is ready to try at [127.0.0.1:7860](http://127.0.0.1:7860/). It returns a tentative MELD emotion tag and a streamed game-character response. All inference runs on this computer, within **4,464,745,375 total required learned parameters**.
+
+The interface is now a full-screen pixel town: **WASD / arrows** move your traveler; walking close to Mara opens dialogue and the camera panel. **E** reopens it nearby; **Escape** leaves and stops camera tracks. **Go to Mara** skips walking if needed. **Full screen** optionally fills the display.
+
+The [game-character report](reports/game-character/REPORT.md) records the new prompt's controlled local generations, software checks and limitations. Earlier response studies below belong to the previous reflection-companion framing.
 
 ## Try it
 
-1. Open **Camera**, select **Turn camera on**, and grant the browser's camera permission. Tracking starts automatically; you do not record a clip. Keep one face in view: the first usable frame can produce a live visual tag, without waiting for six samples.
-2. Type a concise message and select **Send check-in**. The app combines your words with fresh camera evidence only after its stricter six-sample checks pass; otherwise it uses text fallback, even when a fast tag is visible. Live tracking resumes after the serialized reply releases the GPU.
-3. Read the submitted check-in's emotion signal and streamed response. **Diagnostics and setup** shows the structured result, live camera state, modality availability, disagreement and timings.
-4. **Turn camera off** stops the camera and clears its signal. **New conversation** clears the conversation and camera evidence while keeping the preview on to collect fresh evidence. **Stop** cancels the current reply or replay load after its current processing step; it does not turn the camera off.
+1. Follow the arrow with **WASD / arrow keys** to Mara. The floating W/A/S/D tutorial disappears once you move. **Go to Mara** is an accessible shortcut.
+2. The camera, estimated emotion, four samples and **Custom** float as separate rectangles on the right. Mara stays visible in the actual town on the left, with her reply in a speech bubble above her. There is no outer panel or replacement portrait, and opening the encounter does not pan or zoom the game.
+3. Select **Turn camera on** once to use local visual evidence. Click a sample to **send it immediately**, or type your own words and use the send arrow / Enter.
+4. **Escape / Back to village** leaves the encounter, cancels queued/current replies, and stops the camera. **E** reopens it while nearby. Refresh for a fresh conversation.
 
-The display requests camera frames every 0.2 seconds and refreshes every 0.1 seconds. Its first-frame estimate is lightly smoothed: 70% new probabilities and 30% previous probabilities, only across gaps of at most 0.6 seconds. Tags may still change or flicker. Reply evidence remains separate and conservative, requiring at least six usable samples among at most eight recent samples within four seconds. These configured intervals do not guarantee end-to-end latency or better accuracy.
+Live display is more responsive: 85% new-frame probability / 15% prior display, with smoothing only across gaps up to 0.4 seconds. The classifier weights, score calibration and six-sample fusion gate are unchanged. This is a responsiveness adjustment, not a demonstrated accuracy gain. Capture requests remain 5 Hz.
 
-Startup preloads the vision components; the text encoder loads when the first conversational turn needs it. The [original live-camera report](reports/live-camera/REPORT.md) retains its integration and missing-duration checks. The [faster live-display report](reports/live-camera-latency/REPORT.md) includes physical webcam verification: a first-frame tag was visible within 289 ms of reset, with ongoing capture at roughly five frames per second. This is a bounded interaction check, not an accuracy or long-duration stability claim.
+The compact encounter intentionally hides technical diagnostics and recorded-video controls. Use `python -m checkin.cli doctor` for setup and `python -m checkin.cli replay --id test:0:0` for recorded multimodal traces. The [game-character report](reports/game-character/REPORT.md) contains the new generation checks; earlier supportive-response studies are historical.
 
-For a repeatable recorded-video demonstration, choose **MELD replay**, select an utterance, click **Use this utterance**, then **Send check-in**. The reference label is not sent to the model. **Upload clip** also accepts an optional recorded video instead of live camera evidence. Audio is removed; compatible video streams are preserved, with an explicit conversion fallback for other formats. Uploaded/replay clips clear after a completed or stopped turn.
-
-If the app is closed, the original workspace includes `Start Check-in.cmd` in the directory above this repository. For a copied repository or another computer, follow [Windows setup and launch instructions](README.md#windows-setup). The source ZIP includes trained heads, source, tests and reports; pretrained weights, MELD videos, feature caches and the Python environment are separate downloads/artifacts.
+In the original workspace, `Start Check-in.cmd` still launches this app. For a copied repository follow [setup instructions](README.md#windows-setup). The source ZIP contains code, trained heads, bundled CC0 town tiles, the licensed local font, tests and reports. Pretrained models, datasets and the Python environment remain separate.
 
 ## What improved
 
@@ -37,7 +39,7 @@ On the supplied Windows RTX 3080 10 GB / 32 GB RAM machine, the recorded warm **
 
 The local generator still sometimes assumes emotions or circumstances the speaker did not state. The latest real replay retained both a wrong anger tag and an unwarranted excitement assumption. Calibration was investigated and not deployed. A working camera preview does not validate emotion estimates. No clinical validation, multi-browser queue test or long-duration inference stability claim is made.
 
-Audio, reinforcement learning, robot integration, remote inference and clinical diagnosis/treatment were intentionally left out. This is a supportive reflection prototype.
+Audio, reinforcement learning, robot integration, remote inference and clinical diagnosis/treatment were intentionally left out. This is an emotion-aware game-character prototype. Movement is implemented; combat, inventory, persistent quests and world actions driven by generated dialogue are intentionally absent.
 
 ## Reproducibility and work record
 

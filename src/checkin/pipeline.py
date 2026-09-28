@@ -9,7 +9,8 @@ import numpy as np
 import torch
 from .data import VideoProcessor,l2_normalize,box_iou
 from .encoders import VisionEncoder,TextEncoder
-from .generator import LocalGenerator
+from .generator import LocalGenerator, _emotion_evidence
+from .character import character_context
 from .models import DIMENSIONS,load_head
 from .schema import CheckInState,Emotion
 from .settings import LABELS,runtime_home
@@ -374,7 +375,9 @@ class CheckInPipeline:
             timing={"classification_ms":elapsed,"first_token_ms":None,"completion_ms":None})
         if live is not None:
             state.input["camera_age_at_send_seconds"]=admitted-live.received_monotonic
-        return state.model_dump()
+        result=state.model_dump()
+        result["interaction"]=character_context(_emotion_evidence(result), text)
+        return result
 
     def stream(self,text,video_path=None,history=None,session_id="local",turn_id="turn",*,live_observation=None):
         if not isinstance(text,str) or not text.strip():

@@ -144,7 +144,7 @@ if (-not $reused) {
     Save-AppRecord $ownedIdentities $launcher.Id
 }
 $ready = $false
-for ($attempt = 0; $attempt -lt 45; $attempt++) {
+for ($attempt = 0; $attempt -lt 90; $attempt++) {
     $ownedIdentities = @(Get-VerifiedAppFamily $ownedIdentities)
     if ($ownedIdentities.Count -eq 0) { throw ('App exited. Inspect ' + (Join-Path $logs 'app.stderr.log')) }
     Save-AppRecord $ownedIdentities ([int]$ownedIdentities[0].pid)

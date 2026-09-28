@@ -1,0 +1,442 @@
+{
+  "created_at": "2026-09-28T19:25:06.117390+00:00",
+  "scope": "Synthetic emotion interventions; real local Qwen3-4B responses. Not measured vision accuracy or human-rated quality.",
+  "model": "Existing local Qwen3-4B GGUF, unchanged",
+  "cases": [
+    {
+      "text": "Oh, fantastic.",
+      "state": {
+        "emotion": {
+          "label": "neutral",
+          "source": "fusion"
+        },
+        "vision": {
+          "available": true
+        },
+        "modalities": {
+          "text_label": "neutral",
+          "vision_label": "joy"
+        },
+        "modality_disagreement": true
+      },
+      "direction": {
+        "character": "Mara",
+        "scene_id": "lantern_gate",
+        "response_style": "playful",
+        "direction": "Use light, adventurous banter; invite the next move. This line is ambiguous: use the cue tentatively, without claiming to know its meaning or the player's feelings.",
+        "direction_source": "ambiguous_demo_visual_cue",
+        "policy": "delivery_only; player_words_take_precedence"
+      },
+      "response": "Ah, joyous chaos! Storm\u2019s out, beacon\u2019s out\u2014perfect for a little adventure. Bridge or stairs? You call the route, I\u2019ll just keep the lantern warm.",
+      "first_delta_ms": 324.3520999676548,
+      "total_ms": 568.6676999903284,
+      "error": null
+    },
+    {
+      "text": "Oh, fantastic.",
+      "state": {
+        "emotion": {
+          "label": "neutral",
+          "source": "fusion"
+        },
+        "vision": {
+          "available": true
+        },
+        "modalities": {
+          "text_label": "neutral",
+          "vision_label": "fear"
+        },
+        "modality_disagreement": true
+      },
+      "direction": {
+        "character": "Mara",
+        "scene_id": "lantern_gate",
+        "response_style": "careful",
+        "direction": "Explain the route plainly and offer to accompany the player; avoid teasing. This line is ambiguous: use the cue tentatively, without claiming to know its meaning or the player's feelings.",
+        "direction_source": "ambiguous_demo_visual_cue",
+        "policy": "delivery_only; player_words_take_precedence"
+      },
+      "response": "The beacon\u2019s light\u2019s out, and the storm\u2019s rolling in. The bridge\u2019s short but windy, the stairs are longer and damp\u2014either way, I can walk with you if you\u2019d like. Which route feels safer to you?",
+      "first_delta_ms": 191.65709998924285,
+      "total_ms": 507.3310000007041,
+      "error": null
+    },
+    {
+      "text": "Oh, fantastic.",
+      "state": {
+        "emotion": {
+          "label": "neutral",
+          "source": "fusion"
+        },
+        "vision": {
+          "available": true
+        },
+        "modalities": {
+          "text_label": "neutral",
+          "vision_label": "anger"
+        },
+        "modality_disagreement": true
+      },
+      "direction": {
+        "character": "Mara",
+        "scene_id": "lantern_gate",
+        "response_style": "steady",
+        "direction": "Be brief and steady; offer a concrete choice without arguing. This line is ambiguous: use the cue tentatively, without claiming to know its meaning or the player's feelings.",
+        "direction_source": "ambiguous_demo_visual_cue",
+        "policy": "delivery_only; player_words_take_precedence"
+      },
+      "response": "The bridge is short but bites hard in the wind, and the stairs are damp but steady. Which would you prefer to take?",
+      "first_delta_ms": 181.9099999847822,
+      "total_ms": 352.6545999920927,
+      "error": null
+    },
+    {
+      "text": "Oh, fantastic.",
+      "state": {
+        "emotion": {
+          "label": "neutral",
+          "source": "text_fallback"
+        },
+        "vision": {
+          "available": false
+        },
+        "modalities": {
+          "text_label": "neutral",
+          "vision_label": null
+        },
+        "modality_disagreement": false
+      },
+      "direction": {
+        "character": "Mara",
+        "scene_id": "lantern_gate",
+        "response_style": "practical",
+        "direction": "Be matter-of-fact; offer a clear next action.",
+        "direction_source": "combined_estimate",
+        "policy": "delivery_only; player_words_take_precedence"
+      },
+      "response": "The beacon\u2019s out. We\u2019ve got two ways in\u2014bridge or stairs. Which do you prefer?",
+      "first_delta_ms": 184.25270001171157,
+      "total_ms": 319.73430002108216,
+      "error": null
+    },
+    {
+      "text": "You want me to cross that?",
+      "state": {
+        "emotion": {
+          "label": "neutral",
+          "source": "fusion"
+        },
+        "vision": {
+          "available": true
+        },
+        "modalities": {
+          "text_label": "neutral",
+          "vision_label": "joy"
+        },
+        "modality_disagreement": true
+      },
+      "direction": {
+        "character": "Mara",
+        "scene_id": "lantern_gate",
+        "response_style": "playful",
+        "direction": "Use light, adventurous banter; invite the next move. This line is ambiguous: use the cue tentatively, without claiming to know its meaning or the player's feelings.",
+        "direction_source": "ambiguous_demo_visual_cue",
+        "policy": "delivery_only; player_words_take_precedence"
+      },
+      "response": "Aye, the bridge\u2019s got wind in its bones and a hungry sea below\u2014though I\u2019d rather see you take the stairs if you\u2019re not keen for a dance with the gales. Care to try the sea stairs? Or shall we test the bridge\u2019s patience?",
+      "first_delta_ms": 198.23969999561086,
+      "total_ms": 555.1734000327997,
+      "error": null
+    },
+    {
+      "text": "You want me to cross that?",
+      "state": {
+        "emotion": {
+          "label": "neutral",
+          "source": "fusion"
+        },
+        "vision": {
+          "available": true
+        },
+        "modalities": {
+          "text_label": "neutral",
+          "vision_label": "fear"
+        },
+        "modality_disagreement": true
+      },
+      "direction": {
+        "character": "Mara",
+        "scene_id": "lantern_gate",
+        "response_style": "careful",
+        "direction": "Explain the route plainly and offer to accompany the player; avoid teasing. This line is ambiguous: use the cue tentatively, without claiming to know its meaning or the player's feelings.",
+        "direction_source": "ambiguous_demo_visual_cue",
+        "policy": "delivery_only; player_words_take_precedence"
+      },
+      "response": "The signal bridge is short but windy\u2014might shake you if you're not steady. The sea stairs are longer and damp, but safer if you'd prefer to go slow. I can walk with you if you'd like.",
+      "first_delta_ms": 180.2095000166446,
+      "total_ms": 474.0313999936916,
+      "error": null
+    },
+    {
+      "text": "You want me to cross that?",
+      "state": {
+        "emotion": {
+          "label": "neutral",
+          "source": "fusion"
+        },
+        "vision": {
+          "available": true
+        },
+        "modalities": {
+          "text_label": "neutral",
+          "vision_label": "anger"
+        },
+        "modality_disagreement": true
+      },
+      "direction": {
+        "character": "Mara",
+        "scene_id": "lantern_gate",
+        "response_style": "steady",
+        "direction": "Be brief and steady; offer a concrete choice without arguing. This line is ambiguous: use the cue tentatively, without claiming to know its meaning or the player's feelings.",
+        "direction_source": "ambiguous_demo_visual_cue",
+        "policy": "delivery_only; player_words_take_precedence"
+      },
+      "response": "The bridge is short but wind-scoured, the stairs longer but dry. Which do you prefer?",
+      "first_delta_ms": 189.47089998982847,
+      "total_ms": 322.2572000231594,
+      "error": null
+    },
+    {
+      "text": "You want me to cross that?",
+      "state": {
+        "emotion": {
+          "label": "neutral",
+          "source": "text_fallback"
+        },
+        "vision": {
+          "available": false
+        },
+        "modalities": {
+          "text_label": "neutral",
+          "vision_label": null
+        },
+        "modality_disagreement": false
+      },
+      "direction": {
+        "character": "Mara",
+        "scene_id": "lantern_gate",
+        "response_style": "practical",
+        "direction": "Be matter-of-fact; offer a clear next action.",
+        "direction_source": "combined_estimate",
+        "policy": "delivery_only; player_words_take_precedence"
+      },
+      "response": "The signal bridge is short but wind-blown\u2014steep if you're not used to the gusts. The sea stairs are longer, damp, but sheltered. Which route do you prefer to try first?",
+      "first_delta_ms": 195.17459999769926,
+      "total_ms": 477.76790003990754,
+      "error": null
+    },
+    {
+      "text": "Sure. Whatever.",
+      "state": {
+        "emotion": {
+          "label": "neutral",
+          "source": "fusion"
+        },
+        "vision": {
+          "available": true
+        },
+        "modalities": {
+          "text_label": "neutral",
+          "vision_label": "joy"
+        },
+        "modality_disagreement": true
+      },
+      "direction": {
+        "character": "Mara",
+        "scene_id": "lantern_gate",
+        "response_style": "playful",
+        "direction": "Use light, adventurous banter; invite the next move. This line is ambiguous: use the cue tentatively, without claiming to know its meaning or the player's feelings.",
+        "direction_source": "ambiguous_demo_visual_cue",
+        "policy": "delivery_only; player_words_take_precedence"
+      },
+      "response": "Heh, \u201csure. whatever\u201d \u2014 that\u2019s the kind of calm that only works when the wind\u2019s howling. Ready to take the bridge or brave the stairs? I\u2019ve got a lantern, and a whole lot of salty stories to share.",
+      "first_delta_ms": 201.69229997554794,
+      "total_ms": 532.6338000013493,
+      "error": null
+    },
+    {
+      "text": "Sure. Whatever.",
+      "state": {
+        "emotion": {
+          "label": "neutral",
+          "source": "fusion"
+        },
+        "vision": {
+          "available": true
+        },
+        "modalities": {
+          "text_label": "neutral",
+          "vision_label": "fear"
+        },
+        "modality_disagreement": true
+      },
+      "direction": {
+        "character": "Mara",
+        "scene_id": "lantern_gate",
+        "response_style": "careful",
+        "direction": "Explain the route plainly and offer to accompany the player; avoid teasing. This line is ambiguous: use the cue tentatively, without claiming to know its meaning or the player's feelings.",
+        "direction_source": "ambiguous_demo_visual_cue",
+        "policy": "delivery_only; player_words_take_precedence"
+      },
+      "response": "The bridge is short but winds howl through it, and the stairs go down past the tide line, damp and steady. I can walk with you if you'd like\u2014no rush, just keep your footing.",
+      "first_delta_ms": 177.63109999941662,
+      "total_ms": 465.93840001150966,
+      "error": null
+    },
+    {
+      "text": "Sure. Whatever.",
+      "state": {
+        "emotion": {
+          "label": "neutral",
+          "source": "fusion"
+        },
+        "vision": {
+          "available": true
+        },
+        "modalities": {
+          "text_label": "neutral",
+          "vision_label": "anger"
+        },
+        "modality_disagreement": true
+      },
+      "direction": {
+        "character": "Mara",
+        "scene_id": "lantern_gate",
+        "response_style": "steady",
+        "direction": "Be brief and steady; offer a concrete choice without arguing. This line is ambiguous: use the cue tentatively, without claiming to know its meaning or the player's feelings.",
+        "direction_source": "ambiguous_demo_visual_cue",
+        "policy": "delivery_only; player_words_take_precedence"
+      },
+      "response": "The bridge\u2019s windy, but the stairs are damp. Which do you prefer?",
+      "first_delta_ms": 195.28669997816905,
+      "total_ms": 303.7487999536097,
+      "error": null
+    },
+    {
+      "text": "Sure. Whatever.",
+      "state": {
+        "emotion": {
+          "label": "neutral",
+          "source": "text_fallback"
+        },
+        "vision": {
+          "available": false
+        },
+        "modalities": {
+          "text_label": "neutral",
+          "vision_label": null
+        },
+        "modality_disagreement": false
+      },
+      "direction": {
+        "character": "Mara",
+        "scene_id": "lantern_gate",
+        "response_style": "practical",
+        "direction": "Be matter-of-fact; offer a clear next action.",
+        "direction_source": "combined_estimate",
+        "policy": "delivery_only; player_words_take_precedence"
+      },
+      "response": "The bridge is windy, the stairs are damp\u2014either way, the beacon\u2019s dark. Want to go first? I\u2019ll follow.",
+      "first_delta_ms": 178.88409999432042,
+      "total_ms": 353.8410000037402,
+      "error": null
+    },
+    {
+      "text": "I'm scared of heights. Let's take the sea stairs.",
+      "state": {
+        "emotion": {
+          "label": "fear",
+          "source": "fusion"
+        },
+        "vision": {
+          "available": true
+        },
+        "modalities": {
+          "text_label": "fear",
+          "vision_label": "joy"
+        },
+        "modality_disagreement": true
+      },
+      "direction": {
+        "character": "Mara",
+        "scene_id": "lantern_gate",
+        "response_style": "curious",
+        "direction": "Signals disagree. Offer a neutral choice; do not assume enthusiasm or distress.",
+        "direction_source": "combined_estimate",
+        "policy": "delivery_only; player_words_take_precedence"
+      },
+      "response": "The sea stairs are damp and slow, but the bridge\u2019s wind could snap a breath from your lungs. Either way, I\u2019ll walk beside you\u2014no heights, no secrets. Which path feels like a step you can take?",
+      "first_delta_ms": 183.90409997664392,
+      "total_ms": 483.51150000235066,
+      "error": null
+    },
+    {
+      "text": "I'm excited to try the bridge!",
+      "state": {
+        "emotion": {
+          "label": "joy",
+          "source": "fusion"
+        },
+        "vision": {
+          "available": true
+        },
+        "modalities": {
+          "text_label": "joy",
+          "vision_label": "sadness"
+        },
+        "modality_disagreement": true
+      },
+      "direction": {
+        "character": "Mara",
+        "scene_id": "lantern_gate",
+        "response_style": "curious",
+        "direction": "Signals disagree. Offer a neutral choice; do not assume enthusiasm or distress.",
+        "direction_source": "combined_estimate",
+        "policy": "delivery_only; player_words_take_precedence"
+      },
+      "response": "The bridge is short but the wind\u2019ll have you dancing with the waves. Or maybe the stairs\u2014damp, yes, but steady. What\u2019s it gonna be?",
+      "first_delta_ms": 178.55140002211556,
+      "total_ms": 399.8318000230938,
+      "error": null
+    },
+    {
+      "text": "Pause the game. What are you?",
+      "state": {
+        "emotion": {
+          "label": "neutral",
+          "source": "text_fallback"
+        },
+        "vision": {
+          "available": false
+        },
+        "modalities": {
+          "text_label": "neutral",
+          "vision_label": null
+        },
+        "modality_disagreement": false
+      },
+      "direction": {
+        "character": "Mara",
+        "scene_id": "lantern_gate",
+        "response_style": "practical",
+        "direction": "Be matter-of-fact; offer a clear next action.",
+        "direction_source": "combined_estimate",
+        "policy": "delivery_only; player_words_take_precedence"
+      },
+      "response": "I\u2019m Mara, the keeper of Lantern Gate. We\u2019re at the harbor\u2014storm\u2019s darkening the beacon. Ready to choose a route? The bridge is short but windy, or the stairs are longer but sheltered.",
+      "first_delta_ms": 202.06720003625378,
+      "total_ms": 509.5827000332065,
+      "error": null
+    }
+  ]
+}

@@ -155,14 +155,14 @@ def test_high_frequency_callbacks_accept_point_two_seconds_but_skip_flood(live_p
     assert "skipped" not in report and pipe.processor.detector.calls==2 and report["sampled_frames"]==2
 
 
-@pytest.mark.parametrize("gap,smoothed",[(.59,True),(.6,True),(.61,False),(-.1,False)])
+@pytest.mark.parametrize("gap,smoothed",[(.39,True),(.4,True),(.41,False),(-.1,False)])
 def test_short_display_ema_gap_boundary(gap,smoothed):
     first=np.zeros(7,dtype=np.float32);first[0]=1
     second=np.zeros(7,dtype=np.float32);second[4]=1
     initial=update_display(first,None,0.,"first")
     current=update_display(second,initial,gap,"second")
     assert current.smoothed==smoothed
-    np.testing.assert_allclose(current.probabilities, .7*second+.3*first if smoothed else second)
+    np.testing.assert_allclose(current.probabilities, .85*second+.15*first if smoothed else second)
 
 
 def test_no_face_ambiguity_and_track_jump_clear_display_without_waiting_for_window(live_pipe,monkeypatch):

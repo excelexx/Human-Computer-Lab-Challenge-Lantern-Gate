@@ -65,7 +65,7 @@ def test_gradio_media_argument_forms(value, expected):
 def test_emotion_text_is_escaped_and_missing_input_is_not_neutral():
     assert "<script>" not in emotion_html({"emotion": {"label": "<script>alert(1)</script>"}})
     assert "&lt;script&gt;" in emotion_html({"emotion": {"label": "<script>alert(1)</script>"}})
-    assert "Awaiting a check-in" in emotion_html({})
+    assert "Awaiting your line" in emotion_html({})
     assert "Neutral" not in emotion_html({})
 
 
@@ -144,13 +144,42 @@ def test_http_routes_serve_the_full_local_app(ui):
         page = client.get("/")
         config = client.get("/config")
     assert page.status_code == 200
-    assert "How did today feel?" in page.text
+    assert "Mara, keeper of Lantern Gate" in page.text
     assert config.status_code == 200
     settings = config.json()
     assert settings["version"] == "5.49.1"
     assert settings["analytics_enabled"] is False
     assert settings["enable_queue"] is True
     assert any(component["type"] == "video" for component in settings["components"])
+
+
+def test_sample_click_submits_once_with_selected_line_and_preserves_camera_mode(ui):
+    from checkin.scene import SAMPLE_LINES
+    app, _, pipeline = ui
+    handlers = [fn.fn for fn in app.fns.values() if getattr(fn.fn, "__name__", "") == "submit_sample"]
+    assert len(handlers) == len(SAMPLE_LINES) == 4
+    for index, (handler, line) in enumerate(zip(handlers, SAMPLE_LINES)):
+        guard = {"owner": "old-upload", "epoch": "old", "upload_payload": {"path": "old.mp4"}}
+        result = list(handler("stale.mp4", [], f"session-{index}", 0, guard, None, "camera"))
+        assert result[0][9]["value"] == line
+        assert pipeline.calls[-1]["text"] == line
+        assert pipeline.calls[-1]["clip"] is None
+        assert guard["owner"] is None and "upload_payload" not in guard
+        assert "turn_owner" not in guard
+    assert len(pipeline.calls) == 4
+
+
+def test_sample_stream_closure_releases_turn_and_closes_backend(ui):
+    app, _, pipeline = ui
+    handler = next(fn.fn for fn in app.fns.values() if getattr(fn.fn, "__name__", "") == "submit_sample")
+    guard = {"owner": None, "epoch": "original"}
+    stream = handler(None, [], "session", 0, guard, None, "camera")
+    next(stream)
+    next(stream)
+    assert guard["turn_owner"]
+    stream.close()
+    assert "turn_owner" not in guard
+    assert pipeline.closed == ["session"]
 
 
 def test_streams_keep_sessions_and_prior_history_separate(ui):
@@ -229,7 +258,7 @@ def test_pipeline_error_is_explicit_and_does_not_invent_a_tag(ui):
     pipeline.stream = failed
     result = list(handler("Hello", None, [], "session", 0))[-1]
     assert "checkpoint is missing" in result[3]["error"]
-    assert "Awaiting a check-in" in result[2]
+    assert "Awaiting your line" in result[2]
     assert result[0] == [{"role": "user", "content": "Hello"}]
 
 
@@ -297,7 +326,7 @@ def test_cold_cancellation_displays_stop_without_inventing_emotion_or_history(ui
     pipeline.stream = cancelled
     result = list(handler("Hello", None, [], "session", 0))[-1]
     assert "Stopped before the emotion signal was ready" in result[4]
-    assert "Awaiting a check-in" in result[2]
+    assert "Awaiting your line" in result[2]
     assert result[3]["cancelled"] is True and "emotion" not in result[3]
     assert result[1] == []
 

@@ -14,14 +14,17 @@ from pathlib import Path
 from typing import Any, Iterator
 import uuid
 
+from .scene import PIXEL_CSS, SAMPLE_LINES
+from .game_ui import game_html, game_css, MARA_PORTRAIT
+
 
 CSS = """
-:root, body, .dark {color-scheme:light !important; background:#F6F5F0 !important;}
+:root, body, .dark {color-scheme:dark !important; background:#152B3C !important;}
 body {margin:0 !important;}
 html body .gradio-container.gradio-container {width:100% !important; min-width:0 !important;
   max-width:1260px !important; box-sizing:border-box !important; margin:auto;
   padding:24px clamp(14px,3.2vw,40px) 30px !important;
-  background:#F6F5F0 !important; color:#243D34 !important; font-family:'Segoe UI',Arial,sans-serif !important;}
+  background:#152B3C !important; color:#DFE9EF !important; font-family:'Segoe UI',Arial,sans-serif !important;}
 .gradio-container main.fillable.app, .gradio-container main.app {padding:0 !important; width:100% !important;
   min-width:0 !important; max-width:100% !important; box-sizing:border-box !important;}
 .gradio-container .contain, .gradio-container .wrap, .gradio-container .block,
@@ -29,80 +32,80 @@ html body .gradio-container.gradio-container {width:100% !important; min-width:0
   min-width:0 !important; box-sizing:border-box !important;}
 .gradio-container video, .gradio-container canvas {max-width:100% !important;}
 #masthead {display:flex; align-items:center; justify-content:space-between; gap:20px;
-  padding-bottom:16px; border-bottom:1px solid #DCE3DB; color:#65736B; font-size:12px;}
+  padding-bottom:16px; border-bottom:1px solid #3E596C; color:#A8BDCB; font-size:12px;}
 .brand-lockup {display:flex; align-items:center; gap:11px;}
-.brand-lockup strong {font-size:21px; letter-spacing:-.7px; color:#243D34; font-weight:600;}
-.brand-mark {display:grid; place-items:center; width:36px; height:36px; border:1px solid #A9BBAA;
-  border-radius:50%; background:#EDF1E7;}
+.brand-lockup strong {font-size:21px; letter-spacing:-.7px; color:#DFE9EF; font-weight:600;}
+.brand-mark {display:grid; place-items:center; width:36px; height:36px; border:1px solid #718999;
+  border-radius:50%; background:#243F53;}
 .privacy-note {display:flex; align-items:center; gap:8px;}
-.privacy-note::before {content:''; height:6px; width:6px; background:#64836A; border-radius:50%;}
+.privacy-note::before {content:''; height:6px; width:6px; background:#78C6C1; border-radius:50%;}
 #invitation {display:flex; align-items:flex-end; justify-content:space-between; gap:36px;
   padding:21px 0 17px;}
 #invitation h1 {font-family:Georgia,'Times New Roman',serif; font-size:clamp(36px,3.8vw,51px);
-  line-height:1.12; letter-spacing:-1.8px; font-weight:400; color:#243D34; margin:0;}
-#invitation p {font-size:15px; line-height:1.75; color:#65736B; max-width:35ch; margin:0 0 4px;}
+  line-height:1.12; letter-spacing:-1.8px; font-weight:400; color:#DFE9EF; margin:0;}
+#invitation p {font-size:15px; line-height:1.75; color:#A8BDCB; max-width:35ch; margin:0 0 4px;}
 #content-grid {gap:24px !important; align-items:stretch !important;}
-#input-column {background:#FFFFFF; border:1px solid #DCE3DB; border-radius:18px;
+#input-column {background:#1C3346; border:1px solid #3E596C; border-radius:18px;
   padding:23px; gap:15px;}
-#conversation-column {background:#FFFFFF; border:1px solid #DCE3DB; border-radius:18px;
+#conversation-column {background:#1C3346; border:1px solid #3E596C; border-radius:18px;
   padding:24px; gap:11px; box-shadow:0 10px 28px rgba(37,58,45,.035);}
-.panel-heading h2 {font-size:18px; font-weight:600; letter-spacing:-.4px; color:#243D34; margin:0 0 5px;}
-.panel-heading p {font-size:13px; line-height:1.6; color:#65736B; margin:0 0 5px;}
+.panel-heading h2 {font-size:18px; font-weight:600; letter-spacing:-.4px; color:#DFE9EF; margin:0 0 5px;}
+.panel-heading p {font-size:13px; line-height:1.6; color:#A8BDCB; margin:0 0 5px;}
 #input-column .block {box-shadow:none !important;}
 #input-column .form {background:transparent !important; border:0 !important; box-shadow:none !important;}
-#input-column .tab-nav {border-bottom:1px solid #DCE3DB; padding-bottom:3px;}
-#input-column .tab-nav button {font-size:12px; color:#65736B !important; padding:7px 12px;}
-#input-column .tab-nav button.selected {color:#315A47 !important; border-bottom-color:#315A47 !important;}
-#camera-clip {background:#F2F5EF !important; border:1px solid #DCE3DB !important; border-radius:12px;}
-#camera-clip .wrap, #camera-clip .upload-container {background:#F2F5EF !important; color:#65736B !important;}
-#live-camera {background:#F2F5EF !important; border:1px solid #DCE3DB !important; border-radius:12px; overflow:hidden;}
-#live-camera video {object-fit:contain; background:#EAF0E5;}
+#input-column .tab-nav {border-bottom:1px solid #3E596C; padding-bottom:3px;}
+#input-column .tab-nav button {font-size:12px; color:#A8BDCB !important; padding:7px 12px;}
+#input-column .tab-nav button.selected {color:#78C6C1 !important; border-bottom-color:#78C6C1 !important;}
+#camera-clip {background:#203B50 !important; border:1px solid #3E596C !important; border-radius:12px;}
+#camera-clip .wrap, #camera-clip .upload-container {background:#203B50 !important; color:#A8BDCB !important;}
+#live-camera {background:#203B50 !important; border:1px solid #3E596C !important; border-radius:12px; overflow:hidden;}
+#live-camera video {object-fit:contain; background:#294959;}
 #live-camera-control {display:none !important;}
 #live-camera-tag {padding:0 2px 3px; min-height:54px;}
 #live-camera-tag .emotion-line {justify-content:space-between;}
-#live-camera-tag .emotion-pill {background:#EAF0E5;}
+#live-camera-tag .emotion-pill {background:#294959;}
 #live-camera .button-wrap {border-radius:100px; padding:9px 14px;}
-#capture-note p {font-size:12px !important; color:#65736B !important; line-height:1.6 !important;}
+#capture-note p {font-size:12px !important; color:#A8BDCB !important; line-height:1.6 !important;}
 #checkin-message {border:0 !important; background:transparent !important; padding:0 !important;}
 #checkin-message .wrap, #checkin-message .container {background:transparent !important; box-shadow:none !important;}
-#checkin-message textarea {background:#FAFBF8 !important; color:#243D34 !important;
-  border:1px solid #D6DFD3 !important; border-radius:10px !important; line-height:1.65; padding:14px !important;}
-#checkin-message textarea::placeholder {color:#65736B !important;}
-#conversation {border:0 !important; background:#FFFFFF !important; border-radius:0;}
-#conversation .message {font-size:15px; line-height:1.7; color:#243D34 !important;}
-#conversation .user {background:#EAF0E5 !important; color:#243D34 !important; border:0 !important; border-radius:15px 15px 3px 15px;}
-#conversation .bot {background:#F6F7F3 !important; color:#243D34 !important; border:0 !important; border-radius:15px 15px 15px 3px;}
-.conversation-empty {text-align:center; max-width:34ch; margin:auto; color:#65736B;}
-.conversation-empty .empty-shape {width:62px; height:70px; border:1px solid #C0CDBA;
-  border-radius:48% 48% 43% 43%; margin:0 auto 23px; background:#EDF2E7; position:relative;}
+#checkin-message textarea {background:#142B3C !important; color:#DFE9EF !important;
+  border:1px solid #526F82 !important; border-radius:10px !important; line-height:1.65; padding:14px !important;}
+#checkin-message textarea::placeholder {color:#A8BDCB !important;}
+#conversation {border:0 !important; background:#1C3346 !important; border-radius:0;}
+#conversation .message {font-size:15px; line-height:1.7; color:#DFE9EF !important;}
+#conversation .user {background:#294959 !important; color:#DFE9EF !important; border:0 !important; border-radius:15px 15px 3px 15px;}
+#conversation .bot {background:#243F53 !important; color:#DFE9EF !important; border:0 !important; border-radius:15px 15px 15px 3px;}
+.conversation-empty {text-align:center; max-width:34ch; margin:auto; color:#A8BDCB;}
+.conversation-empty .empty-shape {width:62px; height:70px; border:1px solid #526F82;
+  border-radius:48% 48% 43% 43%; margin:0 auto 23px; background:#243F53; position:relative;}
 .conversation-empty .empty-shape::after {content:''; position:absolute; width:24px; height:28px;
-  border:1px solid #8FA38B; border-radius:65% 10% 65% 10%; top:20px; left:18px; transform:rotate(-12deg);}
+  border:1px solid #78C6C1; border-radius:65% 10% 65% 10%; top:20px; left:18px; transform:rotate(-12deg);}
 .conversation-empty h3 {font-family:Georgia,'Times New Roman',serif; font-size:25px; font-weight:400;
-  line-height:1.35; color:#3F5D4D; margin:0 0 13px;}
-.conversation-empty p {font-size:13px; line-height:1.8; margin:0; color:#65736B;}
-#send {background:#315A47 !important; color:#FFFFFF !important; border:1px solid #315A47 !important;
+  line-height:1.35; color:#E0BE75; margin:0 0 13px;}
+.conversation-empty p {font-size:13px; line-height:1.8; margin:0; color:#A8BDCB;}
+#send {background:#78C6C1 !important; color:#1C3346 !important; border:1px solid #78C6C1 !important;
   font-weight:600; min-height:47px; border-radius:10px; box-shadow:none !important; font-size:14px;}
-#send:hover {background:#264D3B !important;}
+#send:hover {background:#8EDAD4 !important;}
 #send:disabled {opacity:.62;}
-#stop {background:#FFFFFF !important; color:#5E7164 !important; border:1px solid #D1DCCF !important;
+#stop {background:#1C3346 !important; color:#A8BDCB !important; border:1px solid #526F82 !important;
   border-radius:10px; min-height:47px; font-size:13px; box-shadow:none !important;}
-#stop:disabled {color:#939D95 !important; border-color:#E1E7DF !important; opacity:.75;}
-#new-conversation {background:transparent !important; color:#566F5E !important; border:0 !important;
+#stop:disabled {color:#91A4B1 !important; border-color:#3E596C !important; opacity:.75;}
+#new-conversation {background:transparent !important; color:#A8BDCB !important; border:0 !important;
   padding:6px 9px !important; box-shadow:none !important; font-size:12px !important; min-height:31px;}
-#emotion-panel {border-top:1px solid #E4E9E0; padding:15px 0 2px; margin-top:2px;}
+#emotion-panel {border-top:1px solid #3E596C; padding:15px 0 2px; margin-top:2px;}
 .emotion-line {display:flex; flex-wrap:wrap; gap:9px; align-items:center;}
-.emotion-caption {font-size:12px; color:#6B776F;}
-.emotion-pill {display:inline-block; border:1px solid #D8E1D2; background:#F1F5EC;
-  color:#527047; border-radius:100px; padding:4px 11px; font-size:12px; font-weight:500;}
-.emotion-note {font-size:11px; line-height:1.5; color:#65736B; margin-top:7px;}
-#activity p {font-size:12px !important; color:#65736B !important; line-height:1.5 !important;}
+.emotion-caption {font-size:12px; color:#A8BDCB;}
+.emotion-pill {display:inline-block; border:1px solid #526F82; background:#294959;
+  color:#A6DBD1; border-radius:100px; padding:4px 11px; font-size:12px; font-weight:500;}
+.emotion-note {font-size:11px; line-height:1.5; color:#A8BDCB; margin-top:7px;}
+#activity p {font-size:12px !important; color:#A8BDCB !important; line-height:1.5 !important;}
 #activity {min-height:23px;}
-#diagnostics {border:1px solid #DCE3DB; border-radius:10px; background:#F6F5F0 !important; margin-top:12px;}
-#diagnostics .label-wrap {color:#65736B !important;}
-#care-note p {font-size:11px !important; line-height:1.7 !important; color:#65736B !important; max-width:100ch;}
+#diagnostics {border:1px solid #3E596C; border-radius:10px; background:#152B3C !important; margin-top:12px;}
+#diagnostics .label-wrap {color:#A8BDCB !important;}
+#care-note p {font-size:11px !important; line-height:1.7 !important; color:#A8BDCB !important; max-width:100ch;}
 #care-note {padding:5px 2px 0;}
 .gradio-container button:focus-visible, .gradio-container input:focus-visible,
-.gradio-container textarea:focus-visible {outline:3px solid #8CA286 !important; outline-offset:3px;}
+.gradio-container textarea:focus-visible {outline:3px solid #E0BE75 !important; outline-offset:3px;}
 .gradio-container footer {display:none !important;}
 @media (max-width:800px) {
   html body .gradio-container.gradio-container {width:100% !important; min-width:0 !important;
@@ -166,12 +169,18 @@ def emotion_html(state: dict[str, Any] | None = None) -> str:
     emotion = state.get("emotion") or state.get("final_emotion")
     if isinstance(emotion, dict):
         emotion = emotion.get("label") or emotion.get("category")
-    label = html.escape(str(emotion).replace("_", " ").capitalize()) if emotion else "Awaiting a check-in"
+    label = html.escape(str(emotion).replace("_", " ").capitalize()) if emotion else "Awaiting your line"
     note = "A tentative interpretation, not a statement of how you feel." if emotion else "Your words and available camera signal will be considered together."
     if emotion and state.get("vision", {}).get("available") is False:
         note = "Based on your words; a usable face was not available. This interpretation can be wrong."
+    direction = state.get("interaction", {})
+    style = direction.get("response_style") if isinstance(direction, dict) else None
+    if emotion and style:
+        note += " Mara’s approach: " + html.escape(str(style)) + "."
+        if direction.get("direction_source") == "ambiguous_demo_visual_cue":
+            note += " The ambiguous line uses the visual cue for delivery."
     return (
-        '<div class="emotion-line"><span class="emotion-caption">Emotion signal</span>'
+        '<div class="emotion-line"><span class="emotion-caption">Player signal</span>'
         f'<span class="emotion-pill">{label}</span></div><div class="emotion-note">{note}</div>'
     )
 
@@ -182,7 +191,7 @@ def live_emotion_html(status: dict[str, Any] | None = None) -> str:
     kind = status.get("status", "off")
     labels = {"off": "Camera off", "warming": "Getting a clear view", "no_face": "Face not in view",
               "multiple_faces": "Keep one face in view", "track_change": "Hold a steady view",
-              "busy": "Responding to your check-in", "stale": "Waiting for camera",
+              "busy": "Mara is replying", "stale": "Waiting for camera",
               "error": "Camera signal unavailable", "invalid_frame": "Waiting for camera",
               "insufficient_face_frames": "Getting a clear view"}
     ready = kind == "ready" and bool(status.get("available")) and bool(status.get("label"))
@@ -191,7 +200,7 @@ def live_emotion_html(status: dict[str, Any] | None = None) -> str:
         "Turn your camera on once. The tag updates while you talk or type." if kind == "off" else
         "Live updates resume as soon as the local model is free." if kind == "busy" else
         "Recent frames are checked locally. No audio is used.")
-    return ('<div class="emotion-line"><span class="emotion-caption">Live camera signal</span>'
+    return ('<div class="emotion-line"><span class="emotion-caption">Emotion (estimate)</span>'
             f'<span class="emotion-pill">{html.escape(label)}</span></div>'
             f'<div class="emotion-note">{note}</div>')
 
@@ -265,7 +274,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             initial_status.setdefault("errors", []).append(f"Camera startup: {exc}")
     replay_rows = load_replay_rows(data_home)
     theme = gr.themes.Base(
-        primary_hue="green",
+        primary_hue="teal",
         neutral_hue="slate",
         font=["Segoe UI", "Arial", "sans-serif"],
         font_mono=["Consolas", "monospace"],
@@ -273,41 +282,41 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
     # Set both variants, since Gradio can inherit an OS/browser dark preference.
     # Keeping every surface on one intentional palette prevents mixed-theme text.
     palette = {
-        "body_background_fill": "#F6F5F0", "body_text_color": "#243D34",
-        "body_text_color_subdued": "#65736B", "background_fill_primary": "#FFFFFF",
-        "background_fill_secondary": "#F2F5EF", "border_color_primary": "#DCE3DB",
-        "border_color_accent": "#A9BBAA", "border_color_accent_subdued": "#DCE3DB",
-        "color_accent_soft": "#EDF2E7", "link_text_color": "#315A47",
-        "link_text_color_hover": "#243D34", "link_text_color_active": "#315A47",
-        "link_text_color_visited": "#315A47", "block_background_fill": "#FFFFFF",
-        "block_border_color": "#DCE3DB", "block_info_text_color": "#65736B",
-        "block_label_background_fill": "#FFFFFF", "block_label_border_color": "#FFFFFF",
-        "block_label_text_color": "#3F5D4D", "block_title_background_fill": "#FFFFFF",
-        "block_title_text_color": "#243D34", "panel_background_fill": "#FFFFFF",
-        "panel_border_color": "#DCE3DB", "accordion_text_color": "#65736B",
-        "input_background_fill": "#FAFBF8", "input_background_fill_focus": "#FFFFFF",
-        "input_background_fill_hover": "#FAFBF8", "input_border_color": "#D6DFD3",
-        "input_border_color_focus": "#8CA286", "input_border_color_hover": "#A9BBAA",
-        "input_placeholder_color": "#65736B", "button_primary_background_fill": "#315A47",
-        "button_primary_background_fill_hover": "#264D3B", "button_primary_border_color": "#315A47",
-        "button_primary_border_color_hover": "#264D3B", "button_primary_text_color": "#FFFFFF",
-        "button_primary_text_color_hover": "#FFFFFF", "button_secondary_background_fill": "#FFFFFF",
-        "button_secondary_background_fill_hover": "#F1F5EC", "button_secondary_border_color": "#D1DCCF",
-        "button_secondary_border_color_hover": "#A9BBAA", "button_secondary_text_color": "#566F5E",
-        "button_secondary_text_color_hover": "#315A47", "code_background_fill": "#F2F5EF",
-        "loader_color": "#537263", "table_text_color": "#243D34", "table_border_color": "#DCE3DB",
-        "table_even_background_fill": "#FFFFFF", "table_odd_background_fill": "#F6F8F3",
-        "error_background_fill": "#FFF5F1", "error_text_color": "#864B38", "error_border_color": "#E3C9BE",
+        "body_background_fill": "#152B3C", "body_text_color": "#DFE9EF",
+        "body_text_color_subdued": "#A8BDCB", "background_fill_primary": "#1C3346",
+        "background_fill_secondary": "#203B50", "border_color_primary": "#3E596C",
+        "border_color_accent": "#718999", "border_color_accent_subdued": "#3E596C",
+        "color_accent_soft": "#243F53", "link_text_color": "#78C6C1",
+        "link_text_color_hover": "#DFE9EF", "link_text_color_active": "#78C6C1",
+        "link_text_color_visited": "#78C6C1", "block_background_fill": "#1C3346",
+        "block_border_color": "#3E596C", "block_info_text_color": "#A8BDCB",
+        "block_label_background_fill": "#1C3346", "block_label_border_color": "#1C3346",
+        "block_label_text_color": "#E0BE75", "block_title_background_fill": "#1C3346",
+        "block_title_text_color": "#DFE9EF", "panel_background_fill": "#1C3346",
+        "panel_border_color": "#3E596C", "accordion_text_color": "#A8BDCB",
+        "input_background_fill": "#142B3C", "input_background_fill_focus": "#1C3346",
+        "input_background_fill_hover": "#142B3C", "input_border_color": "#526F82",
+        "input_border_color_focus": "#E0BE75", "input_border_color_hover": "#718999",
+        "input_placeholder_color": "#A8BDCB", "button_primary_background_fill": "#78C6C1",
+        "button_primary_background_fill_hover": "#8EDAD4", "button_primary_border_color": "#78C6C1",
+        "button_primary_border_color_hover": "#8EDAD4", "button_primary_text_color": "#1C3346",
+        "button_primary_text_color_hover": "#1C3346", "button_secondary_background_fill": "#1C3346",
+        "button_secondary_background_fill_hover": "#294959", "button_secondary_border_color": "#526F82",
+        "button_secondary_border_color_hover": "#718999", "button_secondary_text_color": "#A8BDCB",
+        "button_secondary_text_color_hover": "#78C6C1", "code_background_fill": "#203B50",
+        "loader_color": "#78C6C1", "table_text_color": "#DFE9EF", "table_border_color": "#3E596C",
+        "table_even_background_fill": "#1C3346", "table_odd_background_fill": "#243F53",
+        "error_background_fill": "#492D2D", "error_text_color": "#FFD3BF", "error_border_color": "#9D6551",
     }
     theme.set(**{key + suffix: value for key, value in palette.items() for suffix in ("", "_dark")},
               block_radius="12px", input_radius="10px", block_shadow="none", block_shadow_dark="none",
               button_primary_shadow="none", button_primary_shadow_dark="none", body_text_size="14px")
 
     with gr.Blocks(
-        title="Check-in | A moment for your day",
+        title="Lantern Gate | Speak with Mara",
         theme=theme,
-        css=CSS,
-        js=Path(__file__).with_name("live_camera.js").read_text(encoding="utf-8"),
+        css=CSS + PIXEL_CSS + game_css(),
+        js="() => {" + Path(__file__).with_name("game_world.js").read_text(encoding="utf-8") + "\n(" + Path(__file__).with_name("live_camera.js").read_text(encoding="utf-8") + ")();(" + Path(__file__).with_name("game.js").read_text(encoding="utf-8") + ")();}",
         analytics_enabled=False,
         delete_cache=(3600, 3600),
     ) as app:
@@ -327,83 +336,80 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         replay_ticket = gr.JSON(visible=False)
         upload_ticket = gr.JSON(visible=False)
         load_replay = None
-        gr.HTML('<div id="masthead"><div class="brand-lockup"><span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 18C6 10 10 5 18 5C18 13 14 18 6 18Z" stroke="#537263" stroke-width="1.35"/><path d="M6 18L14 10" stroke="#537263" stroke-width="1.35" stroke-linecap="round"/></svg></span><strong>Check-in</strong></div><span class="privacy-note">Private, on your computer</span></div>')
-        gr.HTML('<section id="invitation"><h1>A little space<br>for your day.</h1><p>Start wherever you are. Keep your camera on, share a few words, and take a moment to reflect.</p></section>')
-
-        with gr.Row(equal_height=False, elem_id="content-grid"):
-            with gr.Column(scale=4, min_width=300, elem_id="input-column"):
-                gr.HTML('<div class="panel-heading"><h2>Your check-in</h2><p>How did today feel?</p></div>')
-                with gr.Tabs():
-                    with gr.Tab("Camera") as live_tab:
-                        live_camera = gr.Image(label="Your live camera", sources=["webcam"],
-                            type="numpy", streaming=True, height=240, show_share_button=False,
-                            show_download_button=False, show_fullscreen_button=False, elem_id="live-camera",
-                            webcam_options=gr.WebcamOptions(mirror=False, constraints={"video": {
-                                "width": {"ideal": 640}, "height": {"ideal": 480}, "frameRate": {"ideal": 15}}}))
-                        live_emotion = gr.HTML(live_emotion_html(), elem_id="live-camera-tag")
-                        gr.Markdown("Turn your camera on once. Your live emotion estimate updates several times a second. Your next message uses recent camera evidence when it is ready. No audio or video recording.", elem_id="capture-note")
-                    with gr.Tab("Upload clip") as upload_tab:
-                        camera = SilentVideo(
-                            label="A recorded clip",
-                            sources=["upload"],
-                            include_audio=False,
-                            max_length=20,
-                            height=180,
-                            show_share_button=False,
-                            elem_id="camera-clip",
-                        )
-                        gr.Markdown("An optional short video instead of the live camera. Each uploaded clip is used once. You can also continue with words alone.")
-                    if replay_rows:
-                        with gr.Tab("MELD replay") as replay_tab:
-                            replay_select = gr.Dropdown(
-                                choices=[
-                                    (f"{row.get('dialogue_id', '?')}/{row.get('utterance_id', '?')}: {row['text'][:70]}", str(index))
-                                    for index, row in enumerate(replay_rows)
-                                ],
-                                label="Recorded utterance",
+        gr.HTML(game_html())
+        with gr.Column(elem_id="dialogue-panel"):
+            gr.HTML('<div class="dialogue-title"><span>Mara, keeper of Lantern Gate</span><button id="close-dialogue" type="button">Back to village [Esc]</button></div>', elem_id="dialogue-header")
+            with gr.Row(equal_height=False, elem_id="content-grid"):
+                with gr.Column(scale=3, min_width=170, elem_id="input-column"):
+                    with gr.Tabs():
+                        with gr.Tab("Camera") as live_tab:
+                            live_camera = gr.Image(label="Your live camera", show_label=False, sources=["webcam"],
+                                type="numpy", streaming=True, height=160, show_share_button=False,
+                                show_download_button=False, show_fullscreen_button=False, elem_id="live-camera",
+                                webcam_options=gr.WebcamOptions(mirror=False, constraints={"video": {
+                                    "width": {"ideal": 640}, "height": {"ideal": 480}, "frameRate": {"ideal": 15}}}))
+                            live_emotion = gr.HTML(live_emotion_html(), elem_id="live-camera-tag")
+                        with gr.Tab("Upload clip", visible=False) as upload_tab:
+                            camera = SilentVideo(
+                                label="A recorded clip",
+                                sources=["upload"],
+                                include_audio=False,
+                                max_length=20,
+                                height=180,
+                                show_share_button=False,
+                                elem_id="camera-clip",
                             )
-                            load_replay = gr.Button("Use this utterance")
-                            gr.Markdown("Loads a test utterance into the same check-in pipeline. Its reference label is not sent to the model.")
-                message = gr.Textbox(
-                    label="What happened today?",
-                    placeholder="There was a moment today that stayed with me…",
-                    lines=3,
-                    max_lines=8,
-                    max_length=4000,
-                    elem_id="checkin-message",
-                )
-                with gr.Row():
-                    send = gr.Button("Send check-in", variant="primary", elem_id="send", scale=3)
-                    stop = gr.Button("Stop", elem_id="stop", scale=1, interactive=False)
-            with gr.Column(scale=6, min_width=320, elem_id="conversation-column"):
-                gr.HTML('<div class="panel-heading"><h2>Your conversation</h2><p>A moment to feel heard.</p></div>')
-                chat = gr.Chatbot(
-                    label="Our conversation",
-                    type="messages",
-                    value=[],
-                    height=356,
-                    layout="bubble",
-                    show_copy_button=True,
-                    show_share_button=False,
-                    show_label=False,
-                    sanitize_html=True,
-                    render_markdown=False,
-                    placeholder='<div class="conversation-empty"><div class="empty-shape" aria-hidden="true"></div><h3>Start with one moment.</h3><p>Something small, something difficult,<br>or something worth celebrating.</p></div>',
-                    elem_id="conversation",
-                )
-                emotion = gr.HTML(emotion_html(), elem_id="emotion-panel")
-                activity = gr.Markdown(status_message(initial_status), elem_id="activity")
-                new = gr.Button("New conversation", elem_id="new-conversation", size="sm")
-
-        gr.Markdown("A supportive reflection companion. Its emotion signals can be wrong; you decide what fits your experience. This prototype does not provide diagnosis or treatment.", elem_id="care-note")
-        with gr.Accordion("Diagnostics and setup", open=not bool(initial_status.get("ready")), elem_id="diagnostics"):
-            gr.Markdown("The emotion state is produced by the classifier; the response generator uses that state with your message. Scores are not proof of a person's feelings.")
-            output_state = gr.JSON(label="Latest structured state", value={})
-            live_diagnostics = gr.JSON(label="Live camera state", value={"status": "off"}, elem_id="live-camera-diagnostics")
-            setup = gr.JSON(label="Local component status", value=initial_status)
-            refresh = gr.Button("Refresh local status", size="sm")
-            gr.Markdown("Live camera frames are processed in memory on this computer. Only a short window of visual features is kept while the camera is on; turning it off clears that window. Uploaded clips use temporary files eligible for cleanup after one hour. New conversation clears the displayed history.")
-            gr.Markdown("Audio is removed by copying the original video stream for H.264 MP4 and VP8/VP9 WebM. Other formats may require H.264 conversion, which changes pixels and displays a warning. Replay and uploaded clips use this same preparation.")
+                            gr.Markdown("An optional short video instead of the live camera. Each uploaded clip is used once. You can also continue with words alone.")
+                        if replay_rows:
+                            with gr.Tab("MELD replay", visible=False) as replay_tab:
+                                replay_select = gr.Dropdown(
+                                    choices=[
+                                        (f"{row.get('dialogue_id', '?')}/{row.get('utterance_id', '?')}: {row['text'][:70]}", str(index))
+                                        for index, row in enumerate(replay_rows)
+                                    ],
+                                    label="Recorded utterance",
+                                )
+                                load_replay = gr.Button("Use this utterance")
+                                gr.Markdown("Loads a test utterance into the same check-in pipeline. Its reference label is not sent to the model.")
+                with gr.Column(scale=7, min_width=260, elem_id="conversation-column"):
+                    gr.HTML(MARA_PORTRAIT, elem_id="mara-portrait")
+                    chat = gr.Chatbot(
+                        label="Dialogue with Mara",
+                        type="messages",
+                        value=[],
+                        height=180,
+                        layout="bubble",
+                        show_copy_button=False,
+                        show_share_button=False,
+                        show_label=False,
+                        sanitize_html=True,
+                        render_markdown=False,
+                        placeholder='<div class="conversation-empty"><p>“The beacon is out. The bridge is quick; the sea stairs are sheltered. What do you say, traveler?”</p></div>',
+                        elem_id="conversation",
+                    )
+                    activity = gr.Markdown("Choose a reply to begin." if initial_status.get("ready") else status_message(initial_status), elem_id="activity")
+            with gr.Column(elem_id="player-replies"):
+                sample_buttons = []
+                for offset in range(0, len(SAMPLE_LINES), 2):
+                    with gr.Row(elem_classes="sample-row"):
+                        for line in SAMPLE_LINES[offset:offset + 2]:
+                            sample_buttons.append(gr.Button(line, size="sm", elem_classes="sample-line", min_width=100))
+                with gr.Row(elem_id="custom-reply-row"):
+                    message = gr.Textbox(label="Custom", placeholder="Or say something of your own…", lines=1,
+                        max_lines=2, max_length=4000, elem_id="checkin-message", scale=6, min_width=120)
+                    send = gr.Button("Send custom reply", variant="primary", elem_id="send", scale=1, min_width=75)
+                    stop = gr.Button("Stop", elem_id="stop", scale=1, min_width=65, interactive=False)
+            emotion = gr.HTML(emotion_html(), elem_id="emotion-panel", visible=False)
+            leave_dialogue = gr.Button("Leave dialogue", elem_id="leave-dialogue")
+            new = gr.Button("New conversation", elem_id="new-conversation", size="sm", visible=False)
+            with gr.Accordion("Diagnostics and setup", open=not bool(initial_status.get("ready")), elem_id="diagnostics", visible=False):
+                gr.Markdown("The emotion state is produced by the classifier; the response generator uses that state with your message. Scores are not proof of a person's feelings.")
+                output_state = gr.JSON(label="Latest structured state", value={})
+                live_diagnostics = gr.JSON(label="Live camera state", value={"status": "off"}, elem_id="live-camera-diagnostics")
+                setup = gr.JSON(label="Local component status", value=initial_status)
+                refresh = gr.Button("Refresh local status", size="sm")
+                gr.Markdown("Live camera frames are processed in memory on this computer. Only a short window of visual features is kept while the camera is on; turning it off clears that window. Uploaded clips use temporary files eligible for cleanup after one hour. New conversation clears the displayed history.")
+                gr.Markdown("Audio is removed by copying the original video stream for H.264 MP4 and VP8/VP9 WebM. Other formats may require H.264 conversion, which changes pixels and displays a warning. Replay and uploaded clips use this same preparation.")
 
         compose_controls = [camera, message] + ([load_replay, replay_select] if load_replay is not None else [])
         outputs = [chat, conversation_state, emotion, output_state, activity, turn, send, stop] + compose_controls + [replay_epoch]
@@ -432,7 +438,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             prior = clean_history(history)
             next_turn = int(turn_id or 0)
             if not text or not text.strip():
-                yield (prior, prior, gr.skip(), gr.skip(), "Write a message about your day before sending.", next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update() + epoch_value(guard)
+                yield (prior, prior, gr.skip(), gr.skip(), "Write a line for Mara before sending.", next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update() + epoch_value(guard)
                 return
             if len(text) > 4000:
                 yield (prior, prior, gr.skip(), gr.skip(), "Please shorten your message to 4,000 characters or fewer.", next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update() + epoch_value(guard)
@@ -445,8 +451,11 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             cancelled_before_state = False
             stream = None
             selected_clip = None if mode == "camera" else video_path(clip)
-            yield (messages, messages, emotion_html(), state, "Considering your check-in…", next_turn, gr.update(interactive=False), gr.update(interactive=True)) + compose_update(active=True) + epoch_value(guard)
+            turn_owner = str(uuid.uuid4())
+            if guard is not None:
+                guard["turn_owner"] = turn_owner
             try:
+                yield (messages, messages, emotion_html(), state, "Mara is considering your words…", next_turn, gr.update(interactive=False), gr.update(interactive=True)) + compose_update(active=True) + epoch_value(guard)
                 observation = buffer.snapshot(session_id) if buffer is not None and mode == "camera" else None
                 live_kwargs = {"live_observation": observation} if observation is not None else {}
                 stream = pipeline.stream(text.strip(), selected_clip, prior, session_id, str(next_turn), **live_kwargs)
@@ -471,12 +480,12 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                     elif event_type == "error":
                         raise RuntimeError(str(event.get("error") or "The local pipeline could not finish this turn."))
                     visible = messages + ([{"role": "assistant", "content": response}] if response else [])
-                    progress = "Stopped before the emotion signal was ready." if cancelled_before_state else "Responding…" if response else "Emotion signal ready. Preparing a response…" if state else "Considering your check-in…"
+                    progress = "Stopped before the emotion signal was ready." if cancelled_before_state else "Responding…" if response else "Emotion signal ready. Preparing a response…" if state else "Mara is considering your words…"
                     yield (visible, prior if cancelled_before_state else visible, emotion_html(state), state, progress, next_turn, gr.update(interactive=False), gr.update(interactive=True)) + tuple(gr.skip() for _ in compose_controls) + (gr.skip(),)
 
                 visible = messages + ([{"role": "assistant", "content": response}] if response else [])
                 cancelled = cancelled_before_state or (isinstance(state.get("response"), dict) and state["response"].get("status") == "cancelled")
-                complete = "Stopped before the emotion signal was ready." if cancelled_before_state else "Stopped. Any partial response is shown above." if cancelled else "Ready for your next check-in. Your live camera can stay on." if response else "The turn finished without response text. See diagnostics for details."
+                complete = "Stopped before the emotion signal was ready." if cancelled_before_state else "Stopped. Any partial response is shown above." if cancelled else "Ready for your next line. Your live camera can stay on." if response else "The turn finished without response text. See diagnostics for details."
                 yield (visible, prior if cancelled_before_state else visible, emotion_html(state), state, complete, next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update(clear=True) + (gr.skip(),)
             except Exception as exc:
                 visible = messages + ([{"role": "assistant", "content": response}] if response else [])
@@ -485,6 +494,8 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                 # enter model history and duplicate the next submitted message.
                 yield (visible, prior, emotion_html(state), error_state, failure_message(exc), next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update() + (gr.skip(),)
             finally:
+                if guard is not None and guard.get("turn_owner") == turn_owner:
+                    guard.pop("turn_owner", None)
                 if stream is not None and hasattr(stream, "close"):
                     stream.close()
 
@@ -595,6 +606,23 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         inputs = [message, camera, conversation_state, session, turn, replay_guard, live_buffer, input_mode]
         send_event = send.click(run_turn, inputs, outputs, concurrency_limit=1, concurrency_id="gpu", trigger_mode="once", api_name=False,
                                 cancels=replay_events or None)
+        turn_events = [send_event, message.submit(run_turn, inputs, outputs, concurrency_limit=1,
+            concurrency_id="gpu", trigger_mode="once", api_name=False, cancels=replay_events or None)]
+        for sample_button, sample_line in zip(sample_buttons, SAMPLE_LINES):
+            def submit_sample(clip, history, session_id, turn_id, guard, buffer, mode, line=sample_line):
+                stream = run_turn(line, clip, history, session_id, turn_id, guard, buffer, mode)
+                try:
+                    for index, result in enumerate(stream):
+                        if index == 0:
+                            result = list(result)
+                            result[9] = gr.update(value=line, interactive=False)
+                        yield tuple(result)
+                finally:
+                    stream.close()
+            turn_events.append(sample_button.click(submit_sample,
+                [camera, conversation_state, session, turn, replay_guard, live_buffer, input_mode], outputs,
+                concurrency_limit=1, concurrency_id="gpu", trigger_mode="once", api_name=False,
+                cancels=replay_events or None))
 
         def request_cancel(session_id: str, turn_id: Any = None) -> bool:
             cancel = getattr(pipeline, "cancel", None)
@@ -615,6 +643,8 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             if guard is not None:
                 guard["epoch"] = next_epoch
             pending = request_cancel(session_id, turn_id)
+            if guard is not None:
+                guard.pop("turn_owner", None)
             new_session = str(uuid.uuid4())
             next_camera_control = gr.skip()
             if buffer is not None:
@@ -624,22 +654,25 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                 # first displayed estimate when State resolves at execution.
                 next_camera_control = ("on:" if buffer.enabled else "off:") + str(uuid.uuid4())
                 buffer.client_control = next_camera_control
-            status = "A fresh conversation. The previous check-in is stopping after its current processing step." if pending else "A fresh conversation. Share something from your day."
+            status = "A fresh conversation. The previous check-in is stopping after its current processing step." if pending else "A fresh conversation. The harbor gate awaits your next line."
             return ([], [], emotion_html(), {}, status, new_session, 0, gr.update(value="", interactive=True), gr.update(value=None, interactive=True), gr.update(interactive=True), gr.update(interactive=False)) + ((gr.update(interactive=True), gr.update(interactive=True)) if load_replay is not None else ()) + (next_camera_control, next_epoch)
 
         stop.click(
             stop_current,
             inputs=[session, turn, replay_guard],
             outputs=[activity, send, stop] + compose_controls + [replay_epoch],
-            cancels=[send_event] + replay_events,
+            cancels=turn_events + replay_events,
             queue=False,
             api_name=False,
         )
+        leave_dialogue.click(stop_current, inputs=[session, turn, replay_guard],
+            outputs=[activity, send, stop] + compose_controls + [replay_epoch],
+            cancels=turn_events + replay_events, queue=False, api_name=False)
         new.click(
             new_conversation,
             inputs=[session, turn, replay_guard, live_buffer],
             outputs=[chat, conversation_state, emotion, output_state, activity, session, turn, message, camera, send, stop] + ([load_replay, replay_select] if load_replay is not None else []) + [live_control, replay_epoch],
-            cancels=[send_event] + replay_events,
+            cancels=turn_events + replay_events,
             queue=False,
             api_name=False,
         )

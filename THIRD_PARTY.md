@@ -75,3 +75,9 @@ Codex generated or substantially assisted the project-specific implementation, i
 The handoff owner should retain responsibility for the resulting code and claims: inspect the source, run the tests, review visual sampling, verify measured reports, and distinguish completed runs from planned experiments. The repository records checkable artifacts instead of asserting that generated code has inherently been validated. Test fixtures deliberately use artificial events and are labeled as such; they never replace the live inference path or measured MELD predictions.
 
 When redistributing allowed components, preserve their applicable license and attribution notices. This provenance document is not a grant of additional rights to third-party weights, datasets, software, or media.
+
+## Pixel game assets (28 September 2026)
+
+- Kenney **Tiny Town 1.1**, [official source](https://kenney.nl/assets/tiny-town), CC0. The unchanged packed atlas is `src/checkin/assets/tilemap_packed.png`; its original license is `src/checkin/assets/License.txt`. Only this small atlas is bundled, not the original download archive.
+- **Silkscreen Regular**, from [Google Fonts](https://github.com/google/fonts/tree/main/ofl/silkscreen), distributed under the SIL Open Font License. The local font and original OFL notice are in `src/checkin/assets/`. No runtime font request is made.
+- The map arrangement, character sprites, movement/collision code, UI, authored Mara fiction and sample lines are project-specific, AI-assisted work. They add zero learned parameters. The supplied reference screenshot guided the top-down town composition; none of its pixels were copied.

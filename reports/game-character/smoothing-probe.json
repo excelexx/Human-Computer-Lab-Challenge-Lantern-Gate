@@ -1,0 +1,109 @@
+{
+  "scope": "Synthetic probability transition, not measured face accuracy or camera latency",
+  "labels": [
+    "neutral",
+    "surprise",
+    "fear",
+    "sadness",
+    "joy",
+    "disgust",
+    "anger"
+  ],
+  "configured_cadence_hz": 5,
+  "old_alpha": 0.7,
+  "new_alpha": 0.85,
+  "frames": [
+    {
+      "frame": 1,
+      "old_label": "neutral",
+      "new_label": "neutral",
+      "old_probabilities": [
+        0.5550000071525574,
+        0.0,
+        0.0,
+        0.05000000074505806,
+        0.39499998092651367,
+        0.0,
+        0.0
+      ],
+      "new_probabilities": [
+        0.5024999976158142,
+        0.0,
+        0.0,
+        0.05000000074505806,
+        0.4475000202655792,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "frame": 2,
+      "old_label": "neutral",
+      "new_label": "joy",
+      "old_probabilities": [
+        0.4814999997615814,
+        0.0,
+        0.0,
+        0.05000000074505806,
+        0.4684999883174896,
+        0.0,
+        0.0
+      ],
+      "new_probabilities": [
+        0.45787501335144043,
+        0.0,
+        0.0,
+        0.05000000074505806,
+        0.4921250343322754,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "frame": 3,
+      "old_label": "joy",
+      "new_label": "joy",
+      "old_probabilities": [
+        0.45945000648498535,
+        0.0,
+        0.0,
+        0.05000000074505806,
+        0.4905499815940857,
+        0.0,
+        0.0
+      ],
+      "new_probabilities": [
+        0.45118123292922974,
+        0.0,
+        0.0,
+        0.05000000074505806,
+        0.4988187551498413,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "frame": 4,
+      "old_label": "joy",
+      "new_label": "joy",
+      "old_probabilities": [
+        0.4528350234031677,
+        0.0,
+        0.0,
+        0.05000000074505806,
+        0.4971649944782257,
+        0.0,
+        0.0
+      ],
+      "new_probabilities": [
+        0.4501771926879883,
+        0.0,
+        0.0,
+        0.05000000074505806,
+        0.49982282519340515,
+        0.0,
+        0.0
+      ]
+    }
+  ]
+}

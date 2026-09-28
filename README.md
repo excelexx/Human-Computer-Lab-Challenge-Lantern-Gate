@@ -1,12 +1,12 @@
-# Check-in
+# Lantern Gate
 
-Start with the [morning handoff](HANDOFF.md) for the ready-to-try app, measured improvements and remaining weaknesses.
+A playable, local text-and-vision NPC prototype built on MELD. Walk around a pixel-art harbor courtyard with **WASD or arrow keys**. Approach **Mara at the northern gate** to open her dialogue and the camera panel. **Escape** returns to the village and stops the camera. **Go to Mara** is a keyboard/touch-accessible shortcut; **Full screen** uses the browser's full-screen mode when supported.
 
-The [live-camera update](reports/live-camera/REPORT.md) replaces webcam recording with continuous visual tags and repairs missing-duration uploads. The [live-camera latency update](reports/live-camera-latency/REPORT.md) separates a fast visual display from the stricter evidence used for a reply. Physical webcam verification showed a first-frame tag within 289 ms of a conversation reset and ongoing capture at roughly five frames per second.
+Choose one of **four deliberately ambiguous lines** to send it immediately, or write your own in **Custom** and use the send arrow (or Enter). Your words and eligible recent webcam evidence produce a MELD emotion tag and streamed local character dialogue. For the exact authored ambiguous lines, an available visual estimate can tentatively choose Mara's delivery (playful, careful, steady, etc.). This rule is disclosed in the structured `interaction` field; it does not change the classifier's emotion label. Explicit words take precedence. Facial expressions cannot reliably eliminate ambiguity.
 
-A local text-and-vision prototype that asks how your day went, estimates a MELD emotion category, and streams a short supportive response. Turn the webcam on once for a continuously updated visual signal, then type a message. Sending combines your text with the latest usable camera evidence. The browser is the interface; Python and a local llama.cpp server perform inference on your computer.
+The game runs in the browser; Python and the existing local llama.cpp server perform inference. The scene includes movement, collision, a following camera, NPC proximity, touch controls and a dialogue overlay. Combat, inventory, quest progression and persistent saves are intentionally absent. Dialogue does not execute world actions.
 
-This is a supportive reflection companion, not a clinical system. Facial expressions are uncertain evidence. The person's own account takes precedence over appearance-based speculation.
+Start with the [handoff](HANDOFF.md) and [game-character report](reports/game-character/REPORT.md). Historical reports retain the earlier Check-in framing and its results; their supportive-response evaluations do not validate the new NPC prompt. The latest classifier weights are unchanged.
 
 ## Model selection and parameter budget
 
@@ -104,7 +104,7 @@ The baseline training command compares unweighted cross-entropy with inverse-squ
 ### Visual handling and fusion
 
 - For MELD, uploaded clips and replay, eight frames are sampled from the first ten seconds. The upload tab accepts clips of up to twenty seconds and the state records truncation.
-- The live visual display starts with the first usable face frame. It smooths probabilities with 70% weight on the new frame and 30% on the previous display, only when the gap is at most 0.6 seconds. Estimates can still change or flicker; smoothing does not establish greater accuracy.
+- The live visual display starts with the first usable face frame. It smooths probabilities with 85% weight on the new frame and 15% on the previous display, only when the gap is at most 0.4 seconds. Estimates can still change or flicker; smoothing does not establish greater accuracy.
 - Evidence used for a reply remains stricter: at least six usable face samples among at most eight recent samples within four seconds. It uses the same face geometry and feature pooling as clips, with rolling sampling instead of clip positions. Fusion evidence expires after four seconds without a fresh observation. A visible live tag does not by itself mean that this evidence is ready for a submitted text-plus-vision turn.
 - YuNet selects a usable single face per frame. Multiple faces, too few usable frames, and abrupt changes in face position make the visual branch unavailable. The method is a documented heuristic, not active-speaker recognition.
 - Crops use RGB, a 260×260 resize, and the visual model's prescribed normalization. Mean frame features are L2-normalized. Text uses masked-mean DeBERTa features with a 128-wordpiece limit, also normalized.
@@ -122,7 +122,7 @@ MELD labels belong to conversational utterances, not independently verified faci
 
 Evaluation writes `reports/evaluation-test.json`, per-utterance predictions, and confusion-matrix images. It compares the training-majority baseline, text-only, vision-only, and fusion/operational predictions on the applicable common subsets. Macro F1, weighted F1, per-class metrics, counts, and coverage are reported. Inspect both the eligible visual subset and the full set with explicit text fallback. Do not compare scores obtained from different subsets as though their difficulty were identical.
 
-Classification performance does not establish supportive-response quality. Review replayed responses separately for grounding in the person's message, appropriate use of emotion evidence, uncertainty, brevity, and a useful follow-up question. Any small manual review remains a qualitative check, not a clinical validation.
+Classification performance does not establish NPC-response quality. Review replayed responses separately for grounding in the person's message, appropriate use of emotion evidence, uncertainty, brevity, and a useful follow-up question. Any small manual review remains a qualitative check, not a clinical validation.
 
 ## Run a check-in
 
@@ -161,24 +161,24 @@ For foreground development, start the local response server and browser interfac
 .\.venv\Scripts\python.exe -m checkin.app
 ```
 
-Stop the background processes created by the launcher with `scripts/stop.ps1`, using the same artifacts directory. It verifies the recorded process identities before stopping them. This is separate from the browser's **Stop** button, which cancels one conversational turn.
+Stop the background processes created by the launcher with `scripts/stop.ps1`, using the same artifacts directory. It verifies the recorded process identities before stopping them. This is separate from **Escape / Back to village**, which leaves the encounter, cancels its pending reply and stops the camera.
 
-The generator binds to `http://127.0.0.1:8081`; the browser app defaults to `http://127.0.0.1:7860`. The generator script starts a hidden background process, records its process identity and log paths, and checks readiness. Keep both components running during an interaction. The UI can open before setup is complete: diagnostics identify missing files or an unavailable generator, and no fake predictions are substituted.
+The generator binds to `http://127.0.0.1:8081`; the browser app defaults to `http://127.0.0.1:7860`. The generator script starts a hidden background process, records its process identity and log paths, and checks readiness. Keep both components running during an interaction. The UI can open before setup is complete: the status message identifies incomplete setup; use `python -m checkin.cli doctor` for details, and no fake predictions are substituted.
 
 Startup preloads the vision components so the camera need not wait for them on its first frame. The text encoder is loaded when a conversational turn first needs it; the first reply can therefore take longer than later replies.
 
 In the browser:
 
-1. In **Camera**, select **Turn camera on** and grant the browser's camera permission. Keep one face in view. Tracking starts automatically, and the first usable frame can produce a live tag; there is no recording step or six-frame wait for that display. No audio is used.
-2. Type what happened during your day and select **Send check-in**. Sending combines your words with the latest fresh camera evidence only when its stricter six-sample checks pass. Otherwise it uses the explicit text fallback, even if a fast live tag is already visible.
-3. Read the submitted check-in's emotion signal and streamed response. Live tracking and replies share the GPU; tracking resumes after the reply releases it. Open diagnostics to inspect the evidence and timings.
-4. Keep the camera on for another message. **Turn camera off** stops the camera and clears its signal. **New conversation** clears the conversation and accumulated camera evidence while keeping the preview on, so it gathers fresh evidence for the new conversation.
+1. Follow the large arrow with **WASD / arrow keys**. The key tutorial above your character disappears after movement. Approach Mara, or use **Go to Mara**.
+2. The encounter has three parts: separate floating camera and reply rectangles on the right and a speech bubble anchored above Mara’s actual in-world sprite on the left. Select **Turn camera on** once and permit local webcam access. No audio or recording is used.
+3. **Click a sample to send immediately.** For your own words, type in **Custom**, then use the send arrow or Enter. A sample is a separate turn; it does not need another button press.
+4. **Escape / Back to village** cancels the pending reply after its current processing step, stops camera tracks, and returns to movement. **E** reopens the conversation nearby. Refresh the page for a new conversation.
 
-The optional **Upload clip** tab accepts a recorded video instead of live camera evidence. **MELD replay** loads an existing test utterance and clip into that same recorded-video path. The browser's **Stop** button requests cancellation of the current reply or replay load; it is distinct from **Turn camera off**. An in-progress GPU operation must finish before its resources are released.
+The compact game deliberately omits clip-upload, replay, New/Stop buttons and technical diagnostics from the visible encounter. Recorded-video evaluation is still available through the CLI below; the internal UI components remain for regression coverage.
 
-The generator receives the message, structured emotion evidence, and bounded prior text history. It does not receive the video pixels. The classifier determines the reported tag; the language model produces only the response. Generation uses a 4,096-token context, at most 96 new tokens, and one concurrent request. The prompt requests one to three sentences and at most one relevant follow-up question.
+A usable first camera frame can produce a visual tag. Sending only uses camera evidence after six recent samples pass the separate fusion checks; otherwise the classifier uses explicit text fallback. Tracking shares the GPU with conversation turns and resumes after generation releases it. The generator receives text and structured emotion evidence, not image pixels. It uses a 4,096-token context and at most 96 new tokens. The prompt requests one or two short sentences, but the local model does not always obey that limit.
 
-A completed or stopped turn clears its message and any uploaded/replay clip. The live camera remains on until you turn it off, and its evidence is refreshed continuously. Add a fresh clip for another recorded-video turn, or continue with words alone. Failed turns keep their message and selected clip for retry. Compatible uploads/replay clips preserve the video stream while audio is removed; other formats display a conversion warning. User messages are capped at 4,000 characters; the text classifier sees at most 128 wordpieces, so concise check-ins work best.
+Completed turns clear the Custom field. Failed turns preserve it for retry. Messages are capped at 4,000 characters, and the classifier sees at most 128 wordpieces. The game uses local bundled assets and adds no learned parameters.
 
 ## Trace one input and measure interaction speed
 
@@ -190,7 +190,7 @@ With all three trained heads and the generator available:
 .\.venv\Scripts\python.exe -m checkin.cli audit-parameters
 ```
 
-The replay resolves an official MELD utterance, sends its text and video through the same pipeline as the UI, prints the tag and streamed reply, and saves the event trace. The reference label is retained for evaluation only and is not passed to the inference pipeline. Choose a different valid identity from `manifests/meld.jsonl` if the default clip is visually unavailable. The optional browser replay tab lists existing test media.
+The replay resolves an official MELD utterance, sends its text and video through the same pipeline as the UI, prints the tag and streamed reply, and saves the event trace. The reference label is retained for evaluation only and is not passed to the inference pipeline. Choose a different valid identity from `manifests/meld.jsonl` if the default clip is visually unavailable. The compact game hides the optional browser replay tab.
 
 ```text
 Camera frames → first-frame visual tag, lightly smoothed across recent frames
@@ -201,12 +201,12 @@ Typed text + fresh camera evidence (or an uploaded/replay clip)
     → fusion head, or explicit text fallback
     → structured MELD emotion state
     → local Qwen with message, evidence, and prior history
-    → streamed supportive response + completed state
+    → streamed NPC dialogue + completed state
 ```
 
 The state includes session/turn IDs, received time, input availability, seven uncalibrated class probabilities, evidence source, visual quality/rejection reason, modality-specific labels/disagreement, response status/text, and backend timings. Browser capture timestamps are unavailable. Live window timestamps describe backend receipt, not camera exposure times; recorded-clip capture-start/end timestamps remain explicitly null.
 
-“Real-time” has two parts: a fast visual display that can use the first valid face frame, and a conversational turn started by **Send check-in**. Camera capture requests run at 5 Hz (every 0.2 seconds), and the display timer polls every 0.1 seconds. These are configured intervals, not guaranteed end-to-end latency; browser scheduling, image quality and GPU availability affect updates. The separate six-sample fusion window still takes several callbacks to become usable. Live inference pauses while the serialized reply owns the GPU. The [latency update report](reports/live-camera-latency/REPORT.md) records this revision's validation; no emotion-accuracy gain is claimed.
+“Real-time” has two parts: a fast visual display that can use the first valid face frame, and a conversational turn started by the send arrow or a sample button. Camera capture requests run at 5 Hz (every 0.2 seconds), and the display timer polls every 0.1 seconds. These are configured intervals, not guaranteed end-to-end latency; browser scheduling, image quality and GPU availability affect updates. The separate six-sample fusion window still takes several callbacks to become usable. Live inference pauses while the serialized reply owns the GPU. The [latency update report](reports/live-camera-latency/REPORT.md) records this revision's validation; no emotion-accuracy gain is claimed.
 
 The earlier clip-mode engineering targets were a warmed-up emotion state within one second and first response token within two seconds after text and clip were ready. The measured backend replay sample met those targets; it does not establish an end-to-end webcam guarantee. `benchmark` still measures the recorded-clip path: it excludes three warm-up turns, measures 30 usable fusion inputs and ten no-video fallback inputs, and reports p50/p95/max latency. It also samples GPU memory and the Python/generator resident memory. Video capture, upload/transcoding, and browser rendering are outside these backend timings; cold model-load time is reported separately by the pipeline.
 

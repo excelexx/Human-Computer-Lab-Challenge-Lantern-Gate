@@ -1,0 +1,65 @@
+{
+  "date": "2026-09-28",
+  "python_suite": {
+    "passed": 345,
+    "warnings": 1,
+    "seconds": 30.58
+  },
+  "final_ui_character_checks": {
+    "passed": 35,
+    "warnings": 1,
+    "seconds": 3.87
+  },
+  "node_contracts": {
+    "passed": 12,
+    "failed": 0
+  },
+  "browser": {
+    "desktop_viewport": [
+      1200,
+      900
+    ],
+    "compact_viewport": [
+      331,
+      420
+    ],
+    "outer_panel": {
+      "background": "transparent",
+      "border": 0,
+      "transform": "none"
+    },
+    "bubble_height_px": 130,
+    "desktop_camera_size_px": [
+      696,
+      414
+    ],
+    "compact_send_bottom_px": 392.29,
+    "fixed_position_open_closed_reopened": [
+      "148",
+      "66",
+      "3",
+      "260.0",
+      "246.0"
+    ],
+    "sample_submission": "Oh, fantastic. activated once and streamed a real local response",
+    "custom_submission": "Let's take the sheltered sea stairs. submitted through the send arrow; response acknowledged the sea stairs",
+    "notes": "Layout checks are browser observations, not latency or accuracy benchmarks. Camera output is not included in the screenshot.",
+    "mara_world_position": [
+      260,
+      213
+    ],
+    "camera_lifecycle": "Local live camera produced a Neutral tag; Escape detached the video stream and left no active tracks.",
+    "desktop_font_size_px": {
+      "speech": 16,
+      "samples": 14,
+      "custom": 14
+    },
+    "send_button_size_px": [
+      52,
+      52
+    ],
+    "send_arrow": "Absolute 50%/50% positioning, translated by half its dimensions, zero margin; visually centered."
+  },
+  "required_learned_parameters": 4464745375,
+  "scope": "No changes to trained model weights or benchmark metrics."
+}
