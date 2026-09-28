@@ -3,6 +3,7 @@
   window[key]?.dispose();
   let disposed=false, raf=0, previous=0, open=false, autoArmed=true, hasMoved=false;
   const keys=new Set(), W=window.LanternWorld, player=W.create();
+  let mara={...W.NPC},questPhase='talking',trip=null,readingLeft=0,lastSignal='',beaconLit=false;
   const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let canvas,ctx,world,panel,observer;
   const atlas=new Image();
@@ -11,7 +12,7 @@
   function listen(target,event,handler,options){target.addEventListener(event,handler,options);cleanups.push(()=>target.removeEventListener(event,handler,options));}
   function cameraOff(){document.querySelector('#live-camera button[aria-label="Turn camera off"]')?.click();}
   function showDialogue(){
-    if(open || !panel || !W.near(player))return;
+    if(open || !panel || questPhase!=='talking' || !W.near(player))return;
     open=true;keys.clear();world.inert=true;
     document.body.classList.add('in-dialogue');panel.inert=false;panel.dataset.gameOpen='true';world.dataset.dialogue='true';
     panel.setAttribute('aria-hidden','false');
@@ -19,12 +20,13 @@
     document.querySelector('#close-dialogue')?.focus();
     document.querySelector('#game-hint').textContent='Talking with Mara. Escape returns to the village.';
   }
-  function closeDialogue(){
+  function closeDialogue(pauseJourney=true){
     if(!open)return;
     document.querySelector('#leave-dialogue')?.click();
     cameraOff();open=false;autoArmed=false;keys.clear();world.inert=false;
     document.body.classList.remove('in-dialogue');panel.inert=true;panel.dataset.gameOpen='false';world.dataset.dialogue='false';
     panel.setAttribute('aria-hidden','true');resize();canvas.focus();
+    if(pauseJourney && questPhase==='reading')questPhase='paused';
   }
   function resize(){
     pixelScale=Math.max(1,Math.floor(Math.min(innerWidth/400,innerHeight/270)));
@@ -42,6 +44,11 @@
         if(event.shiftKey&&document.activeElement===first){event.preventDefault();last?.focus();}
         else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first?.focus();}
       }
+      return;
+    }
+    if(questPhase==='walking'||questPhase==='paused'){
+      if(event.key==='Escape'){event.preventDefault();questPhase='paused';}
+      if(event.key.toLowerCase()==='e'){event.preventDefault();questPhase='walking';}
       return;
     }
     if(isTyping(event.target))return;
@@ -102,7 +109,7 @@
     }
   }
   function movementHint(time){
-    if(open||W.near(player))return;
+    if(open||questPhase!=='talking'||W.near(player))return;
     const x=Math.round(player.x), y=Math.round(player.y);
     const bob=reduce?0:Math.floor(time/350)%2;
     // A large, outlined direction arrow above the traveler points toward Mara.
@@ -160,6 +167,11 @@
     for(let y=443;y<480;y+=13)for(let x=10;x<640;x+=38){rect(x+(reduce?0:Math.floor(time/700)%3),y,15,1,'#70a8b0');}
     rect(304,415,32,65,'#8a6850');
     for(let y=416;y<480;y+=7){rect(304,y,32,2,'#5e4b3d');rect(306,y+2,28,1,'#bfa177');}
+    // A second, visibly distinct route: sheltered stone steps to the beacon pier.
+    rect(264,394,24,69,'#627a79');
+    for(let y=396;y<460;y+=6){rect(265,y,22,4,'#bcc0af');rect(267,y,18,1,'#e0dfc5');}
+    rect(264,448,88,32,'#8a6850');
+    for(let y=450;y<480;y+=6)rect(264,y,88,2,'#bc946b');
     for(const [x,y] of [[191,249],[447,249],[191,334],[447,334]]){
       rect(x-2,y-27,4,29,'#414b4a');rect(x-5,y-31,10,9,'#60574a');rect(x-3,y-29,6,5,'#f3d591');
     }
@@ -168,11 +180,19 @@
     for(const [x,y] of [[172,279],[449,279],[82,263],[546,263]]){tile(10,6,x,y);tile(11,6,x+16,y);}
     const objects=W.buildings.map(b=>({y:b.y+b.h,draw:()=>building(b)}));
     for(const [x,y] of W.trees)objects.push({y,draw:()=>{rect(x-9,y-1,20,4,'#557753');tile(4,0,x-12,y-48,24,24);tile(4,1,x-12,y-24,24,24);}});
-    objects.push({y:W.NPC.y,draw:()=>person(W.NPC.x,W.NPC.y,'mara')});
+    objects.push({y:mara.y,draw:()=>person(mara.x,mara.y,'mara',questPhase==='walking')});
     objects.push({y:player.y,draw:()=>person(player.x,player.y,'player',moving)});
     objects.sort((a,b)=>a.y-b.y).forEach(o=>o.draw());
-    label('Mara',W.NPC.x,W.NPC.y-29);
-    if(!open){
+    objects.push({y:466,draw:()=>{
+      rect(333,445,14,23,'#596167');rect(336,442,8,24,'#c7c3ab');
+      rect(331,433,18,12,'#4a4542');rect(334,435,12,8,beaconLit?'#ffe18a':'#6b776b');
+      rect(329,431,22,3,'#665044');rect(331,468,18,3,'#3d4c49');
+      if(beaconLit){rect(338,438,4,3,'#fffce1');rect(337,424,6,4,'#fff1a9');rect(322,434,5,3,'#f8d67f');rect(353,434,5,3,'#f8d67f');}
+    }});
+    // Draw the beacon after the pier, with a visible extinguished/lit state.
+    objects.at(-1).draw();
+    label('Mara',mara.x,mara.y-29);
+    if(!open && questPhase==='talking'){
       const bob=reduce?0:Math.floor(time/400)%2;
       rect(W.NPC.x-1,W.NPC.y-47+bob,3,7,'#ffe5a4');rect(W.NPC.x-1,W.NPC.y-38+bob,3,2,'#ffe5a4');
       if(W.near(player))label('E · Talk',W.NPC.x,W.NPC.y+16);
@@ -184,14 +204,41 @@
     const delta=previous?Math.min((time-previous)/1000,.05):0;previous=time;
     const dx=(keys.has('d')||keys.has('arrowright')?1:0)-(keys.has('a')||keys.has('arrowleft')?1:0);
     const dy=(keys.has('s')||keys.has('arrowdown')?1:0)-(keys.has('w')||keys.has('arrowup')?1:0);
-    const moving=!open&&W.move(player,dx,dy,delta);
+    const signal=document.querySelector('#quest-signal');
+    if(signal){
+      const s=signal.dataset, token=[s.session,s.count,s.route,s.phase].join(':');
+      if(token!==lastSignal){
+        lastSignal=token;
+        if(s.phase==='depart' && ['bridge','stairs'].includes(s.route) && questPhase==='talking'){
+          trip=W.journey(s.route,player);questPhase='reading';readingLeft=6;keys.clear();
+        }else if(s.phase==='talking' && s.count==='0' && questPhase!=='talking'){
+          Object.assign(player,W.create());mara={...W.NPC};trip=null;beaconLit=false;questPhase='talking';autoArmed=true;hasMoved=false;
+        }
+      }
+    }
+    if(questPhase==='reading' && !document.hidden){
+      readingLeft-=delta;
+      if(readingLeft<=0){closeDialogue(false);questPhase='walking';}
+    }
+    if(questPhase==='walking' && !document.hidden){
+      if(reduce)for(let i=0;i<1000&&!trip.done;i++)W.advanceJourney(trip,.05);
+      else W.advanceJourney(trip,delta);
+      mara={...trip.mara};Object.assign(player,trip.traveler);player.steps+=58*delta;
+      player.direction='down';
+      if(trip.done){questPhase='complete';beaconLit=true;}
+    }
+    const moving=!open&&['talking','complete'].includes(questPhase)&&W.move(player,dx,dy,delta);
     if(moving)hasMoved=true;
     const near=W.near(player);
     if(!near)autoArmed=true;
-    if(near&&autoArmed&&!open){autoArmed=false;showDialogue();}
+    if(near&&autoArmed&&!open&&questPhase==='talking'){autoArmed=false;showDialogue();}
     const talk=document.querySelector('#talk-mara');
-    if(talk){talk.hidden=!near;talk.disabled=!near;}
-    if(!open)document.querySelector('#game-hint').textContent=near?'Mara is here. Press E to talk.':'Find Mara at the northern gate. Walk up the stone path.';
+    if(talk){talk.hidden=!near||questPhase!=='talking';talk.disabled=!near||questPhase!=='talking';}
+    const visit=document.querySelector('#visit-mara'),restart=document.querySelector('#restart-scene');
+    visit.hidden=questPhase!=='talking';restart.hidden=questPhase==='talking';
+    if(!open)document.querySelector('#game-hint').textContent=questPhase==='complete'?'Beacon restored! Mara led you along the '+(trip.route==='bridge'?'signal bridge.':'sea stairs.')+' Explore with WASD or restart the scene.':questPhase==='paused'?'Journey paused. Press E to continue or restart the scene.':questPhase==='walking'?'Following Mara along the '+(trip.route==='bridge'?'signal bridge':'sea stairs')+'. Esc pauses the journey.':near?'Mara is here. Press E to talk.':'Find Mara at the northern gate. Walk up the stone path.';
+    canvas.dataset.questPhase=questPhase;canvas.dataset.beaconLit=String(beaconLit);canvas.dataset.route=trip?.route||'';
+    canvas.dataset.maraX=mara.x.toFixed(1);canvas.dataset.maraY=mara.y.toFixed(1);
     canvas.dataset.playerX=player.x.toFixed(1);canvas.dataset.playerY=player.y.toFixed(1);
     canvas.dataset.nearMara=String(near);canvas.dataset.dialogueOpen=String(open);
     canvas.dataset.movementHint=String(!hasMoved);
@@ -208,7 +255,8 @@
     listen(window,'resize',resize);listen(window,'keydown',keydown);listen(window,'keyup',e=>keys.delete(e.key.toLowerCase()));
     listen(window,'blur',()=>keys.clear());
     listen(document,'visibilitychange',()=>{keys.clear();if(document.hidden)cameraOff();});
-    listen(document.querySelector('#close-dialogue'),'click',closeDialogue);
+    listen(document.querySelector('#close-dialogue'),'click',()=>closeDialogue());
+    listen(document.querySelector('#restart-scene'),'click',()=>{cameraOff();document.querySelector('#new-conversation')?.click();});
     listen(document.querySelector('#talk-mara'),'click',showDialogue);
     listen(document.querySelector('#visit-mara'),'click',()=>{player.x=W.NPC.x;player.y=W.NPC.y+33;autoArmed=true;});
     listen(document.querySelector('#game-fullscreen'),'click',async()=>{

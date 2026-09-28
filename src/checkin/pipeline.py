@@ -379,7 +379,7 @@ class CheckInPipeline:
         result["interaction"]=character_context(_emotion_evidence(result), text)
         return result
 
-    def stream(self,text,video_path=None,history=None,session_id="local",turn_id="turn",*,live_observation=None):
+    def stream(self,text,video_path=None,history=None,session_id="local",turn_id="turn",*,live_observation=None,game_context=None):
         if not isinstance(text,str) or not text.strip():
             raise ValueError("Write a message before sending your check-in.")
         if len(text)>4000:
@@ -429,6 +429,9 @@ class CheckInPipeline:
             started=time.perf_counter()
             live_args={"live_observation":live_observation,"live_admitted_at":live_admitted_at} if live_observation is not None else {}
             state=self.classify(text.strip(),video_path,session_id,turn_id,received_at=received,**live_args)
+            if game_context is not None:
+                from .quest import safe_context
+                state["game"] = safe_context(game_context)
             state["timing"]["model_load_ms"]=load_ms
             if not owner.cancelled.is_set():
                 state["response"]["status"]="streaming"

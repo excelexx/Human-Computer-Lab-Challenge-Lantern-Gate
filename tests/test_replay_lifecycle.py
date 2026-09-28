@@ -113,7 +113,8 @@ def test_cancellation_restores_or_transfers_owned_controls_in_either_order(repla
         send.close()
     elif cancel_action == "stop_current":
         result = funcs[cancel_action].fn("session", 0, guard)
-        assert all(value["interactive"] is True for value in result[3:-1])
+        # Camera, draft, replay loader and replay selection precede game outputs.
+        assert all(value["interactive"] is True for value in result[3:7])
     else:
         result = funcs[cancel_action].fn(guard)
         assert all(value["interactive"] is True for value in result[3:-1])

@@ -4,7 +4,7 @@
 
 The interface is now a full-screen pixel town: **WASD / arrows** move your traveler; walking close to Mara opens dialogue and the camera panel. **E** reopens it nearby; **Escape** leaves and stops camera tracks. **Go to Mara** skips walking if needed. **Full screen** optionally fills the display.
 
-The [game-character report](reports/game-character/REPORT.md) records the new prompt's controlled local generations, software checks and limitations. Earlier response studies below belong to the previous reflection-companion framing.
+The [game-character report](reports/game-character/REPORT.md) records the new prompt's controlled local generations, software checks and limitations. The [quest/emotion update](reports/game-character/QUEST_UPDATE.md) covers changing example sets, the in-game ending and stronger emotion-conditioned delivery. Earlier response studies below belong to the previous reflection-companion framing.
 
 ## Try it
 
@@ -12,6 +12,8 @@ The [game-character report](reports/game-character/REPORT.md) records the new pr
 2. The camera, estimated emotion, four samples and **Custom** float as separate rectangles on the right. Mara stays visible in the actual town on the left, with her reply in a speech bubble above her. There is no outer panel or replacement portrait, and opening the encounter does not pan or zoom the game.
 3. Select **Turn camera on** once to use local visual evidence. Click a sample to **send it immediately**, or type your own words and use the send arrow / Enter.
 4. **Escape / Back to village** leaves the encounter, cancels queued/current replies, and stops the camera. **E** reopens it while nearby. Refresh for a fresh conversation.
+
+After the third completed exchange, choosing a route and agreeing to go starts the visible journey. Mara leads, the player follows, and the beacon lights. Escape pauses movement, E resumes, and Restart scene clears progress. The example buttons are hardcoded; Mara’s replies are generated live.
 
 Live display is more responsive: 85% new-frame probability / 15% prior display, with smoothing only across gaps up to 0.4 seconds. The classifier weights, score calibration and six-sample fusion gate are unchanged. This is a responsiveness adjustment, not a demonstrated accuracy gain. Capture requests remain 5 Hz.
 
@@ -39,7 +41,7 @@ On the supplied Windows RTX 3080 10 GB / 32 GB RAM machine, the recorded warm **
 
 The local generator still sometimes assumes emotions or circumstances the speaker did not state. The latest real replay retained both a wrong anger tag and an unwarranted excitement assumption. Calibration was investigated and not deployed. A working camera preview does not validate emotion estimates. No clinical validation, multi-browser queue test or long-duration inference stability claim is made.
 
-Audio, reinforcement learning, robot integration, remote inference and clinical diagnosis/treatment were intentionally left out. This is an emotion-aware game-character prototype. Movement is implemented; combat, inventory, persistent quests and world actions driven by generated dialogue are intentionally absent.
+Audio, reinforcement learning, robot integration, remote inference and clinical diagnosis/treatment were intentionally left out. This is an emotion-aware game-character prototype. Movement and a scripted three-turn beacon quest are implemented. Combat, inventory, persistent saves and arbitrary actions driven by generated prose are intentionally absent.
 
 ## Reproducibility and work record
 

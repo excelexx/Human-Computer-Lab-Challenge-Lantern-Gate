@@ -101,7 +101,7 @@ def test_new_conversation_clears_evidence_but_leaves_camera_enabled(live_app):
     assert buffer.enabled and buffer.epoch > old_epoch
     assert buffer.session_id == result[5] != "old"
     assert buffer.snapshot(result[5]) is None
-    assert buffer.client_control == result[-2]
+    assert buffer.client_control == next(value for component, value in zip(funcs["new_conversation"].outputs, result) if component.elem_id == "live-camera-control")
     assert buffer.client_control.startswith("on:") and buffer.client_control != "on:track-one"
 
 
@@ -113,7 +113,7 @@ def test_new_conversation_rejects_old_queued_camera_frame(live_app):
     frame = np.zeros((10, 10, 3), dtype=np.uint8)
     funcs["observe_camera"].fn(frame, buffer, result[5], "on:old-track")
     pipe.observe_live.assert_not_called()
-    funcs["observe_camera"].fn(frame, buffer, result[5], result[-2])
+    funcs["observe_camera"].fn(frame, buffer, result[5], next(value for component, value in zip(funcs["new_conversation"].outputs, result) if component.elem_id == "live-camera-control"))
     pipe.observe_live.assert_called_once()
 
 

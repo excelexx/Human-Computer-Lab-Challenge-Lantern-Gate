@@ -31,7 +31,7 @@ def game_html():
       <div class="world-header"><div class="quest-plaque"><h1>Lantern Gate</h1><p id="game-hint" role="status">Find Mara at the northern gate. Walk up the stone path.</p></div>
       <button id="game-fullscreen" title="Toggle browser full screen" aria-label="Toggle full screen">Full screen</button></div>
       <div class="world-footer"><div class="world-controls"><span><kbd>E</kbd> Talk</span><span><kbd>Esc</kbd> Leave</span></div>
-      <button id="visit-mara">Go to Mara</button><button id="talk-mara" hidden>Talk to Mara</button></div>
+      <button id="visit-mara">Go to Mara</button><button id="talk-mara" hidden>Talk to Mara</button><button id="restart-scene" hidden>Restart scene</button></div>
       <div class="touch-pad" aria-label="Movement controls"><button data-move="w" aria-label="Walk north">▲</button><div><button data-move="a" aria-label="Walk west">◀</button><button data-move="s" aria-label="Walk south">▼</button><button data-move="d" aria-label="Walk east">▶</button></div></div>
       <div class="asset-credit">Town art: Kenney · Local AI · No audio</div>
     </div>'''
@@ -301,6 +301,10 @@ IN_WORLD_CSS = '''
 '''
 
 FLOATING_CSS = '''
+#quest-event,#new-conversation {display:none !important;}
+#example-note {background:#fff0d1 !important;border:2px solid #ad9368 !important;padding:6px 9px !important;}
+#dialogue-panel #example-note p {font-size:10px !important;line-height:1.5 !important;color:#514332 !important;margin:0;}
+@media(max-width:600px){#dialogue-panel #player-replies{max-height:calc(100dvh - 210px);overflow-y:auto !important;overflow-x:hidden !important;padding-right:3px;}#dialogue-panel #example-note p{font-size:8px !important;}}
 #dialogue-panel[data-game-open="true"] {background:transparent !important;border:0 !important;box-shadow:none !important;border-radius:0 !important;padding:0 !important;right:18px;top:18px;gap:10px !important;}
 #dialogue-header {background:transparent !important;}
 #dialogue-header {flex:none !important;height:auto !important;}

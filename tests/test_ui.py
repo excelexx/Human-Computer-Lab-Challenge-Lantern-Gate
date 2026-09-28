@@ -22,7 +22,7 @@ class EventFixturePipeline:
     def status(self):
         return {"ready": True, "errors": [], "components": {"fixture": "not an ML model"}}
 
-    def stream(self, text, clip, history, session_id, turn_id):
+    def stream(self, text, clip, history, session_id, turn_id, **kwargs):
         self.calls.append({"text": text, "clip": clip, "history": history, "session": session_id, "turn": turn_id})
         state = {"emotion": {"label": "joy", "probabilities": {"joy": 1.0}}, "vision": {"available": bool(clip)}, "response": {"text": "Fixture response.", "status": "complete"}}
         try:
@@ -160,7 +160,7 @@ def test_sample_click_submits_once_with_selected_line_and_preserves_camera_mode(
     assert len(handlers) == len(SAMPLE_LINES) == 4
     for index, (handler, line) in enumerate(zip(handlers, SAMPLE_LINES)):
         guard = {"owner": "old-upload", "epoch": "old", "upload_payload": {"path": "old.mp4"}}
-        result = list(handler("stale.mp4", [], f"session-{index}", 0, guard, None, "camera"))
+        result = list(handler(line, "stale.mp4", [], f"session-{index}", 0, guard, None, "camera"))
         assert result[0][9]["value"] == line
         assert pipeline.calls[-1]["text"] == line
         assert pipeline.calls[-1]["clip"] is None
@@ -173,13 +173,56 @@ def test_sample_stream_closure_releases_turn_and_closes_backend(ui):
     app, _, pipeline = ui
     handler = next(fn.fn for fn in app.fns.values() if getattr(fn.fn, "__name__", "") == "submit_sample")
     guard = {"owner": None, "epoch": "original"}
-    stream = handler(None, [], "session", 0, guard, None, "camera")
+    stream = handler("Oh, fantastic.", None, [], "session", 0, guard, None, "camera")
     next(stream)
     next(stream)
     assert guard["turn_owner"]
     stream.close()
     assert "turn_owner" not in guard
     assert pipeline.closed == ["session"]
+
+
+def test_three_completed_replies_update_examples_and_emit_one_game_action(ui):
+    from checkin import quest
+    app, handler, pipeline = ui
+    guard = {"owner": None, "epoch": "original"}
+    history = []
+    for turn, line in enumerate(["Oh, fantastic.", "The sea stairs, then.", "Lead the way."]):
+        results = list(handler(line, None, history, "session", turn, guard))
+        assert results[0][-6]["interactive"] is False
+        final = results[-1]
+        history = final[1]
+        assert guard["quest"]["completed"] == turn + 1
+        assert final[-6]["value"] == quest.options(guard["quest"])[0]
+    assert guard["quest"]["route"] == "stairs"
+    assert 'data-phase="depart"' in final[-1]
+    assert final[6]["interactive"] is False
+    list(handler("Lead the way.", None, history, "session", 3, guard))
+    assert len(pipeline.calls) == 3
+
+
+def test_stale_sample_does_not_turn_into_a_different_option(ui):
+    app, handler, pipeline = ui
+    guard = {"owner": None, "epoch": "original"}
+    first = list(handler("Oh, fantastic.", None, [], "session", 0, guard))[-1]
+    sample = next(fn.fn for fn in app.fns.values() if getattr(fn.fn, "__name__", "") == "submit_sample")
+    result = list(sample("Oh, fantastic.", None, first[1], "session", 1, guard, None, "camera"))[-1]
+    assert len(pipeline.calls) == 1
+    assert "new example replies" in result[4]
+    assert guard["quest"]["completed"] == 1
+
+
+def test_cancelled_or_failed_response_cannot_advance_quest(ui):
+    _, handler, pipeline = ui
+    guard = {"owner": None, "epoch": "original"}
+    run = handler("Oh, fantastic.", None, [], "session", 0, guard)
+    next(run); next(run); run.close()
+    assert guard["quest"]["completed"] == 0
+    def failed(*args, **kwargs):
+        yield {"type": "error", "error": "fixture failure"}
+    pipeline.stream = failed
+    list(handler("Oh, fantastic.", None, [], "session", 1, guard))
+    assert guard["quest"]["completed"] == 0
 
 
 def test_streams_keep_sessions_and_prior_history_separate(ui):

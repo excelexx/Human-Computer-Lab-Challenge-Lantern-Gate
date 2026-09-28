@@ -1,0 +1,70 @@
+{
+  "date": "2026-09-28",
+  "inference": "local Qwen3-4B plus existing MELD encoders and heads; camera off in browser walkthroughs",
+  "parameters": 4464745375,
+  "tests": {
+    "full_suite_before_final_prompt": {
+      "passed": 357,
+      "warnings": 1,
+      "seconds": 30.21
+    },
+    "affected_suite_after_prompt": {
+      "passed": 73,
+      "warnings": 1
+    },
+    "final_ui_character_quest_checks": {
+      "passed": 48,
+      "warnings": 1,
+      "seconds": 3.99
+    },
+    "node": {
+      "passed": 13
+    }
+  },
+  "controlled_generations": {
+    "before": 12,
+    "after": 12,
+    "errors": 0,
+    "method": "Same fixed words and game context, synthetic emotion evidence; no accuracy claim"
+  },
+  "browser": {
+    "option_stages": [
+      1,
+      2,
+      3
+    ],
+    "hardcoded_options": true,
+    "npc_replies_generated": true,
+    "stairs": {
+      "phase": "complete",
+      "beacon_lit": true,
+      "mara": [
+        320,
+        454
+      ],
+      "player": [
+        302,
+        454
+      ]
+    },
+    "bridge": {
+      "phase": "complete",
+      "beacon_lit": true
+    },
+    "restart": {
+      "phase": "talking",
+      "beacon_lit": false,
+      "player": [
+        260,
+        350
+      ],
+      "completed": 0
+    }
+  },
+  "limitations": [
+    "Prompt adherence is imperfect; model may invent atmosphere or repeat voice examples.",
+    "Both camera-based intent interpretation and emotion estimates remain uncertain.",
+    "Scripted routes and whitelisted actions, not arbitrary model-directed world actions.",
+    "No persistent saved game."
+  ]
+}

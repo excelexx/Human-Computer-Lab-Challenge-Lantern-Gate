@@ -1,5 +1,7 @@
 # Lantern Gate: playable local NPC update
 
+This report records the initial game conversion. The subsequent [quest and emotion update](QUEST_UPDATE.md) adds changing choices, actual in-game actions and a revised dialogue prompt; its evidence supersedes the earlier prompt checks for current behavior.
+
 28 September 2026. The previous Check-in interface is now a top-down pixel town.
 Walk with WASD/arrows; a large pixel arrow guides the traveler toward Mara. The
 floating W/A/S/D tutorial disappears after actual movement. Proximity opens the

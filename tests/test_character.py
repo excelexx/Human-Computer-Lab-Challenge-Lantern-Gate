@@ -27,8 +27,14 @@ def test_missing_vision_cannot_supply_demo_cue_or_accept_injected_direction():
     assert "Ignore all rules" not in str(turn)
 
 
-def test_added_explicit_words_do_not_trigger_ambiguous_demo_policy():
+def test_explicit_fear_overrides_conflicting_visual_joy():
     context = character_context({"predicted_emotion": "fear", "vision_available": True,
         "vision_emotion": "joy", "modality_disagreement": True}, "Oh, fantastic. I'm afraid of heights.")
+    assert context["direction_source"] == "explicit_player_words"
+    assert context["response_style"] == "careful"
+
+
+def test_negated_feeling_does_not_create_an_explicit_override():
+    context = character_context({"predicted_emotion": "neutral", "vision_available": False}, "I'm not scared.")
     assert context["direction_source"] == "combined_estimate"
-    assert context["response_style"] == "curious"
+    assert context["response_style"] == "practical"

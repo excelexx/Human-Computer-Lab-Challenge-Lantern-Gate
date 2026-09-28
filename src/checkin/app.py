@@ -15,6 +15,7 @@ from typing import Any, Iterator
 import uuid
 
 from .scene import PIXEL_CSS, SAMPLE_LINES
+from . import quest
 from .game_ui import game_html, game_css, MARA_PORTRAIT
 
 
@@ -389,6 +390,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                     )
                     activity = gr.Markdown("Choose a reply to begin." if initial_status.get("ready") else status_message(initial_status), elem_id="activity")
             with gr.Column(elem_id="player-replies"):
+                sample_note = gr.Markdown(quest.note(quest.initial_quest()), elem_id="example-note")
                 sample_buttons = []
                 for offset in range(0, len(SAMPLE_LINES), 2):
                     with gr.Row(elem_classes="sample-row"):
@@ -401,7 +403,8 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                     stop = gr.Button("Stop", elem_id="stop", scale=1, min_width=65, interactive=False)
             emotion = gr.HTML(emotion_html(), elem_id="emotion-panel", visible=False)
             leave_dialogue = gr.Button("Leave dialogue", elem_id="leave-dialogue")
-            new = gr.Button("New conversation", elem_id="new-conversation", size="sm", visible=False)
+            new = gr.Button("New conversation", elem_id="new-conversation", size="sm")
+            quest_event = gr.HTML(quest.signal(quest.initial_quest(), "initial"), elem_id="quest-event")
             with gr.Accordion("Diagnostics and setup", open=not bool(initial_status.get("ready")), elem_id="diagnostics", visible=False):
                 gr.Markdown("The emotion state is produced by the classifier; the response generator uses that state with your message. Scores are not proof of a person's feelings.")
                 output_state = gr.JSON(label="Latest structured state", value={})
@@ -413,6 +416,13 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
 
         compose_controls = [camera, message] + ([load_replay, replay_select] if load_replay is not None else [])
         outputs = [chat, conversation_state, emotion, output_state, activity, turn, send, stop] + compose_controls + [replay_epoch]
+        game_outputs = sample_buttons + [sample_note, quest_event]
+        base_output_count = len(outputs)
+        outputs += game_outputs
+
+        def game_updates(current, session_id, busy=False):
+            enabled = not busy and current["phase"] != "depart"
+            return tuple(gr.update(value=line, interactive=enabled) for line in quest.options(current)) + (quest.note(current), quest.signal(current, session_id))
 
         def compose_update(*, active: bool = False, clear: bool = False) -> tuple[Any, ...]:
             video_update = gr.update(interactive=not active, **({"value": None} if clear else {}))
@@ -432,7 +442,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         def epoch_value(guard: dict[str, Any] | None) -> tuple[Any]:
             return (guard["epoch"] if guard is not None else gr.skip(),)
 
-        def run_turn(text: str, clip: Any, history: Any, session_id: str, turn_id: int, guard: dict[str, Any] | None = None,
+        def run_turn_base(text: str, clip: Any, history: Any, session_id: str, turn_id: int, guard: dict[str, Any] | None = None,
                      buffer: Any = None, mode: str | None = None) -> Iterator[tuple[Any, ...]]:
             invalidate_replay(guard)
             prior = clean_history(history)
@@ -458,6 +468,8 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                 yield (messages, messages, emotion_html(), state, "Mara is considering your words…", next_turn, gr.update(interactive=False), gr.update(interactive=True)) + compose_update(active=True) + epoch_value(guard)
                 observation = buffer.snapshot(session_id) if buffer is not None and mode == "camera" else None
                 live_kwargs = {"live_observation": observation} if observation is not None else {}
+                if guard is not None and "quest" in guard:
+                    live_kwargs["game_context"] = quest.context(guard["quest"], text)
                 stream = pipeline.stream(text.strip(), selected_clip, prior, session_id, str(next_turn), **live_kwargs)
                 for event in stream:
                     event_type = event.get("type")
@@ -498,6 +510,38 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                     guard.pop("turn_owner", None)
                 if stream is not None and hasattr(stream, "close"):
                     stream.close()
+
+        def run_turn(text, clip, history, session_id, turn_id, guard=None, buffer=None, mode=None):
+            current = guard.setdefault("quest", quest.initial_quest()) if guard is not None else quest.initial_quest()
+            if current["phase"] == "depart":
+                yield tuple(gr.skip() for _ in range(base_output_count)) + game_updates(current, session_id)
+                return
+            candidate = quest.preview(current, text or "")
+            stream = run_turn_base(text, clip, history, session_id, turn_id, guard, buffer, mode)
+            own_token = None
+            try:
+                for result in stream:
+                    if own_token is None and guard is not None:
+                        own_token = guard.get("turn_owner")
+                    enabled = result[6].get("interactive") is True
+                    state = result[3]
+                    succeeded = (enabled and isinstance(state, dict) and not state.get("error")
+                        and isinstance(state.get("response"), dict)
+                        and state["response"].get("status") == "complete"
+                        and bool(state["response"].get("text"))
+                        and (guard is None or own_token is not None and guard.get("turn_owner") == own_token))
+                    if succeeded:
+                        current = candidate
+                        if guard is not None:
+                            guard["quest"] = current
+                    if current["phase"] == "depart":
+                        result = list(result)
+                        result[4] = "Mara is setting off. Escape pauses the journey."
+                        result[6] = gr.update(interactive=False)
+                        result[9] = gr.update(value="", interactive=False)
+                    yield tuple(result) + game_updates(current, session_id, busy=not enabled)
+            finally:
+                stream.close()
 
         replay_events = []
         replay_outputs = [activity, send, stop] + compose_controls
@@ -608,8 +652,14 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                                 cancels=replay_events or None)
         turn_events = [send_event, message.submit(run_turn, inputs, outputs, concurrency_limit=1,
             concurrency_id="gpu", trigger_mode="once", api_name=False, cancels=replay_events or None)]
-        for sample_button, sample_line in zip(sample_buttons, SAMPLE_LINES):
-            def submit_sample(clip, history, session_id, turn_id, guard, buffer, mode, line=sample_line):
+        for sample_button in sample_buttons:
+            def submit_sample(line, clip, history, session_id, turn_id, guard, buffer, mode):
+                current = guard.setdefault("quest", quest.initial_quest())
+                if line not in quest.options(current):
+                    result = [gr.skip() for _ in range(base_output_count)]
+                    result[4] = "Choose one of the new example replies, or write your own."
+                    yield tuple(result) + game_updates(current, session_id)
+                    return
                 stream = run_turn(line, clip, history, session_id, turn_id, guard, buffer, mode)
                 try:
                     for index, result in enumerate(stream):
@@ -620,7 +670,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                 finally:
                     stream.close()
             turn_events.append(sample_button.click(submit_sample,
-                [camera, conversation_state, session, turn, replay_guard, live_buffer, input_mode], outputs,
+                [sample_button, camera, conversation_state, session, turn, replay_guard, live_buffer, input_mode], outputs,
                 concurrency_limit=1, concurrency_id="gpu", trigger_mode="once", api_name=False,
                 cancels=replay_events or None))
 
@@ -632,9 +682,11 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
 
         def stop_current(session_id: str, turn_id: Any = None, guard: dict[str, Any] | None = None) -> tuple[Any, ...]:
             replay_pending = invalidate_replay(guard)
+            if guard is not None:
+                guard.pop("turn_owner", None)
             pending = request_cancel(session_id, turn_id)
             status = "Stopping after the current processing step. A new check-in may need to wait." if pending else "Replay loading stopped. Add a fresh clip or continue with words alone." if replay_pending else "No active response to stop."
-            return (status, gr.update(interactive=True), gr.update(interactive=False)) + compose_update(clear=True) + epoch_value(guard)
+            return (status, gr.update(interactive=True), gr.update(interactive=False)) + compose_update(clear=True) + epoch_value(guard) + game_updates(guard.get("quest", quest.initial_quest()) if guard else quest.initial_quest(), session_id)
 
         def new_conversation(session_id: str, turn_id: Any = None, guard: dict[str, Any] | None = None,
                              buffer: Any = None) -> tuple[Any, ...]:
@@ -645,6 +697,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             pending = request_cancel(session_id, turn_id)
             if guard is not None:
                 guard.pop("turn_owner", None)
+                guard["quest"] = quest.initial_quest()
             new_session = str(uuid.uuid4())
             next_camera_control = gr.skip()
             if buffer is not None:
@@ -655,23 +708,23 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                 next_camera_control = ("on:" if buffer.enabled else "off:") + str(uuid.uuid4())
                 buffer.client_control = next_camera_control
             status = "A fresh conversation. The previous check-in is stopping after its current processing step." if pending else "A fresh conversation. The harbor gate awaits your next line."
-            return ([], [], emotion_html(), {}, status, new_session, 0, gr.update(value="", interactive=True), gr.update(value=None, interactive=True), gr.update(interactive=True), gr.update(interactive=False)) + ((gr.update(interactive=True), gr.update(interactive=True)) if load_replay is not None else ()) + (next_camera_control, next_epoch)
+            return ([], [], emotion_html(), {}, status, new_session, 0, gr.update(value="", interactive=True), gr.update(value=None, interactive=True), gr.update(interactive=True), gr.update(interactive=False)) + ((gr.update(interactive=True), gr.update(interactive=True)) if load_replay is not None else ()) + (next_camera_control, next_epoch) + game_updates(quest.initial_quest(), new_session)
 
         stop.click(
             stop_current,
             inputs=[session, turn, replay_guard],
-            outputs=[activity, send, stop] + compose_controls + [replay_epoch],
+            outputs=[activity, send, stop] + compose_controls + [replay_epoch] + game_outputs,
             cancels=turn_events + replay_events,
             queue=False,
             api_name=False,
         )
         leave_dialogue.click(stop_current, inputs=[session, turn, replay_guard],
-            outputs=[activity, send, stop] + compose_controls + [replay_epoch],
+            outputs=[activity, send, stop] + compose_controls + [replay_epoch] + game_outputs,
             cancels=turn_events + replay_events, queue=False, api_name=False)
         new.click(
             new_conversation,
             inputs=[session, turn, replay_guard, live_buffer],
-            outputs=[chat, conversation_state, emotion, output_state, activity, session, turn, message, camera, send, stop] + ([load_replay, replay_select] if load_replay is not None else []) + [live_control, replay_epoch],
+            outputs=[chat, conversation_state, emotion, output_state, activity, session, turn, message, camera, send, stop] + ([load_replay, replay_select] if load_replay is not None else []) + [live_control, replay_epoch] + game_outputs,
             cancels=turn_events + replay_events,
             queue=False,
             api_name=False,

@@ -21,6 +21,7 @@ MAX_SSE_LINE_BYTES = 65536
 MAX_SSE_EVENT_BYTES = 65536
 MAX_STREAM_BYTES = 262144
 from .character import SYSTEM_PROMPT, character_context
+from .quest import safe_context
 
 
 class GeneratorError(RuntimeError):
@@ -88,7 +89,8 @@ def _messages(text: str, state: dict[str, Any], history: list[Any]) -> list[dict
         bounded.pop(0)
     evidence = _emotion_evidence(state)
     turn = json.dumps({"message": text, "emotion_evidence": evidence,
-                       "npc_direction": character_context(evidence, text)}, ensure_ascii=False)
+                       "npc_direction": character_context(evidence, text),
+                       "game_context": safe_context(state.get("game"))}, ensure_ascii=False)
     return [{"role": "system", "content": SYSTEM_PROMPT}, *bounded, {"role": "user", "content": turn}]
 
 
