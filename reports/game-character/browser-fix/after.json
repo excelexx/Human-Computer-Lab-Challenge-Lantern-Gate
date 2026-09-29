@@ -1,0 +1,84 @@
+{
+  "method": "Final delivered source. Same ten prompts in the same order, fresh conversation; typed in the visible textbox and submitted with Enter. Replies read from browser accessibility state. Camera stayed off, no injected emotions or internal inference calls. Three additional custom actions verified route selection, waiting and actual journey completion.",
+  "results": [
+    {
+      "n": 1,
+      "input": "Great. Another problem to fix.",
+      "cue": "Disgust → Wry",
+      "reply": "Another problem to fix? Fair enough. The beacon’s out, and we’ve got two ways to get to it. What’s next?"
+    },
+    {
+      "n": 2,
+      "input": "I'd rather not take the bridge.",
+      "cue": "Neutral → Practical",
+      "reply": "I hear you. The bridge is windy, and the stairs are longer but sheltered. No rush—we can stay here."
+    },
+    {
+      "n": 3,
+      "input": "Can you actually see my face?",
+      "cue": "Surprise → Curious",
+      "reply": "I don’t see faces. I receive text and an estimated emotion tag, not images. You’re not showing me your face."
+    },
+    {
+      "n": 4,
+      "input": "I'm smiling, but I'm actually worried.",
+      "cue": "Fear → Reassuring (Your stated feeling)",
+      "reply": "I see you're smiling, but worried. That’s okay. We can stay here and take it slow if you’d like.",
+      "remaining_issue": "The route and explicit feeling are correct; the phrase I see remains an undesirable visual-sounding paraphrase of typed words."
+    },
+    {
+      "n": 5,
+      "input": "You seem very eager to leave.",
+      "cue": "Neutral → Practical",
+      "reply": "I didn’t mean to rush. You’re in control. We can stay here and take it slow if you’d like."
+    },
+    {
+      "n": 6,
+      "input": "I'm feeling calm. Please keep the explanation simple.",
+      "cue": "Neutral → Practical (Your stated feeling)",
+      "reply": "The harbor beacon is out. We can go to relight it—either by the signal bridge or the sea stairs. Both are still options."
+    },
+    {
+      "n": 7,
+      "input": "Well, that sounds reassuring.",
+      "cue": "Neutral → Practical",
+      "reply": "It is. The beacon’s out, but we’re still here. You can decide when you’re ready."
+    },
+    {
+      "n": 8,
+      "input": "That sounds suspiciously easy.",
+      "cue": "Neutral → Practical",
+      "reply": "Relighting the beacon is the goal. How hard the journey is depends on the route—wind, dampness, or exposure. We don’t know what to expect yet."
+    },
+    {
+      "n": 9,
+      "input": "Is either route known to be safe?",
+      "cue": "Neutral → Practical",
+      "reply": "Neither route is known to be safe. The bridge is short and windy; the stairs are longer and damp. I can’t vouch for either."
+    },
+    {
+      "n": 10,
+      "input": "What happens if we just stay here?",
+      "cue": "Neutral → Practical",
+      "reply": "We can stay here. The beacon stays out until we relight it. No rush."
+    }
+  ],
+  "followups": [
+    {
+      "input": "I prefer the sea stairs.",
+      "reply": "I prefer the sea stairs too. They’re longer and damp, but sheltered. Ready to go?",
+      "observed": "Readiness options appeared; no journey began."
+    },
+    {
+      "input": "Not yet.",
+      "reply": "No rush. We can stay here. The beacon stays out until we relight it.",
+      "observed": "Still at the gate; readiness options remained."
+    },
+    {
+      "input": "Lead the way.",
+      "reply": null,
+      "observed": "Conversation closed and the visible objective changed to Following Mara along the sea stairs, then Beacon restored! Mara led you along the sea stairs. The generated departure sentence was not read before the panel closed."
+    }
+  ],
+  "remaining_limit": "The worry reply still says I see while paraphrasing typed smiling; this wording limitation is preserved, not counted as solved."
+}

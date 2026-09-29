@@ -159,6 +159,12 @@ def dialogue_goal(value, text):
         return "Respect the player's request for space. Mara will keep her distance and wait at the gate. Do not offer to stay close, follow them, or ask them to depart; an emotion cue does not override this request."
     if _OUTSIDE_REQUEST.search(line):
         return answer("Honor the request to leave the fictional conversation. Pause the game interaction and invite the subject they want to discuss. Do not add beacon, route, lantern or travel pressure.")
+    if re.search(r"\b(?:you (?:seem|sound|are|look)|you're|stop|don't|do not)\b.*\b(?:eager|rush|rushing|hurry|hurrying|push|pushing|pressure|pressuring)\b", line):
+        return "Respond to the player's concern that Mara is rushing or pressuring them. Acknowledge your own impatient delivery and make clear you can wait. End there; do not ask about routes or readiness, infer a choice, or defend the pressure."
+    if re.search(r"\b(?:explain|explanation|plan|instructions)\b", line) and re.search(r"\b(?:simple|simply|brief|briefly|short|shorter|plain|plainly)\b", line):
+        return answer("Give the requested simple explanation: the beacon is out and the optional task is to reach it and relight it. Explain briefly rather than merely acknowledging the request. Both are still at the gate. End the explanation without a route or readiness question.")
+    if re.search(r"\b(?:suspicious|suspiciously|too easy|catch|skeptical|sceptical)\b", line):
+        return "Answer the player's skepticism about the task directly. Explain that the goal is relighting the beacon, while how difficult the journey will be is unknown. Do not promise an easy trip or invent a hidden catch. End without asking them to choose a route."
     if intent["question"] and re.search(r"\b(?:safe|safer|safety|dangerous|risk)\b", line):
         known = "The bridge is short, windy and exposed; the sea stairs are longer, damp and sheltered."
         if re.search(r"\b(?:stairs|stairway)\b", line) and "bridge" not in line:
@@ -180,6 +186,8 @@ def dialogue_goal(value, text):
         return answer("Answer the player's actual question by describing only these established conditions: " + known + " Conclude after those conditions.")
     if line == _words(SAMPLE_LINES[1]) or (intent["question"] and re.search(r"\b(?:have to|must|need to|want me|forced|expected)\b", line) and re.search(r"\b(?:cross|bridge)\b", line)):
         return answer("Answer directly whether crossing the bridge is required: it is optional. The player may choose the sea stairs or stay at the gate. Do not choose an alternative for them or make safety claims.")
+    if intent["question"] and intent["pause"]:
+        return "Answer the question about waiting: both can remain at the gate, and the beacon remains out until it is relit. The player can take their time. Do not invent a deadline, penalty or danger from waiting. End this answer without asking them to choose a route or depart."
     if intent["question"] and re.search(r"\b(?:plan|what (?:happens|are we doing|do we do))\b", line):
         return answer("Explain the actual plan briefly: the beacon is out, Mara can accompany the player by their chosen route, and together they can relight it after traveling. The bridge is short and windy; the sea stairs are longer, damp and sheltered. Wait for the player's route choice and agreement before moving.")
     if re.search(r"\b(?:are you coming|will you join)\b", line):
@@ -214,10 +222,12 @@ def dialogue_goal(value, text):
         return f"Acknowledge that the player declined the {declined}. Respect that refusal. " + plan + " There is no new agreement to travel. Both remain at the gate; wait for the player's preference."
     if route and game["next_action"] == "walk_and_relight":
         return f"Departure is agreed on the {route}. This is the current route even if earlier dialogue mentioned another; follow this latest selection. In the selected tone, name the {route} and tell the player you will lead them now. Do not ask for readiness again or claim arrival."
-    if route and game["next_action"] == "confirm_departure":
+    if route and game["next_action"] == "confirm_departure" and intent["route"]:
         return f"Both are still at the gate. The latest selected route is the {route}, a future plan superseding any earlier route. Acknowledge that plan in the selected tone, then ask whether they are ready. Keep the answer focused on the plan and readiness. Do not switch routes."
-    focus = "Acknowledge their reaction to your beacon task in the selected tone; do not repeat the opening briefing or treat it as a new arrival."
-    return focus + " Leave the route up to the player. One brief bridge-or-stairs choice is enough. A pause, refusal, direct question or out-of-character request takes priority over this plan."
+    if game["completed"] == 0 and text.strip().casefold() in {item.casefold() for item in SAMPLE_LINES}:
+        return "Acknowledge their reaction to the beacon task in the selected tone. This is the opening demonstration: one brief route choice is enough. Do not repeat the briefing, invent an arrival, or select a route."
+    plan = f"The {route} is only the existing plan; this message does not change it or authorize departure." if route else "No route has been selected. Do not announce either route as agreed."
+    return "Respond specifically to the meaning of this latest remark in the ongoing conversation, using the chosen tone. Address any feeling or concern they express. " + plan + " Both remain at the gate. Do not repeat an earlier acknowledgment or append a route/readiness question; wait for the player to bring the plan forward."
 
 
 def note(quest):

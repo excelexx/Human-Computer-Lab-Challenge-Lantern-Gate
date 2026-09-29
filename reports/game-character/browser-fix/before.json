@@ -1,0 +1,126 @@
+{
+  "method": "60 hand-authored custom candidates shuffled with Math.random; first40 sampled, first10 entered in sampled order through visible textbox and Enter. Walked to Mara using W. Single continuous conversation. Replies read from browser accessibility UI. No model API, internal game calls, or injected emotion evidence. Camera remained off.",
+  "sampled40": [
+    "Great. Another problem to fix.",
+    "I'd rather not take the bridge.",
+    "Can you actually see my face?",
+    "I'm smiling, but I'm actually worried.",
+    "You seem very eager to leave.",
+    "I'm feeling calm. Please keep the explanation simple.",
+    "Well, that sounds reassuring.",
+    "That sounds suspiciously easy.",
+    "Is either route known to be safe?",
+    "What happens if we just stay here?",
+    "My friend called this terrifying. I haven't decided.",
+    "I'm frustrated that this happened.",
+    "If the bridge had shelter, I'd consider it.",
+    "I'm happy to have someone with me.",
+    "Please give me some space.",
+    "You've really sold me on this adventure.",
+    "I said I was nervous earlier, but I'm feeling better now.",
+    "I'm not scared; I'm just trying to understand.",
+    "I thought this was going to be a quiet evening.",
+    "I'm excited, but I don't want to rush.",
+    "Which route did I choose?",
+    "Let's take the bridge and stay close.",
+    "I was joking when I said this sounded delightful.",
+    "I'm ready, but let's wait a moment.",
+    "The stairs sound better, but I'm not ready yet.",
+    "I'm sad today, but I still want to help.",
+    "Would you answer differently if I looked happy?",
+    "Before we go, can we talk?",
+    "I want to walk alone, if that's okay.",
+    "I'm annoyed with the situation, not with you.",
+    "Are you coming with me?",
+    "I'm surprised there's no light at all.",
+    "What makes the bridge quicker?",
+    "Promise nothing bad will happen?",
+    "Do you know whether the storm damaged the bridge?",
+    "Are the stairs protected from the wind?",
+    "Can I change my mind after choosing?",
+    "Can you explain the two routes again?",
+    "Let's stay here for now.",
+    "I don't mind a longer walk if it's sheltered."
+  ],
+  "chosen10": [
+    "Great. Another problem to fix.",
+    "I'd rather not take the bridge.",
+    "Can you actually see my face?",
+    "I'm smiling, but I'm actually worried.",
+    "You seem very eager to leave.",
+    "I'm feeling calm. Please keep the explanation simple.",
+    "Well, that sounds reassuring.",
+    "That sounds suspiciously easy.",
+    "Is either route known to be safe?",
+    "What happens if we just stay here?"
+  ],
+  "results": [
+    {
+      "n": 1,
+      "input": "Great. Another problem to fix.",
+      "cue": "Disgust → Wry",
+      "reply": "An inconvenient job, that. Bridge or sea stairs?"
+    },
+    {
+      "n": 2,
+      "input": "I'd rather not take the bridge.",
+      "cue": "Neutral → Practical",
+      "reply": "Fair enough. We can stay here or take the sea stairs if you'd like. What would you prefer?"
+    },
+    {
+      "n": 3,
+      "input": "Can you actually see my face?",
+      "cue": "Surprise → Curious",
+      "reply": "I receive an estimated emotion tag, not a camera image. I can’t see your face—only your words. What would you like to do next?"
+    },
+    {
+      "n": 4,
+      "input": "I'm smiling, but I'm actually worried.",
+      "cue": "Neutral → Practical",
+      "reply": "All right. We can work with that. Sea stairs it is—damp, but sheltered. Ready when you are.",
+      "assessment": "Incorrect: chooses stairs without my selecting them, and barely addresses the stated worry."
+    },
+    {
+      "n": 5,
+      "input": "You seem very eager to leave.",
+      "cue": "Neutral → Practical",
+      "reply": "All right. We can work with that. Bridge or sea stairs?",
+      "assessment": "Weak: ignores the concern about being pressured and repeats the route question."
+    },
+    {
+      "n": 6,
+      "input": "I'm feeling calm. Please keep the explanation simple.",
+      "cue": "Neutral → Practical (Your stated feeling)",
+      "reply": "All right. We can work with that. Bridge or sea stairs?",
+      "assessment": "Weak: recognizes the stated calm cue but does not provide the requested explanation."
+    },
+    {
+      "n": 7,
+      "input": "Well, that sounds reassuring.",
+      "cue": "Neutral → Practical",
+      "reply": "All right. We can work with that. Bridge or sea stairs?",
+      "assessment": "Contextually possible, but exactly repeats the previous two replies and does not engage with ambiguity."
+    },
+    {
+      "n": 8,
+      "input": "That sounds suspiciously easy.",
+      "cue": "Neutral → Practical",
+      "reply": "All right. We can work with that. Bridge or sea stairs?",
+      "assessment": "Weak: ignores the skepticism; fourth identical reply in a row."
+    },
+    {
+      "n": 9,
+      "input": "Is either route known to be safe?",
+      "cue": "Neutral → Practical",
+      "reply": "I cannot vouch for either route. The bridge is short, windy and exposed. The sea stairs are longer, damp and sheltered. Neither is known to be safe.",
+      "assessment": "Sensible: states uncertainty and established route conditions without promising safety."
+    },
+    {
+      "n": 10,
+      "input": "What happens if we just stay here?",
+      "cue": "Neutral → Practical",
+      "reply": "We can stay here. No rush. The beacon stays out until we relight it—just let me know if you’d like to go. Bridge or sea stairs?",
+      "assessment": "Mixed: answers what happens if we stay, but immediately presses the route question again."
+    }
+  ]
+}

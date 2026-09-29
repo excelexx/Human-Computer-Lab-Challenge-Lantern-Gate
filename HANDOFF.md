@@ -8,6 +8,8 @@ The [game-character report](reports/game-character/REPORT.md) records the new pr
 
 See the [dialogue matrix and remaining weaknesses](reports/game-character/MATRIX.md) for the latest response/consent testing.
 
+The [browser conversation fix](reports/game-character/BROWSER_FIX.md) records the actual UI replay, repaired follow-up behavior, and remaining wording limits.
+
 ## Try it
 
 1. Follow the arrow with **WASD / arrow keys** to Mara. The floating W/A/S/D tutorial disappears once you move.

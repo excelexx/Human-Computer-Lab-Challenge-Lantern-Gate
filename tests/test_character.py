@@ -122,3 +122,32 @@ def test_followup_keeps_actual_dialogue_without_repeating_the_opening():
 
 def test_non_game_input_does_not_invent_a_prior_npc_line():
     assert len(_messages("Hello", {}, [])) == 2
+
+
+@pytest.mark.parametrize("text", [
+    "I'm smiling, but I'm actually worried.", "I am actually very worried.",
+    "I feel a little uneasy.",
+])
+def test_worry_disclosure_overrides_a_conflicting_estimate(text):
+    direction = character_context({"predicted_emotion": "neutral", "vision_available": True,
+        "vision_emotion": "joy", "modality_disagreement": True}, text)
+    assert direction["direction_source"] == "explicit_player_words"
+    assert direction["cue_emotion"] == "fear" and direction["response_style"] == "careful"
+
+
+@pytest.mark.parametrize("text", [
+    "I'm not worried.", 'He said "I am worried."',
+    "If I'm worried, will you wait?", "I'm actually not uneasy.",
+])
+def test_negated_reported_or_hypothetical_worry_is_not_a_disclosure(text):
+    direction = character_context({"predicted_emotion": "neutral", "vision_available": False}, text)
+    assert direction["direction_source"] == "combined_estimate"
+
+
+def test_custom_turns_do_not_receive_the_stock_neutral_sentence():
+    state = {"emotion": {"label": "neutral"},
+             "game": {"completed": 3, "route": None, "next_action": "choose_route"}}
+    for text in ("That sounds suspiciously easy.", "You seem very eager to leave."):
+        turn = json.loads(_messages(text, state, [])[-1]["content"])
+        assert "All right. We can work with that." not in turn["npc_direction"]["direction"]
+        assert turn["game_context"]["route"] is None

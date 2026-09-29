@@ -266,6 +266,41 @@ def test_companionship_question_alone_does_not_grant_departure():
     assert "Departure is agreed" not in quest.dialogue_goal(quest.context(q, text), text)
 
 
+@pytest.mark.parametrize("route", [None, "bridge", "stairs"])
+@pytest.mark.parametrize("text", [
+    "I'm smiling, but I'm actually worried.", "You seem very eager to leave.",
+    "I'm feeling calm. Please keep the explanation simple.",
+    "Well, that sounds reassuring.", "That sounds suspiciously easy.",
+    "What happens if we just stay here?",
+])
+def test_conversational_followups_preserve_the_plan_without_departure(route, text):
+    q = {"completed": 3, "route": route, "phase": "talking"}
+    after = quest.preview(q, text)
+    assert after == q
+    goal = quest.dialogue_goal(quest.context(q, text), text)
+    assert "ask whether they are ready" not in goal
+    assert "One brief bridge-or-stairs choice" not in goal
+
+
+def test_waiting_consequence_question_is_not_answered_as_a_travel_plan():
+    text = "What happens if we just stay here?"
+    q = quest.initial_quest()
+    goal = quest.dialogue_goal(quest.context(q, text), text)
+    assert "beacon remains out" in goal
+    assert "without asking" in goal and "deadline" in goal
+
+
+def test_free_conversation_does_not_erase_or_reconfirm_an_existing_route():
+    q = {"completed": 3, "route": "stairs", "phase": "talking"}
+    text = "I'm worried about this."
+    assert quest.preview(q, text) == q
+    goal = quest.dialogue_goal(quest.context(q, text), text)
+    assert "sea stairs" in goal and "existing plan" in goal
+    text = "I prefer the bridge."
+    assert quest.preview(q, text)["route"] == "bridge"
+    assert "ask whether they are ready" in quest.dialogue_goal(quest.context(q, text), text)
+
+
 @pytest.mark.parametrize("opening", quest.SAMPLE_LINES)
 @pytest.mark.parametrize("route_line,route", list(zip(quest.ROUTE_LINES, ("bridge", "stairs", "bridge", "stairs"))))
 @pytest.mark.parametrize("ready_line", quest.READY_LINES)

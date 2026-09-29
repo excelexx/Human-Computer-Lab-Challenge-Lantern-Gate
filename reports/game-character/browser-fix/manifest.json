@@ -1,0 +1,16 @@
+{
+  "scope": "Delivered dialogue-fix production sources and browser evidence; learned models unchanged. Screenshots and replies came from the browser, not internal generation calls.",
+  "source_sha256": {
+    "src\\checkin\\character.py": "b53cff5f7829e7c2e90945a54b22d463d950f4c0a14f019216538ac20ac804a3",
+    "src\\checkin\\generator.py": "774156f520f2a9652547f932e584fe0f8678f31b1ac1f619597b2a38e460e692",
+    "src\\checkin\\quest.py": "7961cdc9153b1e6cd741def6daa2a04ec2c42dd6e1716cbf81a9fe10b0eedbe2"
+  },
+  "evidence_sha256": {
+    "after.json": "74b0926f028af0d991ae14b79161a200ae44b897b955f7f5f2289c4eb651acfc",
+    "before.json": "78040f8ff0b9fe407d2e83b54472c2cb77ab2b6a41aa544ca078ed73c4b82915",
+    "final-conversation.png": "072b1235305aaa88db45c2c8ca4147c93c68f5abf73a91eecdbb8aa228c44815",
+    "first-replay.json": "e49a37c0e97da4b581c4795d17028c4c5287a7ddda297dbe7ac8f4f475432583",
+    "journey-complete.png": "2e05b60cc047cc5a1b21b257539094eabc60003e1973f416c98c65aa4bf6d94e",
+    "tests.xml": "7293c0a733890393c03eeccbc3e3a0ea2f5474f94622c195ebf0ab2ffd3d81e2"
+  }
+}

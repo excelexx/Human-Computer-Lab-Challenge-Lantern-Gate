@@ -70,6 +70,7 @@ def _turn_context(text: str, state: dict[str, Any]) -> dict[str, Any]:
     goal = dialogue_goal(game, text)
     if direction["direction_source"] == "explicit_player_words":
         goal += f" The player's current explicit self-report is {direction['cue_emotion']}. Respond to this current disclosure; quoted or corrected earlier descriptions are not current feelings."
+        goal += " Speak directly to the feeling they stated. You learned it from their words: do not narrate their appearance or paraphrase a facial expression as something you can see."
     return {"emotion_evidence": evidence, "npc_direction": direction,
             "game_context": game, "reply_goal": goal}
 

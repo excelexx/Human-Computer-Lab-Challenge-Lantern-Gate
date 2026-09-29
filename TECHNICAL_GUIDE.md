@@ -23,6 +23,8 @@ pair at each stage, 33 custom texts per stage, route consent, contradictory cues
 and actual multi-turn journeys. It preserves failed revisions and remaining
 language-model weaknesses. Generation now uses greedy decoding.
 
+The [browser conversation fix](reports/game-character/BROWSER_FIX.md) records the actual UI replay, repaired follow-up behavior, and remaining wording limits.
+
 ## Model selection and parameter budget
 
 The upgraded stack has a conservative upper bound of **4,464,745,375 learned parameters**, below the **6,000,000,000** limit. The authoritative inventory is [manifests/models.json](manifests/models.json); it supersedes the earlier implementation plan's smaller model selection.
