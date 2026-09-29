@@ -265,10 +265,7 @@
     const near=W.near(player);
     if(!near)autoArmed=true;
     if(near&&autoArmed&&!open&&!help?.open&&questPhase==='talking'){autoArmed=false;showDialogue();}
-    const talk=document.querySelector('#talk-mara');
-    if(talk){talk.hidden=!near||questPhase!=='talking';talk.disabled=!near||questPhase!=='talking';}
-    const visit=document.querySelector('#visit-mara'),restart=document.querySelector('#restart-scene');
-    visit.hidden=questPhase!=='talking';restart.hidden=questPhase==='talking';
+    document.querySelector('#restart-scene').hidden=questPhase==='talking';
     if(!open)document.querySelector('#game-hint').textContent=questPhase==='complete'?'Beacon restored! Mara led you along the '+(trip.route==='bridge'?'signal bridge.':'sea stairs.')+' Explore with WASD or restart the scene.':questPhase==='paused'?'Journey paused. Press E to continue or restart the scene.':questPhase==='walking'?'Following Mara along the '+(trip.route==='bridge'?'signal bridge':'sea stairs')+'. Esc pauses the journey.':near?'Mara is here. Press E to talk.':'Find Mara at the northern gate. Walk up the stone path.';
     canvas.dataset.questPhase=questPhase;canvas.dataset.beaconLit=String(beaconLit);canvas.dataset.route=trip?.route||'';
     canvas.dataset.maraX=mara.x.toFixed(1);canvas.dataset.maraY=mara.y.toFixed(1);
@@ -294,16 +291,10 @@
     for(const button of document.querySelectorAll('[data-game-help]'))listen(button,'click',showHelp);
     listen(help,'close',()=>{keys.clear();try{sessionStorage.setItem('lanternGate.helpSeen.v1','yes');}catch{}if(!open)canvas.focus();});
     listen(document.querySelector('#restart-scene'),'click',()=>{cameraOff();document.querySelector('#new-conversation')?.click();});
-    listen(document.querySelector('#talk-mara'),'click',showDialogue);
-    listen(document.querySelector('#visit-mara'),'click',()=>{player.x=W.NPC.x;player.y=W.NPC.y+33;autoArmed=true;});
     listen(document.querySelector('#game-fullscreen'),'click',async()=>{
       try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}
       catch{document.querySelector('#game-hint').textContent='Browser full screen is unavailable. The game still fills this tab.';}
     });
-    for(const button of document.querySelectorAll('[data-move]')){
-      listen(button,'pointerdown',e=>{e.preventDefault();keys.add(button.dataset.move);button.setPointerCapture(e.pointerId);});
-      for(const event of ['pointerup','pointercancel','lostpointercapture'])listen(button,event,()=>keys.delete(button.dataset.move));
-    }
     resize();raf=requestAnimationFrame(tick);
     try{if(sessionStorage.getItem('lanternGate.helpSeen.v1')!=='yes')showHelp();}catch{showHelp();}
   }

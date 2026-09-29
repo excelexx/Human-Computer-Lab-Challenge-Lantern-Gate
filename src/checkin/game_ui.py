@@ -29,10 +29,7 @@ def game_html():
     return f'''<div id="game-world">
       <canvas id="town-canvas" tabindex="0" aria-label="Lantern Gate village. Move with W A S D or arrow keys. Approach Mara at the northern gate to talk." data-atlas="{atlas}"></canvas>
       <div class="world-header"><div class="quest-plaque"><h1>Lantern Gate</h1><p id="game-hint" role="status">Find Mara at the northern gate. Walk up the stone path.</p></div>
-      <div class="world-actions"><button data-game-help aria-haspopup="dialog">How it works</button><button id="game-fullscreen" title="Toggle browser full screen" aria-label="Toggle full screen">Full screen</button></div></div>
-      <div class="world-footer"><div class="world-controls"><span><kbd>E</kbd> Talk</span><span><kbd>Esc</kbd> Leave</span></div>
-      <button id="visit-mara">Go to Mara</button><button id="talk-mara" hidden>Talk to Mara</button><button id="restart-scene" hidden>Restart scene</button></div>
-      <div class="touch-pad" aria-label="Movement controls"><button data-move="w" aria-label="Walk north">▲</button><div><button data-move="a" aria-label="Walk west">◀</button><button data-move="s" aria-label="Walk south">▼</button><button data-move="d" aria-label="Walk east">▶</button></div></div>
+      <div class="world-actions"><button data-game-help aria-haspopup="dialog">How it works</button><button id="game-fullscreen" title="Toggle browser full screen" aria-label="Toggle full screen">Full screen</button><button id="restart-scene" hidden>Restart scene</button></div></div>
       <div class="asset-credit">Town art: Kenney · Local AI · No audio</div>
     </div>
     <dialog id="game-help" aria-labelledby="game-help-title">
@@ -59,22 +56,17 @@ body.game-ready .gradio-container.gradio-container {padding:0 !important;max-wid
 #game-world {position:fixed;inset:0;z-index:1;overflow:hidden;background:#253c46;font-family:PixelTown,Consolas,monospace;color:#fff0c2;}
 #town-canvas {display:block;width:100%;height:100%;image-rendering:pixelated;image-rendering:crisp-edges;outline:none;}
 #town-canvas:focus-visible {outline:3px solid #fff0c2;outline-offset:-4px;}
-.world-header,.world-footer {position:absolute;left:24px;right:24px;display:flex;gap:12px;align-items:flex-start;justify-content:space-between;pointer-events:none;}
-.world-header {top:22px;}.world-footer {bottom:24px;align-items:center;justify-content:flex-start;flex-wrap:wrap;}
+.world-header {position:absolute;top:22px;left:24px;right:24px;display:flex;gap:12px;align-items:flex-start;justify-content:space-between;pointer-events:none;}
 .quest-plaque {max-width:440px;background:#28343aee;border:3px solid #d0b17d;box-shadow:4px 4px 0 #26343b;padding:16px 20px;}
 .quest-plaque h1 {font:20px PixelTown,monospace;margin:0 0 10px;color:#fff0c2;}
 .quest-plaque p {font:12px/1.7 PixelTown,monospace;margin:0;color:#ead9b0;}
 #game-world button {pointer-events:auto;font:11px/1.5 PixelTown,monospace;background:#fff0c2;color:#403834;border:3px solid #685246;box-shadow:3px 3px 0 #26343b;border-radius:0;padding:10px 13px;cursor:pointer;}
 #game-world button:hover {background:#f4d598;}#game-world button:focus-visible {outline:3px solid #fff;outline-offset:4px;}
-.world-controls {display:flex;gap:15px;flex-wrap:wrap;padding:12px;background:#28343aee;border:2px solid #b99b72;font-size:10px;}
-.world-controls kbd {font:11px PixelTown,monospace;background:#fff0c2;color:#403834;padding:3px;margin-right:3px;}
-.touch-pad {position:absolute;right:22px;bottom:72px;display:flex;flex-direction:column;align-items:center;gap:4px;}
-.touch-pad div {display:flex;gap:4px;}.touch-pad button {touch-action:none;min-width:40px;min-height:40px;padding:6px !important;}
 .asset-credit {position:absolute;bottom:5px;right:12px;font:9px PixelTown,monospace;color:#f5e4ba;text-shadow:1px 1px #24313a;}
 #dialogue-panel[data-game-open="false"] {display:none !important;}
 #dialogue-panel[data-game-open="true"] {display:flex !important;}
 #game-world[data-dialogue="true"]::after {content:'';position:absolute;inset:0;background:#1425306b;pointer-events:none;}
-#game-world[data-dialogue="true"] .world-header,#game-world[data-dialogue="true"] .world-footer,#game-world[data-dialogue="true"] .touch-pad {visibility:hidden;}
+#game-world[data-dialogue="true"] .world-header {visibility:hidden;}
 #dialogue-panel {position:fixed;z-index:10;left:50%;top:50%;transform:translate(-50%,-50%);width:min(1050px,calc(100vw - 40px));max-height:calc(100dvh - 40px);overflow:auto !important;background:#fff0d1 !important;border:4px solid #5d4940 !important;box-shadow:0 0 0 3px #d8b67c,9px 9px 0 #1c2c32;border-radius:0 !important;padding:18px !important;gap:10px !important;color:#453c36 !important;}
 #dialogue-panel,#dialogue-panel * {font-family:PixelTown,Consolas,monospace !important;}
 .dialogue-title {display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #c5ac88;padding:0 4px 12px;color:#4c443c;font-size:16px;gap:10px;}
@@ -114,10 +106,9 @@ body.game-ready .gradio-container.gradio-container {padding:0 !important;max-wid
 #dialogue-panel #diagnostics {background:#2a3f4b !important;color:#dfe9ef !important;margin-top:0;border-radius:0;}
 #dialogue-panel #diagnostics * {font-family:Consolas,monospace !important;}
 #dialogue-panel button:focus-visible,#dialogue-panel textarea:focus-visible {outline:3px solid #456e75 !important;}
-@media(min-width:900px){.touch-pad{opacity:.85;}}
 @media(max-width:800px){
  .world-header{left:12px;right:12px;top:12px;gap:8px;}.quest-plaque{padding:10px 12px;max-width:72%;}.quest-plaque h1{font-size:14px;}.quest-plaque p{font-size:9px;}
- #game-fullscreen{font-size:9px !important;padding:7px !important;}.world-footer{left:12px;right:12px;bottom:25px;max-width:65%;}.world-controls{font-size:8px;gap:10px;line-height:1.8;}.world-controls kbd{font-size:9px;}.touch-pad{right:12px;bottom:50px;}
+ #game-fullscreen{font-size:9px !important;padding:7px !important;}
  #dialogue-panel{width:calc(100vw - 20px);max-height:calc(100dvh - 20px);padding:10px !important;}.dialogue-title{font-size:12px;}#close-dialogue{font-size:9px;}
  #dialogue-panel #input-column,#dialogue-panel #conversation-column{padding:3px !important;}#dialogue-panel #content-grid{gap:12px !important;}
 }
@@ -191,9 +182,6 @@ COMPACT_CSS = '''
 
 SKETCH_CSS = '''
 #leave-dialogue {display:none !important;}
-.touch-pad button {font-size:0 !important;display:grid;place-items:center;}
-.touch-pad button::before {content:'';display:block;width:4px;height:4px;background:#50483e;box-shadow:0 -8px #50483e,0 -4px #50483e,-4px -4px #50483e,-8px 0 #50483e,4px -4px #50483e,8px 0 #50483e,0 4px #50483e,0 8px #50483e;}
-.touch-pad button[data-move="a"]::before {transform:rotate(-90deg);}.touch-pad button[data-move="s"]::before {transform:rotate(180deg);}.touch-pad button[data-move="d"]::before {transform:rotate(90deg);}
 #dialogue-panel[data-game-open="true"] {display:grid !important;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:auto auto 1fr;gap:14px 24px !important;width:min(900px,calc(100vw - 36px));}
 #dialogue-header {grid-column:1 / -1;grid-row:1;padding:0 !important;}
 #dialogue-panel #content-grid {display:contents !important;}
