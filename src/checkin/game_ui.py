@@ -311,6 +311,12 @@ IN_WORLD_CSS = '''
 '''
 
 FLOATING_CSS = '''
+#dialogue-panel #reply-cue {order:-1;flex:none !important;min-height:0 !important;background:transparent !important;border:0 !important;padding:0 !important;}
+#dialogue-panel #reply-cue .html-container {padding:0 !important;}
+#reply-cue-signal[data-ready="false"] {display:none;}
+#reply-cue-signal[data-ready="true"] {padding:8px 10px;background:#fff0d1;border:2px solid #766047;box-shadow:3px 3px 0 #35443180;text-align:left;}
+#reply-cue-signal strong,#reply-cue-signal strong span {font:18px/1.5 PixelTown,Consolas,monospace !important;color:#354f3f !important;}
+@media(max-width:600px){#reply-cue-signal[data-ready="true"]{padding:5px 6px;}#reply-cue-signal strong,#reply-cue-signal strong span{font-size:14px !important;}}
 .world-actions {display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;}
 #game-help {position:fixed;inset:0;margin:auto;width:min(460px,calc(100vw - 36px));max-height:calc(100dvh - 36px);box-sizing:border-box;padding:24px;overflow-y:auto;background:#fff0d1;color:#493c2c;border:4px solid #685246;border-radius:0;box-shadow:4px 4px 0 #d0b17d,8px 8px 0 #26343b;font:14px/1.7 PixelTown,Consolas,monospace;}
 #game-help::backdrop {background:#152c3a88;}
@@ -356,32 +362,48 @@ FLOATING_CSS = '''
 #dialogue-panel[data-game-open="true"] {width:min(820px,58vw);}
 #dialogue-panel #live-camera {height:clamp(280px,46vh,540px) !important;min-height:clamp(280px,46vh,540px) !important;}
 /* A short stepped pixel bubble, anchored above the real world sprite. */
-#dialogue-panel #conversation {height:130px !important;min-height:130px !important;max-height:130px !important;border:0 !important;border-radius:0 !important;background:#fff9e7 !important;box-shadow:0 -4px 0 #766047,0 4px 0 #766047,-4px 0 0 #766047,4px 0 0 #766047,4px 8px 0 #35443180 !important;}
+#dialogue-panel #conversation {height:auto !important;min-height:150px !important;max-height:none !important;overflow:visible !important;border:0 !important;border-radius:0 !important;background:#fff9e7 !important;box-shadow:0 -4px 0 #766047,0 4px 0 #766047,-4px 0 0 #766047,4px 0 0 #766047,4px 8px 0 #35443180 !important;}
 #dialogue-panel #conversation::after {bottom:-20px;width:20px;height:20px;background:#766047;clip-path:polygon(0 0,100% 0,100% 40%,80% 40%,80% 60%,60% 60%,60% 80%,40% 80%,40% 100%,0 100%);}
 #dialogue-panel #conversation::before {content:'';position:absolute;z-index:1;bottom:-12px;left:calc(var(--speech-tail,50%) + 4px);width:12px;height:16px;background:#fff9e7;clip-path:polygon(0 0,100% 0,100% 50%,67% 50%,67% 75%,34% 75%,34% 100%,0 100%);}
-#dialogue-panel #conversation .message,#dialogue-panel #conversation .message *,#dialogue-panel .conversation-empty p {font-size:16px !important;line-height:1.5 !important;}
-#dialogue-panel .sample-line {font-size:14px !important;min-height:52px !important;line-height:1.5;}
-#dialogue-panel #checkin-message textarea {font-size:14px !important;height:52px;min-height:52px !important;padding:12px !important;}
-#dialogue-panel #checkin-message label.container > span,#dialogue-panel #live-camera-tag .emotion-caption {font-size:11px !important;}
-#dialogue-panel .emotion-pill {font-size:12px;}
-#dialogue-panel #activity p {font-size:10px !important;}
+#dialogue-panel #conversation .message,#dialogue-panel #conversation .message *,#dialogue-panel .conversation-empty p {font-size:20px !important;line-height:1.5 !important;}
+#dialogue-panel .sample-line {font-size:18px !important;min-height:52px !important;line-height:1.5;}
+#dialogue-panel #checkin-message textarea {font-size:18px !important;height:56px;min-height:56px !important;padding:12px !important;}
+#dialogue-panel #checkin-message label.container > span,#dialogue-panel #live-camera-tag .emotion-caption {font-size:14px !important;}
+#dialogue-panel .emotion-pill {font-size:16px;}
+#dialogue-panel #activity p {font-size:12px !important;}
 #dialogue-panel #live-camera button {font-size:14px !important;}
 #dialogue-panel #send {position:relative;display:block;width:52px !important;min-width:52px !important;max-width:52px !important;height:52px !important;min-height:52px !important;line-height:0 !important;}
 #dialogue-panel #send::before {position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0 !important;}
 #dialogue-panel .conversation-empty {max-width:none;text-align:left;margin:0;padding:12px;}
-#dialogue-panel #conversation .bubble-wrap {overflow-y:auto !important;padding:8px !important;}
+#dialogue-panel #conversation .bubble-wrap {height:auto !important;max-height:none !important;overflow:visible !important;padding:8px !important;}
 #dialogue-panel #activity {align-self:flex-start;padding:5px 0;margin-top:20px;}
 @media(max-height:700px){#dialogue-panel #live-camera{height:30vh !important;min-height:150px !important;}}
 @media(max-width:600px){#dialogue-panel[data-game-open="true"]{width:40vw;right:7px;top:10px;gap:6px !important;padding:0 !important;}.dialogue-title{align-items:flex-end;}}
-@media(max-width:600px){#dialogue-panel #live-camera{height:150px !important;min-height:150px !important;}#dialogue-panel #conversation .message,#dialogue-panel #conversation .message *,#dialogue-panel .conversation-empty p{font-size:10px !important;}#dialogue-panel .conversation-empty{padding:4px;}#dialogue-panel .sample-line{font-size:9px !important;min-height:28px !important;}#dialogue-panel #checkin-message textarea{font-size:10px !important;height:36px;min-height:36px !important;padding:6px !important;}#dialogue-panel #send{width:32px !important;min-width:32px !important;max-width:32px !important;height:36px !important;min-height:36px !important;}#dialogue-panel #live-camera button{font-size:10px !important;}}
+@media(max-width:600px){#dialogue-panel #live-camera{height:150px !important;min-height:150px !important;}#dialogue-panel #conversation .message,#dialogue-panel #conversation .message *,#dialogue-panel .conversation-empty p{font-size:14px !important;}#dialogue-panel .conversation-empty{padding:4px;}#dialogue-panel .sample-line{font-size:12px !important;min-height:28px !important;}#dialogue-panel #checkin-message textarea{font-size:14px !important;height:40px;min-height:40px !important;padding:6px !important;}#dialogue-panel #send{width:36px !important;min-width:36px !important;max-width:36px !important;height:40px !important;min-height:40px !important;}#dialogue-panel #live-camera button{font-size:14px !important;}}
 @media(max-width:600px) and (max-height:650px){
  #dialogue-panel #live-camera{height:clamp(84px,25vh,150px) !important;min-height:84px !important;}
  #dialogue-panel #live-camera-tag{min-height:0 !important;padding:0;}
  #dialogue-panel #live-camera-tag .emotion-caption{display:none;}
  #dialogue-panel #live-camera-tag .emotion-line{margin:0;}
  #dialogue-panel #custom-reply-row .form{min-width:0 !important;}
- #dialogue-panel #checkin-message label.container > span{font-size:8px !important;}
+ #dialogue-panel #checkin-message label.container > span{font-size:10px !important;}
  #dialogue-panel #player-replies{gap:4px !important;}
- #dialogue-panel .sample-line{font-size:7px !important;line-height:1.4;min-height:28px !important;}
+ #dialogue-panel .sample-line{font-size:12px !important;line-height:1.4;min-height:28px !important;}
+}
+#dialogue-panel #example-note p {font-size:16px !important;line-height:1.6 !important;}
+/* Keep the native permission button; make its click target visibly explicit. */
+#dialogue-panel #live-camera button[aria-label="Turn camera on"] {display:flex !important;align-items:center;justify-content:center;cursor:pointer !important;}
+#dialogue-panel #live-camera button[aria-label="Turn camera on"] .wrap {display:flex !important;flex-direction:row;align-items:center;justify-content:center;gap:8px;width:auto;height:auto !important;min-height:0 !important;flex:0 0 auto;max-width:calc(100% - 24px);box-sizing:border-box;padding:10px 14px;background:#ffe4a7 !important;color:#493c2c !important;border:2px solid #766047;border-radius:0 !important;box-shadow:3px 3px 0 #172f39;font-size:0 !important;line-height:0 !important;}
+#dialogue-panel #live-camera button[aria-label="Turn camera on"] .icon-wrap {display:none !important;}
+#dialogue-panel #live-camera button[aria-label="Turn camera on"] .wrap::before {content:'';display:block;flex:none;width:18px;height:22px;background:center/contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 22' shape-rendering='crispEdges'%3E%3Cpath d='M2 1h3v2h2v2h2v2h2v2h2v2h2v3h-5v2h2v4H8v-4H6v-3H4v3H1V1Z' fill='%23fff9e7' stroke='%23354f3f' stroke-width='1'/%3E%3C/svg%3E");image-rendering:pixelated;}
+#dialogue-panel #live-camera button[aria-label="Turn camera on"] .wrap::after {content:'Start camera';font:16px/1.4 PixelTown,Consolas,monospace;color:#493c2c !important;text-align:center;}
+#dialogue-panel #live-camera button[aria-label="Turn camera on"]:hover .wrap {background:#fff0c2 !important;box-shadow:7px 7px 0 #172f39;transform:translate(-2px,-2px);}
+#dialogue-panel #live-camera button[aria-label="Turn camera on"]:active .wrap {transform:translate(2px,2px);box-shadow:2px 2px 0 #172f39;}
+#dialogue-panel #live-camera button[aria-label="Turn camera on"]:focus-visible .wrap {outline:3px solid #fff9e7;outline-offset:4px;}
+@media(max-width:600px){
+ #dialogue-panel #example-note p {font-size:12px !important;}
+ #dialogue-panel #live-camera button[aria-label="Turn camera on"] .wrap {max-width:calc(100% - 12px);gap:4px;padding:6px;}
+ #dialogue-panel #live-camera button[aria-label="Turn camera on"] .wrap::before {width:14px;height:18px;}
+ #dialogue-panel #live-camera button[aria-label="Turn camera on"] .wrap::after {font-size:12px;line-height:1.3;}
 }
 '''

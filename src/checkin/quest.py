@@ -65,8 +65,7 @@ def safe_context(value):
 def note(quest):
     if quest["phase"] == "depart":
         return "Mara will lead the way after this reply. The journey starts in a moment."
-    stage = min(3, quest["completed"] + 1)
-    return f"Example replies · {stage}/3. Choose one or write your own. Mara’s response is generated live from your words and emotion estimate."
+    return "Mara’s response is generated live from your words and emotion estimate."
 
 
 def signal(quest, session_id):

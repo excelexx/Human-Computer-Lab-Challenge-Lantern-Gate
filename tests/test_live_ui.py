@@ -40,6 +40,7 @@ def test_live_stream_has_its_own_queue_and_never_owns_composer_outputs(live_app)
     assert live.concurrency_id != turn.concurrency_id
     assert live.outputs == []
     assert live.inputs[0] not in turn.outputs
+    assert not any(getattr(component, "elem_id", None) == "reply-cue" for component in funcs["live_status"].outputs)
     assert funcs["live_status"].queue is False
     assert funcs["camera_lifecycle"].queue is False
 
@@ -80,7 +81,7 @@ def test_send_uses_recent_live_snapshot_and_ignores_old_upload_in_camera_mode(li
     assert pipe.calls[-1][0][1] is None
     assert pipe.calls[-1][1]["live_observation"] is observation
     buffer.snapshot.assert_called_once_with("s")
-    assert "stay on" in last[4]
+    assert last[6]["interactive"] is True
 
 
 def test_upload_mode_does_not_accidentally_use_live_camera(live_app):

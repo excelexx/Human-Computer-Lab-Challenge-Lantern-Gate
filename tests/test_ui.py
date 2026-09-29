@@ -54,6 +54,36 @@ def test_history_is_copied_and_only_plain_conversation_is_kept():
     assert source[0]["content"] == "My day"
 
 
+def test_reply_cue_changes_with_reply_text_not_pending_classification(ui):
+    from checkin.character import character_context
+    _, handler, pipeline = ui
+    direction = character_context({"predicted_emotion": "fear", "vision_available": False}, "Hello")
+    state = {"interaction": direction, "vision": {"available": False}, "session_id": "s", "turn_id": "2"}
+
+    def stream(*args):
+        yield {"type": "state", "state": state}
+        yield {"type": "text_delta", "text": "I'll go first."}
+        yield {"type": "done", "state": {**state, "response": {"text": "I'll go first.", "status": "complete"}}}
+
+    pipeline.stream = stream
+    prior = [{"role": "user", "content": "Hi"}, {"role": "assistant", "content": "Old reply"}]
+    results = list(handler("Hello", None, prior, "s", 1))
+    assert results[0][2] == results[1][2] == {"__type__": "update"}
+    assert "Fear cue" in results[2][2]
+    assert results[2][2] == results[-1][2]
+
+
+def test_failed_new_turn_does_not_relabel_previous_reply(ui):
+    _, handler, pipeline = ui
+    def failed(*args):
+        yield {"type": "error", "error": "fixture failure"}
+    pipeline.stream = failed
+    prior = [{"role": "assistant", "content": "Previous reply"}]
+    result = list(handler("Hello", None, prior, "s", 1))[-1]
+    assert result[2] == {"__type__": "update"}
+    assert result[0][0]["content"] == "Previous reply"
+
+
 @pytest.mark.parametrize("value, expected", [
     (None, None), ("clip.mp4", "clip.mp4"), (Path("clip.mp4"), "clip.mp4"),
     ({"video": {"path": "clip.mp4"}}, "clip.mp4"), (("clip.mp4", None), "clip.mp4"),

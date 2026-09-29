@@ -4,6 +4,7 @@
   let disposed=false, raf=0, previous=0, open=false, autoArmed=true, hasMoved=false;
   const keys=new Set(), W=window.LanternWorld, player=W.create();
   let mara={...W.NPC},questPhase='talking',trip=null,readingLeft=0,lastSignal='',beaconLit=false;
+  let reaction='idle',reactionToken='',reactionStarted=0,reactionAge=0;
   const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let canvas,ctx,world,panel,observer,help;
   const atlas=new Image();
@@ -94,17 +95,38 @@
     x=Math.round(x);y=Math.round(y);
     rect(x-7,y-1,14,4,'#557553');
     const bob=moving&&!reduce?Math.floor(player.steps/7)%2:0;
-    const top=y-22-bob, face=kind==='mara'?'#e7af7d':'#e8bb8b';
+    const pose=kind==='mara'?reaction:'idle';
+    const nod=!reduce&&['steady','practical'].includes(pose)&&reactionAge<900?Math.floor(reactionAge/225)%2:0;
+    const top=y-22-bob+nod, face=kind==='mara'?'#e7af7d':'#e8bb8b';
     const coat=kind==='mara'?'#56856d':'#5d85bd', shade=kind==='mara'?'#36554e':'#3e577c';
     rect(x-5,top,10,3,kind==='mara'?'#b87d49':'#493e3d');
     rect(x-7,top+3,14,7,kind==='mara'?'#b87d49':'#493e3d');
     rect(x-5,top+4,10,8,face);rect(x-3,top+7,2,2,'#31313a');rect(x+2,top+7,2,2,'#31313a');
     rect(x-6,top+12,12,8,coat);rect(x-7,top+17,14,3,shade);
-    rect(x-9,top+13,3,6,face);rect(x+6,top+13,3,6,face);
+    if(!['careful','patient'].includes(pose))rect(x-9,top+13,3,6,face);
+    if(pose!=='playful')rect(x+6,top+13,3,6,face);
     rect(x-5,y-3-bob,4,5,'#3a3440');rect(x+1,y-3+bob,4,5,'#3a3440');
     if(kind==='mara'){
-      rect(x+10,top+14,5,8,'#775545');rect(x+11,top+15,3,5,'#ffe1a0');
+      const lift=pose==='playful'?5+(!reduce&&reactionAge<1200?Math.floor(reactionAge/200)%2:0):0;
+      if(lift){rect(x+6,top+11,3,4,face);rect(x+8,top+9,4,3,face);}
+      rect(x+10,top+14-lift,5,8,'#775545');rect(x+11,top+15-lift,3,5,'#ffe1a0');
       rect(x-5,top+12,10,2,'#eac879');
+      if(pose==='playful'){
+        rect(x-3,top+9,1,1,'#704a37');rect(x+2,top+9,1,1,'#704a37');rect(x-2,top+10,4,1,'#704a37');
+        if(reactionAge<1200){rect(x+17,top+4,1,5,'#fff2bd');rect(x+15,top+6,5,1,'#fff2bd');}
+      }else if(pose==='careful'){
+        rect(x-9,top+14,3,3,face);rect(x-13,top+13,5,2,face);rect(x-14,top+11,1,2,face);
+        rect(x-4,top+5,2,1,'#775545');rect(x+2,top+5,2,1,'#775545');rect(x-1,top+10,3,1,'#986144');
+      }else if(pose==='patient'){
+        rect(x-8,top+13,3,4,face);rect(x-5,top+14,5,2,face);rect(x-1,top+13,2,3,face);
+        rect(x-3,top+7,3,1,'#31313a');rect(x+2,top+7,3,1,'#31313a');rect(x-1,top+10,2,1,'#986144');
+      }else if(pose==='steady'){
+        rect(x-4,top+5,3,1,'#775545');rect(x+1,top+5,3,1,'#775545');rect(x-2,top+10,4,1,'#704a37');
+      }else if(pose==='curious'){
+        rect(x-4,top+4,3,1,'#775545');rect(x+2,top+5,2,1,'#775545');rect(x,top+9,2,2,'#704a37');
+      }else if(pose==='wry'){
+        rect(x-4,top+4,3,1,'#775545');rect(x-1,top+10,3,1,'#704a37');rect(x+2,top+9,1,1,'#704a37');
+      }else if(pose==='practical')rect(x-1,top+10,3,1,'#986144');
     }else{
       rect(x-5,top+11,10,2,'#f0d394');
       if(player.direction==='up'){rect(x-5,top+4,10,6,'#493e3d');rect(x-4,top+14,8,5,'#bc8c60');}
@@ -142,12 +164,15 @@
       // Mara's actual screen position, keeping its right edge clear of controls.
       const dock=panel.getBoundingClientRect(), available=Math.max(100,dock.left-16);
       const speech=document.querySelector('#conversation-column');
-      const width=Math.min(390,available-16), npcY=(W.NPC.y-camY)*pixelScale;
+      const width=Math.min(460,available-16), npcY=(W.NPC.y-camY)*pixelScale;
       const npcX=(W.NPC.x-camX)*pixelScale;
       const left=Math.max(8,Math.min(npcX-width/2,available-width));
       speech.style.setProperty('--speech-left',`${left}px`);
       speech.style.setProperty('--speech-width',`${width}px`);
-      speech.style.setProperty('--speech-top',`${Math.max(12,npcY-34*pixelScale-130)}px`);
+      const cueHeight=document.querySelector('#reply-cue')?.getBoundingClientRect().height||0;
+      const bubbleBottom=npcY-22*pixelScale-26; // Leave room for the tail above Mara's head.
+      const speechHeight=document.querySelector('#conversation').getBoundingClientRect().height;
+      speech.style.setProperty('--speech-top',`${Math.max(12,bubbleBottom-speechHeight-cueHeight-6)}px`);
       speech.style.setProperty('--speech-tail',`${Math.max(14,Math.min(width-26,npcX-left-10))}px`);
     }
     rect(0,0,viewW,viewH,'#243e4a');ctx.save();ctx.translate(-camX,-camY);
@@ -206,6 +231,12 @@
     const delta=previous?Math.min((time-previous)/1000,.05):0;previous=time;
     const dx=(keys.has('d')||keys.has('arrowright')?1:0)-(keys.has('a')||keys.has('arrowleft')?1:0);
     const dy=(keys.has('s')||keys.has('arrowdown')?1:0)-(keys.has('w')||keys.has('arrowup')?1:0);
+    // This signal comes only from the response turn, never the changing webcam tag.
+    const cue=document.querySelector('#reply-cue-signal');
+    const nextReaction=['playful','careful','steady','patient','curious','wry','practical'].includes(cue?.dataset.reaction)?cue.dataset.reaction:'idle';
+    const nextToken=(cue?.dataset.turn||'')+':'+nextReaction;
+    if(nextToken!==reactionToken){reactionToken=nextToken;reaction=nextReaction;reactionStarted=time;}
+    reactionAge=time-reactionStarted;
     const signal=document.querySelector('#quest-signal');
     if(signal){
       const s=signal.dataset, token=[s.session,s.count,s.route,s.phase].join(':');
@@ -241,6 +272,7 @@
     if(!open)document.querySelector('#game-hint').textContent=questPhase==='complete'?'Beacon restored! Mara led you along the '+(trip.route==='bridge'?'signal bridge.':'sea stairs.')+' Explore with WASD or restart the scene.':questPhase==='paused'?'Journey paused. Press E to continue or restart the scene.':questPhase==='walking'?'Following Mara along the '+(trip.route==='bridge'?'signal bridge':'sea stairs')+'. Esc pauses the journey.':near?'Mara is here. Press E to talk.':'Find Mara at the northern gate. Walk up the stone path.';
     canvas.dataset.questPhase=questPhase;canvas.dataset.beaconLit=String(beaconLit);canvas.dataset.route=trip?.route||'';
     canvas.dataset.maraX=mara.x.toFixed(1);canvas.dataset.maraY=mara.y.toFixed(1);
+    canvas.dataset.maraReaction=reaction;
     canvas.dataset.playerX=player.x.toFixed(1);canvas.dataset.playerY=player.y.toFixed(1);
     canvas.dataset.nearMara=String(near);canvas.dataset.dialogueOpen=String(open);
     canvas.dataset.movementHint=String(!hasMoved);

@@ -17,6 +17,7 @@ import uuid
 from .scene import PIXEL_CSS, SAMPLE_LINES
 from . import quest
 from .game_ui import game_html, game_css, MARA_PORTRAIT
+from .reaction import reply_cue_html
 
 
 CSS = """
@@ -201,7 +202,7 @@ def live_emotion_html(status: dict[str, Any] | None = None) -> str:
         "Turn your camera on once. The tag updates while you talk or type." if kind == "off" else
         "Live updates resume as soon as the local model is free." if kind == "busy" else
         "Recent frames are checked locally. No audio is used.")
-    return ('<div class="emotion-line"><span class="emotion-caption">Emotion (estimate)</span>'
+    return ('<div class="emotion-line"><span class="emotion-caption">Live emotion estimate</span>'
             f'<span class="emotion-pill">{html.escape(label)}</span></div>'
             f'<div class="emotion-note">{note}</div>')
 
@@ -374,6 +375,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                                 gr.Markdown("Loads a test utterance into the same check-in pipeline. Its reference label is not sent to the model.")
                 with gr.Column(scale=7, min_width=260, elem_id="conversation-column"):
                     gr.HTML(MARA_PORTRAIT, elem_id="mara-portrait")
+                    emotion = gr.HTML(reply_cue_html(), elem_id="reply-cue")
                     chat = gr.Chatbot(
                         label="Dialogue with Mara",
                         type="messages",
@@ -385,6 +387,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                         show_label=False,
                         sanitize_html=True,
                         render_markdown=False,
+                        autoscroll=False,
                         placeholder='<div class="conversation-empty"><p>“The beacon is out. The bridge is quick; the sea stairs are sheltered. What do you say, traveler?”</p></div>',
                         elem_id="conversation",
                     )
@@ -401,7 +404,6 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                         max_lines=2, max_length=4000, elem_id="checkin-message", scale=6, min_width=120)
                     send = gr.Button("Send custom reply", variant="primary", elem_id="send", scale=1, min_width=75)
                     stop = gr.Button("Stop", elem_id="stop", scale=1, min_width=65, interactive=False)
-            emotion = gr.HTML(emotion_html(), elem_id="emotion-panel", visible=False)
             leave_dialogue = gr.Button("Leave dialogue", elem_id="leave-dialogue")
             new = gr.Button("New conversation", elem_id="new-conversation", size="sm")
             quest_event = gr.HTML(quest.signal(quest.initial_quest(), "initial"), elem_id="quest-event")
@@ -458,6 +460,13 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             messages = prior + [{"role": "user", "content": text.strip()}]
             state: dict[str, Any] = {}
             response = ""
+
+            def cue_update():
+                # Keep the old reply's cue until its replacement has actual text.
+                if response:
+                    return reply_cue_html(state)
+                return gr.skip() if any(item["role"] == "assistant" for item in prior) else reply_cue_html()
+
             cancelled_before_state = False
             stream = None
             selected_clip = None if mode == "camera" else video_path(clip)
@@ -465,7 +474,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             if guard is not None:
                 guard["turn_owner"] = turn_owner
             try:
-                yield (messages, messages, emotion_html(), state, "Mara is considering your words…", next_turn, gr.update(interactive=False), gr.update(interactive=True)) + compose_update(active=True) + epoch_value(guard)
+                yield (messages, messages, gr.skip(), state, "Mara is considering your words…", next_turn, gr.update(interactive=False), gr.update(interactive=True)) + compose_update(active=True) + epoch_value(guard)
                 observation = buffer.snapshot(session_id) if buffer is not None and mode == "camera" else None
                 live_kwargs = {"live_observation": observation} if observation is not None else {}
                 if guard is not None and "quest" in guard:
@@ -493,18 +502,18 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                         raise RuntimeError(str(event.get("error") or "The local pipeline could not finish this turn."))
                     visible = messages + ([{"role": "assistant", "content": response}] if response else [])
                     progress = "Stopped before the emotion signal was ready." if cancelled_before_state else "Responding…" if response else "Emotion signal ready. Preparing a response…" if state else "Mara is considering your words…"
-                    yield (visible, prior if cancelled_before_state else visible, emotion_html(state), state, progress, next_turn, gr.update(interactive=False), gr.update(interactive=True)) + tuple(gr.skip() for _ in compose_controls) + (gr.skip(),)
+                    yield (visible, prior if cancelled_before_state else visible, cue_update(), state, progress, next_turn, gr.update(interactive=False), gr.update(interactive=True)) + tuple(gr.skip() for _ in compose_controls) + (gr.skip(),)
 
                 visible = messages + ([{"role": "assistant", "content": response}] if response else [])
                 cancelled = cancelled_before_state or (isinstance(state.get("response"), dict) and state["response"].get("status") == "cancelled")
-                complete = "Stopped before the emotion signal was ready." if cancelled_before_state else "Stopped. Any partial response is shown above." if cancelled else "Ready for your next line. Your live camera can stay on." if response else "The turn finished without response text. See diagnostics for details."
-                yield (visible, prior if cancelled_before_state else visible, emotion_html(state), state, complete, next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update(clear=True) + (gr.skip(),)
+                complete = "Stopped before the emotion signal was ready." if cancelled_before_state else "Stopped. Any partial response is shown above." if cancelled else "" if response else "The turn finished without response text. See diagnostics for details."
+                yield (visible, prior if cancelled_before_state else visible, cue_update(), state, complete, next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update(clear=True) + (gr.skip(),)
             except Exception as exc:
                 visible = messages + ([{"role": "assistant", "content": response}] if response else [])
                 error_state = {**state, "error": f"{type(exc).__name__}: {exc}"}
                 # The draft remains for retry, but a failed attempt must not also
                 # enter model history and duplicate the next submitted message.
-                yield (visible, prior, emotion_html(state), error_state, failure_message(exc), next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update() + (gr.skip(),)
+                yield (visible, prior, cue_update(), error_state, failure_message(exc), next_turn, gr.update(interactive=True), gr.update(interactive=False)) + compose_update() + (gr.skip(),)
             finally:
                 if guard is not None and guard.get("turn_owner") == turn_owner:
                     guard.pop("turn_owner", None)
@@ -708,7 +717,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                 next_camera_control = ("on:" if buffer.enabled else "off:") + str(uuid.uuid4())
                 buffer.client_control = next_camera_control
             status = "A fresh conversation. The previous check-in is stopping after its current processing step." if pending else "A fresh conversation. The harbor gate awaits your next line."
-            return ([], [], emotion_html(), {}, status, new_session, 0, gr.update(value="", interactive=True), gr.update(value=None, interactive=True), gr.update(interactive=True), gr.update(interactive=False)) + ((gr.update(interactive=True), gr.update(interactive=True)) if load_replay is not None else ()) + (next_camera_control, next_epoch) + game_updates(quest.initial_quest(), new_session)
+            return ([], [], reply_cue_html(), {}, status, new_session, 0, gr.update(value="", interactive=True), gr.update(value=None, interactive=True), gr.update(interactive=True), gr.update(interactive=False)) + ((gr.update(interactive=True), gr.update(interactive=True)) if load_replay is not None else ()) + (next_camera_control, next_epoch) + game_updates(quest.initial_quest(), new_session)
 
         stop.click(
             stop_current,

@@ -111,9 +111,11 @@ def character_context(evidence, message=""):
     if use_visual:
         instruction += " This line is ambiguous: use the cue tentatively, without claiming to know its meaning or the player's feelings."
     elif not explicit and evidence.get("vision_available") is True and evidence.get("modality_disagreement") is True:
+        source = "modality_disagreement"
         style, instruction = "curious", "Signals disagree. Follow the player's explicit words and route choice; never ask them to choose again if they already chose. Do not assume enthusiasm or distress."
         voice = "All right—tell me what you have in mind."
     instruction += " Voice example (tone only; still answer the actual message and current step): " + voice
     return {"character": CHARACTER, "scene_id": SCENE_ID,
             "response_style": style, "direction": instruction, "direction_source": source,
+            "cue_emotion": None if source == "modality_disagreement" else label,
             "policy": "delivery_only; player_words_take_precedence"}
