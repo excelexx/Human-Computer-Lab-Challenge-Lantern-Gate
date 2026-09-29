@@ -76,7 +76,7 @@ def test_stop_finishes_without_waiting_for_done_and_keeps_sampler(monkeypatch):
     assert list(generator.LocalGenerator().stream('Hello', state(), [])) == ['Complete.']
     payload = requests[-1][1]
     assert {key: payload[key] for key in ('temperature', 'top_p', 'top_k', 'min_p', 'max_tokens')} == {
-        'temperature': .5, 'top_p': .8, 'top_k': 20, 'min_p': 0., 'max_tokens': 96}
+        'temperature': 0.0, 'top_p': .8, 'top_k': 20, 'min_p': 0., 'max_tokens': 96}
     assert payload['messages'][0]['content'] == generator.SYSTEM_PROMPT
     assert all(client.is_closed for client in clients) and all(stream.closed for stream in streams)
 

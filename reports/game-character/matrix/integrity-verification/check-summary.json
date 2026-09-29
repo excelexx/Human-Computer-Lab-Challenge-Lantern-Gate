@@ -1,0 +1,22 @@
+{
+  "updated_at": "2026-09-29T23:10:20.972503+00:00",
+  "new_cases": 24304,
+  "saved_cases": 24304,
+  "expected_cases": 24304,
+  "unique_cases": 24304,
+  "coverage_complete": true,
+  "missing_ids": [],
+  "expected_by_section": {
+    "preset_path": 21952,
+    "authored_policy": 2352
+  },
+  "requested_expected_cases": 24304,
+  "requested_sections_complete": true,
+  "counts": {
+    "preset_path": 21952,
+    "authored_policy": 2352
+  },
+  "violation_cases": 0,
+  "violating_ids": [],
+  "scope": "Finite three-turn preset paths and raw authored cue policy configurations; coverage_complete records whether every planned case is present. No language generations or unlimited refusal loops in these checks."
+}

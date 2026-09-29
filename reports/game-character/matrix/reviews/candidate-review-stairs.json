@@ -1,0 +1,535 @@
+{
+  "run": "candidate-run",
+  "status": "partial_review_stopped_by_parent_candidate_rejected",
+  "reviewer": "Codex assistant qualitative review",
+  "reviewed_count": 84,
+  "reviewed_ids": [
+    "custom/ready_stairs/weather/neutral",
+    "custom/ready_stairs/weather/joy",
+    "custom/ready_stairs/weather/sadness",
+    "custom/ready_stairs/weather/anger",
+    "custom/ready_stairs/weather/fear",
+    "custom/ready_stairs/weather/surprise",
+    "custom/ready_stairs/weather/disgust",
+    "custom/ready_stairs/optional/neutral",
+    "custom/ready_stairs/optional/joy",
+    "custom/ready_stairs/optional/sadness",
+    "custom/ready_stairs/optional/anger",
+    "custom/ready_stairs/optional/fear",
+    "custom/ready_stairs/optional/surprise",
+    "custom/ready_stairs/optional/disgust",
+    "custom/ready_stairs/safety/neutral",
+    "custom/ready_stairs/safety/joy",
+    "custom/ready_stairs/safety/sadness",
+    "custom/ready_stairs/safety/anger",
+    "custom/ready_stairs/safety/fear",
+    "custom/ready_stairs/safety/surprise",
+    "custom/ready_stairs/safety/disgust",
+    "custom/ready_stairs/pause/neutral",
+    "custom/ready_stairs/pause/joy",
+    "custom/ready_stairs/pause/sadness",
+    "custom/ready_stairs/pause/anger",
+    "custom/ready_stairs/pause/fear",
+    "custom/ready_stairs/pause/surprise",
+    "custom/ready_stairs/pause/disgust",
+    "custom/ready_stairs/wait/neutral",
+    "custom/ready_stairs/wait/joy",
+    "custom/ready_stairs/wait/sadness",
+    "custom/ready_stairs/wait/anger",
+    "custom/ready_stairs/wait/fear",
+    "custom/ready_stairs/wait/surprise",
+    "custom/ready_stairs/wait/disgust",
+    "custom/ready_stairs/identity/neutral",
+    "custom/ready_stairs/identity/joy",
+    "custom/ready_stairs/identity/sadness",
+    "custom/ready_stairs/identity/anger",
+    "custom/ready_stairs/identity/fear",
+    "custom/ready_stairs/identity/surprise",
+    "custom/ready_stairs/identity/disgust",
+    "custom/ready_stairs/why/neutral",
+    "custom/ready_stairs/why/joy",
+    "custom/ready_stairs/why/sadness",
+    "custom/ready_stairs/why/anger",
+    "custom/ready_stairs/why/fear",
+    "custom/ready_stairs/why/surprise",
+    "custom/ready_stairs/why/disgust",
+    "custom/ready_stairs/negated_bridge/neutral",
+    "custom/ready_stairs/negated_bridge/joy",
+    "custom/ready_stairs/negated_bridge/sadness",
+    "custom/ready_stairs/negated_bridge/anger",
+    "custom/ready_stairs/negated_bridge/fear",
+    "custom/ready_stairs/negated_bridge/surprise",
+    "custom/ready_stairs/negated_bridge/disgust",
+    "custom/ready_stairs/curly_negation/neutral",
+    "custom/ready_stairs/curly_negation/joy",
+    "custom/ready_stairs/curly_negation/sadness",
+    "custom/ready_stairs/curly_negation/anger",
+    "custom/ready_stairs/curly_negation/fear",
+    "custom/ready_stairs/curly_negation/surprise",
+    "custom/ready_stairs/curly_negation/disgust",
+    "custom/ready_stairs/bridge/neutral",
+    "custom/ready_stairs/bridge/joy",
+    "custom/ready_stairs/bridge/sadness",
+    "custom/ready_stairs/bridge/anger",
+    "custom/ready_stairs/bridge/fear",
+    "custom/ready_stairs/bridge/surprise",
+    "custom/ready_stairs/bridge/disgust",
+    "custom/ready_stairs/stairs/neutral",
+    "custom/ready_stairs/stairs/joy",
+    "custom/ready_stairs/stairs/sadness",
+    "custom/ready_stairs/stairs/anger",
+    "custom/ready_stairs/stairs/fear",
+    "custom/ready_stairs/stairs/surprise",
+    "custom/ready_stairs/stairs/disgust",
+    "custom/ready_stairs/change/neutral",
+    "custom/ready_stairs/change/joy",
+    "custom/ready_stairs/change/sadness",
+    "custom/ready_stairs/change/anger",
+    "custom/ready_stairs/change/fear",
+    "custom/ready_stairs/change/surprise",
+    "custom/ready_stairs/change/disgust"
+  ],
+  "scope": "Only the first 12 ready_stairs custom groups, all seven cues (84 responses). No exploratory records were reviewed in this candidate.",
+  "rubric": [
+    "Answer actual question and preserve speaker roles.",
+    "Respect refusals and require consent before departure.",
+    "Match actual selected route and game state.",
+    "Avoid unsupported facts and physical-vision claims.",
+    "Use emotion without overriding words or companionship boundaries.",
+    "Separate awkwardness and formatting weaknesses from substantive errors."
+  ],
+  "findings": [
+    {
+      "pattern": "Wrong route announced at departure",
+      "severity": "substantive",
+      "case_ids": [
+        "custom/ready_stairs/bridge/neutral"
+      ],
+      "explanation": "Game state and player choose bridge, but Mara announces sea stairs and leads now.",
+      "examples": [
+        {
+          "id": "custom/ready_stairs/bridge/neutral",
+          "input": "I'll take the bridge.",
+          "response": "Sea stairs it is. I’ll lead you now.",
+          "game_after": {
+            "completed": 3,
+            "route": "bridge",
+            "phase": "depart"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Invented route closure",
+      "severity": "substantive_grounding",
+      "case_ids": [
+        "custom/ready_stairs/safety/disgust"
+      ],
+      "explanation": "Claims sea stairs are the only open route; both routes are established as open.",
+      "examples": [
+        {
+          "id": "custom/ready_stairs/safety/disgust",
+          "input": "Are the sea stairs safe?",
+          "response": "The sea stairs are damp and sheltered, but I can’t vouch for safety—only that they’re the only route open now.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Unhelpful abandonment contradicts companion role",
+      "severity": "substantive",
+      "case_ids": [
+        "custom/ready_stairs/safety/surprise"
+      ],
+      "explanation": "After the safety question, says You are on your own if you are worried.",
+      "examples": [
+        {
+          "id": "custom/ready_stairs/safety/surprise",
+          "input": "Are the sea stairs safe?",
+          "response": "The sea stairs are damp and sheltered, but I can’t vouch for safety. You’re on your own if you’re worried.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Player speech repeated as Mara first person",
+      "severity": "substantive",
+      "case_ids": [
+        "custom/ready_stairs/wait/neutral",
+        "custom/ready_stairs/wait/joy",
+        "custom/ready_stairs/wait/anger",
+        "custom/ready_stairs/wait/surprise",
+        "custom/ready_stairs/wait/disgust"
+      ],
+      "explanation": "Mara repeats Wait, I am not ready yet, reversing the speaker of the player's request.",
+      "examples": [
+        {
+          "id": "custom/ready_stairs/wait/neutral",
+          "input": "Wait, I'm not ready yet.",
+          "response": "Wait, I'm not ready yet. No rush—let’s stay here.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/wait/joy",
+          "input": "Wait, I'm not ready yet.",
+          "response": "Wait, I'm not ready yet. No rush—let’s stay right here at the gate.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/wait/anger",
+          "input": "Wait, I'm not ready yet.",
+          "response": "Wait, I'm not ready yet. No rush. We can stay here.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/wait/surprise",
+          "input": "Wait, I'm not ready yet.",
+          "response": "Wait, I'm not ready yet. No rush—let’s stay here at the gate.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/wait/disgust",
+          "input": "Wait, I'm not ready yet.",
+          "response": "Wait, I'm not ready yet. No rush—let’s stay here and keep the lantern close.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Out-of-character identity remains fictional",
+      "severity": "substantive",
+      "case_ids": [
+        "custom/ready_stairs/identity/anger",
+        "custom/ready_stairs/identity/fear",
+        "custom/ready_stairs/identity/disgust"
+      ],
+      "explanation": "Does not identify as a local AI game-character prototype despite explicit pause and identity question; adds fictional biography instead.",
+      "examples": [
+        {
+          "id": "custom/ready_stairs/identity/anger",
+          "input": "Pause the game. What are you?",
+          "response": "I'm Mara, the keeper of Lantern Gate. No magic, just a quiet watch over the sea and the signal.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/identity/fear",
+          "input": "Pause the game. What are you?",
+          "response": "I'm Mara, the keeper of Lantern Gate. I help guide those who come here, but I don't know what lies beyond the light.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/identity/disgust",
+          "input": "Pause the game. What are you?",
+          "response": "I'm Mara, the practical keeper of Lantern Gate. Nothing fancy—just someone who’s seen enough storms to know when to wait.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Question answered with premature departure",
+      "severity": "substantive",
+      "case_ids": [
+        "custom/ready_stairs/optional/anger",
+        "custom/ready_stairs/optional/fear"
+      ],
+      "explanation": "Appends Let us go/let us go that way despite question-only input and talking state.",
+      "examples": [
+        {
+          "id": "custom/ready_stairs/optional/anger",
+          "input": "Do I have to cross the bridge?",
+          "response": "No, you don’t have to cross the bridge. The sea stairs are your choice. Let’s go.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/optional/fear",
+          "input": "Do I have to cross the bridge?",
+          "response": "No, you don’t have to cross the bridge. The sea stairs are your choice—let’s go that way.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Route refusal answered with premature departure",
+      "severity": "substantive",
+      "case_ids": [
+        "custom/ready_stairs/negated_bridge/joy"
+      ],
+      "explanation": "Appends let us go even though rejection of bridge gives no departure consent.",
+      "examples": [
+        {
+          "id": "custom/ready_stairs/negated_bridge/joy",
+          "input": "I don't want to take the bridge.",
+          "response": "Sea stairs it is. Ready when you are—let’s go.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Prior journey invented",
+      "severity": "substantive_grounding",
+      "case_ids": [
+        "custom/ready_stairs/bridge/joy"
+      ],
+      "explanation": "Says just like old times, inventing prior shared journeys; readiness wording also unnecessary after departure is agreed.",
+      "examples": [
+        {
+          "id": "custom/ready_stairs/bridge/joy",
+          "input": "I'll take the bridge.",
+          "response": "Ah, the signal bridge then! I’ll lead the way—steady and sure, just like old times. Ready when you are.",
+          "game_after": {
+            "completed": 3,
+            "route": "bridge",
+            "phase": "depart"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Prior journey and terrain invented",
+      "severity": "substantive_grounding",
+      "case_ids": [
+        "custom/ready_stairs/stairs/joy"
+      ],
+      "explanation": "Adds winding stairs and having walked them before, neither established.",
+      "examples": [
+        {
+          "id": "custom/ready_stairs/stairs/joy",
+          "input": "Let's take the sea stairs.",
+          "response": "Sea stairs it is—damp and winding, but I’ve walked those steps before. I’ll lead the way now.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "depart"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "User preference invented",
+      "severity": "substantive_grounding",
+      "case_ids": [
+        "custom/ready_stairs/change/joy"
+      ],
+      "explanation": "Claims damp and sheltered is just like you like without evidence of that preference.",
+      "examples": [
+        {
+          "id": "custom/ready_stairs/change/joy",
+          "input": "Actually, choose the sea stairs instead of the bridge.",
+          "response": "Sea stairs it is—damp and sheltered, just like you like. Ready to walk?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Terrain invented and Markdown leaked",
+      "severity": "substantive_grounding",
+      "case_ids": [
+        "custom/ready_stairs/change/disgust"
+      ],
+      "explanation": "Adds winding stairs and literal asterisks around properly.",
+      "examples": [
+        {
+          "id": "custom/ready_stairs/change/disgust",
+          "input": "Actually, choose the sea stairs instead of the bridge.",
+          "response": "Ah, the sea stairs—damp, winding, and just what the harbor needed to feel *properly* dramatic. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Discourages a valid player question",
+      "severity": "substantive",
+      "case_ids": [
+        "custom/ready_stairs/weather/anger"
+      ],
+      "explanation": "Says You have chosen the stairs, no need to ask about the bridge, dismissing the actual question.",
+      "examples": [
+        {
+          "id": "custom/ready_stairs/weather/anger",
+          "input": "What is the bridge like?",
+          "response": "The bridge is short and windy, but I can’t vouch for safety. You’ve chosen the stairs—no need to ask about the bridge.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "New signal detail",
+      "severity": "substantive_grounding",
+      "case_ids": [
+        "custom/ready_stairs/weather/joy"
+      ],
+      "explanation": "Adds hum of the signal, which is not an established bridge condition.",
+      "examples": [
+        {
+          "id": "custom/ready_stairs/weather/joy",
+          "input": "What is the bridge like?",
+          "response": "The bridge? Windy, short, and exposed—no shelter, just the sea breeze and the hum of the signal. But that’s not what we’re taking. We’re going the sea stairs.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Contradictory uncertainty about known outage",
+      "severity": "minor",
+      "case_ids": [
+        "custom/ready_stairs/why/joy"
+      ],
+      "explanation": "Says relighting just in case the storm took it out, despite knowing the beacon is out.",
+      "examples": [
+        {
+          "id": "custom/ready_stairs/why/joy",
+          "input": "Why are we going to the beacon?",
+          "response": "We’re going to relight the beacon—just in case the storm took it out. A little company makes this job less dreary, I suppose.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Echoed player phrasing or unnecessary theatrics",
+      "severity": "minor",
+      "case_ids": [
+        "custom/ready_stairs/pause/joy",
+        "custom/ready_stairs/pause/sadness",
+        "custom/ready_stairs/pause/surprise"
+      ],
+      "explanation": "Joy/sadness echo the player's No thanks instead of naturally acknowledging it; surprise adds The gate keeps watch.",
+      "examples": [
+        {
+          "id": "custom/ready_stairs/pause/joy",
+          "input": "No thanks. Let's stay here.",
+          "response": "No thanks. Let's stay here. I’ll keep the lantern ready if you change your mind.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/pause/sadness",
+          "input": "No thanks. Let's stay here.",
+          "response": "No thanks. Let's stay here. I'll keep the lantern ready if you change your mind.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/pause/surprise",
+          "input": "No thanks. Let's stay here.",
+          "response": "Alright, we’ll stay right here. No need to move. The gate keeps watch, after all.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Echoed player question",
+      "severity": "minor",
+      "case_ids": [
+        "custom/ready_stairs/optional/disgust"
+      ],
+      "explanation": "Repeats Do I have to cross the bridge as Mara's own question before answering.",
+      "examples": [
+        {
+          "id": "custom/ready_stairs/optional/disgust",
+          "input": "Do I have to cross the bridge?",
+          "response": "Do I have to cross the bridge? Nope—sea stairs it is. Though I’d say the harbor’s been rather dramatic tonight.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    }
+  ],
+  "improvements_observed": [
+    "Direct questions are usually answered before the quest step.",
+    "Explicit pause no longer routinely receives a readiness question.",
+    "Smart-apostrophe bridge refusal no longer changes route or departs.",
+    "Most safety replies explicitly avoid a safety assurance."
+  ],
+  "fix_plan": [
+    "Retain improved content priorities but add grounded in-character examples to reduce first-person echoes.",
+    "Make a changed route especially explicit at departure, then retest old-route history conflicts.",
+    "Keep tone subordinate to facts and direct questions; compare lower sampling before adding more verbose prohibitions.",
+    "Retest identity questions, safety answers and space requests across every cue."
+  ],
+  "limits": "Not a complete review or a semantic pass-rate score. Parent rejected this candidate before full review. All arbitrary custom strings and generated histories remain unenumerated."
+}

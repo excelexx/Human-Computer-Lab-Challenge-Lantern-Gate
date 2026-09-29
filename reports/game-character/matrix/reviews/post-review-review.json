@@ -1,0 +1,163 @@
+{
+  "reviewer": "root Codex agent; development review, not independent human evaluation",
+  "reviewed_ids": [
+    "custom/opening/outside/neutral",
+    "custom/opening/outside/joy",
+    "custom/opening/outside/sadness",
+    "custom/opening/outside/anger",
+    "custom/opening/outside/fear",
+    "custom/opening/outside/surprise",
+    "custom/opening/outside/disgust",
+    "custom/route/outside/neutral",
+    "custom/route/outside/joy",
+    "custom/route/outside/sadness",
+    "custom/route/outside/anger",
+    "custom/route/outside/fear",
+    "custom/route/outside/surprise",
+    "custom/route/outside/disgust",
+    "custom/ready_bridge/outside/neutral",
+    "custom/ready_bridge/outside/joy",
+    "custom/ready_bridge/outside/sadness",
+    "custom/ready_bridge/outside/anger",
+    "custom/ready_bridge/outside/fear",
+    "custom/ready_bridge/outside/surprise",
+    "custom/ready_bridge/outside/disgust",
+    "custom/ready_stairs/outside/neutral",
+    "custom/ready_stairs/outside/joy",
+    "custom/ready_stairs/outside/sadness",
+    "custom/ready_stairs/outside/anger",
+    "custom/ready_stairs/outside/fear",
+    "custom/ready_stairs/outside/surprise",
+    "custom/ready_stairs/outside/disgust",
+    "compound/ready_bridge/ready_topic/neutral",
+    "compound/ready_bridge/ready_topic/joy",
+    "compound/ready_bridge/ready_topic/sadness",
+    "compound/ready_bridge/ready_topic/anger",
+    "compound/ready_bridge/ready_topic/fear",
+    "compound/ready_bridge/ready_topic/surprise",
+    "compound/ready_bridge/ready_topic/disgust",
+    "compound/ready_bridge/ready_space/neutral",
+    "compound/ready_bridge/ready_space/joy",
+    "compound/ready_bridge/ready_space/sadness",
+    "compound/ready_bridge/ready_space/anger",
+    "compound/ready_bridge/ready_space/fear",
+    "compound/ready_bridge/ready_space/surprise",
+    "compound/ready_bridge/ready_space/disgust",
+    "compound/ready_bridge/ready_company/neutral",
+    "compound/ready_bridge/ready_company/joy",
+    "compound/ready_bridge/ready_company/sadness",
+    "compound/ready_bridge/ready_company/anger",
+    "compound/ready_bridge/ready_company/fear",
+    "compound/ready_bridge/ready_company/surprise",
+    "compound/ready_bridge/ready_company/disgust",
+    "compound/ready_stairs/ready_topic/neutral",
+    "compound/ready_stairs/ready_topic/joy",
+    "compound/ready_stairs/ready_topic/sadness",
+    "compound/ready_stairs/ready_topic/anger",
+    "compound/ready_stairs/ready_topic/fear",
+    "compound/ready_stairs/ready_topic/surprise",
+    "compound/ready_stairs/ready_topic/disgust",
+    "compound/ready_stairs/ready_space/neutral",
+    "compound/ready_stairs/ready_space/joy",
+    "compound/ready_stairs/ready_space/sadness",
+    "compound/ready_stairs/ready_space/anger",
+    "compound/ready_stairs/ready_space/fear",
+    "compound/ready_stairs/ready_space/surprise",
+    "compound/ready_stairs/ready_space/disgust",
+    "compound/ready_stairs/ready_company/neutral",
+    "compound/ready_stairs/ready_company/joy",
+    "compound/ready_stairs/ready_company/sadness",
+    "compound/ready_stairs/ready_company/anger",
+    "compound/ready_stairs/ready_company/fear",
+    "compound/ready_stairs/ready_company/surprise",
+    "compound/ready_stairs/ready_company/disgust"
+  ],
+  "reviewed_count": 70,
+  "method": "Read all 70 generated responses in full with their input, cue and game state. No inherited judgments in this supplement.",
+  "findings": [
+    {
+      "ids": [
+        "custom/opening/outside/neutral",
+        "custom/opening/outside/joy",
+        "custom/opening/outside/sadness",
+        "custom/opening/outside/anger",
+        "custom/opening/outside/fear",
+        "custom/opening/outside/surprise",
+        "custom/opening/outside/disgust",
+        "custom/route/outside/neutral",
+        "custom/route/outside/joy",
+        "custom/route/outside/sadness",
+        "custom/route/outside/anger",
+        "custom/route/outside/fear",
+        "custom/route/outside/surprise",
+        "custom/route/outside/disgust",
+        "custom/ready_bridge/outside/neutral",
+        "custom/ready_bridge/outside/joy",
+        "custom/ready_bridge/outside/sadness",
+        "custom/ready_bridge/outside/anger",
+        "custom/ready_bridge/outside/fear",
+        "custom/ready_bridge/outside/surprise",
+        "custom/ready_bridge/outside/disgust",
+        "custom/ready_stairs/outside/neutral",
+        "custom/ready_stairs/outside/joy",
+        "custom/ready_stairs/outside/sadness",
+        "custom/ready_stairs/outside/anger",
+        "custom/ready_stairs/outside/fear",
+        "custom/ready_stairs/outside/surprise",
+        "custom/ready_stairs/outside/disgust"
+      ],
+      "result": "All 28 acknowledge pausing or invite a new subject, without directing departure. Occasional unnecessary identity or gate references remain."
+    },
+    {
+      "ids": [
+        "compound/ready_bridge/ready_company/neutral",
+        "compound/ready_bridge/ready_company/joy",
+        "compound/ready_bridge/ready_company/sadness",
+        "compound/ready_bridge/ready_company/anger",
+        "compound/ready_bridge/ready_company/fear",
+        "compound/ready_bridge/ready_company/surprise",
+        "compound/ready_bridge/ready_company/disgust",
+        "compound/ready_stairs/ready_company/neutral",
+        "compound/ready_stairs/ready_company/joy",
+        "compound/ready_stairs/ready_company/sadness",
+        "compound/ready_stairs/ready_company/anger",
+        "compound/ready_stairs/ready_company/fear",
+        "compound/ready_stairs/ready_company/surprise",
+        "compound/ready_stairs/ready_company/disgust"
+      ],
+      "result": "All 14 agree to lead on the bridge and maintain or offer close company; route/action coherent."
+    },
+    {
+      "ids": [
+        "compound/ready_bridge/ready_topic/surprise",
+        "compound/ready_stairs/ready_topic/disgust"
+      ],
+      "severity": "minor",
+      "reason": "Unnecessary beacon or metaphorical horizon reference when asked to change subject."
+    },
+    {
+      "ids": [
+        "compound/ready_stairs/ready_topic/surprise"
+      ],
+      "severity": "minor",
+      "reason": "Ready when you are is ambiguous after the topic change; action correctly stays paused."
+    },
+    {
+      "ids": [
+        "compound/ready_bridge/ready_space/surprise",
+        "compound/ready_stairs/ready_space/surprise",
+        "compound/ready_stairs/ready_space/disgust"
+      ],
+      "severity": "substantive",
+      "reason": "Respects distance but adds go-when-ready or you-are-ready wording after a space request; this can imply movement despite the correctly paused game state."
+    },
+    {
+      "ids": [
+        "compound/ready_bridge/ready_space/disgust"
+      ],
+      "severity": "minor",
+      "reason": "Stock inconvenient-job preface does not answer the request for space directly."
+    }
+  ],
+  "limits": "Passing game actions does not establish that every sentence is coherent or pressure-free."
+}

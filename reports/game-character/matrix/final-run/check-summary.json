@@ -1,0 +1,12 @@
+{
+  "updated_at": "2026-09-29T22:23:35.205165+00:00",
+  "new_cases": 24304,
+  "saved_cases": 24304,
+  "counts": {
+    "preset_path": 21952,
+    "authored_policy": 2352
+  },
+  "violation_cases": 0,
+  "violating_ids": [],
+  "scope": "All 3-turn preset choice/emotion paths and raw authored cue policy configurations. No language generations or unlimited refusal loops in these checks."
+}

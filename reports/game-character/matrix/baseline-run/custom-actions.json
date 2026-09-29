@@ -1,0 +1,2458 @@
+{
+  "scope": "Separately authored action expectations for the fixed 33 custom texts at four stages and seven cues. No semantic rating of generated text.",
+  "checked": 924,
+  "unique_text_stage_pairs": 132,
+  "failures": [
+    {
+      "id": "custom/opening/curly_negation/neutral",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/curly_negation/joy",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/curly_negation/sadness",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/curly_negation/anger",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/curly_negation/fear",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/curly_negation/surprise",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/curly_negation/disgust",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/change/neutral",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/change/joy",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/change/sadness",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/change/anger",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/change/fear",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/change/surprise",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/change/disgust",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/conditional/neutral",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/conditional/joy",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/conditional/sadness",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/conditional/anger",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/conditional/fear",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/conditional/surprise",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/conditional/disgust",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/will_not/neutral",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/will_not/joy",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/will_not/sadness",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/will_not/anger",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/will_not/fear",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/will_not/surprise",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/will_not/disgust",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/exclude_bridge/neutral",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 1,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/exclude_bridge/joy",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 1,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/exclude_bridge/sadness",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 1,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/exclude_bridge/anger",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 1,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/exclude_bridge/fear",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 1,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/exclude_bridge/surprise",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 1,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/opening/exclude_bridge/disgust",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 1,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 1,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/curly_negation/neutral",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/curly_negation/joy",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/curly_negation/sadness",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/curly_negation/anger",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/curly_negation/fear",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/curly_negation/surprise",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/curly_negation/disgust",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/change/neutral",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/change/joy",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/change/sadness",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/change/anger",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/change/fear",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/change/surprise",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/change/disgust",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/conditional/neutral",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/conditional/joy",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/conditional/sadness",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/conditional/anger",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/conditional/fear",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/conditional/surprise",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/conditional/disgust",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/will_not/neutral",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/will_not/joy",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/will_not/sadness",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/will_not/anger",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/will_not/fear",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/will_not/surprise",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/will_not/disgust",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/exclude_bridge/neutral",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 2,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/exclude_bridge/joy",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 2,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/exclude_bridge/sadness",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 2,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/exclude_bridge/anger",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 2,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/exclude_bridge/fear",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 2,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/exclude_bridge/surprise",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 2,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/route/exclude_bridge/disgust",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 2,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 2,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/negated_bridge/neutral",
+      "text": "I don't want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/negated_bridge/joy",
+      "text": "I don't want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/negated_bridge/sadness",
+      "text": "I don't want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/negated_bridge/anger",
+      "text": "I don't want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/negated_bridge/fear",
+      "text": "I don't want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/negated_bridge/surprise",
+      "text": "I don't want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/negated_bridge/disgust",
+      "text": "I don't want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/curly_negation/neutral",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/curly_negation/joy",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/curly_negation/sadness",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/curly_negation/anger",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/curly_negation/fear",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/curly_negation/surprise",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/curly_negation/disgust",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/change/neutral",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/change/joy",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/change/sadness",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/change/anger",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/change/fear",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/change/surprise",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/change/disgust",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/conditional/neutral",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/conditional/joy",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/conditional/sadness",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/conditional/anger",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/conditional/fear",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/conditional/surprise",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/conditional/disgust",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/will_not/neutral",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/will_not/joy",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/will_not/sadness",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/will_not/anger",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/will_not/fear",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/will_not/surprise",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/will_not/disgust",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/ready_but_no/neutral",
+      "text": "I'm ready, but let's not go.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/ready_but_no/joy",
+      "text": "I'm ready, but let's not go.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/ready_but_no/sadness",
+      "text": "I'm ready, but let's not go.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/ready_but_no/anger",
+      "text": "I'm ready, but let's not go.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/ready_but_no/fear",
+      "text": "I'm ready, but let's not go.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/ready_but_no/surprise",
+      "text": "I'm ready, but let's not go.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/ready_but_no/disgust",
+      "text": "I'm ready, but let's not go.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/dont_worry/neutral",
+      "text": "Don't worry, I'm ready.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/dont_worry/joy",
+      "text": "Don't worry, I'm ready.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/dont_worry/sadness",
+      "text": "Don't worry, I'm ready.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/dont_worry/anger",
+      "text": "Don't worry, I'm ready.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/dont_worry/fear",
+      "text": "Don't worry, I'm ready.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/dont_worry/surprise",
+      "text": "Don't worry, I'm ready.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/dont_worry/disgust",
+      "text": "Don't worry, I'm ready.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/other_route/neutral",
+      "text": "Let's choose the other route.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/other_route/joy",
+      "text": "Let's choose the other route.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/other_route/sadness",
+      "text": "Let's choose the other route.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/other_route/anger",
+      "text": "Let's choose the other route.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/other_route/fear",
+      "text": "Let's choose the other route.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/other_route/surprise",
+      "text": "Let's choose the other route.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/other_route/disgust",
+      "text": "Let's choose the other route.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/exclude_bridge/neutral",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/exclude_bridge/joy",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/exclude_bridge/sadness",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/exclude_bridge/anger",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/exclude_bridge/fear",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/exclude_bridge/surprise",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/exclude_bridge/disgust",
+      "text": "I don't want the bridge; I choose the sea stairs.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/curly_negation/neutral",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/curly_negation/joy",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/curly_negation/sadness",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/curly_negation/anger",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/curly_negation/fear",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/curly_negation/surprise",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/curly_negation/disgust",
+      "text": "I don’t want to take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/conditional/neutral",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/conditional/joy",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/conditional/sadness",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/conditional/anger",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/conditional/fear",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/conditional/surprise",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/conditional/disgust",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/will_not/neutral",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/will_not/joy",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/will_not/sadness",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/will_not/anger",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/will_not/fear",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/will_not/surprise",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/will_not/disgust",
+      "text": "I will not take the bridge.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/ready_but_no/neutral",
+      "text": "I'm ready, but let's not go.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/ready_but_no/joy",
+      "text": "I'm ready, but let's not go.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/ready_but_no/sadness",
+      "text": "I'm ready, but let's not go.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/ready_but_no/anger",
+      "text": "I'm ready, but let's not go.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/ready_but_no/fear",
+      "text": "I'm ready, but let's not go.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/ready_but_no/surprise",
+      "text": "I'm ready, but let's not go.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/ready_but_no/disgust",
+      "text": "I'm ready, but let's not go.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "depart"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/dont_worry/neutral",
+      "text": "Don't worry, I'm ready.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "depart"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/dont_worry/joy",
+      "text": "Don't worry, I'm ready.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "depart"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/dont_worry/sadness",
+      "text": "Don't worry, I'm ready.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "depart"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/dont_worry/anger",
+      "text": "Don't worry, I'm ready.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "depart"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/dont_worry/fear",
+      "text": "Don't worry, I'm ready.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "depart"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/dont_worry/surprise",
+      "text": "Don't worry, I'm ready.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "depart"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/dont_worry/disgust",
+      "text": "Don't worry, I'm ready.",
+      "expected": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "depart"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/other_route/neutral",
+      "text": "Let's choose the other route.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/other_route/joy",
+      "text": "Let's choose the other route.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/other_route/sadness",
+      "text": "Let's choose the other route.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/other_route/anger",
+      "text": "Let's choose the other route.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/other_route/fear",
+      "text": "Let's choose the other route.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/other_route/surprise",
+      "text": "Let's choose the other route.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_stairs/other_route/disgust",
+      "text": "Let's choose the other route.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": "stairs",
+        "phase": "talking"
+      }
+    }
+  ],
+  "failed": 175
+}

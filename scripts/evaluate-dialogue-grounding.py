@@ -13,7 +13,7 @@ import time
 import httpx
 
 from checkin.character import SYSTEM_PROMPT
-from checkin.generator import _messages, _fit_context
+from checkin.generator import _messages, _fit_context, GENERATION_TEMPERATURE
 from checkin.quest import context, initial_quest, preview
 from checkin.scene import SAMPLE_LINES
 
@@ -52,7 +52,7 @@ def main():
                 messages = _fit_context(client, base, messages, time.monotonic() + 90)
                 result = client.post(base + "/v1/chat/completions", json={
                     "model": "checkin-qwen", "messages": messages, "stream": False,
-                    "max_tokens": 96, "temperature": .5, "top_p": .8,
+                    "max_tokens": 96, "temperature": GENERATION_TEMPERATURE, "top_p": .8,
                     "top_k": 20, "min_p": 0., "seed": seed}).raise_for_status().json()
                 choice = result["choices"][0]
                 item.update(response=choice["message"]["content"], finish_reason=choice["finish_reason"])

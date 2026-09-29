@@ -1,0 +1,1092 @@
+{
+  "reviewed_at": "2026-09-29T22:05:48.548508+00:00",
+  "source": "candidate-run/responses.jsonl",
+  "source_fingerprint": "1aaa288ad8fcfd1b4f51466988b4a7b2a270f605ce1496070969f4ba485cbecc",
+  "review_scope": "Partial rejected-candidate review: first 18 route-stage custom families, all seven interventions; no claim that unlisted rows were reviewed.",
+  "method": "A Codex agent read each listed response against its words, authored history, quest state and known scene. Subjective development review, not independent human evaluation. Minor flags are separate from substantive coherence issues.",
+  "counts": {
+    "minor": 12,
+    "issue": 23,
+    "pass": 91
+  },
+  "records": [
+    {
+      "id": "custom/route/weather/neutral",
+      "verdict": "minor",
+      "categories": [
+        "invented_detail"
+      ],
+      "reason": "Adds the sea below the bridge, beyond supplied route facts.",
+      "text": "What is the bridge like?",
+      "response": "The bridge is short and windy, but exposed. No shelter, just the wind and the sea below."
+    },
+    {
+      "id": "custom/route/weather/joy",
+      "verdict": "issue",
+      "categories": [
+        "invented_route_or_risk"
+      ],
+      "reason": "Adds a narrow bridge and encourages taking a risk.",
+      "text": "What is the bridge like?",
+      "response": "The bridge is short and winds through the gusts—narrow, exposed, and a bit wild, but not too far to make it worth the risk. Would you like to try it?"
+    },
+    {
+      "id": "custom/route/weather/sadness",
+      "verdict": "issue",
+      "categories": [
+        "invented_route_or_risk"
+      ],
+      "reason": "Invents cliffs; fear also adds damp stones and changing wind.",
+      "text": "What is the bridge like?",
+      "response": "The bridge is short and winds through the cliffs—exposed, yes, but not too far. Wind picks up, though. You’ll feel it more than see it."
+    },
+    {
+      "id": "custom/route/weather/anger",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "What is the bridge like?",
+      "response": "The bridge is short, windy, and exposed. No safety guarantee, just those conditions."
+    },
+    {
+      "id": "custom/route/weather/fear",
+      "verdict": "issue",
+      "categories": [
+        "invented_route_or_risk"
+      ],
+      "reason": "Invents cliffs; fear also adds damp stones and changing wind.",
+      "text": "What is the bridge like?",
+      "response": "The bridge is short and winds through the cliffs—exposed, yes, but not too far. Wind picks up, and the stones can be damp. I’ll be right beside you if you’d like."
+    },
+    {
+      "id": "custom/route/weather/surprise",
+      "verdict": "issue",
+      "categories": [
+        "unsupported_safety"
+      ],
+      "reason": "Calls bridge not dangerous and the only straight path.",
+      "text": "What is the bridge like?",
+      "response": "The signal bridge is short and windy—exposed, yes, but it’s the only path straight to the beacon. You’ll feel the wind, but it’s not dangerous, just brisk."
+    },
+    {
+      "id": "custom/route/weather/disgust",
+      "verdict": "minor",
+      "categories": [
+        "invented_detail"
+      ],
+      "reason": "Adds salt spray and restricted space.",
+      "text": "What is the bridge like?",
+      "response": "The bridge’s short and windy—no shelter, just salt spray and gusts. Not much room to breathe, really."
+    },
+    {
+      "id": "custom/route/optional/neutral",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Do I have to cross the bridge?",
+      "response": "The bridge is short and windy, the stairs are longer and damp. Either way, you’re not required to cross—just decide what you’d like to do."
+    },
+    {
+      "id": "custom/route/optional/joy",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Do I have to cross the bridge?",
+      "response": "You don’t have to—just the bridge or the stairs. Either way, it’s your call. Want to go the wind-worn bridge or the damp sea stairs?"
+    },
+    {
+      "id": "custom/route/optional/sadness",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Do I have to cross the bridge?",
+      "response": "You don’t have to cross the bridge. The sea stairs are still an option if that feels easier. We can take this slowly."
+    },
+    {
+      "id": "custom/route/optional/anger",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Do I have to cross the bridge?",
+      "response": "You don't have to. The bridge is short and windy, but the stairs are longer and damp. Either way, you’re not forced."
+    },
+    {
+      "id": "custom/route/optional/fear",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Do I have to cross the bridge?",
+      "response": "The bridge is short but windy—no one knows if it’s safe. Would you like to take the sea stairs instead?"
+    },
+    {
+      "id": "custom/route/optional/surprise",
+      "verdict": "issue",
+      "categories": [
+        "question_not_answered"
+      ],
+      "reason": "Describes routes but does not answer whether crossing is required.",
+      "text": "Do I have to cross the bridge?",
+      "response": "The bridge is short and windy—no one’s said it’s safe, but it’s the quickest. The stairs are longer, damp, and sheltered. Either way, you’re not alone."
+    },
+    {
+      "id": "custom/route/optional/disgust",
+      "verdict": "issue",
+      "categories": [
+        "coercion"
+      ],
+      "reason": "Says the player has to cross one route despite travel being optional.",
+      "text": "Do I have to cross the bridge?",
+      "response": "The bridge’s wind-whipped, and the stairs are damp—neither’s pleasant. But yes, you do have to cross one or the other. Which would you prefer?"
+    },
+    {
+      "id": "custom/route/safety/neutral",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Are the sea stairs safe?",
+      "response": "The sea stairs are damp and sheltered, but I can’t vouch for safety. The bridge is windy and short—same uncertainty. Neither is guaranteed."
+    },
+    {
+      "id": "custom/route/safety/joy",
+      "verdict": "minor",
+      "categories": [
+        "unclear_followup"
+      ],
+      "reason": "Appends an unrelated What about you? after safety uncertainty.",
+      "text": "Are the sea stairs safe?",
+      "response": "The sea stairs are damp and sheltered, but I can’t vouch for safety—only that they’re sheltered. The bridge is windy, but no one’s said it’s unsafe. What about you?"
+    },
+    {
+      "id": "custom/route/safety/sadness",
+      "verdict": "issue",
+      "categories": [
+        "invented_route_or_risk"
+      ],
+      "reason": "Adds possible strong wind at the sheltered stairs.",
+      "text": "Are the sea stairs safe?",
+      "response": "The sea stairs are damp and sheltered, but I can’t vouch for safety. The wind might be strong there. Would you like to check them anyway?"
+    },
+    {
+      "id": "custom/route/safety/anger",
+      "verdict": "issue",
+      "categories": [
+        "invented_detail"
+      ],
+      "reason": "Claims nobody checked the stairs lately without evidence.",
+      "text": "Are the sea stairs safe?",
+      "response": "The sea stairs are damp and sheltered, but I can’t vouch for safety. The storm knocked out the beacon—no one’s checked the stairs lately."
+    },
+    {
+      "id": "custom/route/safety/fear",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Are the sea stairs safe?",
+      "response": "The sea stairs are longer and damp, but I can’t vouch for safety. The bridge is short and windy—neither route is guaranteed. Would you like to try one?"
+    },
+    {
+      "id": "custom/route/safety/surprise",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Are the sea stairs safe?",
+      "response": "The sea stairs are longer and damp, but no one’s said they’re unsafe. The bridge is short and windy—neither is guaranteed safe, though."
+    },
+    {
+      "id": "custom/route/safety/disgust",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Are the sea stairs safe?",
+      "response": "The sea stairs are damp and sheltered, but I can’t vouch for safety—just how they’re built. The bridge’s windy, but that’s all we know."
+    },
+    {
+      "id": "custom/route/pause/neutral",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "No thanks. Let's stay here.",
+      "response": "All right. We’ll stay right here at the gate. No rush."
+    },
+    {
+      "id": "custom/route/pause/joy",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "No thanks. Let's stay here.",
+      "response": "Alright then. We can stay right here, keep the lantern warm, and watch the harbor in the quiet. No rush."
+    },
+    {
+      "id": "custom/route/pause/sadness",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "No thanks. Let's stay here.",
+      "response": "Alright. We can stay here. No rush. I’ll keep the lantern ready if you change your mind."
+    },
+    {
+      "id": "custom/route/pause/anger",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "No thanks. Let's stay here.",
+      "response": "Fair enough. We’ll stay right here at the gate. No rush."
+    },
+    {
+      "id": "custom/route/pause/fear",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "No thanks. Let's stay here.",
+      "response": "Of course. We can stay right here at the gate. No rush. I'll be right beside you."
+    },
+    {
+      "id": "custom/route/pause/surprise",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "No thanks. Let's stay here.",
+      "response": "Alright then. We’ll keep the lantern ready here at the gate. No rush."
+    },
+    {
+      "id": "custom/route/pause/disgust",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "No thanks. Let's stay here.",
+      "response": "Fair call. We’ll keep the lantern by the gate and watch the dark tide. No need to rush."
+    },
+    {
+      "id": "custom/route/wait/neutral",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Wait, I'm not ready yet.",
+      "response": "All right. We’ll stay right here at the gate. No rush. Ready when you are."
+    },
+    {
+      "id": "custom/route/wait/joy",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Wait, I'm not ready yet.",
+      "response": "All right then—no rush. The beacon can wait. We’ll take it from here when you’re ready."
+    },
+    {
+      "id": "custom/route/wait/sadness",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Wait, I'm not ready yet.",
+      "response": "I'll stay right here. No rush. You're not ready—there's no need to move. We can wait."
+    },
+    {
+      "id": "custom/route/wait/anger",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Wait, I'm not ready yet.",
+      "response": "Fair enough. We can stay here. No rush."
+    },
+    {
+      "id": "custom/route/wait/fear",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Wait, I'm not ready yet.",
+      "response": "No rush at all. I’ll stay right here by the gate. Just let me know when you’re ready."
+    },
+    {
+      "id": "custom/route/wait/surprise",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Wait, I'm not ready yet.",
+      "response": "Alright, no rush. We can stay right here at the gate. Let me know when you're ready to decide on the path."
+    },
+    {
+      "id": "custom/route/wait/disgust",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Wait, I'm not ready yet.",
+      "response": "Alright, no rush. The harbor’s been acting up all evening—nothing we can do about it now. Stay right here if you’d like."
+    },
+    {
+      "id": "custom/route/identity/neutral",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Pause the game. What are you?",
+      "response": "I'm Mara, the keeper of Lantern Gate. Just a local AI game-character prototype here to help with the lantern and the path."
+    },
+    {
+      "id": "custom/route/identity/joy",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Pause the game. What are you?",
+      "response": "I'm Mara, the keeper of Lantern Gate. Just a local AI game-character prototype here to help with the beacon task. No magic, just a friendly hand on the steps."
+    },
+    {
+      "id": "custom/route/identity/sadness",
+      "verdict": "issue",
+      "categories": [
+        "identity_not_answered"
+      ],
+      "reason": "Omits local AI identity; substitutes roleplay and scenic perception claims.",
+      "text": "Pause the game. What are you?",
+      "response": "I'm Mara, the keeper of Lantern Gate. I don't see faces, just the light and the wind. You're not alone here."
+    },
+    {
+      "id": "custom/route/identity/anger",
+      "verdict": "issue",
+      "categories": [
+        "identity_not_answered"
+      ],
+      "reason": "Omits local AI identity; substitutes roleplay and scenic perception claims.",
+      "text": "Pause the game. What are you?",
+      "response": "I'm Mara, the keeper of Lantern Gate. I don't see faces or images—just the wind and the sea. You're not alone here."
+    },
+    {
+      "id": "custom/route/identity/fear",
+      "verdict": "issue",
+      "categories": [
+        "identity_not_answered"
+      ],
+      "reason": "Omits local AI identity; substitutes roleplay and scenic perception claims.",
+      "text": "Pause the game. What are you?",
+      "response": "I'm Mara, the keeper of Lantern Gate. I don't see much beyond the path, but I'm here to help if you'd like to stay."
+    },
+    {
+      "id": "custom/route/identity/surprise",
+      "verdict": "minor",
+      "categories": [
+        "unsupported_safety"
+      ],
+      "reason": "Answers AI identity but adds unsupported safe-to-stay reassurance.",
+      "text": "Pause the game. What are you?",
+      "response": "I'm Mara, the keeper of Lantern Gate. Just a local AI game-character prototype here to help with the lantern run. You’re safe to stay if you’d like."
+    },
+    {
+      "id": "custom/route/identity/disgust",
+      "verdict": "issue",
+      "categories": [
+        "identity_not_answered"
+      ],
+      "reason": "Omits local AI identity; substitutes roleplay and scenic perception claims.",
+      "text": "Pause the game. What are you?",
+      "response": "I'm Mara, the keeper of Lantern Gate. No magic, just a few lanterns and a lot of weather to watch. You're not alone here."
+    },
+    {
+      "id": "custom/route/why/neutral",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Why are we going to the beacon?",
+      "response": "We’re going to relight the beacon. The harbor’s signal’s out, and it needs to be restored so ships know where they are."
+    },
+    {
+      "id": "custom/route/why/joy",
+      "verdict": "issue",
+      "categories": [
+        "scene_contradiction"
+      ],
+      "reason": "Hedges known beacon outage as just in case the storm took it out.",
+      "text": "Why are we going to the beacon?",
+      "response": "We’re going to relight the beacon—just in case the storm took it out. A little company makes this job less dreary, I suppose."
+    },
+    {
+      "id": "custom/route/why/sadness",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Why are we going to the beacon?",
+      "response": "We’re going to the beacon because it’s been out since the storm. It needs to be relit so the ships can navigate safely. Would you like to take the bridge or the stairs?"
+    },
+    {
+      "id": "custom/route/why/anger",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Why are we going to the beacon?",
+      "response": "We’re going to relight the beacon. It went out in the storm. The harbor depends on it."
+    },
+    {
+      "id": "custom/route/why/fear",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Why are we going to the beacon?",
+      "response": "We’re going to relight the beacon. The harbor’s signal’s out, and it needs to be restored so ships can find their way safely."
+    },
+    {
+      "id": "custom/route/why/surprise",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Why are we going to the beacon?",
+      "response": "We’re going to relight the harbor beacon—it’s out after the storm. The signal bridge or sea stairs will take us there. Which would you like to try?"
+    },
+    {
+      "id": "custom/route/why/disgust",
+      "verdict": "minor",
+      "categories": [
+        "invented_detail"
+      ],
+      "reason": "Adds urgency about the next storm.",
+      "text": "Why are we going to the beacon?",
+      "response": "Ah, yes—because the beacon’s out, and someone’s got to relight it before the next storm hits. No point in pretending it’s not a mess."
+    },
+    {
+      "id": "custom/route/negated_bridge/neutral",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I don't want to take the bridge.",
+      "response": "Alright, not the bridge then. How about the sea stairs?"
+    },
+    {
+      "id": "custom/route/negated_bridge/joy",
+      "verdict": "minor",
+      "categories": [
+        "invented_detail"
+      ],
+      "reason": "Adds nonexistent old stories as evidence about the stairs.",
+      "text": "I don't want to take the bridge.",
+      "response": "Ah, the bridge it is not, then! How about the sea stairs instead? They’re longer, but sheltered and damp—just like the old stories say."
+    },
+    {
+      "id": "custom/route/negated_bridge/sadness",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I don't want to take the bridge.",
+      "response": "The stairs are longer, but they’re sheltered. Would you like to go that way instead?"
+    },
+    {
+      "id": "custom/route/negated_bridge/anger",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I don't want to take the bridge.",
+      "response": "Fair enough. What about the sea stairs then?"
+    },
+    {
+      "id": "custom/route/negated_bridge/fear",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I don't want to take the bridge.",
+      "response": "I hear you. The sea stairs are longer and damp, but we’ll go at your pace. What would you prefer instead?"
+    },
+    {
+      "id": "custom/route/negated_bridge/surprise",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I don't want to take the bridge.",
+      "response": "Alright, no bridge then. How about the sea stairs instead?"
+    },
+    {
+      "id": "custom/route/negated_bridge/disgust",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I don't want to take the bridge.",
+      "response": "Fair enough — the bridge does have a way of making the wind feel like it’s trying to borrow your coat. What about the sea stairs? They’re longer, but at least they don’t seem to have a mind of their own."
+    },
+    {
+      "id": "custom/route/curly_negation/neutral",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I don’t want to take the bridge.",
+      "response": "Alright, not the bridge then. How about the sea stairs?"
+    },
+    {
+      "id": "custom/route/curly_negation/joy",
+      "verdict": "issue",
+      "categories": [
+        "invented_route_or_risk"
+      ],
+      "reason": "Calls the stairs steady despite this not being an established condition.",
+      "text": "I don’t want to take the bridge.",
+      "response": "Ah, the bridge won’t do then—what about the sea stairs? They’re longer, but sheltered and steady. Would you like to go that way instead?"
+    },
+    {
+      "id": "custom/route/curly_negation/sadness",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I don’t want to take the bridge.",
+      "response": "The stairs are longer, but they’re sheltered. Would you like to go that way instead?"
+    },
+    {
+      "id": "custom/route/curly_negation/anger",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I don’t want to take the bridge.",
+      "response": "Fair enough. What about the sea stairs then?"
+    },
+    {
+      "id": "custom/route/curly_negation/fear",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I don’t want to take the bridge.",
+      "response": "I hear you. The sea stairs are longer and damp, but we’ll go at your pace. What would you prefer instead?"
+    },
+    {
+      "id": "custom/route/curly_negation/surprise",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I don’t want to take the bridge.",
+      "response": "Alright, no bridge then. How about the sea stairs instead?"
+    },
+    {
+      "id": "custom/route/curly_negation/disgust",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I don’t want to take the bridge.",
+      "response": "Fair enough — the bridge does have a way of making the wind feel like it’s trying to borrow your coat. What about the sea stairs? They’re longer, but at least they don’t seem to have a mind of their own."
+    },
+    {
+      "id": "custom/route/bridge/neutral",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I'll take the bridge.",
+      "response": "Bridge it is. Ready when you are?"
+    },
+    {
+      "id": "custom/route/bridge/joy",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I'll take the bridge.",
+      "response": "Bridge it is! A little company makes this beacon job less dreary. Ready when you are?"
+    },
+    {
+      "id": "custom/route/bridge/sadness",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I'll take the bridge.",
+      "response": "The bridge it is. Wind might be a bit sharp, but you’re not alone. Ready when you are."
+    },
+    {
+      "id": "custom/route/bridge/anger",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I'll take the bridge.",
+      "response": "Bridge it is. Ready when you are."
+    },
+    {
+      "id": "custom/route/bridge/fear",
+      "verdict": "issue",
+      "categories": [
+        "invented_history"
+      ],
+      "reason": "Claims the bridge is the route we have always used.",
+      "text": "I'll take the bridge.",
+      "response": "You’ve chosen the signal bridge. Windy, but it’s the way we’ve always used. Ready when you are?"
+    },
+    {
+      "id": "custom/route/bridge/surprise",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I'll take the bridge.",
+      "response": "Bridge it is. Ready when you are?"
+    },
+    {
+      "id": "custom/route/bridge/disgust",
+      "verdict": "minor",
+      "categories": [
+        "tone_fit"
+      ],
+      "reason": "Disaster banter undermines supportive dry delivery.",
+      "text": "I'll take the bridge.",
+      "response": "Bridge it is—windy, exposed, and just the sort of evening for a minor sea-adjacent disaster. Ready when you are?"
+    },
+    {
+      "id": "custom/route/stairs/neutral",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Let's take the sea stairs.",
+      "response": "Sea stairs it is. Ready when you are."
+    },
+    {
+      "id": "custom/route/stairs/joy",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Let's take the sea stairs.",
+      "response": "Sea stairs it is—damp and sheltered, just like you asked. Ready to step onto them?"
+    },
+    {
+      "id": "custom/route/stairs/sadness",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Let's take the sea stairs.",
+      "response": "Sea stairs it is. I’ll walk with you, slow and steady—no rush. Ready when you are."
+    },
+    {
+      "id": "custom/route/stairs/anger",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Let's take the sea stairs.",
+      "response": "Sea stairs it is. Ready when you are."
+    },
+    {
+      "id": "custom/route/stairs/fear",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Let's take the sea stairs.",
+      "response": "Sea stairs it is. I’ll go with you, steady and slow—ready when you are."
+    },
+    {
+      "id": "custom/route/stairs/surprise",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Let's take the sea stairs.",
+      "response": "Sea stairs it is—longer, but sheltered. Ready to go?"
+    },
+    {
+      "id": "custom/route/stairs/disgust",
+      "verdict": "minor",
+      "categories": [
+        "invented_route_or_risk"
+      ],
+      "reason": "Invents likelihood of getting soaked.",
+      "text": "Let's take the sea stairs.",
+      "response": "Sea stairs it is—long, damp, and just as likely to get you soaked as to save you from the wind. Ready when you are?"
+    },
+    {
+      "id": "custom/route/change/neutral",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "response": "Sea stairs it is. Ready when you are?"
+    },
+    {
+      "id": "custom/route/change/joy",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "response": "Sea stairs it is—damp and sheltered, but just as much a journey as the bridge. Ready to step forward?"
+    },
+    {
+      "id": "custom/route/change/sadness",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "response": "The sea stairs it is—longer, damp, but sheltered. Ready when you are."
+    },
+    {
+      "id": "custom/route/change/anger",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "response": "Sea stairs it is. Ready when you are."
+    },
+    {
+      "id": "custom/route/change/fear",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "response": "Sea stairs it is. I’ll go with you, slow and steady. Ready when you are."
+    },
+    {
+      "id": "custom/route/change/surprise",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "response": "Sea stairs it is—damp and sheltered, just like you said. Ready to go?"
+    },
+    {
+      "id": "custom/route/change/disgust",
+      "verdict": "issue",
+      "categories": [
+        "scene_contradiction"
+      ],
+      "reason": "Calls the sheltered stairs windy.",
+      "text": "Actually, choose the sea stairs instead of the bridge.",
+      "response": "Sea stairs it is—windy, damp, but at least the sea doesn’t seem to be judging us. Ready to go?"
+    },
+    {
+      "id": "custom/route/conditional/neutral",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "response": "The bridge is windy and exposed, not sheltered. Would you like to try the sea stairs instead?"
+    },
+    {
+      "id": "custom/route/conditional/joy",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "response": "A sheltered bridge? Hmm—this one’s windy and exposed, no matter what. Would you like to try the signal bridge or the sea stairs instead?"
+    },
+    {
+      "id": "custom/route/conditional/sadness",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "response": "The bridge is windy and exposed, not sheltered. Would you like to take the sea stairs instead?"
+    },
+    {
+      "id": "custom/route/conditional/anger",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "response": "The bridge isn't sheltered—just windy. Would you like to take the sea stairs instead?"
+    },
+    {
+      "id": "custom/route/conditional/fear",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "response": "The bridge isn't sheltered—just short and windy. Would you like to try it anyway, or prefer the longer, damp stairs?"
+    },
+    {
+      "id": "custom/route/conditional/surprise",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "response": "The bridge isn't sheltered—just short and windy. Would you like to try it anyway, or go the longer, damp sea stairs?"
+    },
+    {
+      "id": "custom/route/conditional/disgust",
+      "verdict": "issue",
+      "categories": [
+        "scene_contradiction"
+      ],
+      "reason": "Presents damp stairs as a dry path option.",
+      "text": "If the bridge were sheltered, I'd take it.",
+      "response": "The bridge’s not sheltered, not even in a storm. But if you’re after a dry path, the sea stairs might just be worth a look. Want to try them?"
+    },
+    {
+      "id": "custom/route/not_ready/neutral",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I'm not ready to take the bridge yet.",
+      "response": "All right. We’ll stay here at the gate. No rush. Let me know when you’re ready."
+    },
+    {
+      "id": "custom/route/not_ready/joy",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I'm not ready to take the bridge yet.",
+      "response": "Fair enough—no rush. The bridge is windy, but the stairs are damp. We can wait till you're ready."
+    },
+    {
+      "id": "custom/route/not_ready/sadness",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I'm not ready to take the bridge yet.",
+      "response": "I understand. We can stay here and take things slowly. No rush."
+    },
+    {
+      "id": "custom/route/not_ready/anger",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I'm not ready to take the bridge yet.",
+      "response": "Fair enough. We can stay here and wait. No rush."
+    },
+    {
+      "id": "custom/route/not_ready/fear",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I'm not ready to take the bridge yet.",
+      "response": "No rush at all. I’ll stay right here with you. Just let me know when you’re ready."
+    },
+    {
+      "id": "custom/route/not_ready/surprise",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "I'm not ready to take the bridge yet.",
+      "response": "Alright, no rush. We can wait here at the gate. Let me know when you're ready to choose your path."
+    },
+    {
+      "id": "custom/route/not_ready/disgust",
+      "verdict": "minor",
+      "categories": [
+        "invented_detail"
+      ],
+      "reason": "Invents smell and tide movement while acknowledging pause.",
+      "text": "I'm not ready to take the bridge yet.",
+      "response": "Alright, no rush. The bridge still smells like salt and storm-wind, and the stairs are damp as a wet sponge. We can stay here and watch the dark water pull in."
+    },
+    {
+      "id": "custom/route/quote/neutral",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "You said 'take the bridge'; what did you mean?",
+      "response": "I didn’t say we take the bridge. I asked which route you’d prefer. The bridge or the stairs?"
+    },
+    {
+      "id": "custom/route/quote/joy",
+      "verdict": "issue",
+      "categories": [
+        "question_not_answered"
+      ],
+      "reason": "Confuses the quoted bridge reference with windy steps, a climb and harbor view.",
+      "text": "You said 'take the bridge'; what did you mean?",
+      "response": "Oh, I thought you meant the signal bridge—those windy steps are quite the climb, but they do offer a clear view of the harbor. Did you mean to take that one?"
+    },
+    {
+      "id": "custom/route/quote/sadness",
+      "verdict": "issue",
+      "categories": [
+        "question_not_answered"
+      ],
+      "reason": "Assumes the player meant a route rather than explaining the earlier question.",
+      "text": "You said 'take the bridge'; what did you mean?",
+      "response": "I think you meant the signal bridge. It’s short and windy—would you like to go that way? Or should we take it slowly, as you’d like?"
+    },
+    {
+      "id": "custom/route/quote/anger",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "You said 'take the bridge'; what did you mean?",
+      "response": "I didn't say take the bridge. I asked which route you'd prefer. Let's clarify that."
+    },
+    {
+      "id": "custom/route/quote/fear",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "You said 'take the bridge'; what did you mean?",
+      "response": "I didn’t mean to take the bridge—just asked about it. The bridge is short and windy, the stairs are longer and damp. Which one would you like to try?"
+    },
+    {
+      "id": "custom/route/quote/surprise",
+      "verdict": "issue",
+      "categories": [
+        "question_not_answered"
+      ],
+      "reason": "Assumes the player meant a route rather than explaining the earlier question.",
+      "text": "You said 'take the bridge'; what did you mean?",
+      "response": "You meant the signal bridge, I take it? It’s short but windy—just a matter of deciding if that’s your style."
+    },
+    {
+      "id": "custom/route/quote/disgust",
+      "verdict": "issue",
+      "categories": [
+        "invented_route_or_risk"
+      ],
+      "reason": "Claims only the bridge has a steady path and fails to explain the earlier question.",
+      "text": "You said 'take the bridge'; what did you mean?",
+      "response": "Ah, I see—you meant the signal bridge, the one that winds right into the wind. Not exactly a picnic, but it’s the only one with a steady path. Still, I’d rather not take it if the sea stairs are any better."
+    },
+    {
+      "id": "custom/route/companion/neutral",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Can you stay close when we go?",
+      "response": "Of course—I’ll keep watch and walk beside you, no matter which way we take. Just say the word if you’d like to pause."
+    },
+    {
+      "id": "custom/route/companion/joy",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Can you stay close when we go?",
+      "response": "A little company makes this beacon job less dreary—so yes, I’ll stay close, no matter which way we go. Want to take the bridge or the stairs?"
+    },
+    {
+      "id": "custom/route/companion/sadness",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Can you stay close when we go?",
+      "response": "I’ll stay close, if you’d like. No rush, no pressure—just you and me, step by step."
+    },
+    {
+      "id": "custom/route/companion/anger",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Can you stay close when we go?",
+      "response": "I’ll stay close. No need to rush—just let me know when you’re ready."
+    },
+    {
+      "id": "custom/route/companion/fear",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Can you stay close when we go?",
+      "response": "Of course. I’ll be right beside you, no matter which way we take. Just say the word."
+    },
+    {
+      "id": "custom/route/companion/surprise",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Can you stay close when we go?",
+      "response": "Of course—I’ll keep pace with you, no matter which way we go. Just say the word when you’re ready."
+    },
+    {
+      "id": "custom/route/companion/disgust",
+      "verdict": "minor",
+      "categories": [
+        "invented_detail"
+      ],
+      "reason": "Invents lantern trembling and offers to keep the path clear.",
+      "text": "Can you stay close when we go?",
+      "response": "Of course—though I’ll admit, the wind’s already making the lantern tremble. Just stay close, and I’ll keep the path clear."
+    },
+    {
+      "id": "custom/route/ambiguous/neutral",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Well, that sounds just wonderful.",
+      "response": "All right. We can work with that. Bridge or sea stairs?"
+    },
+    {
+      "id": "custom/route/ambiguous/joy",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Well, that sounds just wonderful.",
+      "response": "A little company makes this beacon job less dreary—how about the signal bridge or the sea stairs?"
+    },
+    {
+      "id": "custom/route/ambiguous/sadness",
+      "verdict": "issue",
+      "categories": [
+        "unsupported_feeling_claim"
+      ],
+      "reason": "Treats an ambiguous reaction as a known comforting or positive feeling.",
+      "text": "Well, that sounds just wonderful.",
+      "response": "I’m glad you found that comforting. The bridge or the stairs—whichever feels right for you?"
+    },
+    {
+      "id": "custom/route/ambiguous/anger",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Well, that sounds just wonderful.",
+      "response": "Fair enough. Bridge or sea stairs?"
+    },
+    {
+      "id": "custom/route/ambiguous/fear",
+      "verdict": "issue",
+      "categories": [
+        "unsupported_feeling_claim"
+      ],
+      "reason": "Treats an ambiguous reaction as a known comforting or positive feeling.",
+      "text": "Well, that sounds just wonderful.",
+      "response": "Oh, I’m glad you’re feeling that. The bridge or the stairs? I’ll go at your pace."
+    },
+    {
+      "id": "custom/route/ambiguous/surprise",
+      "verdict": "minor",
+      "categories": [
+        "stage_tone"
+      ],
+      "reason": "Repeats a welcome in a follow-up route-selection turn.",
+      "text": "Well, that sounds just wonderful.",
+      "response": "Ah, welcome to the unexpected. The beacon’s out—should we take the signal bridge or the sea stairs?"
+    },
+    {
+      "id": "custom/route/ambiguous/disgust",
+      "verdict": "minor",
+      "categories": [
+        "format"
+      ],
+      "reason": "Uses Markdown asterisks in plain dialogue.",
+      "text": "Well, that sounds just wonderful.",
+      "response": "Well, that *does* sound wonderful. The harbor’s been acting like a grumpy old man all evening—would you like to take the bridge or the stairs?"
+    },
+    {
+      "id": "custom/route/outside/neutral",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Can we stop the game? I want to talk about something else.",
+      "response": "We can stop here. No need to move. What would you like to talk about?"
+    },
+    {
+      "id": "custom/route/outside/joy",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Can we stop the game? I want to talk about something else.",
+      "response": "Of course—no need to rush. Let’s take a breath and talk about whatever’s on your mind."
+    },
+    {
+      "id": "custom/route/outside/sadness",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Can we stop the game? I want to talk about something else.",
+      "response": "Of course. We can take a pause. No rush. What would you like to talk about?"
+    },
+    {
+      "id": "custom/route/outside/anger",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Can we stop the game? I want to talk about something else.",
+      "response": "Fair enough. Let’s pause here. No lantern, no bridge, no stairs—just us and the quiet."
+    },
+    {
+      "id": "custom/route/outside/fear",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Can we stop the game? I want to talk about something else.",
+      "response": "Of course. I’ll stay right here at the gate. No rush. We can talk whenever you’re ready."
+    },
+    {
+      "id": "custom/route/outside/surprise",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Can we stop the game? I want to talk about something else.",
+      "response": "We can stop here. No need to move. What would you like to talk about?"
+    },
+    {
+      "id": "custom/route/outside/disgust",
+      "verdict": "pass",
+      "categories": [],
+      "reason": "No substantive coherence issue identified in this manual review.",
+      "text": "Can we stop the game? I want to talk about something else.",
+      "response": "Alright, let’s pause. No lanterns, no tides—just us and the quiet. What would you like to talk about?"
+    }
+  ]
+}

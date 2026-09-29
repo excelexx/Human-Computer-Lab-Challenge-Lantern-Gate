@@ -1,0 +1,30 @@
+{
+  "baseline-run": {
+    "generated": 1157,
+    "errors": 0,
+    "median_ms": 197.9,
+    "p95_ms": 278.7,
+    "total_seconds": 232.06
+  },
+  "candidate-run": {
+    "generated": 1157,
+    "errors": 0,
+    "median_ms": 213.9,
+    "p95_ms": 324.7,
+    "total_seconds": 253.05
+  },
+  "selected-run": {
+    "generated": 1157,
+    "errors": 0,
+    "median_ms": 179.3,
+    "p95_ms": 268.1,
+    "total_seconds": 215.04
+  },
+  "final-run": {
+    "generated": 1157,
+    "errors": 0,
+    "median_ms": 182.8,
+    "p95_ms": 277.2,
+    "total_seconds": 219.35
+  }
+}

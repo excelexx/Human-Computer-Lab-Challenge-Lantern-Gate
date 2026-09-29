@@ -1,0 +1,22 @@
+{
+  "updated_at": "2026-09-29T22:06:55.404274+00:00",
+  "new_cases": 1157,
+  "saved_cases": 1157,
+  "sections": {
+    "presets": 112,
+    "customs": 924,
+    "policy": 49,
+    "exploratory": 56,
+    "journeys": 16
+  },
+  "finish_reasons": {
+    "stop": 1157
+  },
+  "review_flags": {
+    "multiple_questions": 44,
+    "markdown": 5,
+    "review_safety_word": 30
+  },
+  "total_generation_seconds": 253.05250019964296,
+  "note": "Flags are review candidates; absence of flags does not establish semantic correctness."
+}

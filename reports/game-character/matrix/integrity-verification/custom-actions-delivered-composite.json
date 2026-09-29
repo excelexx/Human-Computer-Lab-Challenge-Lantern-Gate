@@ -1,0 +1,15 @@
+{
+  "scope": "Separately authored expectations for proposed quest transitions in the fixed custom corpus. This does not judge prose or prove that the app committed movement. coverage_complete identifies partial runs.",
+  "integrity_version": 2,
+  "case_definition_sha256": "c5d5e827734b200cefdb728720abef044e0215dffd8f2c5ce327f266cd0a4641",
+  "checked": 924,
+  "expected_cases": 924,
+  "unique_cases": 924,
+  "coverage_complete": true,
+  "missing_ids": [],
+  "unique_text_stage_pairs": 132,
+  "generation_unsuccessful_ids": [],
+  "generation_complete": true,
+  "failures": [],
+  "failed": 0
+}

@@ -1,19 +1,21 @@
 # Lantern Gate: handoff
 
-28 September 2026. The local text-and-vision prototype is ready to try at [127.0.0.1:7860](http://127.0.0.1:7860/). It returns a tentative MELD emotion tag and a streamed game-character response. All inference runs on this computer, within **4,464,745,375 total required learned parameters**.
+29 September 2026. The local text-and-vision prototype is ready to try at [127.0.0.1:7860](http://127.0.0.1:7860/). It returns a tentative MELD emotion tag and a streamed game-character response. All inference runs on this computer, within **4,464,745,375 total required learned parameters**.
 
-The interface is now a full-screen pixel town: **WASD / arrows** move your traveler; walking close to Mara opens dialogue and the camera panel. **E** reopens it nearby; **Escape** leaves and stops camera tracks. **Go to Mara** skips walking if needed. **Full screen** optionally fills the display.
+The interface is now a full-screen pixel town: **WASD / arrows** move your traveler; walking close to Mara opens dialogue and the camera panel. **E** reopens it nearby; **Escape** leaves and stops camera tracks. **Full screen** optionally fills the display.
 
 The [game-character report](reports/game-character/REPORT.md) records the new prompt's controlled local generations, software checks and limitations. The [quest/emotion update](reports/game-character/QUEST_UPDATE.md) covers changing example sets, the in-game ending and stronger emotion-conditioned delivery. Earlier response studies below belong to the previous reflection-companion framing.
 
+See the [dialogue matrix and remaining weaknesses](reports/game-character/MATRIX.md) for the latest response/consent testing.
+
 ## Try it
 
-1. Follow the arrow with **WASD / arrow keys** to Mara. The floating W/A/S/D tutorial disappears once you move. **Go to Mara** is an accessible shortcut.
-2. The camera, estimated emotion, four samples and **Custom** float as separate rectangles on the right. Mara stays visible in the actual town on the left, with her reply in a speech bubble above her. There is no outer panel or replacement portrait, and opening the encounter does not pan or zoom the game.
+1. Follow the arrow with **WASD / arrow keys** to Mara. The floating W/A/S/D tutorial disappears once you move.
+2. The camera, estimated emotion, four samples and the custom text input float as separate rectangles on the right. Mara stays visible in the actual town on the left, with her reply in a speech bubble above her. There is no outer panel or replacement portrait, and opening the encounter does not pan or zoom the game.
 3. Select **Turn camera on** once to use local visual evidence. Click a sample to **send it immediately**, or type your own words and use the send arrow / Enter.
 4. **Escape / Back to village** leaves the encounter, cancels queued/current replies, and stops the camera. **E** reopens it while nearby. Refresh for a fresh conversation.
 
-After the third completed exchange, choosing a route and agreeing to go starts the visible journey. Mara leads, the player follows, and the beacon lights. Escape pauses movement, E resumes, and Restart scene clears progress. The example buttons are hardcoded; Mara’s replies are generated live.
+The three-turn preset path ends after choosing a route and agreeing to go. An early explicit custom route choice followed by readiness can finish in two turns. Mara leads, the player follows, and the beacon lights. Escape pauses movement, E resumes, and Restart scene clears progress. The example buttons are hardcoded; Mara’s replies are generated live.
 
 Live display is more responsive: 85% new-frame probability / 15% prior display, with smoothing only across gaps up to 0.4 seconds. The classifier weights, score calibration and six-sample fusion gate are unchanged. This is a responsiveness adjustment, not a demonstrated accuracy gain. Capture requests remain 5 Hz.
 

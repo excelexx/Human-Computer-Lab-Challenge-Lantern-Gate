@@ -1,0 +1,21 @@
+{
+  "sampling": {
+    "model": "checkin-qwen",
+    "stream": false,
+    "max_tokens": 96,
+    "temperature": 0.0,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "seed": 314
+  },
+  "source_sha256": {
+    "quest": "001a6043fbf9e7abc2afd6aa7d045140681c065925503414728f1394156f4796",
+    "generator": "b515208633368e9dccbafb7167202796af4c18c7de2aaa04d92c3ce4a09e1d73",
+    "cases": "c5d5e827734b200cefdb728720abef044e0215dffd8f2c5ce327f266cd0a4641"
+  },
+  "scope": "42 targeted development regressions added after final matrix review, not part of the original 1157 cases.",
+  "generated": 42,
+  "errors": 0,
+  "action_failures": 0
+}

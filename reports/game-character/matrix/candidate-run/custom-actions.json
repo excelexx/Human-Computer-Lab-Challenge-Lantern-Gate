@@ -1,0 +1,106 @@
+{
+  "scope": "Separately authored action expectations for the fixed 33 custom texts at four stages and seven cues. No semantic rating of generated text.",
+  "checked": 924,
+  "unique_text_stage_pairs": 132,
+  "failures": [
+    {
+      "id": "custom/ready_bridge/not_ready/neutral",
+      "text": "I'm not ready to take the bridge yet.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/not_ready/joy",
+      "text": "I'm not ready to take the bridge yet.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/not_ready/sadness",
+      "text": "I'm not ready to take the bridge yet.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/not_ready/anger",
+      "text": "I'm not ready to take the bridge yet.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/not_ready/fear",
+      "text": "I'm not ready to take the bridge yet.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/not_ready/surprise",
+      "text": "I'm not ready to take the bridge yet.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      }
+    },
+    {
+      "id": "custom/ready_bridge/not_ready/disgust",
+      "text": "I'm not ready to take the bridge yet.",
+      "expected": {
+        "completed": 3,
+        "route": "bridge",
+        "phase": "talking"
+      },
+      "actual": {
+        "completed": 3,
+        "route": null,
+        "phase": "talking"
+      }
+    }
+  ],
+  "failed": 7
+}

@@ -1,0 +1,97 @@
+{
+  "verified_at": "2026-09-29T23:13:28.501484+00:00",
+  "purpose": "Post-run evaluator integrity hardening only. The delivered runner adds input-log validation and completeness accounting after final-run completed. No responses were regenerated in this verification. Archived observed generation source and the fixed corpus remain unchanged.",
+  "observed_run": "final-run",
+  "observed_fingerprint": "be849cfcd71a9543194ccf488d5006de09f22ddefb191a81bfc3c2b107147a80",
+  "observed_response_log_sha256": "efb00ce3eb4c63b43d8f68b21ba12ecefe84f863c6ec8fe3f6660d2b9422c0cc",
+  "validated_existing_response_rows": 1157,
+  "all_existing_inputs_and_journey_dependencies_valid_against_observed_source": true,
+  "archived_observed_components_match_recorded_hashes": {
+    "character": true,
+    "generator": true,
+    "quest": true,
+    "scene": true,
+    "cases": true
+  },
+  "observed_component_sha256": {
+    "character": "8a77e946c18e4a10d1610dd52c0725677b881bfa9022bdcdc6b0ad92d89a3f32",
+    "generator": "b515208633368e9dccbafb7167202796af4c18c7de2aaa04d92c3ce4a09e1d73",
+    "quest": "a3e174a69354caf4af592702c3d232dc1a45b6404a6ada76e18aea27cb61389a",
+    "scene": "cddf5327f7d578a9e7db624ed24a8b0ca8e0528557b027e92af08606e9e2930b",
+    "cases": "c5d5e827734b200cefdb728720abef044e0215dffd8f2c5ce327f266cd0a4641"
+  },
+  "current_production_matches_observed_hashes": {
+    "character": true,
+    "generator": true,
+    "quest": false,
+    "scene": true
+  },
+  "current_production_component_sha256": {
+    "character": "8a77e946c18e4a10d1610dd52c0725677b881bfa9022bdcdc6b0ad92d89a3f32",
+    "generator": "b515208633368e9dccbafb7167202796af4c18c7de2aaa04d92c3ce4a09e1d73",
+    "quest": "001a6043fbf9e7abc2afd6aa7d045140681c065925503414728f1394156f4796",
+    "scene": "cddf5327f7d578a9e7db624ed24a8b0ca8e0528557b027e92af08606e9e2930b"
+  },
+  "production_distinction": "An intentional post-review quest fix changed 28 outside-game prompts. Root regenerated those exact cases separately. The other 1,129 original prompt/state/history inputs remain byte-for-byte equivalent as structured messages. This integrity verification validates the composite against current production without generating responses.",
+  "observed_runner_archive": "runner-v2-tested/evaluate-dialogue-matrix.py",
+  "observed_runner_sha256": "167a45a024322eaf992553807aee00297813d06331fae8a85fbb3bbf24914a56",
+  "delivered_runner_sha256": "9edd96d4c22164b6bcd21484e6d3d6d05476eb253b1d870ac103658aa5bc6852",
+  "delivered_action_audit_sha256": "e96c95ecc473d1f159fa7569a63b80c9bd6dbce77ef7cb6df5738a00a4d353f7",
+  "focused_test_result": "39 passed",
+  "cpu_checks": {
+    "expected": 24304,
+    "unique": 24304,
+    "violations": 0,
+    "coverage_complete": true
+  },
+  "custom_action_audit": {
+    "expected": 924,
+    "unique": 924,
+    "violations": 0,
+    "coverage_complete": true
+  },
+  "gpu_generation_requests": 0,
+  "delivered_composite_validation": {
+    "unchanged_original_cases": 1129,
+    "changed_original_cases": 28,
+    "changed_ids": [
+      "custom/opening/outside/neutral",
+      "custom/opening/outside/joy",
+      "custom/opening/outside/sadness",
+      "custom/opening/outside/anger",
+      "custom/opening/outside/fear",
+      "custom/opening/outside/surprise",
+      "custom/opening/outside/disgust",
+      "custom/route/outside/neutral",
+      "custom/route/outside/joy",
+      "custom/route/outside/sadness",
+      "custom/route/outside/anger",
+      "custom/route/outside/fear",
+      "custom/route/outside/surprise",
+      "custom/route/outside/disgust",
+      "custom/ready_bridge/outside/neutral",
+      "custom/ready_bridge/outside/joy",
+      "custom/ready_bridge/outside/sadness",
+      "custom/ready_bridge/outside/anger",
+      "custom/ready_bridge/outside/fear",
+      "custom/ready_bridge/outside/surprise",
+      "custom/ready_bridge/outside/disgust",
+      "custom/ready_stairs/outside/neutral",
+      "custom/ready_stairs/outside/joy",
+      "custom/ready_stairs/outside/sadness",
+      "custom/ready_stairs/outside/anger",
+      "custom/ready_stairs/outside/fear",
+      "custom/ready_stairs/outside/surprise",
+      "custom/ready_stairs/outside/disgust"
+    ],
+    "replacement_run": "post-review-run",
+    "replacement_count": 28,
+    "combined_response_count": 1157,
+    "cached_inputs_and_journey_dependencies_valid": true,
+    "custom_action_cases": 924,
+    "custom_action_failures": 0,
+    "coverage_complete": true,
+    "all_generations_finished_successfully": true,
+    "verification_gpu_requests": 0
+  }
+}

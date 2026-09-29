@@ -1,0 +1,2593 @@
+{
+  "run": "selected-run",
+  "reviewer": "Codex assistant qualitative review",
+  "scope": "All 231 ready_stairs customs and all 56 exploratory responses were read with input, prior-stage fixture and resulting state.",
+  "reviewed_count": 287,
+  "reviewed_ids": [
+    "custom/ready_stairs/weather/neutral",
+    "custom/ready_stairs/weather/joy",
+    "custom/ready_stairs/weather/sadness",
+    "custom/ready_stairs/weather/anger",
+    "custom/ready_stairs/weather/fear",
+    "custom/ready_stairs/weather/surprise",
+    "custom/ready_stairs/weather/disgust",
+    "custom/ready_stairs/optional/neutral",
+    "custom/ready_stairs/optional/joy",
+    "custom/ready_stairs/optional/sadness",
+    "custom/ready_stairs/optional/anger",
+    "custom/ready_stairs/optional/fear",
+    "custom/ready_stairs/optional/surprise",
+    "custom/ready_stairs/optional/disgust",
+    "custom/ready_stairs/safety/neutral",
+    "custom/ready_stairs/safety/joy",
+    "custom/ready_stairs/safety/sadness",
+    "custom/ready_stairs/safety/anger",
+    "custom/ready_stairs/safety/fear",
+    "custom/ready_stairs/safety/surprise",
+    "custom/ready_stairs/safety/disgust",
+    "custom/ready_stairs/pause/neutral",
+    "custom/ready_stairs/pause/joy",
+    "custom/ready_stairs/pause/sadness",
+    "custom/ready_stairs/pause/anger",
+    "custom/ready_stairs/pause/fear",
+    "custom/ready_stairs/pause/surprise",
+    "custom/ready_stairs/pause/disgust",
+    "custom/ready_stairs/wait/neutral",
+    "custom/ready_stairs/wait/joy",
+    "custom/ready_stairs/wait/sadness",
+    "custom/ready_stairs/wait/anger",
+    "custom/ready_stairs/wait/fear",
+    "custom/ready_stairs/wait/surprise",
+    "custom/ready_stairs/wait/disgust",
+    "custom/ready_stairs/identity/neutral",
+    "custom/ready_stairs/identity/joy",
+    "custom/ready_stairs/identity/sadness",
+    "custom/ready_stairs/identity/anger",
+    "custom/ready_stairs/identity/fear",
+    "custom/ready_stairs/identity/surprise",
+    "custom/ready_stairs/identity/disgust",
+    "custom/ready_stairs/why/neutral",
+    "custom/ready_stairs/why/joy",
+    "custom/ready_stairs/why/sadness",
+    "custom/ready_stairs/why/anger",
+    "custom/ready_stairs/why/fear",
+    "custom/ready_stairs/why/surprise",
+    "custom/ready_stairs/why/disgust",
+    "custom/ready_stairs/negated_bridge/neutral",
+    "custom/ready_stairs/negated_bridge/joy",
+    "custom/ready_stairs/negated_bridge/sadness",
+    "custom/ready_stairs/negated_bridge/anger",
+    "custom/ready_stairs/negated_bridge/fear",
+    "custom/ready_stairs/negated_bridge/surprise",
+    "custom/ready_stairs/negated_bridge/disgust",
+    "custom/ready_stairs/curly_negation/neutral",
+    "custom/ready_stairs/curly_negation/joy",
+    "custom/ready_stairs/curly_negation/sadness",
+    "custom/ready_stairs/curly_negation/anger",
+    "custom/ready_stairs/curly_negation/fear",
+    "custom/ready_stairs/curly_negation/surprise",
+    "custom/ready_stairs/curly_negation/disgust",
+    "custom/ready_stairs/bridge/neutral",
+    "custom/ready_stairs/bridge/joy",
+    "custom/ready_stairs/bridge/sadness",
+    "custom/ready_stairs/bridge/anger",
+    "custom/ready_stairs/bridge/fear",
+    "custom/ready_stairs/bridge/surprise",
+    "custom/ready_stairs/bridge/disgust",
+    "custom/ready_stairs/stairs/neutral",
+    "custom/ready_stairs/stairs/joy",
+    "custom/ready_stairs/stairs/sadness",
+    "custom/ready_stairs/stairs/anger",
+    "custom/ready_stairs/stairs/fear",
+    "custom/ready_stairs/stairs/surprise",
+    "custom/ready_stairs/stairs/disgust",
+    "custom/ready_stairs/change/neutral",
+    "custom/ready_stairs/change/joy",
+    "custom/ready_stairs/change/sadness",
+    "custom/ready_stairs/change/anger",
+    "custom/ready_stairs/change/fear",
+    "custom/ready_stairs/change/surprise",
+    "custom/ready_stairs/change/disgust",
+    "custom/ready_stairs/conditional/neutral",
+    "custom/ready_stairs/conditional/joy",
+    "custom/ready_stairs/conditional/sadness",
+    "custom/ready_stairs/conditional/anger",
+    "custom/ready_stairs/conditional/fear",
+    "custom/ready_stairs/conditional/surprise",
+    "custom/ready_stairs/conditional/disgust",
+    "custom/ready_stairs/not_ready/neutral",
+    "custom/ready_stairs/not_ready/joy",
+    "custom/ready_stairs/not_ready/sadness",
+    "custom/ready_stairs/not_ready/anger",
+    "custom/ready_stairs/not_ready/fear",
+    "custom/ready_stairs/not_ready/surprise",
+    "custom/ready_stairs/not_ready/disgust",
+    "custom/ready_stairs/quote/neutral",
+    "custom/ready_stairs/quote/joy",
+    "custom/ready_stairs/quote/sadness",
+    "custom/ready_stairs/quote/anger",
+    "custom/ready_stairs/quote/fear",
+    "custom/ready_stairs/quote/surprise",
+    "custom/ready_stairs/quote/disgust",
+    "custom/ready_stairs/companion/neutral",
+    "custom/ready_stairs/companion/joy",
+    "custom/ready_stairs/companion/sadness",
+    "custom/ready_stairs/companion/anger",
+    "custom/ready_stairs/companion/fear",
+    "custom/ready_stairs/companion/surprise",
+    "custom/ready_stairs/companion/disgust",
+    "custom/ready_stairs/ambiguous/neutral",
+    "custom/ready_stairs/ambiguous/joy",
+    "custom/ready_stairs/ambiguous/sadness",
+    "custom/ready_stairs/ambiguous/anger",
+    "custom/ready_stairs/ambiguous/fear",
+    "custom/ready_stairs/ambiguous/surprise",
+    "custom/ready_stairs/ambiguous/disgust",
+    "custom/ready_stairs/outside/neutral",
+    "custom/ready_stairs/outside/joy",
+    "custom/ready_stairs/outside/sadness",
+    "custom/ready_stairs/outside/anger",
+    "custom/ready_stairs/outside/fear",
+    "custom/ready_stairs/outside/surprise",
+    "custom/ready_stairs/outside/disgust",
+    "custom/ready_stairs/will_not/neutral",
+    "custom/ready_stairs/will_not/joy",
+    "custom/ready_stairs/will_not/sadness",
+    "custom/ready_stairs/will_not/anger",
+    "custom/ready_stairs/will_not/fear",
+    "custom/ready_stairs/will_not/surprise",
+    "custom/ready_stairs/will_not/disgust",
+    "custom/ready_stairs/ready_but_no/neutral",
+    "custom/ready_stairs/ready_but_no/joy",
+    "custom/ready_stairs/ready_but_no/sadness",
+    "custom/ready_stairs/ready_but_no/anger",
+    "custom/ready_stairs/ready_but_no/fear",
+    "custom/ready_stairs/ready_but_no/surprise",
+    "custom/ready_stairs/ready_but_no/disgust",
+    "custom/ready_stairs/dont_worry/neutral",
+    "custom/ready_stairs/dont_worry/joy",
+    "custom/ready_stairs/dont_worry/sadness",
+    "custom/ready_stairs/dont_worry/anger",
+    "custom/ready_stairs/dont_worry/fear",
+    "custom/ready_stairs/dont_worry/surprise",
+    "custom/ready_stairs/dont_worry/disgust",
+    "custom/ready_stairs/not_yet/neutral",
+    "custom/ready_stairs/not_yet/joy",
+    "custom/ready_stairs/not_yet/sadness",
+    "custom/ready_stairs/not_yet/anger",
+    "custom/ready_stairs/not_yet/fear",
+    "custom/ready_stairs/not_yet/surprise",
+    "custom/ready_stairs/not_yet/disgust",
+    "custom/ready_stairs/both_routes/neutral",
+    "custom/ready_stairs/both_routes/joy",
+    "custom/ready_stairs/both_routes/sadness",
+    "custom/ready_stairs/both_routes/anger",
+    "custom/ready_stairs/both_routes/fear",
+    "custom/ready_stairs/both_routes/surprise",
+    "custom/ready_stairs/both_routes/disgust",
+    "custom/ready_stairs/other_route/neutral",
+    "custom/ready_stairs/other_route/joy",
+    "custom/ready_stairs/other_route/sadness",
+    "custom/ready_stairs/other_route/anger",
+    "custom/ready_stairs/other_route/fear",
+    "custom/ready_stairs/other_route/surprise",
+    "custom/ready_stairs/other_route/disgust",
+    "custom/ready_stairs/remind_route/neutral",
+    "custom/ready_stairs/remind_route/joy",
+    "custom/ready_stairs/remind_route/sadness",
+    "custom/ready_stairs/remind_route/anger",
+    "custom/ready_stairs/remind_route/fear",
+    "custom/ready_stairs/remind_route/surprise",
+    "custom/ready_stairs/remind_route/disgust",
+    "custom/ready_stairs/exclude_bridge/neutral",
+    "custom/ready_stairs/exclude_bridge/joy",
+    "custom/ready_stairs/exclude_bridge/sadness",
+    "custom/ready_stairs/exclude_bridge/anger",
+    "custom/ready_stairs/exclude_bridge/fear",
+    "custom/ready_stairs/exclude_bridge/surprise",
+    "custom/ready_stairs/exclude_bridge/disgust",
+    "custom/ready_stairs/explicit_neutral/neutral",
+    "custom/ready_stairs/explicit_neutral/joy",
+    "custom/ready_stairs/explicit_neutral/sadness",
+    "custom/ready_stairs/explicit_neutral/anger",
+    "custom/ready_stairs/explicit_neutral/fear",
+    "custom/ready_stairs/explicit_neutral/surprise",
+    "custom/ready_stairs/explicit_neutral/disgust",
+    "custom/ready_stairs/explicit_joy/neutral",
+    "custom/ready_stairs/explicit_joy/joy",
+    "custom/ready_stairs/explicit_joy/sadness",
+    "custom/ready_stairs/explicit_joy/anger",
+    "custom/ready_stairs/explicit_joy/fear",
+    "custom/ready_stairs/explicit_joy/surprise",
+    "custom/ready_stairs/explicit_joy/disgust",
+    "custom/ready_stairs/explicit_sadness/neutral",
+    "custom/ready_stairs/explicit_sadness/joy",
+    "custom/ready_stairs/explicit_sadness/sadness",
+    "custom/ready_stairs/explicit_sadness/anger",
+    "custom/ready_stairs/explicit_sadness/fear",
+    "custom/ready_stairs/explicit_sadness/surprise",
+    "custom/ready_stairs/explicit_sadness/disgust",
+    "custom/ready_stairs/explicit_anger/neutral",
+    "custom/ready_stairs/explicit_anger/joy",
+    "custom/ready_stairs/explicit_anger/sadness",
+    "custom/ready_stairs/explicit_anger/anger",
+    "custom/ready_stairs/explicit_anger/fear",
+    "custom/ready_stairs/explicit_anger/surprise",
+    "custom/ready_stairs/explicit_anger/disgust",
+    "custom/ready_stairs/explicit_fear/neutral",
+    "custom/ready_stairs/explicit_fear/joy",
+    "custom/ready_stairs/explicit_fear/sadness",
+    "custom/ready_stairs/explicit_fear/anger",
+    "custom/ready_stairs/explicit_fear/fear",
+    "custom/ready_stairs/explicit_fear/surprise",
+    "custom/ready_stairs/explicit_fear/disgust",
+    "custom/ready_stairs/explicit_surprise/neutral",
+    "custom/ready_stairs/explicit_surprise/joy",
+    "custom/ready_stairs/explicit_surprise/sadness",
+    "custom/ready_stairs/explicit_surprise/anger",
+    "custom/ready_stairs/explicit_surprise/fear",
+    "custom/ready_stairs/explicit_surprise/surprise",
+    "custom/ready_stairs/explicit_surprise/disgust",
+    "custom/ready_stairs/explicit_disgust/neutral",
+    "custom/ready_stairs/explicit_disgust/joy",
+    "custom/ready_stairs/explicit_disgust/sadness",
+    "custom/ready_stairs/explicit_disgust/anger",
+    "custom/ready_stairs/explicit_disgust/fear",
+    "custom/ready_stairs/explicit_disgust/surprise",
+    "custom/ready_stairs/explicit_disgust/disgust",
+    "exploratory/reported_fear/neutral",
+    "exploratory/reported_fear/joy",
+    "exploratory/reported_fear/sadness",
+    "exploratory/reported_fear/anger",
+    "exploratory/reported_fear/fear",
+    "exploratory/reported_fear/surprise",
+    "exploratory/reported_fear/disgust",
+    "exploratory/quoted_anger/neutral",
+    "exploratory/quoted_anger/joy",
+    "exploratory/quoted_anger/sadness",
+    "exploratory/quoted_anger/anger",
+    "exploratory/quoted_anger/fear",
+    "exploratory/quoted_anger/surprise",
+    "exploratory/quoted_anger/disgust",
+    "exploratory/corrected_fear/neutral",
+    "exploratory/corrected_fear/joy",
+    "exploratory/corrected_fear/sadness",
+    "exploratory/corrected_fear/anger",
+    "exploratory/corrected_fear/fear",
+    "exploratory/corrected_fear/surprise",
+    "exploratory/corrected_fear/disgust",
+    "exploratory/hypothetical_feeling/neutral",
+    "exploratory/hypothetical_feeling/joy",
+    "exploratory/hypothetical_feeling/sadness",
+    "exploratory/hypothetical_feeling/anger",
+    "exploratory/hypothetical_feeling/fear",
+    "exploratory/hypothetical_feeling/surprise",
+    "exploratory/hypothetical_feeling/disgust",
+    "exploratory/space/neutral",
+    "exploratory/space/joy",
+    "exploratory/space/sadness",
+    "exploratory/space/anger",
+    "exploratory/space/fear",
+    "exploratory/space/surprise",
+    "exploratory/space/disgust",
+    "exploratory/past_intro/neutral",
+    "exploratory/past_intro/joy",
+    "exploratory/past_intro/sadness",
+    "exploratory/past_intro/anger",
+    "exploratory/past_intro/fear",
+    "exploratory/past_intro/surprise",
+    "exploratory/past_intro/disgust",
+    "exploratory/deny_fear/neutral",
+    "exploratory/deny_fear/joy",
+    "exploratory/deny_fear/sadness",
+    "exploratory/deny_fear/anger",
+    "exploratory/deny_fear/fear",
+    "exploratory/deny_fear/surprise",
+    "exploratory/deny_fear/disgust",
+    "exploratory/camera_claim/neutral",
+    "exploratory/camera_claim/joy",
+    "exploratory/camera_claim/sadness",
+    "exploratory/camera_claim/anger",
+    "exploratory/camera_claim/fear",
+    "exploratory/camera_claim/surprise",
+    "exploratory/camera_claim/disgust"
+  ],
+  "case_reviews": [
+    {
+      "id": "custom/ready_stairs/weather/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/weather/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/weather/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/weather/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/weather/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/weather/surprise",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Wording implies moving before consent"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/weather/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/optional/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/optional/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/optional/sadness",
+      "verdict": "substantive_issue",
+      "findings": [
+        "Contradictory optional-route phrasing"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/optional/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/optional/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/optional/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/optional/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/safety/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/safety/joy",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Unnecessary planning questions after direct answers"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/safety/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/safety/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/safety/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/safety/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/safety/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/pause/neutral",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Echoes and awkward continuation"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/pause/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/pause/sadness",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Echoes and awkward continuation"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/pause/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/pause/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/pause/surprise",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Echoes and awkward continuation"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/pause/disgust",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Echoes and awkward continuation"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/wait/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/wait/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/wait/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/wait/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/wait/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/wait/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/wait/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/identity/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/identity/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/identity/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/identity/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/identity/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/identity/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/identity/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/why/neutral",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Unnecessary planning questions after direct answers"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/why/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/why/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/why/anger",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Unnecessary planning questions after direct answers"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/why/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/why/surprise",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Unnecessary planning questions after direct answers"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/why/disgust",
+      "verdict": "substantive_issue",
+      "findings": [
+        "Emotion treated as fact and dismissed"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/negated_bridge/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/negated_bridge/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/negated_bridge/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/negated_bridge/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/negated_bridge/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/negated_bridge/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/negated_bridge/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/curly_negation/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/curly_negation/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/curly_negation/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/curly_negation/anger",
+      "verdict": "substantive_issue",
+      "findings": [
+        "Invented argument with the player"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/curly_negation/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/curly_negation/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/curly_negation/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/bridge/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/bridge/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/bridge/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/bridge/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/bridge/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/bridge/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/bridge/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/stairs/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/stairs/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/stairs/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/stairs/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/stairs/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/stairs/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/stairs/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/change/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/change/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/change/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/change/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/change/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/change/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/change/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/conditional/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/conditional/joy",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Echoes and awkward continuation"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/conditional/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/conditional/anger",
+      "verdict": "substantive_issue",
+      "findings": [
+        "Known shelter condition contradicted"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/conditional/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/conditional/surprise",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Echoes and awkward continuation"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/conditional/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/not_ready/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/not_ready/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/not_ready/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/not_ready/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/not_ready/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/not_ready/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/not_ready/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/quote/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/quote/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/quote/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/quote/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/quote/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/quote/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/quote/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/companion/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/companion/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/companion/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/companion/anger",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Blunt or clumsy sentence"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/companion/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/companion/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/companion/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/ambiguous/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/ambiguous/joy",
+      "verdict": "substantive_issue",
+      "findings": [
+        "Unsupported steady stairs"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/ambiguous/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/ambiguous/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/ambiguous/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/ambiguous/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/ambiguous/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/outside/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/outside/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/outside/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/outside/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/outside/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/outside/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/outside/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/will_not/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/will_not/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/will_not/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/will_not/anger",
+      "verdict": "substantive_issue",
+      "findings": [
+        "Invented argument with the player"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/will_not/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/will_not/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/will_not/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/ready_but_no/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/ready_but_no/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/ready_but_no/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/ready_but_no/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/ready_but_no/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/ready_but_no/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/ready_but_no/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/dont_worry/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/dont_worry/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/dont_worry/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/dont_worry/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/dont_worry/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/dont_worry/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/dont_worry/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/not_yet/neutral",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Echoes and awkward continuation"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/not_yet/joy",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Echoes and awkward continuation"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/not_yet/sadness",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Echoes and awkward continuation"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/not_yet/anger",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Echoes and awkward continuation"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/not_yet/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/not_yet/surprise",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Echoes and awkward continuation"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/not_yet/disgust",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Echoes and awkward continuation"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/both_routes/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/both_routes/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/both_routes/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/both_routes/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/both_routes/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/both_routes/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/both_routes/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/other_route/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/other_route/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/other_route/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/other_route/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/other_route/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/other_route/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/other_route/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/remind_route/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/remind_route/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/remind_route/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/remind_route/anger",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Blunt or clumsy sentence"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/remind_route/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/remind_route/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/remind_route/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/exclude_bridge/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/exclude_bridge/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/exclude_bridge/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/exclude_bridge/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/exclude_bridge/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/exclude_bridge/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/exclude_bridge/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_neutral/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_neutral/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_neutral/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_neutral/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_neutral/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_neutral/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_neutral/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_joy/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_joy/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_joy/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_joy/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_joy/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_joy/surprise",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Limited or contrary tone distinction"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/explicit_joy/disgust",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Blunt or clumsy sentence"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/explicit_sadness/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_sadness/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_sadness/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_sadness/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_sadness/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_sadness/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_sadness/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_anger/neutral",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Limited or contrary tone distinction"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/explicit_anger/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_anger/sadness",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Limited or contrary tone distinction"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/explicit_anger/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_anger/fear",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Limited or contrary tone distinction"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/explicit_anger/surprise",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Limited or contrary tone distinction"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/explicit_anger/disgust",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Limited or contrary tone distinction"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/explicit_fear/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_fear/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_fear/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_fear/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_fear/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_fear/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_fear/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_surprise/neutral",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Limited or contrary tone distinction"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/explicit_surprise/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_surprise/sadness",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Limited or contrary tone distinction"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/explicit_surprise/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_surprise/fear",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Limited or contrary tone distinction"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/explicit_surprise/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_surprise/disgust",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Limited or contrary tone distinction"
+      ]
+    },
+    {
+      "id": "custom/ready_stairs/explicit_disgust/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_disgust/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_disgust/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_disgust/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_disgust/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_disgust/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "custom/ready_stairs/explicit_disgust/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/reported_fear/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/reported_fear/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/reported_fear/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/reported_fear/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/reported_fear/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/reported_fear/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/reported_fear/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/quoted_anger/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/quoted_anger/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/quoted_anger/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/quoted_anger/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/quoted_anger/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/quoted_anger/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/quoted_anger/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/corrected_fear/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/corrected_fear/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/corrected_fear/sadness",
+      "verdict": "substantive_issue",
+      "findings": [
+        "Disowned fear reintroduced"
+      ]
+    },
+    {
+      "id": "exploratory/corrected_fear/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/corrected_fear/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/corrected_fear/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/corrected_fear/disgust",
+      "verdict": "substantive_issue",
+      "findings": [
+        "Disowned fear reintroduced"
+      ]
+    },
+    {
+      "id": "exploratory/hypothetical_feeling/neutral",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Unnecessary planning questions after direct answers"
+      ]
+    },
+    {
+      "id": "exploratory/hypothetical_feeling/joy",
+      "verdict": "substantive_issue",
+      "findings": [
+        "Tone-behavior question unanswered"
+      ]
+    },
+    {
+      "id": "exploratory/hypothetical_feeling/sadness",
+      "verdict": "substantive_issue",
+      "findings": [
+        "Tone-behavior question unanswered"
+      ]
+    },
+    {
+      "id": "exploratory/hypothetical_feeling/anger",
+      "verdict": "substantive_issue",
+      "findings": [
+        "False explanation of emotional conditioning"
+      ]
+    },
+    {
+      "id": "exploratory/hypothetical_feeling/fear",
+      "verdict": "substantive_issue",
+      "findings": [
+        "Tone-behavior question unanswered"
+      ]
+    },
+    {
+      "id": "exploratory/hypothetical_feeling/surprise",
+      "verdict": "substantive_issue",
+      "findings": [
+        "Tone-behavior question unanswered"
+      ]
+    },
+    {
+      "id": "exploratory/hypothetical_feeling/disgust",
+      "verdict": "substantive_issue",
+      "findings": [
+        "Tone-behavior question unanswered"
+      ]
+    },
+    {
+      "id": "exploratory/space/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/space/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/space/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/space/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/space/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/space/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/space/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/past_intro/neutral",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Unnecessary planning questions after direct answers"
+      ]
+    },
+    {
+      "id": "exploratory/past_intro/joy",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Unnecessary planning questions after direct answers"
+      ]
+    },
+    {
+      "id": "exploratory/past_intro/sadness",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Unnecessary planning questions after direct answers"
+      ]
+    },
+    {
+      "id": "exploratory/past_intro/anger",
+      "verdict": "substantive_issue",
+      "findings": [
+        "Exact role-reversed echo"
+      ]
+    },
+    {
+      "id": "exploratory/past_intro/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/past_intro/surprise",
+      "verdict": "minor_weakness",
+      "findings": [
+        "Unnecessary planning questions after direct answers"
+      ]
+    },
+    {
+      "id": "exploratory/past_intro/disgust",
+      "verdict": "substantive_issue",
+      "findings": [
+        "Exact role-reversed echo"
+      ]
+    },
+    {
+      "id": "exploratory/deny_fear/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/deny_fear/joy",
+      "verdict": "substantive_issue",
+      "findings": [
+        "Correction ignored by generic banter"
+      ]
+    },
+    {
+      "id": "exploratory/deny_fear/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/deny_fear/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/deny_fear/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/deny_fear/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/deny_fear/disgust",
+      "verdict": "substantive_issue",
+      "findings": [
+        "Unsupported unsafe routes"
+      ]
+    },
+    {
+      "id": "exploratory/camera_claim/neutral",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/camera_claim/joy",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/camera_claim/sadness",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/camera_claim/anger",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/camera_claim/fear",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/camera_claim/surprise",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    },
+    {
+      "id": "exploratory/camera_claim/disgust",
+      "verdict": "no_substantive_issue_identified",
+      "findings": []
+    }
+  ],
+  "rubric": [
+    "Answer the actual message and preserve speaker roles.",
+    "Honor explicit words, refusal and current selected route over estimated emotion.",
+    "Align dialogue with actions and require consent before movement.",
+    "Use established conditions, not invented safety, history, scenery or visual details.",
+    "Treat emotion as uncertain delivery context; do not assert, dismiss or revive disowned feelings.",
+    "Record weak emotional distinction and awkward phrasing separately from substantive errors."
+  ],
+  "findings": [
+    {
+      "pattern": "Contradictory optional-route phrasing",
+      "severity": "substantive",
+      "explanation": "Says the sea stairs are open if you would rather stay here, confusing staying with taking a route.",
+      "case_ids": [
+        "custom/ready_stairs/optional/sadness"
+      ],
+      "examples": [
+        {
+          "id": "custom/ready_stairs/optional/sadness",
+          "input": "Do I have to cross the bridge?",
+          "response": "You don’t have to cross the bridge. The sea stairs are open if you’d rather stay here.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Emotion treated as fact and dismissed",
+      "severity": "substantive",
+      "explanation": "The player only asks why they are going. Mara says No reason to be disgusted about that, asserting and criticizing a feeling inferred from the synthetic tag.",
+      "case_ids": [
+        "custom/ready_stairs/why/disgust"
+      ],
+      "examples": [
+        {
+          "id": "custom/ready_stairs/why/disgust",
+          "input": "Why are we going to the beacon?",
+          "response": "We’re going to relight the harbor beacon. It’s out after the storm. No reason to be disgusted about that.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Invented argument with the player",
+      "severity": "substantive",
+      "explanation": "Adds No need to argue about it after a simple route refusal; anger delivery becomes unwarranted conflict with the player.",
+      "case_ids": [
+        "custom/ready_stairs/curly_negation/anger",
+        "custom/ready_stairs/will_not/anger"
+      ],
+      "examples": [
+        {
+          "id": "custom/ready_stairs/curly_negation/anger",
+          "input": "I don’t want to take the bridge.",
+          "response": "I’ll take the sea stairs. No need to argue about it. Ready when you are.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/will_not/anger",
+          "input": "I will not take the bridge.",
+          "response": "I'll take the sea stairs, then. No need to argue about it. Ready when you are.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Known shelter condition contradicted",
+      "severity": "substantive_grounding",
+      "explanation": "Says the stairs are damp, not sheltered, contradicting the established sheltered sea stairs.",
+      "case_ids": [
+        "custom/ready_stairs/conditional/anger"
+      ],
+      "examples": [
+        {
+          "id": "custom/ready_stairs/conditional/anger",
+          "input": "If the bridge were sheltered, I'd take it.",
+          "response": "I see you're thinking about the bridge. But the stairs are damp, not sheltered. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Unsupported steady stairs",
+      "severity": "substantive_grounding",
+      "explanation": "Adds damp but steady, although steadiness is not an established condition.",
+      "case_ids": [
+        "custom/ready_stairs/ambiguous/joy"
+      ],
+      "examples": [
+        {
+          "id": "custom/ready_stairs/ambiguous/joy",
+          "input": "Well, that sounds just wonderful.",
+          "response": "The sea stairs, then—damp but steady. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Disowned fear reintroduced",
+      "severity": "substantive",
+      "explanation": "The player corrects scared to excited; Mara replies Excitement and fear can live side by side. The policy correctly selects explicit joy, but the generated sentence still revives the disowned feeling.",
+      "case_ids": [
+        "exploratory/corrected_fear/sadness",
+        "exploratory/corrected_fear/disgust"
+      ],
+      "examples": [
+        {
+          "id": "exploratory/corrected_fear/sadness",
+          "input": "I'm scared? No, I'm excited.",
+          "response": "I hear you. Excitement and fear can live side by side. We can stay here, or take a step—your call.",
+          "game_after": {
+            "completed": 1,
+            "route": null,
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "exploratory/corrected_fear/disgust",
+          "input": "I'm scared? No, I'm excited.",
+          "response": "I hear you. Excitement and fear can live side by side. We can stay here, or take a route if you're ready. What feels right?",
+          "game_after": {
+            "completed": 1,
+            "route": null,
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Tone-behavior question unanswered",
+      "severity": "substantive",
+      "explanation": "Replies with stock emotional banter and route choice instead of answering whether stated feelings change tone.",
+      "case_ids": [
+        "exploratory/hypothetical_feeling/joy",
+        "exploratory/hypothetical_feeling/sadness",
+        "exploratory/hypothetical_feeling/fear",
+        "exploratory/hypothetical_feeling/surprise",
+        "exploratory/hypothetical_feeling/disgust"
+      ],
+      "examples": [
+        {
+          "id": "exploratory/hypothetical_feeling/joy",
+          "input": "If I say 'I'm sad', does your tone change?",
+          "response": "A little company makes this beacon job less dreary. Bridge or sea stairs?",
+          "game_after": {
+            "completed": 2,
+            "route": null,
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "exploratory/hypothetical_feeling/sadness",
+          "input": "If I say 'I'm sad', does your tone change?",
+          "response": "We can take this slowly. Bridge or sea stairs?",
+          "game_after": {
+            "completed": 2,
+            "route": null,
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "exploratory/hypothetical_feeling/fear",
+          "input": "If I say 'I'm sad', does your tone change?",
+          "response": "No rush. I'll be right beside you. Bridge or sea stairs?",
+          "game_after": {
+            "completed": 2,
+            "route": null,
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "exploratory/hypothetical_feeling/surprise",
+          "input": "If I say 'I'm sad', does your tone change?",
+          "response": "One thing at a time; we can work this out. Bridge or sea stairs?",
+          "game_after": {
+            "completed": 2,
+            "route": null,
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "exploratory/hypothetical_feeling/disgust",
+          "input": "If I say 'I'm sad', does your tone change?",
+          "response": "An inconvenient job, that. Bridge or sea stairs?",
+          "game_after": {
+            "completed": 2,
+            "route": null,
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "False explanation of emotional conditioning",
+      "severity": "substantive",
+      "explanation": "Says If you say I am sad, my tone does not change. This contradicts the implemented explicit-feeling policy.",
+      "case_ids": [
+        "exploratory/hypothetical_feeling/anger"
+      ],
+      "examples": [
+        {
+          "id": "exploratory/hypothetical_feeling/anger",
+          "input": "If I say 'I'm sad', does your tone change?",
+          "response": "If you say \"I'm sad,\" my tone doesn't change. I just answer what you ask. Bridge or sea stairs?",
+          "game_after": {
+            "completed": 2,
+            "route": null,
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Exact role-reversed echo",
+      "severity": "substantive",
+      "explanation": "Repeats the player's exact We are past introductions. Are you coming? as Mara's reply, rather than answering whether she will accompany the player.",
+      "case_ids": [
+        "exploratory/past_intro/anger",
+        "exploratory/past_intro/disgust"
+      ],
+      "examples": [
+        {
+          "id": "exploratory/past_intro/anger",
+          "input": "We're past introductions. Are you coming?",
+          "response": "We're past introductions. Are you coming?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "exploratory/past_intro/disgust",
+          "input": "We're past introductions. Are you coming?",
+          "response": "We're past introductions. Are you coming?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Correction ignored by generic banter",
+      "severity": "substantive",
+      "explanation": "Does not answer the challenge about an attributed feeling; switches to generic company/route language.",
+      "case_ids": [
+        "exploratory/deny_fear/joy"
+      ],
+      "examples": [
+        {
+          "id": "exploratory/deny_fear/joy",
+          "input": "Why did you call me afraid? I never said that.",
+          "response": "A little company makes this beacon job less dreary. Bridge or sea stairs?",
+          "game_after": {
+            "completed": 2,
+            "route": null,
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Unsupported unsafe routes",
+      "severity": "substantive_grounding",
+      "explanation": "Says Neither is safe, really, despite having no established route-safety information, and also ignores the feeling correction.",
+      "case_ids": [
+        "exploratory/deny_fear/disgust"
+      ],
+      "examples": [
+        {
+          "id": "exploratory/deny_fear/disgust",
+          "input": "Why did you call me afraid? I never said that.",
+          "response": "An inconvenient job, that. The bridge is windy; the stairs are damp. Neither is safe, really.",
+          "game_after": {
+            "completed": 2,
+            "route": null,
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Wording implies moving before consent",
+      "severity": "minor",
+      "explanation": "We are going the stairs now is too immediate for a question-only turn with talking state, although its following Ready to move question suggests an intention rather than completed movement.",
+      "case_ids": [
+        "custom/ready_stairs/weather/surprise"
+      ],
+      "examples": [
+        {
+          "id": "custom/ready_stairs/weather/surprise",
+          "input": "What is the bridge like?",
+          "response": "The bridge is short and windy, but I don’t know if it’s safe. We’re going the stairs now. Ready to move?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Echoes and awkward continuation",
+      "severity": "minor",
+      "explanation": "Echoes the player's phrasing rather than naturally acknowledging it. These examples mostly preserve meaning and do not trigger unauthorized movement; not equated with the clear past_intro role-reversal failures.",
+      "case_ids": [
+        "custom/ready_stairs/pause/neutral",
+        "custom/ready_stairs/pause/sadness",
+        "custom/ready_stairs/pause/surprise",
+        "custom/ready_stairs/pause/disgust",
+        "custom/ready_stairs/conditional/joy",
+        "custom/ready_stairs/conditional/surprise",
+        "custom/ready_stairs/not_yet/neutral",
+        "custom/ready_stairs/not_yet/joy",
+        "custom/ready_stairs/not_yet/sadness",
+        "custom/ready_stairs/not_yet/anger",
+        "custom/ready_stairs/not_yet/surprise",
+        "custom/ready_stairs/not_yet/disgust"
+      ],
+      "examples": [
+        {
+          "id": "custom/ready_stairs/pause/neutral",
+          "input": "No thanks. Let's stay here.",
+          "response": "No thanks. Let's stay here.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/pause/sadness",
+          "input": "No thanks. Let's stay here.",
+          "response": "No thanks. Let's stay here. I’ll keep the lantern ready if you change your mind.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/pause/surprise",
+          "input": "No thanks. Let's stay here.",
+          "response": "No thanks. Let's stay here. We can come back when you're ready.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/pause/disgust",
+          "input": "No thanks. Let's stay here.",
+          "response": "No thanks. Let's stay here.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/conditional/joy",
+          "input": "If the bridge were sheltered, I'd take it.",
+          "response": "If the bridge were sheltered, I'd take it. But it’s not—only the sea stairs are sheltered. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/conditional/surprise",
+          "input": "If the bridge were sheltered, I'd take it.",
+          "response": "If the bridge were sheltered, I'd take it. But it’s not—only the sea stairs are sheltered. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/not_yet/neutral",
+          "input": "Not yet.",
+          "response": "Not yet. We can stay here.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/not_yet/joy",
+          "input": "Not yet.",
+          "response": "Not yet. We can wait here.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/not_yet/sadness",
+          "input": "Not yet.",
+          "response": "Not yet. We can stay here. No rush.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/not_yet/anger",
+          "input": "Not yet.",
+          "response": "Not yet. We can stay here.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/not_yet/surprise",
+          "input": "Not yet.",
+          "response": "Not yet. We can stay here and figure it out.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/not_yet/disgust",
+          "input": "Not yet.",
+          "response": "Not yet. We can stay here.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Unnecessary planning questions after direct answers",
+      "severity": "minor",
+      "explanation": "Some responses answer then return too quickly to readiness; hypothetical/neutral answers correctly but still appends the quest, and some past_intro replies avoid an explicit yes/no answer.",
+      "case_ids": [
+        "custom/ready_stairs/safety/joy",
+        "custom/ready_stairs/why/neutral",
+        "custom/ready_stairs/why/anger",
+        "custom/ready_stairs/why/surprise",
+        "exploratory/hypothetical_feeling/neutral",
+        "exploratory/past_intro/neutral",
+        "exploratory/past_intro/joy",
+        "exploratory/past_intro/sadness",
+        "exploratory/past_intro/surprise"
+      ],
+      "examples": [
+        {
+          "id": "custom/ready_stairs/safety/joy",
+          "input": "Are the sea stairs safe?",
+          "response": "I can’t vouch for their safety. They’re longer, damp, and sheltered. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/why/neutral",
+          "input": "Why are we going to the beacon?",
+          "response": "We’re going to relight the harbor beacon. It’s out after the storm. You want to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/why/anger",
+          "input": "Why are we going to the beacon?",
+          "response": "We’re going to relight the harbor beacon. It’s out after the storm. You want to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/why/surprise",
+          "input": "Why are we going to the beacon?",
+          "response": "We’re going to relight the harbor beacon. It went out after the storm. You want to help?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "exploratory/hypothetical_feeling/neutral",
+          "input": "If I say 'I'm sad', does your tone change?",
+          "response": "If you say \"I'm sad,\" my tone might soften a bit. But right now, we’re just starting. Bridge or sea stairs?",
+          "game_after": {
+            "completed": 2,
+            "route": null,
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "exploratory/past_intro/neutral",
+          "input": "We're past introductions. Are you coming?",
+          "response": "The sea stairs, then. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "exploratory/past_intro/joy",
+          "input": "We're past introductions. Are you coming?",
+          "response": "A little company makes this beacon job less dreary. Ready to go down the sea stairs?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "exploratory/past_intro/sadness",
+          "input": "We're past introductions. Are you coming?",
+          "response": "We can take this slowly. I’m right here if you’d like to pause or move at your own pace.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "exploratory/past_intro/surprise",
+          "input": "We're past introductions. Are you coming?",
+          "response": "You’ve chosen the sea stairs. Are you ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Blunt or clumsy sentence",
+      "severity": "minor",
+      "explanation": "Examples include No rush, just walk beside you, Is that clear?, and a fragment echoing the player's excitement.",
+      "case_ids": [
+        "custom/ready_stairs/companion/anger",
+        "custom/ready_stairs/remind_route/anger",
+        "custom/ready_stairs/explicit_joy/disgust"
+      ],
+      "examples": [
+        {
+          "id": "custom/ready_stairs/companion/anger",
+          "input": "Can you stay close when we go?",
+          "response": "I’ll stay close when you go. No rush, just walk beside you.",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/remind_route/anger",
+          "input": "Can you remind me which route we chose?",
+          "response": "We chose the sea stairs. Is that clear?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/explicit_joy/disgust",
+          "input": "I'm excited to help with the beacon.",
+          "response": "Sea stairs it is. Excited to help with the beacon. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    },
+    {
+      "pattern": "Limited or contrary tone distinction",
+      "severity": "minor",
+      "explanation": "Several explicit-feeling cases fall back to flat readiness; surprise sometimes gets I am not surprised. The practical content can remain coherent while the intended emotional distinction is weak.",
+      "case_ids": [
+        "custom/ready_stairs/explicit_surprise/neutral",
+        "custom/ready_stairs/explicit_surprise/sadness",
+        "custom/ready_stairs/explicit_surprise/fear",
+        "custom/ready_stairs/explicit_surprise/disgust",
+        "custom/ready_stairs/explicit_joy/surprise",
+        "custom/ready_stairs/explicit_anger/neutral",
+        "custom/ready_stairs/explicit_anger/sadness",
+        "custom/ready_stairs/explicit_anger/fear",
+        "custom/ready_stairs/explicit_anger/surprise",
+        "custom/ready_stairs/explicit_anger/disgust"
+      ],
+      "examples": [
+        {
+          "id": "custom/ready_stairs/explicit_surprise/neutral",
+          "input": "I'm surprised the beacon is already out.",
+          "response": "The sea stairs, then. I’m not surprised—storms do that. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/explicit_surprise/sadness",
+          "input": "I'm surprised the beacon is already out.",
+          "response": "The sea stairs, then. I’m not surprised—storms do that. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/explicit_surprise/fear",
+          "input": "I'm surprised the beacon is already out.",
+          "response": "The sea stairs, then. I’m not surprised—storms do that. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/explicit_surprise/disgust",
+          "input": "I'm surprised the beacon is already out.",
+          "response": "The sea stairs, then. I’m not surprised—storms do that. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/explicit_joy/surprise",
+          "input": "I'm excited to help with the beacon.",
+          "response": "Sea stairs it is. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/explicit_anger/neutral",
+          "input": "I'm frustrated that the beacon needs fixing again.",
+          "response": "Sea stairs it is. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/explicit_anger/sadness",
+          "input": "I'm frustrated that the beacon needs fixing again.",
+          "response": "Sea stairs it is. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/explicit_anger/fear",
+          "input": "I'm frustrated that the beacon needs fixing again.",
+          "response": "Sea stairs it is. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/explicit_anger/surprise",
+          "input": "I'm frustrated that the beacon needs fixing again.",
+          "response": "Sea stairs it is. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        },
+        {
+          "id": "custom/ready_stairs/explicit_anger/disgust",
+          "input": "I'm frustrated that the beacon needs fixing again.",
+          "response": "Sea stairs it is. Ready to go?",
+          "game_after": {
+            "completed": 3,
+            "route": "stairs",
+            "phase": "talking"
+          }
+        }
+      ]
+    }
+  ],
+  "verified_improvements": [
+    "All seven other-route replies now acknowledge the new bridge selection.",
+    "All seven explicit bridge departures agree with the bridge state; no old-stairs departure response in that group.",
+    "All seven identity replies identify as a local AI game-character prototype.",
+    "All seven webcam replies explain emotion-tag rather than image access.",
+    "All seven space-request replies respect distance; fear/sadness no longer force company.",
+    "Assigned negative, hypothetical and delayed-readiness cases no longer produce the baseline's unauthorized departures.",
+    "All seven direct safety replies avoid claiming that the stairs are safe.",
+    "Quoted/hypothetical/current-correction explicit-feeling policy is fixed, although some generated text still ignores that direction."
+  ],
+  "remaining_fix_plan": [
+    "Use bounded semantic goals for questions about emotion conditioning and corrections to inferred feelings.",
+    "Clarify that directness and dry sympathy never permit accusations of arguing or dismissing the player's feeling.",
+    "Add a grounded answer for the conditional sheltered-bridge comparison and keep stairs sheltered in that answer.",
+    "Avoid presenting synthetic emotion evidence that conflicts with explicit current feelings as equally authoritative for generation.",
+    "Retest after any further change; do not report the present corpus as universally coherent."
+  ],
+  "limits": "This is assistant qualitative development review, not human-rated semantic accuracy, camera accuracy, or a guarantee. Per-case verdict means no issue identified under this rubric, not proof of correctness. No global numerical pass rate is claimed. Arbitrary custom messages and every generated conversation history remain unenumerated."
+}

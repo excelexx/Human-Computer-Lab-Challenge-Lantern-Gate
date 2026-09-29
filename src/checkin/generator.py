@@ -14,6 +14,7 @@ import httpx
 
 LABELS = frozenset({"anger", "disgust", "fear", "joy", "neutral", "sadness", "surprise"})
 MAX_OUTPUT_TOKENS = 96
+GENERATION_TEMPERATURE = 0.0
 CONTEXT_RESERVE_TOKENS = 16
 TOTAL_BUDGET_SECONDS = 90.0
 READ_TIMEOUT_SECONDS = 10.0
@@ -65,8 +66,12 @@ def _turn_context(text: str, state: dict[str, Any]) -> dict[str, Any]:
     """Only bounded, whitelisted application data may steer delivery and goals."""
     evidence = _emotion_evidence(state)
     game = safe_context(state.get("game"))
-    return {"emotion_evidence": evidence, "npc_direction": character_context(evidence, text),
-            "game_context": game, "reply_goal": dialogue_goal(game, text)}
+    direction = character_context(evidence, text)
+    goal = dialogue_goal(game, text)
+    if direction["direction_source"] == "explicit_player_words":
+        goal += f" The player's current explicit self-report is {direction['cue_emotion']}. Respond to this current disclosure; quoted or corrected earlier descriptions are not current feelings."
+    return {"emotion_evidence": evidence, "npc_direction": direction,
+            "game_context": game, "reply_goal": goal}
 
 
 def _messages(text: str, state: dict[str, Any], history: list[Any]) -> list[dict[str, str]]:
@@ -278,7 +283,7 @@ class LocalGenerator:
             "messages": _messages(text, state, history),
             "stream": True,
             "max_tokens": MAX_OUTPUT_TOKENS,
-            "temperature": 0.5,
+            "temperature": GENERATION_TEMPERATURE,
             "top_p": 0.8,
             "top_k": 20,
             "min_p": 0.0,

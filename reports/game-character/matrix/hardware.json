@@ -1,0 +1,7 @@
+{
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.10",
+  "physical_ram_gib": 31.1,
+  "gpu_snapshot": "NVIDIA GeForce RTX 3080, 5680 MiB, 10240 MiB, 1 %",
+  "measurement_scope": "Local Qwen only; camera app stopped during matrix. This snapshot is not a peak or full multimodal memory measurement."
+}

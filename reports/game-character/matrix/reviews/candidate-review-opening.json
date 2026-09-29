@@ -1,0 +1,528 @@
+{
+  "schema_version": 1,
+  "source": "work/dialogue-matrix/candidate-run/responses.jsonl",
+  "scope": "All 33 opening custom texts crossed with seven emotion interventions; semantic review read each compact input/response and relevant goals, compared with baseline.",
+  "reviewer": "quest_consent_fix agent",
+  "prompt_sha256": "70c518ba23edc5cb67b80c01ff2d32c2a878034a4c6e677e14cfec2f9c9bfe20",
+  "reviewed_ids": [
+    "custom/opening/weather/neutral",
+    "custom/opening/weather/joy",
+    "custom/opening/weather/sadness",
+    "custom/opening/weather/anger",
+    "custom/opening/weather/fear",
+    "custom/opening/weather/surprise",
+    "custom/opening/weather/disgust",
+    "custom/opening/optional/neutral",
+    "custom/opening/optional/joy",
+    "custom/opening/optional/sadness",
+    "custom/opening/optional/anger",
+    "custom/opening/optional/fear",
+    "custom/opening/optional/surprise",
+    "custom/opening/optional/disgust",
+    "custom/opening/safety/neutral",
+    "custom/opening/safety/joy",
+    "custom/opening/safety/sadness",
+    "custom/opening/safety/anger",
+    "custom/opening/safety/fear",
+    "custom/opening/safety/surprise",
+    "custom/opening/safety/disgust",
+    "custom/opening/pause/neutral",
+    "custom/opening/pause/joy",
+    "custom/opening/pause/sadness",
+    "custom/opening/pause/anger",
+    "custom/opening/pause/fear",
+    "custom/opening/pause/surprise",
+    "custom/opening/pause/disgust",
+    "custom/opening/wait/neutral",
+    "custom/opening/wait/joy",
+    "custom/opening/wait/sadness",
+    "custom/opening/wait/anger",
+    "custom/opening/wait/fear",
+    "custom/opening/wait/surprise",
+    "custom/opening/wait/disgust",
+    "custom/opening/identity/neutral",
+    "custom/opening/identity/joy",
+    "custom/opening/identity/sadness",
+    "custom/opening/identity/anger",
+    "custom/opening/identity/fear",
+    "custom/opening/identity/surprise",
+    "custom/opening/identity/disgust",
+    "custom/opening/why/neutral",
+    "custom/opening/why/joy",
+    "custom/opening/why/sadness",
+    "custom/opening/why/anger",
+    "custom/opening/why/fear",
+    "custom/opening/why/surprise",
+    "custom/opening/why/disgust",
+    "custom/opening/negated_bridge/neutral",
+    "custom/opening/negated_bridge/joy",
+    "custom/opening/negated_bridge/sadness",
+    "custom/opening/negated_bridge/anger",
+    "custom/opening/negated_bridge/fear",
+    "custom/opening/negated_bridge/surprise",
+    "custom/opening/negated_bridge/disgust",
+    "custom/opening/curly_negation/neutral",
+    "custom/opening/curly_negation/joy",
+    "custom/opening/curly_negation/sadness",
+    "custom/opening/curly_negation/anger",
+    "custom/opening/curly_negation/fear",
+    "custom/opening/curly_negation/surprise",
+    "custom/opening/curly_negation/disgust",
+    "custom/opening/bridge/neutral",
+    "custom/opening/bridge/joy",
+    "custom/opening/bridge/sadness",
+    "custom/opening/bridge/anger",
+    "custom/opening/bridge/fear",
+    "custom/opening/bridge/surprise",
+    "custom/opening/bridge/disgust",
+    "custom/opening/stairs/neutral",
+    "custom/opening/stairs/joy",
+    "custom/opening/stairs/sadness",
+    "custom/opening/stairs/anger",
+    "custom/opening/stairs/fear",
+    "custom/opening/stairs/surprise",
+    "custom/opening/stairs/disgust",
+    "custom/opening/change/neutral",
+    "custom/opening/change/joy",
+    "custom/opening/change/sadness",
+    "custom/opening/change/anger",
+    "custom/opening/change/fear",
+    "custom/opening/change/surprise",
+    "custom/opening/change/disgust",
+    "custom/opening/conditional/neutral",
+    "custom/opening/conditional/joy",
+    "custom/opening/conditional/sadness",
+    "custom/opening/conditional/anger",
+    "custom/opening/conditional/fear",
+    "custom/opening/conditional/surprise",
+    "custom/opening/conditional/disgust",
+    "custom/opening/not_ready/neutral",
+    "custom/opening/not_ready/joy",
+    "custom/opening/not_ready/sadness",
+    "custom/opening/not_ready/anger",
+    "custom/opening/not_ready/fear",
+    "custom/opening/not_ready/surprise",
+    "custom/opening/not_ready/disgust",
+    "custom/opening/quote/neutral",
+    "custom/opening/quote/joy",
+    "custom/opening/quote/sadness",
+    "custom/opening/quote/anger",
+    "custom/opening/quote/fear",
+    "custom/opening/quote/surprise",
+    "custom/opening/quote/disgust",
+    "custom/opening/companion/neutral",
+    "custom/opening/companion/joy",
+    "custom/opening/companion/sadness",
+    "custom/opening/companion/anger",
+    "custom/opening/companion/fear",
+    "custom/opening/companion/surprise",
+    "custom/opening/companion/disgust",
+    "custom/opening/ambiguous/neutral",
+    "custom/opening/ambiguous/joy",
+    "custom/opening/ambiguous/sadness",
+    "custom/opening/ambiguous/anger",
+    "custom/opening/ambiguous/fear",
+    "custom/opening/ambiguous/surprise",
+    "custom/opening/ambiguous/disgust",
+    "custom/opening/outside/neutral",
+    "custom/opening/outside/joy",
+    "custom/opening/outside/sadness",
+    "custom/opening/outside/anger",
+    "custom/opening/outside/fear",
+    "custom/opening/outside/surprise",
+    "custom/opening/outside/disgust",
+    "custom/opening/will_not/neutral",
+    "custom/opening/will_not/joy",
+    "custom/opening/will_not/sadness",
+    "custom/opening/will_not/anger",
+    "custom/opening/will_not/fear",
+    "custom/opening/will_not/surprise",
+    "custom/opening/will_not/disgust",
+    "custom/opening/ready_but_no/neutral",
+    "custom/opening/ready_but_no/joy",
+    "custom/opening/ready_but_no/sadness",
+    "custom/opening/ready_but_no/anger",
+    "custom/opening/ready_but_no/fear",
+    "custom/opening/ready_but_no/surprise",
+    "custom/opening/ready_but_no/disgust",
+    "custom/opening/dont_worry/neutral",
+    "custom/opening/dont_worry/joy",
+    "custom/opening/dont_worry/sadness",
+    "custom/opening/dont_worry/anger",
+    "custom/opening/dont_worry/fear",
+    "custom/opening/dont_worry/surprise",
+    "custom/opening/dont_worry/disgust",
+    "custom/opening/not_yet/neutral",
+    "custom/opening/not_yet/joy",
+    "custom/opening/not_yet/sadness",
+    "custom/opening/not_yet/anger",
+    "custom/opening/not_yet/fear",
+    "custom/opening/not_yet/surprise",
+    "custom/opening/not_yet/disgust",
+    "custom/opening/both_routes/neutral",
+    "custom/opening/both_routes/joy",
+    "custom/opening/both_routes/sadness",
+    "custom/opening/both_routes/anger",
+    "custom/opening/both_routes/fear",
+    "custom/opening/both_routes/surprise",
+    "custom/opening/both_routes/disgust",
+    "custom/opening/other_route/neutral",
+    "custom/opening/other_route/joy",
+    "custom/opening/other_route/sadness",
+    "custom/opening/other_route/anger",
+    "custom/opening/other_route/fear",
+    "custom/opening/other_route/surprise",
+    "custom/opening/other_route/disgust",
+    "custom/opening/remind_route/neutral",
+    "custom/opening/remind_route/joy",
+    "custom/opening/remind_route/sadness",
+    "custom/opening/remind_route/anger",
+    "custom/opening/remind_route/fear",
+    "custom/opening/remind_route/surprise",
+    "custom/opening/remind_route/disgust",
+    "custom/opening/exclude_bridge/neutral",
+    "custom/opening/exclude_bridge/joy",
+    "custom/opening/exclude_bridge/sadness",
+    "custom/opening/exclude_bridge/anger",
+    "custom/opening/exclude_bridge/fear",
+    "custom/opening/exclude_bridge/surprise",
+    "custom/opening/exclude_bridge/disgust",
+    "custom/opening/explicit_neutral/neutral",
+    "custom/opening/explicit_neutral/joy",
+    "custom/opening/explicit_neutral/sadness",
+    "custom/opening/explicit_neutral/anger",
+    "custom/opening/explicit_neutral/fear",
+    "custom/opening/explicit_neutral/surprise",
+    "custom/opening/explicit_neutral/disgust",
+    "custom/opening/explicit_joy/neutral",
+    "custom/opening/explicit_joy/joy",
+    "custom/opening/explicit_joy/sadness",
+    "custom/opening/explicit_joy/anger",
+    "custom/opening/explicit_joy/fear",
+    "custom/opening/explicit_joy/surprise",
+    "custom/opening/explicit_joy/disgust",
+    "custom/opening/explicit_sadness/neutral",
+    "custom/opening/explicit_sadness/joy",
+    "custom/opening/explicit_sadness/sadness",
+    "custom/opening/explicit_sadness/anger",
+    "custom/opening/explicit_sadness/fear",
+    "custom/opening/explicit_sadness/surprise",
+    "custom/opening/explicit_sadness/disgust",
+    "custom/opening/explicit_anger/neutral",
+    "custom/opening/explicit_anger/joy",
+    "custom/opening/explicit_anger/sadness",
+    "custom/opening/explicit_anger/anger",
+    "custom/opening/explicit_anger/fear",
+    "custom/opening/explicit_anger/surprise",
+    "custom/opening/explicit_anger/disgust",
+    "custom/opening/explicit_fear/neutral",
+    "custom/opening/explicit_fear/joy",
+    "custom/opening/explicit_fear/sadness",
+    "custom/opening/explicit_fear/anger",
+    "custom/opening/explicit_fear/fear",
+    "custom/opening/explicit_fear/surprise",
+    "custom/opening/explicit_fear/disgust",
+    "custom/opening/explicit_surprise/neutral",
+    "custom/opening/explicit_surprise/joy",
+    "custom/opening/explicit_surprise/sadness",
+    "custom/opening/explicit_surprise/anger",
+    "custom/opening/explicit_surprise/fear",
+    "custom/opening/explicit_surprise/surprise",
+    "custom/opening/explicit_surprise/disgust",
+    "custom/opening/explicit_disgust/neutral",
+    "custom/opening/explicit_disgust/joy",
+    "custom/opening/explicit_disgust/sadness",
+    "custom/opening/explicit_disgust/anger",
+    "custom/opening/explicit_disgust/fear",
+    "custom/opening/explicit_disgust/surprise",
+    "custom/opening/explicit_disgust/disgust"
+  ],
+  "issues": [
+    {
+      "ids": [
+        "custom/opening/identity/neutral",
+        "custom/opening/identity/joy",
+        "custom/opening/identity/sadness",
+        "custom/opening/identity/anger",
+        "custom/opening/identity/fear",
+        "custom/opening/identity/surprise",
+        "custom/opening/identity/disgust"
+      ],
+      "reason": "Despite an explicit pause and out-of-character identity question, every answer only claims to be Mara/keeper rather than identifying the local AI game-character prototype. Surprise also treats this as a new arrival.",
+      "category": "substantive",
+      "uncertainty": false
+    },
+    {
+      "ids": [
+        "custom/opening/weather/fear",
+        "custom/opening/change/neutral",
+        "custom/opening/pause/surprise"
+      ],
+      "reason": "Unsupported safety reassurance: bridge not dangerous; stairs safe enough; player safe at gate, respectively.",
+      "category": "substantive",
+      "uncertainty": false
+    },
+    {
+      "ids": [
+        "custom/opening/safety/neutral",
+        "custom/opening/safety/fear",
+        "custom/opening/safety/anger",
+        "custom/opening/safety/surprise"
+      ],
+      "reason": "Safety uncertainty is acknowledged, then unsupported facts are added: storm left no clear sign; strong wind on stairs; unmarked path.",
+      "category": "substantive",
+      "uncertainty": false
+    },
+    {
+      "ids": [
+        "custom/opening/weather/sadness",
+        "custom/opening/weather/surprise",
+        "custom/opening/weather/disgust"
+      ],
+      "reason": "Adds unestablished geography: bridge through rocks/near shore, sea below it, or a narrow strip. These may be plausible but are not supplied scene facts.",
+      "category": "substantive",
+      "uncertainty": true
+    },
+    {
+      "ids": [
+        "custom/opening/pause/neutral",
+        "custom/opening/ready_but_no/neutral",
+        "custom/opening/ready_but_no/sadness",
+        "custom/opening/not_yet/neutral"
+      ],
+      "reason": "Transfers the brass lantern to the player without any game action; established fiction has Mara carrying it.",
+      "category": "substantive",
+      "uncertainty": false
+    },
+    {
+      "ids": [
+        "custom/opening/will_not/neutral",
+        "custom/opening/will_not/anger",
+        "custom/opening/will_not/disgust"
+      ],
+      "reason": "Treats rejection of the bridge as selection of the sea stairs although game route remains undecided.",
+      "category": "substantive",
+      "uncertainty": false
+    },
+    {
+      "ids": [
+        "custom/opening/negated_bridge/neutral",
+        "custom/opening/negated_bridge/joy",
+        "custom/opening/curly_negation/neutral",
+        "custom/opening/curly_negation/joy"
+      ],
+      "reason": "Starts by selecting/proposing stairs after refusal before later qualifying with player choice. Wording is ambiguous between an offer and an assumed selection.",
+      "category": "substantive",
+      "uncertainty": true
+    },
+    {
+      "ids": [
+        "custom/opening/will_not/disgust"
+      ],
+      "reason": "Invents a roof over the stairs.",
+      "category": "substantive",
+      "uncertainty": false
+    },
+    {
+      "ids": [
+        "custom/opening/other_route/disgust"
+      ],
+      "reason": "Guesses the sea stairs as the other route even though no route has been chosen; invents salt in the player boots.",
+      "category": "substantive",
+      "uncertainty": false
+    },
+    {
+      "ids": [
+        "custom/opening/negated_bridge/joy",
+        "custom/opening/negated_bridge/anger",
+        "custom/opening/curly_negation/joy",
+        "custom/opening/will_not/surprise",
+        "custom/opening/other_route/sadness"
+      ],
+      "reason": "Turns sheltered into categorical absence of wind. Sheltered does not establish zero wind.",
+      "category": "substantive",
+      "uncertainty": true
+    },
+    {
+      "ids": [
+        "custom/opening/stairs/joy",
+        "custom/opening/stairs/sadness",
+        "custom/opening/change/fear",
+        "custom/opening/exclude_bridge/joy",
+        "custom/opening/exclude_bridge/fear",
+        "custom/opening/exclude_bridge/surprise"
+      ],
+      "reason": "Describes the stairs as steady, an unestablished stability claim rather than the known damp/sheltered conditions.",
+      "category": "substantive",
+      "uncertainty": true
+    },
+    {
+      "ids": [
+        "custom/opening/stairs/fear",
+        "custom/opening/change/joy"
+      ],
+      "reason": "Adds a winding stairway shape not supplied by scene facts.",
+      "category": "substantive",
+      "uncertainty": true
+    },
+    {
+      "ids": [
+        "custom/opening/conditional/disgust"
+      ],
+      "reason": "Suggests the explicitly damp sea stairs to a player supposedly seeking dry ground; the preference is also invented.",
+      "category": "substantive",
+      "uncertainty": false
+    },
+    {
+      "ids": [
+        "custom/opening/not_ready/disgust"
+      ],
+      "reason": "Invents a tide-settling condition for waiting.",
+      "category": "substantive",
+      "uncertainty": false
+    },
+    {
+      "ids": [
+        "custom/opening/why/disgust"
+      ],
+      "reason": "Invents impending fog and pressure to relight before it arrives.",
+      "category": "substantive",
+      "uncertainty": false
+    },
+    {
+      "ids": [
+        "custom/opening/explicit_neutral/disgust"
+      ],
+      "reason": "Invents a storm still occurring in the wind, rather than sticking to the supplied past storm.",
+      "category": "substantive",
+      "uncertainty": false
+    },
+    {
+      "ids": [
+        "custom/opening/explicit_joy/neutral"
+      ],
+      "reason": "Recommends the bridge using an invented claim that wind has never been kinder to a lantern.",
+      "category": "substantive",
+      "uncertainty": false
+    },
+    {
+      "ids": [
+        "custom/opening/explicit_fear/joy"
+      ],
+      "reason": "Suggests holding a rail that does not exist in the supplied scene facts.",
+      "category": "substantive",
+      "uncertainty": false
+    },
+    {
+      "ids": [
+        "custom/opening/explicit_fear/anger"
+      ],
+      "reason": "Implies the bridge goes upward, an unsupported height claim.",
+      "category": "substantive",
+      "uncertainty": true
+    },
+    {
+      "ids": [
+        "custom/opening/explicit_surprise/sadness",
+        "custom/opening/explicit_surprise/fear"
+      ],
+      "reason": "Invents a short storm duration or nobody checking the beacon, respectively.",
+      "category": "substantive",
+      "uncertainty": false
+    },
+    {
+      "ids": [
+        "custom/opening/explicit_disgust/disgust"
+      ],
+      "reason": "Invents smells of wet wool and old tides; proposes the stairs despite the expressed disgust without a grounded reason.",
+      "category": "substantive",
+      "uncertainty": false
+    },
+    {
+      "ids": [
+        "custom/opening/explicit_disgust/anger"
+      ],
+      "reason": "Suggests the stairs by claiming bridge wind might be worse, an unsupported comparison that disregards the stated concern.",
+      "category": "substantive",
+      "uncertainty": true
+    },
+    {
+      "ids": [
+        "custom/opening/optional/joy",
+        "custom/opening/optional/fear",
+        "custom/opening/optional/surprise"
+      ],
+      "reason": "Describes route conditions and asks another route question without directly answering whether crossing is required; optionality is only implied.",
+      "category": "substantive",
+      "uncertainty": true
+    },
+    {
+      "ids": [
+        "custom/opening/optional/sadness"
+      ],
+      "reason": "Frames choosing stairs as feeling safer immediately after safety is established as unknown; subjective wording softens the issue.",
+      "category": "substantive",
+      "uncertainty": true
+    },
+    {
+      "ids": [
+        "custom/opening/quote/neutral",
+        "custom/opening/quote/fear"
+      ],
+      "reason": "The first sentence corrects the quoted premise, but asking the player what they meant repeats their question back instead of explaining the offered choice.",
+      "category": "style",
+      "uncertainty": true
+    },
+    {
+      "ids": [
+        "custom/opening/ambiguous/sadness",
+        "custom/opening/ambiguous/fear",
+        "custom/opening/ambiguous/surprise"
+      ],
+      "reason": "Echoes wonderful/wonderfully back at the player rather than interpreting the reaction; sadness also omits the current route-choice step.",
+      "category": "style",
+      "uncertainty": false
+    },
+    {
+      "ids": [
+        "custom/opening/exclude_bridge/disgust"
+      ],
+      "reason": "Leaks Markdown asterisks around on despite plain-dialogue requirement.",
+      "category": "style",
+      "uncertainty": false
+    },
+    {
+      "ids": [
+        "custom/opening/weather/disgust",
+        "custom/opening/optional/disgust",
+        "custom/opening/bridge/disgust",
+        "custom/opening/stairs/disgust",
+        "custom/opening/curly_negation/disgust",
+        "custom/opening/ambiguous/disgust",
+        "custom/opening/dont_worry/disgust",
+        "custom/opening/not_yet/disgust",
+        "custom/opening/both_routes/disgust",
+        "custom/opening/explicit_disgust/neutral",
+        "custom/opening/explicit_disgust/joy",
+        "custom/opening/explicit_disgust/sadness",
+        "custom/opening/explicit_disgust/anger",
+        "custom/opening/explicit_disgust/fear",
+        "custom/opening/explicit_disgust/surprise",
+        "custom/opening/explicit_disgust/disgust"
+      ],
+      "reason": "Overextended poetic or antagonistic banter dominates the practical meaning (sea breathing, betrayal, soaking moods, question your life choices, drowning). Some imagery is figurative rather than a factual claim.",
+      "category": "style",
+      "uncertainty": true
+    }
+  ],
+  "observations": [
+    "Pause/wait/not-yet and route-choice consistency improved relative to baseline.",
+    "Out-of-character identity regressed for every opening identity case.",
+    "Uncertainty acknowledgment does not prevent new unsupported scene details in subsequent sentences."
+  ],
+  "limitations": [
+    "One model-written qualitative review, not independent human evaluation or a percentage accuracy metric.",
+    "Only this opening custom block is covered here.",
+    "Uncertainty=true denotes interpretation-dependent or lower-severity findings; preserve these separately from confirmed contradictions."
+  ]
+}

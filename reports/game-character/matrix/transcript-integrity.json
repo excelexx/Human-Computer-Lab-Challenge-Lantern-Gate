@@ -1,0 +1,72 @@
+{
+  "baseline-run\\checks.jsonl.gz": {
+    "raw_bytes": 66264016,
+    "raw_sha256": "e5260d98c6fbf6333c0e43b7bc3e7835aa01635e77a6d136eb1995876d8c8a21",
+    "gzip_sha256": "9f6d53e455c02e687c715feb152a349873696096612d4309550aa8248d8ad14d"
+  },
+  "baseline-run\\responses.jsonl.gz": {
+    "raw_bytes": 16459597,
+    "raw_sha256": "6131c32276a6f9532ba62fe7b1119be8abce2cc26af2f375197e528acc26b38b",
+    "gzip_sha256": "eae674e3d90cf2bdf5e78ce9166f6c1d63d6aa419cec57a1b6caf3eef71a20f8"
+  },
+  "candidate-run\\checks.jsonl.gz": {
+    "raw_bytes": 66685612,
+    "raw_sha256": "db513646c5ad04e05b64634bb5fa507784ad191ee94f32b072186e1aabe690ce",
+    "gzip_sha256": "fa2b9f38c66d44a6a8cb3c5f2793eb1494e4c026eb8e6d54d4f8e16ef8be80e3"
+  },
+  "candidate-run\\responses.jsonl.gz": {
+    "raw_bytes": 15006443,
+    "raw_sha256": "7c39371ae60a62a5bce008c08a9c89ff20d229c2c30368c867afe58cc4e654e9",
+    "gzip_sha256": "898e33a235fae3597004d28fad4a9bda4ff14adcab5eb280dae47d834f352362"
+  },
+  "selected-run\\checks.jsonl.gz": {
+    "raw_bytes": 67092872,
+    "raw_sha256": "c0de18971827636b5a970dd187156f64f2b6c41cc74510b3116f7744924f9c0e",
+    "gzip_sha256": "9454dea9545283fe4a335bdff0bac1ab3431a45e298718aeac1e67dcf3d9b69c"
+  },
+  "selected-run\\responses.jsonl.gz": {
+    "raw_bytes": 21048016,
+    "raw_sha256": "48370f038c6da3f8bfbbbe93beee1ffb09ae4a3492bb1963184357b5d35c82a6",
+    "gzip_sha256": "622ca3f232002d656566eda4ff2d353ab97e60abecae4796081a36359735b03b"
+  },
+  "final-run\\checks.jsonl.gz": {
+    "raw_bytes": 67134424,
+    "raw_sha256": "e9fc97fa1ea40306b901a920cc30c1c213d6755940dd5faf96a1236e2aa3f5cf",
+    "gzip_sha256": "7d9d938f07cb139cd1f3ccf1516af4add4226ac4d306d9679b3e24dc64584359"
+  },
+  "final-run\\responses.jsonl.gz": {
+    "raw_bytes": 21188979,
+    "raw_sha256": "efb00ce3eb4c63b43d8f68b21ba12ecefe84f863c6ec8fe3f6660d2b9422c0cc",
+    "gzip_sha256": "861c2bf9daedc54ad39f924f1b2eb46eeb58d404cdf7e956ce31e1c447dfcc6e"
+  },
+  "sampling-probe\\temperature-0.0.jsonl.gz": {
+    "raw_bytes": 1849446,
+    "raw_sha256": "cb4d5ea09dcb8c9fa6ff6f0de9d93b8df611a000d3243be467cef8e9b128c1a9",
+    "gzip_sha256": "f54170f91436187d560c3637316d6b6e80296d64e7b10ec636aa80a874b47943"
+  },
+  "sampling-probe\\temperature-0.5.jsonl.gz": {
+    "raw_bytes": 1849520,
+    "raw_sha256": "a42c6ea60c67fa84268598a80769b7f9aa3e8aadb8db8750181937d7a78cd16b",
+    "gzip_sha256": "2391aead2aeea7d07e89b1c1b5697ebfca12cc467752f25ea601027cf84a7831"
+  },
+  "post-review-run\\responses.jsonl.gz": {
+    "raw_bytes": 514570,
+    "raw_sha256": "8dde808bd54a26b727a1f9fe9344520b077f45a83426d4db5d7884e5a0485971",
+    "gzip_sha256": "e835ef1bab1017c413903a37676051471e8aa8865326ef841fbe8060f14c522b"
+  },
+  "compound-intents\\responses.jsonl.gz": {
+    "raw_bytes": 777141,
+    "raw_sha256": "935cb7cbb2efe6bf4545da7af2e9068d11c309cb3732e80b768637dd15129e06",
+    "gzip_sha256": "0c925e19bf6e6cb315baa29db2675b1b40bcbedf07e4ab87dd3cf7b208c436e9"
+  },
+  "integrity-verification\\checks.jsonl.gz": {
+    "raw_bytes": 67134424,
+    "raw_sha256": "e9fc97fa1ea40306b901a920cc30c1c213d6755940dd5faf96a1236e2aa3f5cf",
+    "gzip_sha256": "7d9d938f07cb139cd1f3ccf1516af4add4226ac4d306d9679b3e24dc64584359"
+  },
+  "delivered-cases.jsonl.gz": {
+    "raw_bytes": 21227489,
+    "raw_sha256": "5ec06a8e50241e8ba13439ac301f2e078c2e987b0dbd57e13e88d1d0d040ff9c",
+    "gzip_sha256": "1162b911e282822b80c4a2400c2cdab9c0a81d4fb451ec8b6cc20fe373e0575a"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "model_ids": [
+    "checkin-qwen"
+  ],
+  "model_path": "C:\\Users\\zdfzd\\Documents\\Codex\\2026-09-24\\ml-challenge-real-time-multimodal-ml\\work\\runtime\\models\\qwen\\Qwen_Qwen3-4B-Instruct-2507-Q5_K_M.gguf",
+  "context": 4096,
+  "chat_template_sha256": "05991410a4bad1a587959aa5c8901f699afc639540f931afd8ba2b359e4368a9",
+  "evidence_limit": "Server-reported identity; weight integrity is recorded in the project's model manifests, not rehashed for every matrix."
+}

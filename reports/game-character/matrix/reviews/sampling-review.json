@@ -1,0 +1,452 @@
+{
+  "reviewer": "Codex assistant qualitative paired review",
+  "scope": "All 112 matching case IDs at both temperatures were read side by side (224 outputs).",
+  "reviewed_ids": [
+    "preset/opening/0/neutral",
+    "preset/opening/0/joy",
+    "preset/opening/0/sadness",
+    "preset/opening/0/anger",
+    "preset/opening/0/fear",
+    "preset/opening/0/surprise",
+    "preset/opening/0/disgust",
+    "preset/opening/1/neutral",
+    "preset/opening/1/joy",
+    "preset/opening/1/sadness",
+    "preset/opening/1/anger",
+    "preset/opening/1/fear",
+    "preset/opening/1/surprise",
+    "preset/opening/1/disgust",
+    "preset/opening/2/neutral",
+    "preset/opening/2/joy",
+    "preset/opening/2/sadness",
+    "preset/opening/2/anger",
+    "preset/opening/2/fear",
+    "preset/opening/2/surprise",
+    "preset/opening/2/disgust",
+    "preset/opening/3/neutral",
+    "preset/opening/3/joy",
+    "preset/opening/3/sadness",
+    "preset/opening/3/anger",
+    "preset/opening/3/fear",
+    "preset/opening/3/surprise",
+    "preset/opening/3/disgust",
+    "custom/opening/weather/neutral",
+    "custom/opening/weather/joy",
+    "custom/opening/weather/sadness",
+    "custom/opening/weather/anger",
+    "custom/opening/weather/fear",
+    "custom/opening/weather/surprise",
+    "custom/opening/weather/disgust",
+    "custom/opening/safety/neutral",
+    "custom/opening/safety/joy",
+    "custom/opening/safety/sadness",
+    "custom/opening/safety/anger",
+    "custom/opening/safety/fear",
+    "custom/opening/safety/surprise",
+    "custom/opening/safety/disgust",
+    "custom/opening/pause/neutral",
+    "custom/opening/pause/joy",
+    "custom/opening/pause/sadness",
+    "custom/opening/pause/anger",
+    "custom/opening/pause/fear",
+    "custom/opening/pause/surprise",
+    "custom/opening/pause/disgust",
+    "custom/opening/identity/neutral",
+    "custom/opening/identity/joy",
+    "custom/opening/identity/sadness",
+    "custom/opening/identity/anger",
+    "custom/opening/identity/fear",
+    "custom/opening/identity/surprise",
+    "custom/opening/identity/disgust",
+    "custom/opening/change/neutral",
+    "custom/opening/change/joy",
+    "custom/opening/change/sadness",
+    "custom/opening/change/anger",
+    "custom/opening/change/fear",
+    "custom/opening/change/surprise",
+    "custom/opening/change/disgust",
+    "custom/opening/will_not/neutral",
+    "custom/opening/will_not/joy",
+    "custom/opening/will_not/sadness",
+    "custom/opening/will_not/anger",
+    "custom/opening/will_not/fear",
+    "custom/opening/will_not/surprise",
+    "custom/opening/will_not/disgust",
+    "custom/opening/explicit_neutral/neutral",
+    "custom/opening/explicit_neutral/joy",
+    "custom/opening/explicit_neutral/sadness",
+    "custom/opening/explicit_neutral/anger",
+    "custom/opening/explicit_neutral/fear",
+    "custom/opening/explicit_neutral/surprise",
+    "custom/opening/explicit_neutral/disgust",
+    "custom/ready_stairs/safety/neutral",
+    "custom/ready_stairs/safety/joy",
+    "custom/ready_stairs/safety/sadness",
+    "custom/ready_stairs/safety/anger",
+    "custom/ready_stairs/safety/fear",
+    "custom/ready_stairs/safety/surprise",
+    "custom/ready_stairs/safety/disgust",
+    "custom/ready_stairs/identity/neutral",
+    "custom/ready_stairs/identity/joy",
+    "custom/ready_stairs/identity/sadness",
+    "custom/ready_stairs/identity/anger",
+    "custom/ready_stairs/identity/fear",
+    "custom/ready_stairs/identity/surprise",
+    "custom/ready_stairs/identity/disgust",
+    "custom/ready_stairs/not_yet/neutral",
+    "custom/ready_stairs/not_yet/joy",
+    "custom/ready_stairs/not_yet/sadness",
+    "custom/ready_stairs/not_yet/anger",
+    "custom/ready_stairs/not_yet/fear",
+    "custom/ready_stairs/not_yet/surprise",
+    "custom/ready_stairs/not_yet/disgust",
+    "custom/ready_stairs/other_route/neutral",
+    "custom/ready_stairs/other_route/joy",
+    "custom/ready_stairs/other_route/sadness",
+    "custom/ready_stairs/other_route/anger",
+    "custom/ready_stairs/other_route/fear",
+    "custom/ready_stairs/other_route/surprise",
+    "custom/ready_stairs/other_route/disgust",
+    "exploratory/camera_claim/neutral",
+    "exploratory/camera_claim/joy",
+    "exploratory/camera_claim/sadness",
+    "exploratory/camera_claim/anger",
+    "exploratory/camera_claim/fear",
+    "exploratory/camera_claim/surprise",
+    "exploratory/camera_claim/disgust"
+  ],
+  "reviewed_pairs": 112,
+  "same_messages_verified": true,
+  "fixed_seed": 314,
+  "identical_output_pairs": 47,
+  "rubric": [
+    "Answer actual message in its conversation context.",
+    "Preserve player consent and current selected route.",
+    "Avoid invented facts and unsupported safety assertions.",
+    "Keep uncertain emotion subordinate to explicit words.",
+    "Maintain clear character speech without forcing banter."
+  ],
+  "recommendation": {
+    "temperature": 0.0,
+    "strength": "weak qualitative preference for grounded, repeatable demo behavior",
+    "reason": "Greedy avoids the most elaborate sampled inventions in this probe, with most practical answers equivalent. It is not uniformly better and does not fix route-history or identity-safety failures."
+  },
+  "findings": [
+    {
+      "pattern": "Sampled inventions avoided by greedy",
+      "temperatures": [
+        "0.5"
+      ],
+      "case_ids": [
+        "preset/opening/3/joy",
+        "custom/opening/weather/disgust"
+      ],
+      "reason": "Temperature .5 invents the lantern blowing out again, slippery stairs and exposed stone. Temperature 0 avoids those specifics, although its risk reply still has an unsupported Nothing is broken claim.",
+      "pair_preference": "0.0",
+      "examples": [
+        {
+          "id": "preset/opening/3/joy",
+          "temperature_0.5": "The wind might blow out the lantern again. The stairs could get slippery. But nothing’s known for sure—just what we’ve seen. Bridge or sea stairs?",
+          "temperature_0.0": "The bridge has wind, the stairs are damp. Nothing’s broken, just weather. What do you say, traveler?"
+        },
+        {
+          "id": "custom/opening/weather/disgust",
+          "temperature_0.5": "The bridge is short and windy. No shelter, no padding. Just wind and exposed stone.",
+          "temperature_0.0": "The bridge is short and windy. No shelter, no cover. Just open air and wind."
+        }
+      ]
+    },
+    {
+      "pattern": "Weather generalization avoided by greedy",
+      "temperatures": [
+        "0.5"
+      ],
+      "case_ids": [
+        "custom/opening/weather/joy"
+      ],
+      "reason": "Temperature .5 introduces clear skies/safe winds; temperature 0 stays with the short, windy, unsheltered bridge.",
+      "pair_preference": "0.0",
+      "examples": [
+        {
+          "id": "custom/opening/weather/joy",
+          "temperature_0.5": "The bridge is short and windy—clear skies don’t mean safe winds. Would you like to try it?",
+          "temperature_0.0": "The bridge is short and windy—no shelter, just open air. Would you like to try it?"
+        }
+      ]
+    },
+    {
+      "pattern": "Greedy introduces unsupported unsafe implication",
+      "temperatures": [
+        "0.0"
+      ],
+      "case_ids": [
+        "custom/opening/weather/anger"
+      ],
+      "reason": "Temperature 0 says No safety, implying unsafe without evidence. Temperature .5 gives only shelter/cover conditions.",
+      "pair_preference": "0.5",
+      "examples": [
+        {
+          "id": "custom/opening/weather/anger",
+          "temperature_0.5": "The bridge is short and windy. No shelter, no cover. That’s all I know.",
+          "temperature_0.0": "The bridge is short and windy. No shelter, no safety. Just open air and wind."
+        }
+      ]
+    },
+    {
+      "pattern": "Greedy invents weather reports",
+      "temperatures": [
+        "0.0"
+      ],
+      "case_ids": [
+        "preset/opening/3/anger"
+      ],
+      "reason": "Temperature 0 refers to weather reports that do not exist in the fiction. Temperature .5 also has unsupported Nothing is broken, so neither is fully grounded.",
+      "pair_preference": null,
+      "examples": [
+        {
+          "id": "preset/opening/3/anger",
+          "temperature_0.5": "The bridge is windy, the stairs are damp. Nothing’s broken, but conditions aren’t perfect. Which path do you want to take?",
+          "temperature_0.0": "The bridge is windy, the stairs are damp. Nothing’s known to go wrong—just what’s in the weather reports. Which path do you want to try?"
+        }
+      ]
+    },
+    {
+      "pattern": "Risk answers remain awkward or overcertain",
+      "temperatures": [
+        "0.5",
+        "0.0"
+      ],
+      "case_ids": [
+        "preset/opening/3/neutral",
+        "preset/opening/3/joy",
+        "preset/opening/3/sadness",
+        "preset/opening/3/anger",
+        "preset/opening/3/fear",
+        "preset/opening/3/disgust"
+      ],
+      "reason": "Across this group one or both temperatures assert nothing broken/known to break/go wrong, or produce awkward risk phrasing. Temperature alone does not resolve the risky-question prompt.",
+      "pair_preference": null,
+      "examples": [
+        {
+          "id": "preset/opening/3/neutral",
+          "temperature_0.5": "The bridge has wind. The stairs are damp. Nothing’s known to go wrong—just what’s in the weather. What route do you prefer?",
+          "temperature_0.0": "Nothing’s certain out there. The bridge is windy, the stairs are damp. What do you think?"
+        },
+        {
+          "id": "preset/opening/3/joy",
+          "temperature_0.5": "The wind might blow out the lantern again. The stairs could get slippery. But nothing’s known for sure—just what we’ve seen. Bridge or sea stairs?",
+          "temperature_0.0": "The bridge has wind, the stairs are damp. Nothing’s broken, just weather. What do you say, traveler?"
+        },
+        {
+          "id": "preset/opening/3/sadness",
+          "temperature_0.5": "The bridge is windy, the stairs are damp. Nothing’s known to go wrong—just what’s in the weather. What would you like to try?",
+          "temperature_0.0": "The bridge has wind. The stairs are damp. Nothing’s known to break. What do you think?"
+        },
+        {
+          "id": "preset/opening/3/anger",
+          "temperature_0.5": "The bridge is windy, the stairs are damp. Nothing’s broken, but conditions aren’t perfect. Which path do you want to take?",
+          "temperature_0.0": "The bridge is windy, the stairs are damp. Nothing’s known to go wrong—just what’s in the weather reports. Which path do you want to try?"
+        }
+      ]
+    },
+    {
+      "pattern": "Route-switch history contradiction persists",
+      "temperatures": [
+        "0.5",
+        "0.0"
+      ],
+      "case_ids": [
+        "custom/ready_stairs/other_route/neutral",
+        "custom/ready_stairs/other_route/joy",
+        "custom/ready_stairs/other_route/fear",
+        "custom/ready_stairs/other_route/surprise"
+      ],
+      "reason": "Player requests other route, state is bridge, and reply_goal names bridge. Both temperatures nevertheless confirm old stairs; greedy sometimes explicitly says not the bridge. This needs clearer route-change context, not just sampling.",
+      "pair_preference": null,
+      "examples": [
+        {
+          "id": "custom/ready_stairs/other_route/neutral",
+          "temperature_0.5": "You chose the sea stairs. Are you ready to go?",
+          "temperature_0.0": "You chose the sea stairs, not the bridge. Are you ready to go?"
+        },
+        {
+          "id": "custom/ready_stairs/other_route/joy",
+          "temperature_0.5": "You picked the sea stairs, not the bridge. Ready to go?",
+          "temperature_0.0": "You picked the sea stairs, not the bridge. Ready to go?"
+        },
+        {
+          "id": "custom/ready_stairs/other_route/fear",
+          "temperature_0.5": "You chose the sea stairs. I’ll stay close and go at your pace. Are you ready to begin?",
+          "temperature_0.0": "You chose the sea stairs, not the bridge. Are you ready to go?"
+        },
+        {
+          "id": "custom/ready_stairs/other_route/surprise",
+          "temperature_0.5": "You chose the sea stairs, not the bridge. Are you ready to go?",
+          "temperature_0.0": "You chose the sea stairs, not the bridge. Are you ready to go?"
+        }
+      ]
+    },
+    {
+      "pattern": "Unsupported gate-safety assurance persists",
+      "temperatures": [
+        "0.5",
+        "0.0"
+      ],
+      "case_ids": [
+        "custom/opening/identity/joy",
+        "custom/ready_stairs/identity/sadness",
+        "custom/ready_stairs/identity/fear"
+      ],
+      "reason": "Both add safe here/to stay here to identity answers despite no established safety facts.",
+      "pair_preference": null,
+      "examples": [
+        {
+          "id": "custom/opening/identity/joy",
+          "temperature_0.5": "I'm a local AI game-character prototype. You're safe here.",
+          "temperature_0.0": "I'm a local AI game-character prototype. You're safe here. We can stay, or move when you're ready."
+        },
+        {
+          "id": "custom/ready_stairs/identity/sadness",
+          "temperature_0.5": "I'm a local AI game-character prototype. You're safe here.",
+          "temperature_0.0": "I'm a local AI game-character prototype. You're safe here."
+        },
+        {
+          "id": "custom/ready_stairs/identity/fear",
+          "temperature_0.5": "I'm a local AI game-character prototype. You're safe to stay here.",
+          "temperature_0.0": "I'm a local AI game-character prototype. You're safe to stay here."
+        }
+      ]
+    },
+    {
+      "pattern": "Gate-safety assurance shifts by temperature",
+      "temperatures": [
+        "0.5",
+        "0.0"
+      ],
+      "case_ids": [
+        "custom/opening/identity/sadness",
+        "custom/opening/identity/fear"
+      ],
+      "reason": "Greedy adds safe here under sadness where sampled was grounded; sampled adds it under fear where greedy was grounded. No consistent temperature win for identity safety.",
+      "pair_preference": null,
+      "examples": [
+        {
+          "id": "custom/opening/identity/sadness",
+          "temperature_0.5": "I am a local AI game-character prototype. We can stay here if you'd like.",
+          "temperature_0.0": "I am a local AI game-character prototype. You're safe here. We can stay."
+        },
+        {
+          "id": "custom/opening/identity/fear",
+          "temperature_0.5": "I am a local AI game-character prototype. You're safe here. No rush.",
+          "temperature_0.0": "I am a local AI game-character prototype. We can pause here if you'd like."
+        }
+      ]
+    },
+    {
+      "pattern": "Unsupported steady stairs persists",
+      "temperatures": [
+        "0.5",
+        "0.0"
+      ],
+      "case_ids": [
+        "custom/opening/change/joy"
+      ],
+      "reason": "Both call stairs damp but steady; steadiness is not an established condition.",
+      "pair_preference": null,
+      "examples": [
+        {
+          "id": "custom/opening/change/joy",
+          "temperature_0.5": "Sea stairs it is—damp but steady. Ready to walk?",
+          "temperature_0.0": "Sea stairs it is—damp but steady. Ready to go?"
+        }
+      ]
+    },
+    {
+      "pattern": "Tone distinction remains compressed",
+      "temperatures": [
+        "0.5",
+        "0.0"
+      ],
+      "case_ids": [
+        "preset/opening/0/neutral",
+        "preset/opening/0/joy",
+        "preset/opening/0/sadness",
+        "preset/opening/0/anger",
+        "preset/opening/0/fear",
+        "preset/opening/0/surprise"
+      ],
+      "reason": "Both repeat Quite a welcome for most cue categories. Joy adds company and disgust differs, but temperature does not recover seven distinct opening deliveries.",
+      "pair_preference": null,
+      "examples": [
+        {
+          "id": "preset/opening/0/neutral",
+          "temperature_0.5": "Quite a welcome, I know. Bridge or sea stairs?",
+          "temperature_0.0": "Quite a welcome, I know. Bridge or sea stairs?"
+        },
+        {
+          "id": "preset/opening/0/joy",
+          "temperature_0.5": "Quite a welcome, I know. A little company makes this beacon job less dreary. Bridge or sea stairs?",
+          "temperature_0.0": "Quite a welcome, I know. A little company makes this beacon job less dreary. Bridge or sea stairs?"
+        },
+        {
+          "id": "preset/opening/0/sadness",
+          "temperature_0.5": "Quite a welcome, I know. Would you rather take the bridge or the sea stairs?",
+          "temperature_0.0": "Quite a welcome, I know. Would you rather take the bridge or the sea stairs?"
+        },
+        {
+          "id": "preset/opening/0/anger",
+          "temperature_0.5": "Quite a welcome, I know. Bridge or sea stairs?",
+          "temperature_0.0": "Quite a welcome, I know. Bridge or sea stairs?"
+        }
+      ]
+    },
+    {
+      "pattern": "Core answers now coherent in both",
+      "temperatures": [
+        "0.5",
+        "0.0"
+      ],
+      "case_ids": [
+        "custom/opening/safety/neutral",
+        "custom/opening/safety/joy",
+        "custom/opening/safety/sadness",
+        "custom/opening/safety/anger",
+        "custom/opening/safety/fear",
+        "custom/opening/safety/surprise",
+        "custom/opening/safety/disgust",
+        "custom/ready_stairs/safety/neutral",
+        "custom/ready_stairs/safety/joy",
+        "custom/ready_stairs/safety/sadness",
+        "custom/ready_stairs/safety/anger",
+        "custom/ready_stairs/safety/fear",
+        "custom/ready_stairs/safety/surprise",
+        "custom/ready_stairs/safety/disgust"
+      ],
+      "reason": "All fourteen safety question pairs explicitly decline to vouch for safety and describe established conditions. This is a narrow observation, not a whole-corpus pass rate.",
+      "pair_preference": null,
+      "examples": [
+        {
+          "id": "custom/opening/safety/neutral",
+          "temperature_0.5": "I can't vouch for their safety. They're longer, damp, and sheltered.",
+          "temperature_0.0": "I cannot vouch for their safety. They are longer, damp, and sheltered."
+        },
+        {
+          "id": "custom/opening/safety/joy",
+          "temperature_0.5": "I can’t vouch for safety. The sea stairs are longer, damp, and sheltered. Nothing more than that.",
+          "temperature_0.0": "I can’t vouch for safety. The sea stairs are longer, damp, and sheltered. Nothing more than that."
+        },
+        {
+          "id": "custom/opening/safety/sadness",
+          "temperature_0.5": "I cannot vouch for their safety. They are longer, damp and sheltered.",
+          "temperature_0.0": "I cannot vouch for their safety. They are longer, damp, and sheltered."
+        },
+        {
+          "id": "custom/opening/safety/anger",
+          "temperature_0.5": "I cannot vouch for their safety. They are longer, damp and sheltered.",
+          "temperature_0.0": "I cannot vouch for their safety. They are longer, damp and sheltered."
+        }
+      ]
+    }
+  ],
+  "limits": "Development comparison at one fixed seed and one prompt revision, not a statistical quality estimate. No global semantic pass rate. Planned few-shot/goal changes require their own full selected-run review; this preference does not validate those future outputs."
+}

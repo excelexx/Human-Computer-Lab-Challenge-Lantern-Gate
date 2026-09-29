@@ -1,0 +1,30 @@
+{
+  "baseline.zip": {
+    "sha256": "3aa42e56ea6f49bb5d15beb2ac315660b4f63319aec37193a265e23a7711d096",
+    "files": 32
+  },
+  "candidate-source.zip": {
+    "sha256": "9d0fe66c45af666ad0cdd14729918a6503d2d576aa7d2860945effba9418101b",
+    "files": 3
+  },
+  "selected-source.zip": {
+    "sha256": "5db5e204f04900254095a51f126d165999f7d05875ef8a24fb3b64232b1747af",
+    "files": 6
+  },
+  "final-source.zip": {
+    "sha256": "e75c85f8899f1119cdd977aa701894b1791d66e2bba83ba23e27e9143b8461fa",
+    "files": 6
+  },
+  "runner-v1.zip": {
+    "sha256": "b18ec0be917c31a758bbe59dd810bb16f1008e92673124ee91871987609dd22c",
+    "files": 2
+  },
+  "delivered-source.zip": {
+    "sha256": "b837e370dea15673f7f6201dd26040e75da3b5cd3737a6d18bfaba81b4b48f21",
+    "files": 7
+  },
+  "runner-v2-tested.zip": {
+    "sha256": "8e3e139f669f7be33ed940f388bc6362df59e2a0a16a1c2ddc2cd86742aaf9a8",
+    "files": 3
+  }
+}

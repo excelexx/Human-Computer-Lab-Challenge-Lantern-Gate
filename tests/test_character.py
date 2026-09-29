@@ -40,6 +40,68 @@ def test_negated_feeling_does_not_create_an_explicit_override():
     assert context["response_style"] == "practical"
 
 
+def test_corrected_disclosure_reaches_the_reply_goal_despite_conflicting_cue():
+    state = {"emotion": {"label": "fear", "source": "fusion"},
+             "vision": {"available": True}, "modalities": {"vision_label": "fear"},
+             "game": {"completed": 0, "route": None, "next_action": "choose_route"}}
+    turn = json.loads(_messages("I'm scared? No, I'm excited.", state, [])[-1]["content"])
+    assert turn["npc_direction"]["cue_emotion"] == "joy"
+    assert "current explicit self-report is joy" in turn["reply_goal"]
+    estimated = json.loads(_messages("Oh, fantastic.", state, [])[-1]["content"])
+    assert "current explicit self-report" not in estimated["reply_goal"]
+
+
+@pytest.mark.parametrize("message", [
+    "My brother said, 'I am afraid.' I'm fine.",
+    'My brother said, "I am afraid."',
+    "She wrote: ‘I’m sad.’",
+    "I was quoting someone: “I'm angry.”",
+    "The example is `I am afraid`.",
+    "He said I am afraid.",
+    "If I am sad, I am angry too.",
+    "Imagine I'm scared.",
+    "Suppose I feel anxious.",
+    "If I say 'I'm sad', does your tone change?",
+    "Do you think I am afraid?",
+    "Am I really saying I'm angry?",
+    "Yesterday I said I am scared.",
+    "I'm scared and excited.",
+    "I'm scared about the stairs but excited about the view.",
+    "I'm scared, excited and angry.",
+    "I'm afraid, but I'm excited too.",
+    "I'm sad. I am angry too.",
+    "I'm afraid. Actually, I'm not scared.",
+    "I'm no longer scared.",
+])
+def test_noncurrent_or_ambiguous_feelings_do_not_override_evidence(message):
+    context = character_context({"predicted_emotion": "neutral", "vision_available": True,
+        "vision_emotion": "joy", "modality_disagreement": True}, message)
+    assert context["direction_source"] == "modality_disagreement"
+    assert context["cue_emotion"] is None
+
+
+@pytest.mark.parametrize("message,emotion,style", [
+    ("I'm scared? No, I'm excited.", "joy", "playful"),
+    ("I'm afraid. Actually, I'm happy.", "joy", "playful"),
+    ("I'm scared, but now I'm calm.", "neutral", "practical"),
+    ("I was quoting someone: 'I'm angry.' I feel calm now.", "neutral", "practical"),
+    ("He said I am afraid, but now I feel delighted.", "joy", "playful"),
+    ("I'm not scared; I'm annoyed.", "anger", "steady"),
+    ("I'm very sad, but I mean I'm frustrated.", "anger", "steady"),
+    ("I’m feeling really anxious.", "fear", "careful"),
+    ("I'm afraid. Can you stay close?", "fear", "careful"),
+    ("I am feeling a bit disgusted.", "disgust", "wry"),
+    ("I'm surprised.", "surprise", "curious"),
+    ("I'm happy. I'm delighted to go.", "joy", "playful"),
+])
+def test_clear_current_feeling_and_corrections_override_conflicting_camera(message, emotion, style):
+    context = character_context({"predicted_emotion": "neutral", "vision_available": True,
+        "vision_emotion": "sadness", "modality_disagreement": True}, message)
+    assert context["direction_source"] == "explicit_player_words"
+    assert context["cue_emotion"] == emotion
+    assert context["response_style"] == style
+
+
 def test_first_reaction_receives_the_opening_it_is_answering():
     state = {"game": {"completed": 0, "route": None, "next_action": "choose_route"}}
     messages = _messages("Oh, fantastic.", state, [])

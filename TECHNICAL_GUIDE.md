@@ -10,13 +10,18 @@ Above each reply, a small cue label shows the direction selected for Mara, such 
 
 Choose one of **four hardcoded example replies** to send it immediately; the set changes after each completed NPC response. Or write your own in the text box below the examples and use the send arrow (or Enter). Your words and eligible recent webcam evidence produce a MELD emotion tag and streamed local character dialogue. For the exact authored ambiguous lines, an available visual estimate can tentatively choose Mara's delivery (playful, careful, steady, etc.). This rule is disclosed in the structured `interaction` field; it does not change the classifier's emotion label. Explicit words take precedence. Facial expressions cannot reliably eliminate ambiguity.
 
-The game runs in the browser; Python and the existing local llama.cpp server perform inference. The scene includes movement, collision, a following camera, NPC proximity and a dialogue overlay. The bottom arrow pad and shortcut strip have been removed; movement uses the keyboard, with the initial WASD hint above the character. After three completed exchanges, a confirmed route starts a scripted journey: Mara leads the player along the bridge or sea stairs and relights the visible beacon. Escape pauses the journey; E resumes; Restart scene in the top menu resets it. Custom text remains available. Unclear choices, failures, cancellations and refusals do not trigger departure. Generated prose cannot execute arbitrary actions. Combat, inventory and persistent saves are intentionally absent.
+The game runs in the browser; Python and the existing local llama.cpp server perform inference. The scene includes movement, collision, a following camera, NPC proximity and a dialogue overlay. The bottom arrow pad and shortcut strip have been removed; movement uses the keyboard, with the initial WASD hint above the character. The preset path uses three completed exchanges; an early explicit custom route choice followed by readiness can finish in two. A confirmed route starts a scripted journey: Mara leads the player along the bridge or sea stairs and relights the visible beacon. Escape pauses the journey; E resumes; Restart scene in the top menu resets it. Custom text remains available. Unclear choices, failures, cancellations and refusals do not trigger departure. Generated prose cannot execute arbitrary actions. Combat, inventory and persistent saves are intentionally absent.
 
 See the [quest and emotion update](reports/game-character/QUEST_UPDATE.md) for the current interaction and paired local generation checks. Start with the [handoff](HANDOFF.md) and [game-character report](reports/game-character/REPORT.md). Historical reports retain the earlier Check-in framing and its results; their supportive-response evaluations do not validate the new NPC prompt. The latest classifier weights are unchanged.
 
 The [dialogue-grounding update](reports/game-character/GROUNDING.md) documents
 the shared opening context, bounded conversational goals, local comparisons
 and remaining response-quality failures.
+
+The [dialogue matrix](reports/game-character/MATRIX.md) covers every preset/emotion
+pair at each stage, 33 custom texts per stage, route consent, contradictory cues,
+and actual multi-turn journeys. It preserves failed revisions and remaining
+language-model weaknesses. Generation now uses greedy decoding.
 
 ## Model selection and parameter budget
 

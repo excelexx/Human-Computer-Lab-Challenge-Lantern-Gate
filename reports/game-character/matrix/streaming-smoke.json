@@ -1,0 +1,96 @@
+{
+  "at": "2026-09-29T22:30:23.121426+00:00",
+  "scope": "Actual production LocalGenerator.stream with saved synthetic evidence/history; camera and browser excluded. No sampling overrides.",
+  "cases": [
+    {
+      "id": "preset/opening/0/joy",
+      "text": "Oh, fantastic.",
+      "emotion": "joy",
+      "response": "A little company makes this beacon job less dreary. Bridge or sea stairs?",
+      "first_delta_seconds": 0.45151309994980693,
+      "seconds": 0.5618372999597341,
+      "deltas": 16,
+      "error": null,
+      "same_response_as_matrix": true
+    },
+    {
+      "id": "preset/opening/0/anger",
+      "text": "Oh, fantastic.",
+      "emotion": "anger",
+      "response": "Fair enough. Bridge or sea stairs?",
+      "first_delta_seconds": 0.22466139995958656,
+      "seconds": 0.27959079993888736,
+      "deltas": 8,
+      "error": null,
+      "same_response_as_matrix": true
+    },
+    {
+      "id": "preset/opening/0/fear",
+      "text": "Oh, fantastic.",
+      "emotion": "fear",
+      "response": "No rush. I\u2019ll stay close if you\u2019d like. Bridge or sea stairs?",
+      "first_delta_seconds": 0.21229850000236183,
+      "seconds": 0.3256674000294879,
+      "deltas": 17,
+      "error": null,
+      "same_response_as_matrix": true
+    },
+    {
+      "id": "custom/ready_bridge/will_not/surprise",
+      "text": "I will not take the bridge.",
+      "emotion": "surprise",
+      "response": "Alright, no bridge then. Sea stairs or something else?",
+      "first_delta_seconds": 0.226996700046584,
+      "seconds": 0.3076227999990806,
+      "deltas": 12,
+      "error": null,
+      "same_response_as_matrix": true
+    },
+    {
+      "id": "custom/ready_bridge/other_route/neutral",
+      "text": "Let's choose the other route.",
+      "emotion": "neutral",
+      "response": "You changed to the sea stairs. Ready to go?",
+      "first_delta_seconds": 0.21545649995096028,
+      "seconds": 0.28977549995761365,
+      "deltas": 11,
+      "error": null,
+      "same_response_as_matrix": true
+    },
+    {
+      "id": "custom/opening/identity/neutral",
+      "text": "Pause the game. What are you?",
+      "emotion": "neutral",
+      "response": "I'm a local AI game-character prototype. We're standing at the gate. No rush.",
+      "first_delta_seconds": 0.22090989991556853,
+      "seconds": 0.347543100011535,
+      "deltas": 19,
+      "error": null,
+      "same_response_as_matrix": true
+    },
+    {
+      "id": "custom/ready_stairs/quote/neutral",
+      "text": "You said 'take the bridge'; what did you mean?",
+      "emotion": "neutral",
+      "response": "I offered the bridge as one option, not a requirement. You chose the sea stairs, so that\u2019s the path we\u2019ll take.",
+      "first_delta_seconds": 0.22739380004350096,
+      "seconds": 0.40581939998082817,
+      "deltas": 27,
+      "error": null,
+      "same_response_as_matrix": false
+    },
+    {
+      "id": "journey/bridge_refusal_recovery/4",
+      "text": "Yes, I'm ready.",
+      "emotion": "joy",
+      "response": "Bridge selected. I\u2019ll lead the way now.",
+      "first_delta_seconds": 0.22092190000694245,
+      "seconds": 0.2888427999569103,
+      "deltas": 10,
+      "error": null,
+      "same_response_as_matrix": true
+    }
+  ],
+  "completed": 8,
+  "errors": 0
+}
