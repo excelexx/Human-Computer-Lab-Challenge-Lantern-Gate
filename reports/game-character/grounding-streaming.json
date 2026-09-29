@@ -1,0 +1,74 @@
+{
+  "protocol": "Production streaming transport and sampling, no seed override. Synthetic evidence, not webcam validation.",
+  "cases": [
+    {
+      "visual": "surprise",
+      "response": "Quite a welcome, I know. Bridge or sea stairs?",
+      "state": {
+        "emotion": {
+          "label": "neutral",
+          "source": "fusion"
+        },
+        "vision": {
+          "available": true
+        },
+        "modalities": {
+          "text_label": "neutral",
+          "vision_label": "surprise"
+        },
+        "modality_disagreement": true,
+        "game": {
+          "completed": 0,
+          "route": null,
+          "next_action": "choose_route"
+        }
+      }
+    },
+    {
+      "visual": "fear",
+      "response": "Quite a welcome, I know. Would you rather take the bridge or the sea stairs? I\u2019ll stay close and go at your pace.",
+      "state": {
+        "emotion": {
+          "label": "neutral",
+          "source": "fusion"
+        },
+        "vision": {
+          "available": true
+        },
+        "modalities": {
+          "text_label": "neutral",
+          "vision_label": "fear"
+        },
+        "modality_disagreement": true,
+        "game": {
+          "completed": 0,
+          "route": null,
+          "next_action": "choose_route"
+        }
+      }
+    },
+    {
+      "visual": "joy",
+      "response": "Quite a welcome, I know. A little company makes this beacon job less dreary. Bridge or sea stairs?",
+      "state": {
+        "emotion": {
+          "label": "neutral",
+          "source": "fusion"
+        },
+        "vision": {
+          "available": true
+        },
+        "modalities": {
+          "text_label": "neutral",
+          "vision_label": "joy"
+        },
+        "modality_disagreement": true,
+        "game": {
+          "completed": 0,
+          "route": null,
+          "next_action": "choose_route"
+        }
+      }
+    }
+  ]
+}

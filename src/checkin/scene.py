@@ -1,5 +1,7 @@
 """Authored ambiguous lines and shared pixel-style interface accents."""
 
+OPENING_LINE = "The beacon is out. The bridge is quick; the sea stairs are sheltered. What do you say, traveler?"
+
 SAMPLE_LINES = (
     "Oh, fantastic.", "You want me to cross that?",
     "Sure. Whatever.", "What could possibly go wrong?",

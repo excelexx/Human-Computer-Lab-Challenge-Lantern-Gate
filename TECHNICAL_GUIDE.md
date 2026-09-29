@@ -14,6 +14,10 @@ The game runs in the browser; Python and the existing local llama.cpp server per
 
 See the [quest and emotion update](reports/game-character/QUEST_UPDATE.md) for the current interaction and paired local generation checks. Start with the [handoff](HANDOFF.md) and [game-character report](reports/game-character/REPORT.md). Historical reports retain the earlier Check-in framing and its results; their supportive-response evaluations do not validate the new NPC prompt. The latest classifier weights are unchanged.
 
+The [dialogue-grounding update](reports/game-character/GROUNDING.md) documents
+the shared opening context, bounded conversational goals, local comparisons
+and remaining response-quality failures.
+
 ## Model selection and parameter budget
 
 The upgraded stack has a conservative upper bound of **4,464,745,375 learned parameters**, below the **6,000,000,000** limit. The authoritative inventory is [manifests/models.json](manifests/models.json); it supersedes the earlier implementation plan's smaller model selection.

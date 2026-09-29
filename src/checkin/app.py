@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Any, Iterator
 import uuid
 
-from .scene import PIXEL_CSS, SAMPLE_LINES
+from .scene import OPENING_LINE, PIXEL_CSS, SAMPLE_LINES
 from . import quest
 from .game_ui import game_html, game_css, MARA_PORTRAIT
 from .reaction import reply_cue_html
@@ -386,7 +386,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                         sanitize_html=True,
                         render_markdown=False,
                         autoscroll=False,
-                        placeholder='<div class="conversation-empty"><p>“The beacon is out. The bridge is quick; the sea stairs are sheltered. What do you say, traveler?”</p></div>',
+                        placeholder=f'<div class="conversation-empty"><p>“{html.escape(OPENING_LINE)}”</p></div>',
                         elem_id="conversation",
                     )
                     activity = gr.Markdown("Choose a reply to begin." if initial_status.get("ready") else status_message(initial_status), elem_id="activity")

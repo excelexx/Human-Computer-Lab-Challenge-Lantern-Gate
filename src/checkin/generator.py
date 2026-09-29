@@ -21,7 +21,8 @@ MAX_SSE_LINE_BYTES = 65536
 MAX_SSE_EVENT_BYTES = 65536
 MAX_STREAM_BYTES = 262144
 from .character import SYSTEM_PROMPT, character_context
-from .quest import safe_context
+from .quest import dialogue_goal, safe_context
+from .scene import OPENING_LINE
 
 
 class GeneratorError(RuntimeError):
@@ -60,6 +61,14 @@ def _emotion_evidence(state: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
+def _turn_context(text: str, state: dict[str, Any]) -> dict[str, Any]:
+    """Only bounded, whitelisted application data may steer delivery and goals."""
+    evidence = _emotion_evidence(state)
+    game = safe_context(state.get("game"))
+    return {"emotion_evidence": evidence, "npc_direction": character_context(evidence, text),
+            "game_context": game, "reply_goal": dialogue_goal(game, text)}
+
+
 def _messages(text: str, state: dict[str, Any], history: list[Any]) -> list[dict[str, str]]:
     if not isinstance(text, str) or not text.strip():
         raise ValueError("A nonempty check-in message is required.")
@@ -87,11 +96,13 @@ def _messages(text: str, state: dict[str, Any], history: list[Any]) -> list[dict
     bounded.reverse()
     while bounded and bounded[0]["role"] != "user":
         bounded.pop(0)
-    evidence = _emotion_evidence(state)
-    turn = json.dumps({"message": text, "emotion_evidence": evidence,
-                       "npc_direction": character_context(evidence, text),
-                       "game_context": safe_context(state.get("game"))}, ensure_ascii=False)
-    return [{"role": "system", "content": SYSTEM_PROMPT}, *bounded, {"role": "user", "content": turn}]
+    context = _turn_context(text, state)
+    game = context["game_context"]
+    # The visible opening is actual dialogue the player is replying to, even
+    # though it is a UI placeholder rather than a completed generated turn.
+    opening = [{"role": "assistant", "content": OPENING_LINE}] if game and game["completed"] == 0 and not bounded else []
+    turn = json.dumps({**context, "message": text}, ensure_ascii=False)
+    return [{"role": "system", "content": SYSTEM_PROMPT}, *opening, *bounded, {"role": "user", "content": turn}]
 
 
 def _sse_data(lines: Iterator[str]) -> Iterator[str]:
@@ -219,7 +230,7 @@ def _fit_context(client: httpx.Client, base_url: str, messages: list[dict[str, s
             raise GeneratorError("Cannot verify the local model context: invalid tokenizer result.")
         if len(tokens) + MAX_OUTPUT_TOKENS + CONTEXT_RESERVE_TOKENS <= context:
             return messages
-        if len(messages) <= 2:
+        if len(messages) <= 2 or messages[1:-1] == [{"role": "assistant", "content": OPENING_LINE}]:
             raise GeneratorError("Please shorten your message: it exceeds the local model's token budget even without conversation history.")
         messages = _drop_oldest_history_group(messages)
 

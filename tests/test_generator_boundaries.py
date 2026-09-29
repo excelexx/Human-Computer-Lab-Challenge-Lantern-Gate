@@ -105,6 +105,14 @@ def test_current_only_context_reserves_96_output_and_16_margin(monkeypatch, toke
     assert all(client.is_closed for client in clients)
 
 
+def test_context_overflow_cannot_silently_drop_the_opening_referent(monkeypatch):
+    requests, _, _ = install_server(monkeypatch, token_count=lambda messages: 3985 if len(messages) == 3 else 3000)
+    game_state = {**state(), "game": {"completed": 0, "route": None, "next_action": "choose_route"}}
+    with pytest.raises(generator.GeneratorError, match="shorten"):
+        list(generator.LocalGenerator().stream("Oh, fantastic.", game_state, []))
+    assert all(path != '/v1/chat/completions' for path, _, _ in requests)
+
+
 @pytest.mark.parametrize('path,response', [
     ('/props', {'default_generation_settings': {'n_ctx': True}}),
     ('/props', {'default_generation_settings': {'n_ctx': 0}}),

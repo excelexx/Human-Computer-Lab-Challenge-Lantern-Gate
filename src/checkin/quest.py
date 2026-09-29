@@ -62,6 +62,26 @@ def safe_context(value):
             "next_action": value.get("next_action") if value.get("next_action") in ("walk_and_relight", "confirm_departure", "choose_route") else "choose_route"}
 
 
+def dialogue_goal(value, text):
+    """Specify a conversational purpose, never a canned answer or game action."""
+    game = safe_context(value)
+    if not game:
+        return "Answer the player's actual message."
+    route = {"bridge": "signal bridge", "stairs": "sea stairs"}.get(game["route"])
+    if route and game["next_action"] == "walk_and_relight":
+        return f"Departure is agreed. In the selected tone, name the {route} and tell the player you will lead them now. Do not ask for readiness again or claim arrival."
+    if route and game["next_action"] == "confirm_departure":
+        return f"The player chose the {route}. Acknowledge it in the selected tone, then ask whether they are ready. Do not switch routes."
+    line = text.strip().casefold()
+    if line == SAMPLE_LINES[1].casefold():
+        focus = "Answer whether they must cross the bridge: it is optional, and they may take the sea stairs instead."
+    elif line == SAMPLE_LINES[3].casefold():
+        focus = "Respond to their question about the journey. You only know about wind, exposure and damp steps; do not invent accidents or imply things happened before."
+    else:
+        focus = "Acknowledge their reaction to your beacon task in the selected tone; do not repeat the opening briefing or treat it as a new arrival."
+    return focus + " Leave the route up to the player. One brief bridge-or-stairs choice is enough. A pause, refusal, direct question or out-of-character request takes priority over this plan."
+
+
 def note(quest):
     if quest["phase"] == "depart":
         return "Mara will lead the way after this reply. The journey starts in a moment."
