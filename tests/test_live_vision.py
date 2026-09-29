@@ -201,6 +201,57 @@ def test_display_age_tracks_successful_receipt_and_busy_cannot_extend_it(live_pi
     pipe._release_turn(owner)
 
 
+def test_historical_display_survives_busy_expiry_without_reviving_evidence(live_pipe):
+    pipe, clock = live_pipe
+    buffer = LiveVisionBuffer("s", enabled=True)
+    populate(pipe, clock, buffer)
+    saved = buffer.snapshot("s")
+    assert saved is not None
+    assert "held_label" not in buffer.presentation_status("s")
+    owner = pipe._claim_turn("turn", "1")
+    clock[0] += FRESH_SECONDS
+    assert pipe.observe_live(np.zeros((160,200,3), dtype=np.uint8), buffer, "s")["status"] == "busy"
+    state = buffer.presentation_status("s")
+    assert state["held_label"] == "joy" and state["held_observed_at"] == saved.received_at
+    assert state["label"] is None and not state["available"] and not state["fusion_ready"]
+    assert buffer.snapshot("s") is None and not saved.valid_for("s")
+    assert buffer._window.display is None and not buffer.samples
+    pipe._release_turn(owner)
+    pipe.observe_live(np.zeros((160,200,3), dtype=np.uint8), buffer, "s")
+    state = buffer.presentation_status("s")
+    assert state["label"] == "joy" and "held_label" not in state
+
+
+@pytest.mark.parametrize("reason", ["no_face", "multiple_faces", "track_change"])
+def test_held_tag_survives_missing_face_but_clears_on_ambiguous_person(live_pipe, reason):
+    pipe, clock = live_pipe
+    buffer = LiveVisionBuffer("s", enabled=True)
+    image = np.zeros((160,200,3), dtype=np.uint8)
+    pipe.observe_live(image, buffer, "s")
+    pipe.processor.detector.faces = (None if reason == "no_face" else
+        np.array([face(), face()]) if reason == "multiple_faces" else np.array([face(130,90,60,60)]))
+    clock[0] += .2
+    pipe.observe_live(image, buffer, "s")
+    state = buffer.presentation_status("s")
+    assert state["status"] == reason and state["label"] is None
+    assert (state.get("held_label") == "joy") == (reason == "no_face")
+    assert buffer.snapshot("s") is None
+
+
+@pytest.mark.parametrize("enabled,new_session", [(False,"s"), (True,"s"), (True,"new")])
+def test_held_tag_never_crosses_camera_epoch_or_session(live_pipe, enabled, new_session):
+    pipe, clock = live_pipe
+    buffer = LiveVisionBuffer("s", enabled=True)
+    populate(pipe, clock, buffer)
+    clock[0] += FRESH_SECONDS
+    assert buffer.presentation_status("s")["held_label"] == "joy"
+    assert "held_label" not in buffer.presentation_status("other")
+    old_window = buffer._window
+    buffer.reset(enabled=enabled, session_id=new_session)
+    assert "held_label" not in buffer.presentation_status(new_session)
+    assert old_window.last_display is not None and buffer._window.last_display is None
+
+
 def test_display_uses_normalized_single_frame_without_altering_fusion_pool(live_pipe,monkeypatch):
     pipe,clock=live_pipe;buffer=LiveVisionBuffer("s",enabled=True)
     raw=np.zeros((1,1408),dtype=np.float32);raw[0,:2]=[3,4]

@@ -29,7 +29,11 @@
     if (!panel) return;
     const pill = panel.querySelector(".emotion-pill");
     const note = panel.querySelector(".emotion-note");
-    if (pill) pill.textContent = "Camera off";
+    if (pill) {
+      pill.textContent = "Camera off";
+      pill.setAttribute("title", "Turn on your camera for an emotion tag.");
+      pill.setAttribute("data-held", "false");
+    }
     if (note) note.textContent = "Turn the camera on for a live emotion signal.";
     panel.setAttribute("data-camera-active", "false");
   }

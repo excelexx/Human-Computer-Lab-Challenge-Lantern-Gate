@@ -129,4 +129,34 @@ def test_timer_clears_old_display_and_never_runs_inference(live_app):
 def test_live_tag_requires_available_evidence_and_escapes_labels():
     assert "Joy" not in live_emotion_html({"status": "off", "label": "joy"})
     assert "&lt;script&gt;" in live_emotion_html({"status": "ready", "available": True, "label": "<script>"})
-    assert "Face not in view" in live_emotion_html({"status": "no_face"})
+    assert "No reading yet" in live_emotion_html({"status": "no_face"})
+
+
+def test_only_response_callbacks_show_progress_on_the_chat(live_app):
+    import gradio as gr
+    app, _, _ = live_app
+    chat = next(component for component in app.blocks.values() if component.elem_id == "conversation")
+    response_events = [fn for fn in app.fns.values() if fn.name in {"run_turn", "submit_sample"}]
+    assert len(response_events) == 6  # Send, Enter, four examples.
+    for fn in response_events:
+        assert fn.show_progress == "full"
+        assert fn.show_progress_on == [chat]
+    for fn in app.fns.values():
+        if fn.fn is not None and fn not in response_events and any(not isinstance(c, gr.State) for c in fn.outputs):
+            assert fn.show_progress == "hidden", fn.name
+
+
+def test_camera_tag_retains_only_explicitly_historical_emotion():
+    held = live_emotion_html({"status": "stale", "available": False, "held_label": "joy"})
+    assert "Joy · last" in held and 'data-held="true"' in held
+    assert "not a current reading" in held
+    assert "Waiting for camera" not in held and "Live emotion estimate" not in held
+    for status in ("off", "discarded", "track_change", "multiple_faces"):
+        assert "Joy" not in live_emotion_html({"status": status, "held_label": "joy"})
+
+
+def test_reply_input_has_no_visible_custom_label(live_app):
+    app, _, _ = live_app
+    composer = next(component for component in app.blocks.values() if component.elem_id == "checkin-message")
+    assert composer.show_label is False
+    assert composer.placeholder == "Or say something of your own…"

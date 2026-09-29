@@ -42,3 +42,35 @@ The label names the application's selected direction; it is not an automatic
 evaluation of the generated response. Model output can still exceed the desired
 length or deviate from the tone. Existing evaluation results and all parameter
 counts remain unchanged at 4,464,745,375 required learned parameters.
+
+## Simplified controls and retained camera tag
+
+The response callbacks (four samples, Send and Enter) now restrict Gradio's
+loading indicator to the chat component. Camera updates, composer edits,
+replay preparation and reset callbacks do not put loading overlays on the
+other controls. Gradio's separate blue webcam stream countdown is hidden with
+a camera-scoped CSS rule; capture cadence and response progress are unchanged.
+The visible Custom and Live emotion estimate captions were
+removed. The accessible input label remains, with no visible label spacing;
+the input begins eight pixels below the four samples at the tested desktop
+viewport.
+
+The camera pill keeps its last successfully detected emotion through missing
+frames, model contention and expiry, adding “· last” when the reading is no
+longer current. Its tooltip explains that it is historical. This retained tag
+is presentation only: it cannot extend the four-second fusion eligibility,
+alter smoothing, or condition a response using expired evidence. Camera off,
+new conversations, new camera epochs and ambiguous face changes clear it.
+Before any usable camera evidence the pill says “No reading yet”; it never
+invents a neutral emotion or says “Waiting for camera.”
+
+Verification for this follow-up: 97 Python tests and 13 Node tests passed,
+including expiration during a response, recovery, missing/ambiguous faces,
+session and camera reset isolation, and progress output ownership. A real
+local generation in the browser showed one queued progress indicator, attached
+only to the response. Mara completed a reassuring reply to an explicit nervous
+statement. This run kept the camera off; camera-retention behavior was checked
+with controlled fixtures. The response bubble had equal client and scroll
+heights (190px), with no internal scrolling. No models or benchmark scores changed.
+
+![Simplified controls and completed response](simplified-controls.png)

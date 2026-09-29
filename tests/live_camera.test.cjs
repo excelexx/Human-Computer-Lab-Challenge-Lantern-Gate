@@ -65,7 +65,7 @@ function fixture() {
     addEventListener: (name, fn) => rootListeners.add(fn),
     removeEventListener: (name, fn) => rootListeners.delete(fn)
   };
-  const pill = {textContent: 'Joy'}, note = {textContent: 'Old signal'};
+  const pill = {textContent: 'Joy', setAttribute(name, value) { this[name] = value; }}, note = {textContent: 'Old signal'};
   const panel = {querySelector: selector => selector === '.emotion-pill' ? pill : note, setAttribute() {}};
   const input = new Input();
   const env = {root, rootPresent: true, controlPresent: true};

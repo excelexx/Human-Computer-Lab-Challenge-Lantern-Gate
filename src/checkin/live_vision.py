@@ -111,6 +111,8 @@ def update_display(probabilities, previous, received_monotonic, received_at):
 class _Window:
     observation: LiveVisionObservation | None = None
     display: LiveDisplay | None = None
+    # Presentation only: never used for smoothing, fusion or response generation.
+    last_display: LiveDisplay | None = None
     last_box: tuple[float, ...] | None = None
     samples: list[LiveSample] = field(default_factory=list, repr=False)
     sequence: int = 0
@@ -213,6 +215,18 @@ class LiveVisionBuffer:
             window.last_box=None
             window.status = status_report("stale", self)
         return dict(window.status) if window.status else status_report("warming", self)
+
+    def presentation_status(self, session_id):
+        """Retain a clearly historical tag without extending evidence freshness."""
+        window = self._window
+        state = self.current_status(session_id)
+        if window is not self._window or not self.is_current(session_id, self.epoch):
+            return status_report("off" if not self.enabled else "discarded", self)
+        previous = window.last_display
+        if not state.get("available") and previous is not None:
+            state.update(held_label=LABELS[int(np.argmax(previous.probabilities))],
+                         held_observed_at=previous.received_at)
+        return state
 
 
 def status_report(status, buffer, **values):

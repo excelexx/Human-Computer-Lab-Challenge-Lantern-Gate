@@ -191,20 +191,18 @@ def live_emotion_html(status: dict[str, Any] | None = None) -> str:
     """Keep live visual evidence distinct from a submitted text+vision check-in."""
     status = status or {"status": "off"}
     kind = status.get("status", "off")
-    labels = {"off": "Camera off", "warming": "Getting a clear view", "no_face": "Face not in view",
-              "multiple_faces": "Keep one face in view", "track_change": "Hold a steady view",
-              "busy": "Mara is replying", "stale": "Waiting for camera",
-              "error": "Camera signal unavailable", "invalid_frame": "Waiting for camera",
-              "insufficient_face_frames": "Getting a clear view"}
     ready = kind == "ready" and bool(status.get("available")) and bool(status.get("label"))
-    label = str(status["label"]).capitalize() if ready else labels.get(kind, "Getting a clear view")
-    note = "A tentative visual signal. Your own account matters most." if ready else (
-        "Turn your camera on once. The tag updates while you talk or type." if kind == "off" else
-        "Live updates resume as soon as the local model is free." if kind == "busy" else
-        "Recent frames are checked locally. No audio is used.")
-    return ('<div class="emotion-line"><span class="emotion-caption">Live emotion estimate</span>'
-            f'<span class="emotion-pill">{html.escape(label)}</span></div>'
-            f'<div class="emotion-note">{note}</div>')
+    held = not ready and kind not in {"off", "discarded", "multiple_faces", "track_change"} and bool(status.get("held_label"))
+    label = (str(status["label"]).capitalize() if ready else
+             str(status["held_label"]).capitalize() + " · last" if held else
+             "Camera off" if kind == "off" else "No reading yet")
+    note = ("Tentative emotion from your camera." if ready else
+            "Last observed emotion; not a current reading. Fresh frames update it automatically." if held else
+            "Turn on your camera for an emotion tag." if kind == "off" else
+            "Keep one face in view for the first emotion reading.")
+    return ('<div class="emotion-line">'
+            f'<span class="emotion-pill" title="{html.escape(note, quote=True)}" '
+            f'data-held="{str(held).lower()}">{html.escape(label)}</span></div>')
 
 
 def status_message(status: dict[str, Any]) -> str:
@@ -400,7 +398,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                         for line in SAMPLE_LINES[offset:offset + 2]:
                             sample_buttons.append(gr.Button(line, size="sm", elem_classes="sample-line", min_width=100))
                 with gr.Row(elem_id="custom-reply-row"):
-                    message = gr.Textbox(label="Custom", placeholder="Or say something of your own…", lines=1,
+                    message = gr.Textbox(label="Your reply", show_label=False, placeholder="Or say something of your own…", lines=1,
                         max_lines=2, max_length=4000, elem_id="checkin-message", scale=6, min_width=120)
                     send = gr.Button("Send custom reply", variant="primary", elem_id="send", scale=1, min_width=75)
                     stop = gr.Button("Stop", elem_id="stop", scale=1, min_width=65, interactive=False)
@@ -594,11 +592,11 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                 # callback ordering without leaving the composer disabled.
 
             admission = load_replay.click(begin_replay, [replay_select, replay_epoch, replay_guard], [replay_ticket] + replay_outputs,
-                                          concurrency_limit=1, concurrency_id="replay-admission", trigger_mode="once", api_name=False)
+                                          concurrency_limit=1, concurrency_id="replay-admission", trigger_mode="once", show_progress="hidden", api_name=False)
             # A cancelled admission can still produce a Gradio completion
             # notification. Only an actual ticket update may schedule loading.
             loading = replay_ticket.change(select_replay, [replay_ticket, replay_guard], replay_outputs,
-                                           concurrency_limit=1, concurrency_id="gpu", api_name=False)
+                                           concurrency_limit=1, concurrency_id="gpu", show_progress="hidden", api_name=False)
             replay_events = [admission, loading]
 
         def admit_upload(payload: dict[str, Any] | None, epoch: str, guard: dict[str, Any]) -> Iterator[tuple[Any, ...]]:
@@ -654,13 +652,14 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         if load_replay is not None:
             edit_events.append(replay_select.input)
         for edit_event in edit_events:
-            edit_event(abandon_replay, [replay_guard], replay_outputs + [replay_epoch], cancels=replay_events, queue=False, api_name=False)
+            edit_event(abandon_replay, [replay_guard], replay_outputs + [replay_epoch], cancels=replay_events, queue=False, show_progress="hidden", api_name=False)
 
         inputs = [message, camera, conversation_state, session, turn, replay_guard, live_buffer, input_mode]
         send_event = send.click(run_turn, inputs, outputs, concurrency_limit=1, concurrency_id="gpu", trigger_mode="once", api_name=False,
-                                cancels=replay_events or None)
+                                cancels=replay_events or None, show_progress="full", show_progress_on=[chat])
         turn_events = [send_event, message.submit(run_turn, inputs, outputs, concurrency_limit=1,
-            concurrency_id="gpu", trigger_mode="once", api_name=False, cancels=replay_events or None)]
+            concurrency_id="gpu", trigger_mode="once", api_name=False, cancels=replay_events or None,
+            show_progress="full", show_progress_on=[chat])]
         for sample_button in sample_buttons:
             def submit_sample(line, clip, history, session_id, turn_id, guard, buffer, mode):
                 current = guard.setdefault("quest", quest.initial_quest())
@@ -681,7 +680,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             turn_events.append(sample_button.click(submit_sample,
                 [sample_button, camera, conversation_state, session, turn, replay_guard, live_buffer, input_mode], outputs,
                 concurrency_limit=1, concurrency_id="gpu", trigger_mode="once", api_name=False,
-                cancels=replay_events or None))
+                cancels=replay_events or None, show_progress="full", show_progress_on=[chat]))
 
         def request_cancel(session_id: str, turn_id: Any = None) -> bool:
             cancel = getattr(pipeline, "cancel", None)
@@ -725,24 +724,26 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
             outputs=[activity, send, stop] + compose_controls + [replay_epoch] + game_outputs,
             cancels=turn_events + replay_events,
             queue=False,
+            show_progress="hidden",
             api_name=False,
         )
         leave_dialogue.click(stop_current, inputs=[session, turn, replay_guard],
             outputs=[activity, send, stop] + compose_controls + [replay_epoch] + game_outputs,
-            cancels=turn_events + replay_events, queue=False, api_name=False)
+            cancels=turn_events + replay_events, queue=False, show_progress="hidden", api_name=False)
         new.click(
             new_conversation,
             inputs=[session, turn, replay_guard, live_buffer],
             outputs=[chat, conversation_state, emotion, output_state, activity, session, turn, message, camera, send, stop] + ([load_replay, replay_select] if load_replay is not None else []) + [live_control, replay_epoch] + game_outputs,
             cancels=turn_events + replay_events,
             queue=False,
+            show_progress="hidden",
             api_name=False,
         )
         def refresh_status() -> tuple[dict[str, Any], str]:
             status = get_status()
             return status, status_message(status)
 
-        refresh.click(refresh_status, outputs=[setup, activity], queue=False, api_name=False)
+        refresh.click(refresh_status, outputs=[setup, activity], queue=False, show_progress="hidden", api_name=False)
 
         def camera_lifecycle(control: str, buffer: Any, session_id: str) -> None:
             # Repeated signals are harmless; a new track starts a fresh window.
@@ -759,7 +760,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                 observer(frame, buffer, session_id)
 
         def live_status(buffer: Any, session_id: str) -> tuple[str, dict[str, Any]]:
-            state = buffer.current_status(session_id)
+            state = buffer.presentation_status(session_id)
             return live_emotion_html(state), state
 
         live_control.input(camera_lifecycle, [live_control, live_buffer, session], [], queue=False, api_name=False,
@@ -771,10 +772,10 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                            stream_every=.2, time_limit=30, show_progress="hidden", api_name=False)
         live_refresh.tick(live_status, [live_buffer, session], [live_emotion, live_diagnostics],
                           queue=False, show_progress="hidden", api_name=False)
-        live_tab.select(lambda: "camera", outputs=input_mode, queue=False, api_name=False)
-        upload_tab.select(lambda: "clip", outputs=input_mode, queue=False, api_name=False)
+        live_tab.select(lambda: "camera", outputs=input_mode, queue=False, show_progress="hidden", api_name=False)
+        upload_tab.select(lambda: "clip", outputs=input_mode, queue=False, show_progress="hidden", api_name=False)
         if replay_rows:
-            replay_tab.select(lambda: "clip", outputs=input_mode, queue=False, api_name=False)
+            replay_tab.select(lambda: "clip", outputs=input_mode, queue=False, show_progress="hidden", api_name=False)
     app.queue(default_concurrency_limit=1, max_size=8)
     return app
 

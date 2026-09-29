@@ -128,7 +128,6 @@ COMPACT_CSS = '''
 #dialogue-panel #conversation .bubble-wrap {background:transparent !important;}
 #dialogue-panel #input-column [role="tablist"],#dialogue-panel #input-column .tab-container {display:none !important;}
 #dialogue-panel #checkin-message label.container {background:transparent !important;border:0 !important;border-radius:0 !important;}
-#dialogue-panel #checkin-message label.container > span {background:transparent !important;color:#69553d !important;}
 #dialogue-panel #checkin-message .input-container {background:transparent !important;border-radius:0 !important;}
 #dialogue-panel #live-camera button > .wrap {height:100% !important;min-height:0 !important;gap:8px !important;padding:8px !important;}
 #dialogue-panel #live-camera button > .wrap svg {max-height:26px;max-width:26px;}
@@ -256,7 +255,6 @@ FINAL_LAYOUT_CSS = '''
 .mara-portrait {align-items:flex-start;}.mara-portrait svg {width:192px;height:228px;border:0;box-shadow:none;background:transparent;}.mara-portrait span {padding-left:64px;}
 #dialogue-panel #checkin-message {padding:0 !important;border:0 !important;overflow:visible !important;background:transparent !important;box-shadow:none !important;}
 #dialogue-panel #checkin-message label.container {display:flex;flex-direction:column;gap:5px;padding:0 !important;margin:0 !important;box-shadow:none !important;}
-#dialogue-panel #checkin-message label.container > span {position:static !important;display:block !important;padding:0 !important;font-size:10px !important;line-height:1.4;color:#6b543c !important;}
 #dialogue-panel #checkin-message textarea {border:2px solid #ad9267 !important;box-sizing:border-box !important;min-height:45px !important;height:45px;background:#fff9e7 !important;color:#493c2c !important;font-size:11px !important;line-height:1.6 !important;border-radius:0 !important;resize:none !important;overflow-y:auto !important;}
 #dialogue-panel #checkin-message textarea::placeholder {color:#826b50 !important;opacity:1;}
 #dialogue-panel #send {width:45px !important;min-width:45px !important;max-width:45px !important;min-height:45px !important;height:45px !important;margin:0 !important;background:#536a53 !important;color:#fff8df !important;border:2px solid #354f3f !important;border-radius:0 !important;box-shadow:2px 2px 0 #c3a779 !important;align-self:flex-end !important;}
@@ -352,10 +350,11 @@ FLOATING_CSS = '''
 #dialogue-panel #input-column,#dialogue-panel #player-replies,#dialogue-panel #custom-reply-row {background:transparent !important;border:0 !important;box-shadow:none !important;}
 #dialogue-panel #live-camera {border:3px solid #ebd4a0 !important;box-shadow:3px 3px 0 #384634 !important;}
 #dialogue-panel #live-camera-tag {background:transparent !important;padding:5px 0 0;}
+/* Gradio's webcam stream countdown is separate from response progress. */
+#dialogue-panel #live-camera .streaming-bar {display:none !important;}
 #dialogue-panel #live-camera-tag .emotion-caption {background:#fff0d1;padding:5px;color:#514332;}
 #dialogue-panel #player-replies {padding-top:0;}
 #dialogue-panel .sample-line {background:#fff0d1 !important;border:2px solid #ad9368 !important;box-shadow:2px 2px 0 #374431 !important;}
-#dialogue-panel #checkin-message label.container > span {background:#fff0d1 !important;align-self:flex-start;padding:3px 6px !important;color:#514332 !important;}
 #dialogue-panel #conversation::after {left:var(--speech-tail,calc(50% - 10px));}
 #dialogue-panel #activity {background:transparent;border:0;text-shadow:1px 1px #223728;}
 #dialogue-panel #activity p {color:#fff4d3 !important;}
@@ -368,7 +367,6 @@ FLOATING_CSS = '''
 #dialogue-panel #conversation .message,#dialogue-panel #conversation .message *,#dialogue-panel .conversation-empty p {font-size:20px !important;line-height:1.5 !important;}
 #dialogue-panel .sample-line {font-size:18px !important;min-height:52px !important;line-height:1.5;}
 #dialogue-panel #checkin-message textarea {font-size:18px !important;height:56px;min-height:56px !important;padding:12px !important;}
-#dialogue-panel #checkin-message label.container > span,#dialogue-panel #live-camera-tag .emotion-caption {font-size:14px !important;}
 #dialogue-panel .emotion-pill {font-size:16px;}
 #dialogue-panel #activity p {font-size:12px !important;}
 #dialogue-panel #live-camera button {font-size:14px !important;}
@@ -386,7 +384,6 @@ FLOATING_CSS = '''
  #dialogue-panel #live-camera-tag .emotion-caption{display:none;}
  #dialogue-panel #live-camera-tag .emotion-line{margin:0;}
  #dialogue-panel #custom-reply-row .form{min-width:0 !important;}
- #dialogue-panel #checkin-message label.container > span{font-size:10px !important;}
  #dialogue-panel #player-replies{gap:4px !important;}
  #dialogue-panel .sample-line{font-size:12px !important;line-height:1.4;min-height:28px !important;}
 }

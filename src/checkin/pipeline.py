@@ -276,6 +276,11 @@ class CheckInPipeline:
             window.samples=recent
             window.observation=observation
             window.display=display
+            if display is not None:
+                window.last_display=display
+            elif display_reason in {"track_change","multiple_faces"}:
+                # Do not attach a previous person's tag to an ambiguous face.
+                window.last_display=None
             window.last_box=box
             window.status=status_report("ready" if display is not None else display_reason,buffer,
                 quality=observation.quality if observation is not None else quality,
