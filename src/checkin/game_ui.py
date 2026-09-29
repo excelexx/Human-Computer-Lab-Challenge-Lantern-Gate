@@ -29,12 +29,22 @@ def game_html():
     return f'''<div id="game-world">
       <canvas id="town-canvas" tabindex="0" aria-label="Lantern Gate village. Move with W A S D or arrow keys. Approach Mara at the northern gate to talk." data-atlas="{atlas}"></canvas>
       <div class="world-header"><div class="quest-plaque"><h1>Lantern Gate</h1><p id="game-hint" role="status">Find Mara at the northern gate. Walk up the stone path.</p></div>
-      <button id="game-fullscreen" title="Toggle browser full screen" aria-label="Toggle full screen">Full screen</button></div>
+      <div class="world-actions"><button data-game-help aria-haspopup="dialog">How it works</button><button id="game-fullscreen" title="Toggle browser full screen" aria-label="Toggle full screen">Full screen</button></div></div>
       <div class="world-footer"><div class="world-controls"><span><kbd>E</kbd> Talk</span><span><kbd>Esc</kbd> Leave</span></div>
       <button id="visit-mara">Go to Mara</button><button id="talk-mara" hidden>Talk to Mara</button><button id="restart-scene" hidden>Restart scene</button></div>
       <div class="touch-pad" aria-label="Movement controls"><button data-move="w" aria-label="Walk north">▲</button><div><button data-move="a" aria-label="Walk west">◀</button><button data-move="s" aria-label="Walk south">▼</button><button data-move="d" aria-label="Walk east">▶</button></div></div>
       <div class="asset-credit">Town art: Kenney · Local AI · No audio</div>
-    </div>'''
+    </div>
+    <dialog id="game-help" aria-labelledby="game-help-title">
+      <h2 id="game-help-title" tabindex="-1">Words + emotion</h2>
+      <p>Your words and camera emotion estimate shape Mara's tone.</p>
+      <div class="help-example"><span>Try the same line:</span><strong>“Oh, fantastic.”</strong>
+        <ul><li><b>Joy</b> Playful banter</li><li><b>Fear</b> Reassurance</li><li><b>Anger</b> Brief and steady</li></ul>
+      </div>
+      <p>The tag is an estimate. Your words and route choice still come first.</p>
+      <p class="help-footnote">Buttons are examples. Mara's answers are generated live on your computer. Camera optional.</p>
+      <form method="dialog"><button id="dismiss-game-help">Got it · Let's play</button></form>
+    </dialog>'''
 
 
 def game_css():
@@ -301,6 +311,25 @@ IN_WORLD_CSS = '''
 '''
 
 FLOATING_CSS = '''
+.world-actions {display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;}
+#game-help {position:fixed;inset:0;margin:auto;width:min(460px,calc(100vw - 36px));max-height:calc(100dvh - 36px);box-sizing:border-box;padding:24px;overflow-y:auto;background:#fff0d1;color:#493c2c;border:4px solid #685246;border-radius:0;box-shadow:4px 4px 0 #d0b17d,8px 8px 0 #26343b;font:14px/1.7 PixelTown,Consolas,monospace;}
+#game-help::backdrop {background:#152c3a88;}
+#game-help .help-example,#game-help strong,#game-help ul,#game-help li,#game-help form {color:#493c2c !important;}
+#game-help h2 {font:20px/1.4 PixelTown,Consolas,monospace;color:#354f3f;margin:0 0 14px;}
+#game-help p {font:inherit;color:inherit;margin:0 0 14px;}
+#game-help .help-example {padding:12px;margin:0 0 14px;background:#f8e4b9;border:2px solid #c3a779;}
+#game-help .help-example > span {display:block;font-size:12px;color:#6b543c;}
+#game-help .help-example > strong {display:block;font-size:17px;margin:3px 0 12px;}
+#game-help ul {list-style:none;padding:0;margin:0;}
+#game-help li {display:flex;gap:12px;font-size:13px;line-height:1.8;}
+#game-help li b {display:inline-block;min-width:55px;color:#48614b;}
+#game-help .help-footnote {font-size:12px;line-height:1.7;}
+#game-help form {margin:0;}
+#game-help button {display:block;width:100%;padding:11px 8px;border:2px solid #354f3f;border-radius:0;background:#536a53;color:#fff8df;font:14px/1.5 PixelTown,Consolas,monospace;cursor:pointer;box-shadow:3px 3px 0 #b59b6f;}
+#game-help button:hover {background:#627d5f;}
+#game-help button:focus-visible {outline:3px solid #354f3f;outline-offset:4px;}
+#dialogue-panel [data-game-help] {font:12px PixelTown,monospace;color:#4c443c;background:#fff0d1;border:2px solid #806b4d;border-radius:0;padding:7px 10px;cursor:pointer;}
+@media(max-width:600px){#game-help{padding:16px;}#game-help h2{font-size:17px;}.world-actions{flex-direction:column;align-items:flex-end;}#game-world .world-actions button{font-size:8px;padding:6px;}#dialogue-panel [data-game-help]{font-size:10px;padding:5px 7px;}.dialogue-title{flex-wrap:wrap;}}
 #quest-event,#new-conversation {display:none !important;}
 #example-note {background:#fff0d1 !important;border:2px solid #ad9368 !important;padding:6px 9px !important;}
 #dialogue-panel #example-note p {font-size:10px !important;line-height:1.5 !important;color:#514332 !important;margin:0;}

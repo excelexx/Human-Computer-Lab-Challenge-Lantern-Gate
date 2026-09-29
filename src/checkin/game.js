@@ -5,12 +5,13 @@
   const keys=new Set(), W=window.LanternWorld, player=W.create();
   let mara={...W.NPC},questPhase='talking',trip=null,readingLeft=0,lastSignal='',beaconLit=false;
   const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let canvas,ctx,world,panel,observer;
+  let canvas,ctx,world,panel,observer,help;
   const atlas=new Image();
   let pixelScale=2, viewW=480,viewH=320, camX=0,camY=0;
   const cleanups=[];
   function listen(target,event,handler,options){target.addEventListener(event,handler,options);cleanups.push(()=>target.removeEventListener(event,handler,options));}
   function cameraOff(){document.querySelector('#live-camera button[aria-label="Turn camera off"]')?.click();}
+  function showHelp(){keys.clear();if(help&&!help.open){help.showModal();document.querySelector('#game-help-title').focus({preventScroll:true});help.scrollTop=0;}}
   function showDialogue(){
     if(open || !panel || questPhase!=='talking' || !W.near(player))return;
     open=true;keys.clear();world.inert=true;
@@ -36,6 +37,7 @@
   }
   const isTyping=target=>target?.closest?.('input,textarea,select,[contenteditable="true"]');
   function keydown(event){
+    if(help?.open)return; // Native dialog owns Escape and keyboard focus.
     if(open){
       if(event.key==='Escape'){event.preventDefault();closeDialogue();}
       if(event.key==='Tab'){
@@ -216,22 +218,22 @@
         }
       }
     }
-    if(questPhase==='reading' && !document.hidden){
+    if(questPhase==='reading' && !document.hidden && !help?.open){
       readingLeft-=delta;
       if(readingLeft<=0){closeDialogue(false);questPhase='walking';}
     }
-    if(questPhase==='walking' && !document.hidden){
+    if(questPhase==='walking' && !document.hidden && !help?.open){
       if(reduce)for(let i=0;i<1000&&!trip.done;i++)W.advanceJourney(trip,.05);
       else W.advanceJourney(trip,delta);
       mara={...trip.mara};Object.assign(player,trip.traveler);player.steps+=58*delta;
       player.direction='down';
       if(trip.done){questPhase='complete';beaconLit=true;}
     }
-    const moving=!open&&['talking','complete'].includes(questPhase)&&W.move(player,dx,dy,delta);
+    const moving=!open&&!help?.open&&['talking','complete'].includes(questPhase)&&W.move(player,dx,dy,delta);
     if(moving)hasMoved=true;
     const near=W.near(player);
     if(!near)autoArmed=true;
-    if(near&&autoArmed&&!open&&questPhase==='talking'){autoArmed=false;showDialogue();}
+    if(near&&autoArmed&&!open&&!help?.open&&questPhase==='talking'){autoArmed=false;showDialogue();}
     const talk=document.querySelector('#talk-mara');
     if(talk){talk.hidden=!near||questPhase!=='talking';talk.disabled=!near||questPhase!=='talking';}
     const visit=document.querySelector('#visit-mara'),restart=document.querySelector('#restart-scene');
@@ -249,6 +251,7 @@
     canvas=document.querySelector('#town-canvas');panel=document.querySelector('#dialogue-panel');
     if(!canvas||!panel||!document.querySelector('#close-dialogue'))return;
     observer?.disconnect();ctx=canvas.getContext('2d');world=document.querySelector('#game-world');
+    help=document.querySelector('#game-help');
     atlas.src=canvas.dataset.atlas;
     document.body.classList.add('game-ready');document.body.style.overflow='hidden';panel.dataset.gameOpen='false';world.dataset.dialogue='false';panel.inert=true;panel.setAttribute('aria-hidden','true');
     panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-label','Speak with Mara');
@@ -256,6 +259,8 @@
     listen(window,'blur',()=>keys.clear());
     listen(document,'visibilitychange',()=>{keys.clear();if(document.hidden)cameraOff();});
     listen(document.querySelector('#close-dialogue'),'click',()=>closeDialogue());
+    for(const button of document.querySelectorAll('[data-game-help]'))listen(button,'click',showHelp);
+    listen(help,'close',()=>{keys.clear();try{sessionStorage.setItem('lanternGate.helpSeen.v1','yes');}catch{}if(!open)canvas.focus();});
     listen(document.querySelector('#restart-scene'),'click',()=>{cameraOff();document.querySelector('#new-conversation')?.click();});
     listen(document.querySelector('#talk-mara'),'click',showDialogue);
     listen(document.querySelector('#visit-mara'),'click',()=>{player.x=W.NPC.x;player.y=W.NPC.y+33;autoArmed=true;});
@@ -268,6 +273,7 @@
       for(const event of ['pointerup','pointercancel','lostpointercapture'])listen(button,event,()=>keys.delete(button.dataset.move));
     }
     resize();raf=requestAnimationFrame(tick);
+    try{if(sessionStorage.getItem('lanternGate.helpSeen.v1')!=='yes')showHelp();}catch{showHelp();}
   }
   observer=new MutationObserver(attach);observer.observe(document.documentElement,{childList:true,subtree:true});attach();
   window[key]={dispose(){disposed=true;cancelAnimationFrame(raf);observer.disconnect();cleanups.forEach(f=>f());keys.clear();cameraOff();document.body.classList.remove('game-ready','in-dialogue');}};

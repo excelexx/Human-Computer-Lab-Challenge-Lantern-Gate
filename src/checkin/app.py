@@ -339,7 +339,7 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
         load_replay = None
         gr.HTML(game_html())
         with gr.Column(elem_id="dialogue-panel"):
-            gr.HTML('<div class="dialogue-title"><span>Mara, keeper of Lantern Gate</span><button id="close-dialogue" type="button">Back to village [Esc]</button></div>', elem_id="dialogue-header")
+            gr.HTML('<div class="dialogue-title"><span>Mara, keeper of Lantern Gate</span><button type="button" data-game-help aria-label="How it works" aria-haspopup="dialog">?</button><button id="close-dialogue" type="button">Back to village [Esc]</button></div>', elem_id="dialogue-header")
             with gr.Row(equal_height=False, elem_id="content-grid"):
                 with gr.Column(scale=3, min_width=170, elem_id="input-column"):
                     with gr.Tabs():

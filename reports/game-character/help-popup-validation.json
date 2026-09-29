@@ -1,0 +1,18 @@
+{
+  "date": "2026-09-29",
+  "scope": "Explanatory popup, contrast and larger typography; model path unchanged",
+  "automated": ["33 existing UI tests passed", "game.js syntax check passed"],
+  "browser_checked": [
+    "First visit opens help at its heading",
+    "Example text and descriptions render dark brown on cream",
+    "Computed body text is 14px, example line 17px, descriptions 13px and notes 12px",
+    "W key leaves player position unchanged while help is open",
+    "Got it dismisses help; refresh does not reopen it in the same tab",
+    "How it works reopens help in the village and inside NPC conversation",
+    "Escape closes help and preserves the NPC conversation",
+    "Desktop popup fits all content without overflow",
+    "Small-window popup scrolls to the final note and dismiss button"
+  ],
+  "screenshot": "help-popup.png",
+  "limitations": "UI verification only; no new model-accuracy or emotion-conditioning claims."
+}
