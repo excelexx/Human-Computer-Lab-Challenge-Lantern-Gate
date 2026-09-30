@@ -1,0 +1,422 @@
+[
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "neutral",
+    "prompt": "Oh, fantastic."
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "neutral",
+    "prompt": "You want me to cross that?"
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "neutral",
+    "prompt": "Sure. Whatever."
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "neutral",
+    "prompt": "What could possibly go wrong?"
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "surprise",
+    "prompt": "Oh, fantastic."
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "surprise",
+    "prompt": "You want me to cross that?"
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "surprise",
+    "prompt": "Sure. Whatever."
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "surprise",
+    "prompt": "What could possibly go wrong?"
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "fear",
+    "prompt": "Oh, fantastic."
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "fear",
+    "prompt": "You want me to cross that?"
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "fear",
+    "prompt": "Sure. Whatever."
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "fear",
+    "prompt": "What could possibly go wrong?"
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "sadness",
+    "prompt": "Oh, fantastic."
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "sadness",
+    "prompt": "You want me to cross that?"
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "sadness",
+    "prompt": "Sure. Whatever."
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "sadness",
+    "prompt": "What could possibly go wrong?"
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "joy",
+    "prompt": "Oh, fantastic."
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "joy",
+    "prompt": "You want me to cross that?"
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "joy",
+    "prompt": "Sure. Whatever."
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "joy",
+    "prompt": "What could possibly go wrong?"
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "disgust",
+    "prompt": "Oh, fantastic."
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "disgust",
+    "prompt": "You want me to cross that?"
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "disgust",
+    "prompt": "Sure. Whatever."
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "disgust",
+    "prompt": "What could possibly go wrong?"
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "anger",
+    "prompt": "Oh, fantastic."
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "anger",
+    "prompt": "You want me to cross that?"
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "anger",
+    "prompt": "Sure. Whatever."
+  },
+  {
+    "kind": "preset",
+    "stage": "Opening",
+    "emotion": "anger",
+    "prompt": "What could possibly go wrong?"
+  },
+  {
+    "kind": "preset",
+    "stage": "Route choice",
+    "emotion": "neutral",
+    "prompt": "Fine. The bridge it is."
+  },
+  {
+    "kind": "preset",
+    "stage": "Route choice",
+    "emotion": "neutral",
+    "prompt": "The sea stairs, then."
+  },
+  {
+    "kind": "preset",
+    "stage": "Route choice",
+    "emotion": "surprise",
+    "prompt": "The sea stairs, then."
+  },
+  {
+    "kind": "preset",
+    "stage": "Route choice",
+    "emotion": "surprise",
+    "prompt": "That bridge sounds inviting."
+  },
+  {
+    "kind": "preset",
+    "stage": "Route choice",
+    "emotion": "fear",
+    "prompt": "That bridge sounds inviting."
+  },
+  {
+    "kind": "preset",
+    "stage": "Route choice",
+    "emotion": "fear",
+    "prompt": "Those stairs sound delightful."
+  },
+  {
+    "kind": "preset",
+    "stage": "Route choice",
+    "emotion": "sadness",
+    "prompt": "Those stairs sound delightful."
+  },
+  {
+    "kind": "preset",
+    "stage": "Route choice",
+    "emotion": "sadness",
+    "prompt": "Fine. The bridge it is."
+  },
+  {
+    "kind": "preset",
+    "stage": "Route choice",
+    "emotion": "joy",
+    "prompt": "Fine. The bridge it is."
+  },
+  {
+    "kind": "preset",
+    "stage": "Route choice",
+    "emotion": "joy",
+    "prompt": "The sea stairs, then."
+  },
+  {
+    "kind": "preset",
+    "stage": "Route choice",
+    "emotion": "disgust",
+    "prompt": "The sea stairs, then."
+  },
+  {
+    "kind": "preset",
+    "stage": "Route choice",
+    "emotion": "disgust",
+    "prompt": "That bridge sounds inviting."
+  },
+  {
+    "kind": "preset",
+    "stage": "Route choice",
+    "emotion": "anger",
+    "prompt": "That bridge sounds inviting."
+  },
+  {
+    "kind": "preset",
+    "stage": "Route choice",
+    "emotion": "anger",
+    "prompt": "Those stairs sound delightful."
+  },
+  {
+    "kind": "preset",
+    "stage": "Ready: bridge",
+    "emotion": "neutral",
+    "prompt": "Lead the way."
+  },
+  {
+    "kind": "preset",
+    "stage": "Ready: bridge",
+    "emotion": "surprise",
+    "prompt": "Let's do this."
+  },
+  {
+    "kind": "preset",
+    "stage": "Ready: bridge",
+    "emotion": "fear",
+    "prompt": "Ready as I'll ever be."
+  },
+  {
+    "kind": "preset",
+    "stage": "Ready: bridge",
+    "emotion": "sadness",
+    "prompt": "Actually, let's stay here."
+  },
+  {
+    "kind": "preset",
+    "stage": "Ready: stairs",
+    "emotion": "joy",
+    "prompt": "Lead the way."
+  },
+  {
+    "kind": "preset",
+    "stage": "Ready: stairs",
+    "emotion": "disgust",
+    "prompt": "Let's do this."
+  },
+  {
+    "kind": "preset",
+    "stage": "Ready: stairs",
+    "emotion": "anger",
+    "prompt": "Ready as I'll ever be."
+  },
+  {
+    "kind": "preset",
+    "stage": "Ready: stairs",
+    "emotion": "neutral",
+    "prompt": "Actually, let's stay here."
+  },
+  {
+    "kind": "custom",
+    "stage": "Opening",
+    "emotion": "joy",
+    "prompt": "My smile is just politeness; I'm worried about this."
+  },
+  {
+    "kind": "custom",
+    "stage": "Opening",
+    "emotion": "anger",
+    "prompt": "I'm happy to help, but please skip the big speech."
+  },
+  {
+    "kind": "custom",
+    "stage": "Opening",
+    "emotion": "sadness",
+    "prompt": "Can you explain why the beacon matters?"
+  },
+  {
+    "kind": "custom",
+    "stage": "Opening",
+    "emotion": "fear",
+    "prompt": "Please give me some space while I decide."
+  },
+  {
+    "kind": "custom",
+    "stage": "Opening",
+    "emotion": "disgust",
+    "prompt": "Do you know whether the bridge was inspected?"
+  },
+  {
+    "kind": "custom",
+    "stage": "Opening",
+    "emotion": "surprise",
+    "prompt": "Do you mean I have to help you?"
+  },
+  {
+    "kind": "custom",
+    "stage": "Opening",
+    "emotion": "joy",
+    "prompt": "Can you tell what I am wearing?"
+  },
+  {
+    "kind": "custom",
+    "stage": "Opening",
+    "emotion": "neutral",
+    "prompt": "Are you reacting to my words or my face?"
+  },
+  {
+    "kind": "custom",
+    "stage": "Route choice",
+    "emotion": "fear",
+    "prompt": "I prefer the bridge, but I'm not ready to leave."
+  },
+  {
+    "kind": "custom",
+    "stage": "Route choice",
+    "emotion": "joy",
+    "prompt": "No bridge for me. I haven't chosen the stairs either."
+  },
+  {
+    "kind": "custom",
+    "stage": "Route choice",
+    "emotion": "anger",
+    "prompt": "I choose the stairs. Please wait for me to say go."
+  },
+  {
+    "kind": "custom",
+    "stage": "Route choice",
+    "emotion": "sadness",
+    "prompt": "If I picked the bridge, would you come with me?"
+  },
+  {
+    "kind": "custom",
+    "stage": "Route choice",
+    "emotion": "surprise",
+    "prompt": "The bridge sounds tempting, but I'm still deciding."
+  },
+  {
+    "kind": "custom",
+    "stage": "Route choice",
+    "emotion": "disgust",
+    "prompt": "I'm not disgusted; I'm just concentrating."
+  },
+  {
+    "kind": "custom",
+    "stage": "Ready: bridge",
+    "emotion": "joy",
+    "prompt": "I changed my mind. I prefer the sea stairs."
+  },
+  {
+    "kind": "custom",
+    "stage": "Ready: stairs",
+    "emotion": "fear",
+    "prompt": "Before we leave, which route did I pick?"
+  },
+  {
+    "kind": "custom",
+    "stage": "Ready: bridge",
+    "emotion": "anger",
+    "prompt": "Wait. What happens if we never go?"
+  },
+  {
+    "kind": "custom",
+    "stage": "Ready: stairs",
+    "emotion": "sadness",
+    "prompt": "I'm excited now. Lead the way."
+  },
+  {
+    "kind": "custom",
+    "stage": "Ready: bridge",
+    "emotion": "surprise",
+    "prompt": "Go without me; I am staying here."
+  },
+  {
+    "kind": "custom",
+    "stage": "Ready: stairs",
+    "emotion": "neutral",
+    "prompt": "You said I was scared, but I'm calm. Can we pause?"
+  }
+]

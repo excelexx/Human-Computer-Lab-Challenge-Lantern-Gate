@@ -35,4 +35,5 @@ class CheckInState(BaseModel):
     timing: dict[str,float|None]
     interaction: dict = Field(default_factory=dict)
     game: dict = Field(default_factory=dict)
+    response_guard: dict = Field(default_factory=dict)
     response: Response = Field(default_factory=Response)

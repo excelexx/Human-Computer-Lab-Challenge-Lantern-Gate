@@ -71,6 +71,21 @@ def _turn_context(text: str, state: dict[str, Any]) -> dict[str, Any]:
     if direction["direction_source"] == "explicit_player_words":
         goal += f" The player's current explicit self-report is {direction['cue_emotion']}. Respond to this current disclosure; quoted or corrected earlier descriptions are not current feelings."
         goal += " Speak directly to the feeling they stated. You learned it from their words: do not narrate their appearance or paraphrase a facial expression as something you can see."
+    # Turn-specific positive delivery tasks prevent the small local model from
+    # giving the same factual answer under every camera tag. These are authored
+    # purposes, not inserted NPC sentences or changes to the game state.
+    delivery = {
+        "practical": "Use a plain, friendly acknowledgment and a clear answer.",
+        "playful": "Show warm enthusiasm for working together. Use upbeat, companionable wording; keep every practical statement literal and grounded in the known facts. No invented joke scenarios.",
+        "careful": "Make the answer reassuring: give the player control of the pace and, if welcome, offer to stay beside them. Do not make a safety promise.",
+        "patient": "Make the answer quietly patient: allow time and offer undemanding company if welcome, without pushing or cheering them up.",
+        "steady": "Make the answer candid and steady: acknowledge the inconvenience and spare them any sales pitch. No teasing or pressure.",
+        "curious": "Make the answer orienting: calmly put the immediate step into perspective, without inventing surprise or asking an extra question.",
+        "wry": "Make the answer dryly companionable: use gentle understatement about the beacon chore. Never correct or mock the player's choice of words.",
+    }
+    if direction["direction_source"] != "modality_disagreement":
+        goal += " Delivery for this turn: " + delivery[direction["response_style"]]
+    goal += " Respond in at most two sentences. Start with your answer, not a quotation or repetition of the player's wording."
     return {"emotion_evidence": evidence, "npc_direction": direction,
             "game_context": game, "reply_goal": goal}
 
@@ -107,8 +122,20 @@ def _messages(text: str, state: dict[str, Any], history: list[Any]) -> list[dict
     # The visible opening is actual dialogue the player is replying to, even
     # though it is a UI placeholder rather than a completed generated turn.
     opening = [{"role": "assistant", "content": OPENING_LINE}] if game and game["completed"] == 0 and not bounded else []
-    turn = json.dumps({**context, "message": text}, ensure_ascii=False)
-    return [{"role": "system", "content": SYSTEM_PROMPT}, *opening, *bounded, {"role": "user", "content": turn}]
+    # Put the player's words first and the bounded, authored task last. With
+    # the reverse order the local model echoed the line and missed the goal.
+    turn = json.dumps({"message": text, **context}, ensure_ascii=False)
+    system = SYSTEM_PROMPT
+    if game:
+        # Only recomputed, application-authored goals enter the system message;
+        # never promote a player's text or a state-provided instruction here.
+        from .quest import player_intent
+        intent = player_intent(text)
+        system += "\n\nYOUR TASK FOR THIS REPLY:\n" + context["reply_goal"]
+        if intent["question"] or intent["pause"] or game["next_action"] == "walk_and_relight":
+            system += "\nEnd with a statement. Ask no question in this reply."
+        system += "\nKeep the answer to two sentences. Facts and consent outrank tone."
+    return [{"role": "system", "content": system}, *opening, *bounded, {"role": "user", "content": turn}]
 
 
 def _sse_data(lines: Iterator[str]) -> Iterator[str]:
@@ -277,8 +304,31 @@ class LocalGenerator:
         return result
 
     def stream(self, text: str, state: dict[str, Any], history: list[Any]) -> Iterator[str]:
-        """Yield real text deltas; preserve partial output and raise on failure."""
+        """Check game replies before display; never stream a rejected draft."""
+        if not safe_context(state.get("game")):
+            yield from self._stream_raw(text, state, history)
+            return
+        from .response_guard import problems, fallback
+        rejected = []
         deadline = time.monotonic() + TOTAL_BUDGET_SECONDS
+        repair = []
+        for attempt in range(2):
+            chunks = list(self._stream_raw(text, state, history, repair=repair, deadline=deadline))
+            candidate = "".join(chunks).strip()
+            repair = problems(text, state, candidate)
+            if not repair:
+                state["response_guard"] = {"source": "local_model", "attempts": attempt + 1,
+                    "rejected": rejected, "delivery": "validated_before_display"}
+                yield from chunks
+                return
+            rejected.append({"text": candidate, "issues": repair})
+        state["response_guard"] = {"source": "authored_fallback", "attempts": 2,
+            "rejected": rejected, "delivery": "validated_before_display"}
+        yield fallback(text, state)
+
+    def _stream_raw(self, text: str, state: dict[str, Any], history: list[Any], *, repair=(), deadline=None) -> Iterator[str]:
+        """Yield real text deltas; preserve partial output and raise on failure."""
+        deadline = deadline if deadline is not None else time.monotonic() + TOTAL_BUDGET_SECONDS
         payload = {
             "model": "checkin-qwen",
             "messages": _messages(text, state, history),
@@ -289,6 +339,13 @@ class LocalGenerator:
             "top_k": 20,
             "min_p": 0.0,
         }
+        if repair:
+            from .response_guard import REPAIR
+            instructions = [REPAIR[issue] for issue in repair if issue in REPAIR]
+            payload["messages"][0]["content"] += "\nREWRITE REQUIRED: " + " ".join(instructions)
+            data = json.loads(payload["messages"][-1]["content"])
+            data["rewrite_requirements"] = instructions
+            payload["messages"][-1]["content"] = json.dumps(data, ensure_ascii=False)
         produced_text = False
         completed = False
         try:

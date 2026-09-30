@@ -10,6 +10,8 @@ See the [dialogue matrix and remaining weaknesses](reports/game-character/MATRIX
 
 The [browser conversation fix](reports/game-character/BROWSER_FIX.md) records the actual UI replay, repaired follow-up behavior, and remaining wording limits.
 
+The [simulated-camera browser playtest](reports/game-character/CAMERA_QA.md) covers 50 preset and 20 new custom cases, repaired route/response failures, and explicit fallback accounting. Game replies now wait for a bounded check before display; one local rewrite is allowed, then any authored fallback is labeled in the UI and state. No learned models changed.
+
 ## Try it
 
 1. Follow the arrow with **WASD / arrow keys** to Mara. The floating W/A/S/D tutorial disappears once you move.
@@ -17,7 +19,7 @@ The [browser conversation fix](reports/game-character/BROWSER_FIX.md) records th
 3. Select **Turn camera on** once to use local visual evidence. Click a sample to **send it immediately**, or type your own words and use the send arrow / Enter.
 4. **Escape / Back to village** leaves the encounter, cancels queued/current replies, and stops the camera. **E** reopens it while nearby. Refresh for a fresh conversation.
 
-The three-turn preset path ends after choosing a route and agreeing to go. An early explicit custom route choice followed by readiness can finish in two turns. Mara leads, the player follows, and the beacon lights. Escape pauses movement, E resumes, and Restart scene clears progress. The example buttons are hardcoded; Mara’s replies are generated live.
+The three-turn preset path ends after choosing a route and agreeing to go. An early explicit custom route choice followed by readiness can finish in two turns. Mara leads, the player follows, and the beacon lights. Escape pauses movement, E resumes, and Restart scene clears progress. The example buttons are hardcoded; Mara’s replies use the local generator, with explicitly labeled authored fallbacks when bounded response checks fail.
 
 Live display is more responsive: 85% new-frame probability / 15% prior display, with smoothing only across gaps up to 0.4 seconds. The classifier weights, score calibration and six-sample fusion gate are unchanged. This is a responsiveness adjustment, not a demonstrated accuracy gain. Capture requests remain 5 Hz.
 

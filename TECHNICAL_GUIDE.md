@@ -25,6 +25,8 @@ language-model weaknesses. Generation now uses greedy decoding.
 
 The [browser conversation fix](reports/game-character/BROWSER_FIX.md) records the actual UI replay, repaired follow-up behavior, and remaining wording limits.
 
+The [simulated-camera browser playtest](reports/game-character/CAMERA_QA.md) covers 50 preset and 20 new custom cases, repaired route/response failures, and explicit fallback accounting. Game replies now wait for a bounded check before display; one local rewrite is allowed, then any authored fallback is labeled in the UI and state. No learned models changed.
+
 ## Model selection and parameter budget
 
 The upgraded stack has a conservative upper bound of **4,464,745,375 learned parameters**, below the **6,000,000,000** limit. The authoritative inventory is [manifests/models.json](manifests/models.json); it supersedes the earlier implementation plan's smaller model selection.

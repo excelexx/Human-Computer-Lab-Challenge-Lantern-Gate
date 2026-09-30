@@ -49,7 +49,12 @@ def player_intent(text):
                for part in re.split(r"[.!?;,\n]|\b(?:but|and)\b", actions) if part.strip()]
     question = "?" in words or bool(re.match(r"^(?:i (?:want|need|would like) to (?:know|understand)|tell me|explain|describe|what|why|how|who|where|when|which|are you|do you|does|can (?:you|we|i)|could|should|would)\b", words))
     switch_route = bool(re.fullmatch(r"(?:let's|lets|please|i want to) (?:choose|take|try|switch to) the other route[.!]*", words))
-    uncertain = bool(re.search(r"\b(?:if|unless|maybe|perhaps|might|could|suppose|hypothetically|not sure|changed my mind|other route)\b", actions))
+    # A changed mind alone is unresolved; a following explicit new preference
+    # must still be parsed. Keep hypotheticals and conflicting choices guarded.
+    changed_only = bool(re.search(r"\bchanged my mind\b", actions)) and not any(
+        re.match(r"^(?:i )?(?:prefer|choose|pick) (?:the )?(?:(?:signal )?bridge|(?:sea )?stairs)\b", clause)
+        for clause in clauses)
+    uncertain = changed_only or bool(re.search(r"\b(?:if|unless|maybe|perhaps|might|could|suppose|hypothetically|not sure|other route)\b", actions))
     deferred = bool(re.search(r"\b(?:later|tomorrow|after|eventually|someday|not yet)\b", actions))
     pause = bool(re.search(
         r"\b(?:not (?:quite |really |yet )?ready|not yet|not now|no thanks|rather not|"
@@ -58,6 +63,7 @@ def player_intent(text):
         r"(?:don't|do not|won't|will not|cannot|can't) (?:want to )?(?:go|leave|move|depart|start|continue|proceed))\b", actions
     )) or any(re.match(r"^(?:stop|pause|wait|hold on)\b", clause) or clause == "no" for clause in clauses)
     pause = pause or bool(_SPACE_REQUEST.search(actions) or _OUTSIDE_REQUEST.search(actions))
+    pause = pause or bool(re.search(r"\b(?:can|could|may) (?:we|i) (?:pause|stop|wait|stay here)\b", actions))
     route_names = {"bridge": r"(?:signal )?bridge", "stairs": r"(?:sea )?(?:stairs|stairway)"}
     rejected = set()
     for name, pattern in route_names.items():
@@ -151,10 +157,18 @@ def dialogue_goal(value, text):
         return answer("Answer the out-of-character question: you are a local AI game-character prototype playing Mara. State that identity clearly and conclude the answer. The conversation can remain paused at the gate.")
     if intent["question"] and re.search(r"\byou (?:call(?:ed)? me|said i (?:am|was)|say i'm)\b", line) and re.search(r"\b(?:afraid|scared|nervous|sad|angry|happy|excited|disgusted)\b", line):
         return answer("Accept the player's correction about their feelings. Explain briefly that an estimated emotion cue can be wrong, and their own words take priority. Acknowledge the mistaken assumption and conclude this explanation.")
+    if re.search(r"\b(?:i'm|i am) not (?:afraid|scared|nervous|sad|angry|happy|excited|disgusted)\b", line):
+        return "Acknowledge the player's correction about their feelings without inferring the opposite emotion. Their words take priority over the estimated cue. End this acknowledgment without mentioning the task or asking a route/readiness question."
     if intent["question"] and re.search(r"\b(?:tone|delivery|response|responses|reply)\b", line) and re.search(r"\b(?:emotion|emotions|feel|feeling|sad|afraid|angry|happy|excited)\b", line):
         return answer("Answer the out-of-character question about emotion conditioning: tentative emotion estimates can change Mara's warmth, pace and phrasing. The player's explicit words take priority. This is an uncertain cue, not knowledge of their inner feelings; a hypothetical example is only an example.")
-    if intent["question"] and (re.search(r"\b(?:camera|webcam|image|face)\b", line) or re.search(r"\b(?:(?:can|do) you see|what (?:can|do) you see)\b", line)):
+    if intent["question"] and (re.search(r"\b(?:camera|webcam|image|face|wearing|clothes|appearance)\b", line) or re.search(r"\b(?:(?:can|do) you see|what (?:can|do) you see)\b", line)):
         return answer("Answer the player's actual question about perception: the local language model receives their typed words and an estimated emotion tag, not a camera image. The estimate can be wrong; do not claim to see their face or know their feelings. Do not resume the quest.")
+    if re.search(r"\bgo without me\b", line):
+        return "The player will stay here and suggests Mara leave alone. This game only supports traveling together: say you will wait at the gate with no pressure. Do not tell the player to go without you or pretend to leave alone."
+    if intent["question"] and re.search(r"\b(?:inspect|inspected|inspection|checked|tested)\b", line):
+        return answer("Say that you do not know whether the route was inspected. Inspection history is unknown, not evidence that no inspection or records exist. Do not invent an inspection, its result, or a missing record.")
+    if intent["question"] and re.search(r"\b(?:have to|must|need to|required|forced)\b", line) and re.search(r"\bhelp\b", line):
+        return "Answer directly: helping is optional and the player may decline or stay at the gate. Do not ask them to pick a route, go anywhere, or help anyway."
     if _SPACE_REQUEST.search(line):
         return "Respect the player's request for space. Mara will keep her distance and wait at the gate. Do not offer to stay close, follow them, or ask them to depart; an emotion cue does not override this request."
     if _OUTSIDE_REQUEST.search(line):
@@ -173,7 +187,7 @@ def dialogue_goal(value, text):
             known = "The signal bridge is short, windy and exposed."
         return answer("Answer the player's actual question about safety: whether either route is safe or unsafe is unknown. Say you cannot vouch for safety. " + known + " Do not add evidence of an inspection, rails, missing signs, stability, heights, or a comparison of safety.")
     if intent["question"] and re.search(r"\bwhy\b", line) and re.search(r"\b(?:beacon|going|relight|help)\b", line):
-        return answer("Answer the player's actual question about the purpose: the harbor beacon is out after the storm, and the offered task is to reach it and relight it. Helping is optional. Do not invent fog, a deadline, previous failures or consequences for ships.")
+        return answer("Answer the player's actual question about the purpose: a harbor beacon marks the harbor for navigation. It is out after the storm, and the offered task is to reach it and relight it. Helping is optional; there is no established emergency or predicted consequence.")
     if intent["question"] and (re.search(r"\bremind\b.*\broute\b", line) or re.search(r"\b(?:which|what) route\b.*\b(?:choose|chose|chosen|picked|selected)\b", line)):
         fact = f"The selected route is the {route}." if route else "No route has been chosen yet; do not guess one."
         return answer("Answer the player's actual question about the existing plan. " + fact + " This reminder does not change the plan or grant permission to move.")

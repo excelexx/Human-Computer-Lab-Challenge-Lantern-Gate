@@ -1,0 +1,37 @@
+{
+  "recorded_utc": "2026-09-30T00:35:24.822630+00:00",
+  "baseline_revision": "f3ab750529fe5a8dfb5dad7d538c785431a81750",
+  "method": "Browser computer use; 50 preset button activations and 20 newly authored custom inputs; simulated classifier-output camera labels; real local text inference, generator and quest callbacks. Repeated on repaired code; final targeted recheck of case 64 after last correction guard and fallback-label contrast patch.",
+  "coverage": {
+    "preset": 50,
+    "custom": 20,
+    "emotions": 7,
+    "individually_reset_stage_fixtures": true,
+    "route_and_departure_matches": 70,
+    "final_visible_fallbacks": 18,
+    "final_visible_local_model_replies": 52,
+    "distinct_full_replies": 65
+  },
+  "ui_observation_latency_ms": {
+    "median": 940.0,
+    "p95_nearest_lower": 1482,
+    "max": 2703,
+    "scope": "QA UI submission through completed visible output, including browser overhead; CPU text classifier, synthetic vision/fusion output, existing GPU generator. Not a webcam latency benchmark."
+  },
+  "required_learned_parameter_upper_bound": 4464745375,
+  "limitations": [
+    "Development cases reused for fixes; not a held-out benchmark.",
+    "No actual camera frames; no MELD classifier/fusion accuracy claim.",
+    "Guard is a bounded heuristic, not a general semantic validator.",
+    "Guard buffers game replies before display and may make a second local generation call.",
+    "Synthetic fusion distribution is .88 on selected label and .02 on each other label; real text label retained for disagreement.",
+    "QA spawn is near Mara, stage resets use declared history fixtures, departure animation is held for inspection.",
+    "Neutral, surprise and disgust wording can still overlap; some replies remain generic."
+  ],
+  "software_tests": {
+    "python_passed": 651,
+    "javascript_passed": 13,
+    "failed": 0,
+    "warning": "AnyIO BlockingPortal deprecation in Starlette test client"
+  }
+}

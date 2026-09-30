@@ -546,7 +546,10 @@ def build_app(home: str | Path | None = None, pipeline: Any = None) -> Any:
                         result[4] = "Mara is setting off. Escape pauses the journey."
                         result[6] = gr.update(interactive=False)
                         result[9] = gr.update(value="", interactive=False)
-                    yield tuple(result) + game_updates(current, session_id, busy=not enabled)
+                    updates = list(game_updates(current, session_id, busy=not enabled))
+                    if isinstance(state, dict) and (state.get("response_guard") or {}).get("source") == "authored_fallback":
+                        updates[-2] = "Mara used an authored fallback because the local model's drafts failed the dialogue checks."
+                    yield tuple(result) + tuple(updates)
             finally:
                 stream.close()
 

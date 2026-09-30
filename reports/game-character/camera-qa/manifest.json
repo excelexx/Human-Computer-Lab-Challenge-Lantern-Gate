@@ -1,0 +1,28 @@
+{
+  "scope": "Final delivered source. after.json is the complete repaired pass before the final case-64 correction guard and fallback-label contrast patch; focused-final.json rechecks that case with final source. No vision weights changed.",
+  "source_sha256": {
+    "src/checkin/app.py": "d9ea87fd724be6da83e4d27b61ce11ef7697b18078cd983da49bc76ee9853dc3",
+    "src/checkin/character.py": "73bc4a6e37734e1877aa4560e78fc18389ef3add23c606c4989e9c968a74c8f5",
+    "src/checkin/generator.py": "42794207f40964932d7b7c9524cf44e7c5d13245f23c1eab97710219fdc0f6a4",
+    "src/checkin/quest.py": "28633d86674df9741dcf1c348bd847b9875a5fb78638c352969ab29db1c83e7b",
+    "src/checkin/reaction.py": "2def883ad05fb2df1efbc13738586e9963b636f2d112b379fb581cf57db104fd",
+    "src/checkin/response_guard.py": "5c282f3026c57b84ff591eec204320c684dcd900b7525f940756b30b3d836cdf",
+    "src/checkin/schema.py": "e5685ad6af21cc1a593510b819bfc74c1cc35761b6bddd6d60ae2d57546de4c8",
+    "scripts/browser-camera-qa.py": "0c61aee563f905c841bc759ece25549b287589518bf756147a2d1aaa3c48f25f",
+    "tests/test_response_guard.py": "6c8d23f81a9a1fe899e03e79aadc50ff37f64037d2592455f0f501e07f0d9549",
+    "tests/test_quest.py": "b539dee32a2b79b9bc9677bbb9a7143286af4ff77af8c8f18af8226ac28e55df",
+    "tests/test_character.py": "b26d58db40385abfef22aec5e929b321d8bbab258d47e4c73ab497a16dcaf122"
+  },
+  "artifact_sha256": {
+    "after.json": "ca4dcfddeb277ab1694da81152ff061b3ee69492ccd36e4658613f7ef7aef41a",
+    "before.json": "c9d3c42e6474ed1599d5343210f02885179ca51e8d6d417cd3ef6258b05c1adc",
+    "focused-final.json": "379a4109ce1c654517c25c3bf85a3900326460b4f846e94da4cbc135545bdd74",
+    "normal-app-final.json": "5c353a1e6b213df4642b0d55b2092e3e42cca4d98222ce48a70c3663666b0fc7",
+    "normal-app-final.png": "ccc72cb9b79b6b159302e7e9b2f18f0a3a7f7a7c070d3e8e35c6aacd26d5e8d2",
+    "plan.json": "64b9460b9133e6aaa058bea635dd3ba379f30dc9fb313bfeff11ad911f0bb74c",
+    "screen.png": "ec63a1e410a49ae3f9bc38fbbda1080e99ba0c9938584d88e5ab5bdc00b546dd",
+    "summary.json": "f16d0b362ca5aabcfaa40dce5e17e6447027ac531596137d5f67492d818bb7a2",
+    "tests.xml": "07d4f667caa146eea2a5fabcc6b3fe125e5007c3c8a1fd943cb29c7e1299f6bc",
+    "transcript.csv": "fb8e872b9fb59aec72f532694a9733be7d67310c36b3fdc484c50aa5a7acd562"
+  }
+}

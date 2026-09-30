@@ -44,9 +44,10 @@ def reply_cue_html(state=None):
         return '<div id="reply-cue-signal" data-reaction="idle" data-ready="false">Awaiting your line</div>'
     turn = html.escape(f"{state.get('session_id', '')}:{state.get('turn_id', '')}", quote=True)
     description = html.escape(f"{origin}. {pose}", quote=True)
+    fallback_note = ' <small style="display:block;color:#514537;font:inherit;font-size:.65em">Grounded fallback</small>' if (state.get("response_guard") or {}).get("source") == "authored_fallback" else ""
     return (
         f'<div id="reply-cue-signal" data-reaction="{style}" data-ready="true" data-turn="{turn}" '
         f'role="status" aria-live="polite" title="{description}">'
-        f'<strong>{cue_name} <span aria-hidden="true">→</span> {name}</strong>'
+        f'<strong>{cue_name} <span aria-hidden="true">→</span> {name}</strong>{fallback_note}'
         '</div>'
     )

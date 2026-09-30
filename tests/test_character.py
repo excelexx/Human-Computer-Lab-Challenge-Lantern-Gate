@@ -151,3 +151,11 @@ def test_custom_turns_do_not_receive_the_stock_neutral_sentence():
         turn = json.loads(_messages(text, state, [])[-1]["content"])
         assert "All right. We can work with that." not in turn["npc_direction"]["direction"]
         assert turn["game_context"]["route"] is None
+
+
+def test_current_feeling_correction_after_reported_clause_overrides_camera():
+    context = character_context({"predicted_emotion": "fear", "vision_available": True,
+        "vision_emotion": "fear", "modality_disagreement": True},
+        "You said I was scared, but I'm calm. Can we pause?")
+    assert context["cue_emotion"] == "neutral"
+    assert context["direction_source"] == "explicit_player_words"

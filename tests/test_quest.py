@@ -310,3 +310,35 @@ def test_every_authored_three_turn_path_preserves_route_and_consent(opening, rou
     q = quest.preview(q, ready_line)
     assert q["route"] == route
     assert q["phase"] == ("talking" if ready_line == quest.READY_LINES[3] else "depart")
+
+
+@pytest.mark.parametrize("old,new", [("bridge", "stairs"), ("stairs", "bridge")])
+def test_changed_mind_with_explicit_preference_updates_plan_without_departure(old, new):
+    q = {"completed": 2, "route": old, "phase": "talking"}
+    text = f"I changed my mind. I prefer the {new}."
+    after = quest.preview(q, text)
+    assert after["route"] == new and after["phase"] == "talking"
+    assert quest.context(q, text)["route"] == new
+
+
+@pytest.mark.parametrize("text", [
+    "I changed my mind.", "I changed my mind. Maybe I prefer the stairs.",
+    "If I changed my mind, I prefer the stairs.",
+    "I changed my mind. I prefer the stairs or the bridge.",
+])
+def test_unresolved_change_of_mind_cannot_switch_or_depart(text):
+    q = {"completed": 2, "route": "bridge", "phase": "talking"}
+    after = quest.preview(q, text)
+    assert after["route"] == "bridge" and after["phase"] == "talking"
+
+
+@pytest.mark.parametrize("text,goal_fragment", [
+    ("Do you know whether the bridge was inspected?", "Inspection history is unknown"),
+    ("Do you mean I have to help you?", "helping is optional"),
+    ("Can you tell what I am wearing?", "not a camera image"),
+    ("Go without me; I am staying here.", "Do not tell the player to go without you"),
+])
+def test_camera_browser_failures_receive_specific_grounded_goals(text, goal_fragment):
+    q = {"completed": 2, "route": "stairs", "phase": "talking"}
+    assert quest.preview(q, text)["phase"] == "talking"
+    assert goal_fragment in quest.dialogue_goal(quest.context(q, text), text)
